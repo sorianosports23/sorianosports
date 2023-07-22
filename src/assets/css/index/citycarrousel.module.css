@@ -1,0 +1,32 @@
+.carrousel {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: max-content;
+}
+
+.carrousel > a {
+  text-decoration: none;
+  color: #222;
+  border: 1px solid #222;
+  width: 8rem;
+  height: 2rem;
+  border-radius: 1rem;
+  display: grid;
+  place-content: center;
+  font-size: 1.1em;
+  font-style: italic;
+  background-color: #c1f6e4;
+  margin-right: 2rem;
+  transition: background .3s, transform .3s, font-weight .3s;
+}
+
+.carrousel > a:last-of-type {
+  margin-right: none;
+}
+
+.carrousel > a:hover {
+  background-color: #a1dfcb;
+  font-weight: bold;
+  transform: scale(1.2);
+}
