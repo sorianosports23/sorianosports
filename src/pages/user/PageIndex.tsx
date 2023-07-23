@@ -1,6 +1,7 @@
 import CompHeader from "../../components/templates/CompHeader"
 import styles from "../../assets/css/index/index.module.css"
 import CompCityCarrousel from "../../components/index/CompCityCarrousel"
+import CompNewsCarrousel from "../../components/index/CompNewsCarrousel"
 
 const PageIndex = () => {
   return (
@@ -15,7 +16,7 @@ const PageIndex = () => {
       </div>
 
       <div className={styles.news}>
-
+        <CompNewsCarrousel/>
       </div>
 
       <div className={`${styles.sport} ${styles.ground}`}>

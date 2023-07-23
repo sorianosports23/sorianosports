@@ -3,6 +3,10 @@
   align-items: center;
   height: 100%;
   width: max-content;
+  animation-name: moveCarrousel;
+  animation-duration: 60s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 .carrousel > a {
@@ -14,11 +18,14 @@
   border-radius: 1rem;
   display: grid;
   place-content: center;
-  font-size: 1.1em;
+  font-size: 1em;
   font-style: italic;
   background-color: #c1f6e4;
   margin-right: 2rem;
   transition: background .3s, transform .3s, font-weight .3s;
+  text-align: center;
+  line-height: 1rem;
+  padding: .5rem .5rem;
 }
 
 .carrousel > a:last-of-type {
@@ -29,4 +36,18 @@
   background-color: #a1dfcb;
   font-weight: bold;
   transform: scale(1.2);
+}
+
+@keyframes moveCarrousel {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-100%);
+  }
+
+  100% { 
+    transform: translateX(0);
+  }
 }
