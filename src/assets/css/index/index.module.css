@@ -8,6 +8,7 @@
   height: 5rem;
   display: flex;
   align-items: center;
+  background-color: #c1f6e4;
 }
 
 .city-carrousel > nav {
@@ -19,4 +20,17 @@
 .news {
   width: 100%;
   height: 20rem;
+}
+
+.sport {
+  width: 100%;
+  height: 25rem;
+}
+
+.ground {
+  background-color: #c1f6e4;
+}
+
+.water {
+  background-color: #50dac1;
 }
