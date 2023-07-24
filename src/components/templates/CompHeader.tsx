@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { BsSearch, BsFillChatSquareDotsFill, BsFillPersonFill, BsChevronDown } from "react-icons/bs"
-import styles from "../../assets/css/header/CompHeader.module.css"
+import styles from "../../css/header/CompHeader.module.css"
 
 const stylesName = {
   link_header2: `${styles.link} ${styles["link-header2"]}`

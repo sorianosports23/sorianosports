@@ -1,5 +1,5 @@
 import { BsQuestionCircle } from "react-icons/bs"
-import styles from "../../assets/css/index/sportswater.module.css"
+import styles from "../../css/index/sportswater.module.css"
 import { useState } from "react"
 
 const CompSportsWater = () => {

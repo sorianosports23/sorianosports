@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PageIndex from "./pages/user/PageIndex";
-import "./assets/css/global.css"
+import "./css/global.css"
 
 const pageRoutes = createBrowserRouter([
   {

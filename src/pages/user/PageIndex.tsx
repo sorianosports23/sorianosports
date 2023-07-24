@@ -1,9 +1,10 @@
 import CompHeader from "../../components/templates/CompHeader"
-import styles from "../../assets/css/index/index.module.css"
+import styles from "../../css/index/index.module.css"
 import CompCityCarrousel from "../../components/index/CompCityCarrousel"
 import CompNewsCarrousel from "../../components/index/CompNewsCarrousel"
 import CompSportsGround from "../../components/index/CompSportsGround"
 import CompSportsWater from "../../components/index/CompSportsWater"
+import CompFooter from "../../components/templates/CompFooter"
 
 const PageIndex = () => {
   return (
@@ -29,6 +30,8 @@ const PageIndex = () => {
         <CompSportsWater/>
       </div>
     </main>
+
+    <CompFooter/>
     </>
   )
 }

@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.footer {
+  height: 12rem;
+  background-color: #c1f6e4;
+  padding: 1rem 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.social {
+  height: 10rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.social h3 {
+  font-size: 1.4em;
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.social-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.social-header > div ul {
+  list-style-type: none;
+  display: flex;
+  width: 10rem;
+  justify-content: space-between;
+}
+
+.social-header > div ul li {
+  font-size: 1.5em;
+}
+
+.social-header a {
+  position: relative;
+}
+
+.social-header a::before {
+  transition: width .3s;
+  content: "";
+  width: 0%;
+  background-color: #222;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+}
+
+.social-header a:hover::before {
+  width: 100%;
+}
+
+.facebook {
+  color: #00f;
+}
+
+.instagram {
+  color: #c0c;
+}
+
+.twitter {
+  color: #0cc;
+}
+
+.youtube {
+  color: #a00;
+}
+
+.icon { 
+  display: grid;
+  place-content: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+.social > ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.social > ul li {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  font-family: 'Raleway', sans-serif;
+  text-decoration: none;
+  color: #222;  
+  height: 4rem;
+}
+
+.social > ul li:first-of-type {
+  width: 9rem;
+  font-size: 1em;
+}
+
+.social > ul li:first-of-type svg {
+  font-size: 1.2em;
+  margin-right: .5rem;
+}
+
+.social > ul li:hover svg {
+  color: #0a0c;
+}
+
+.social a {
+  text-decoration: underline;
+  color: #222;
+}
+
+.copyright {
+  border-top: 1px solid #222;
+  width: 100%;
+  text-align: center;
+  font-size: .9em;
+  padding: .5rem;
+  height: 2rem;
+}

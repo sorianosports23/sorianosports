@@ -1,5 +1,5 @@
 import { FaBasketballBall, FaVolleyballBall } from "react-icons/fa"
-import styles from "../../assets/css/index/sportsground.module.css"
+import styles from "../../css/index/sportsground.module.css"
 import { useState } from "react"
 
 const CompSportsGround = () => {

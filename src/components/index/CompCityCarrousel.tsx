@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import styles from "../../assets/css/index/citycarrousel.module.css"
+import styles from "../../css/index/citycarrousel.module.css"
 
 const CITY_URI = `http://${window.location.hostname}:3000/city/`
 

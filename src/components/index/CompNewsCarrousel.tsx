@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, MutableRefObject } from "react"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
-import styles from "../../assets/css/index/newscarrousel.module.css"
+import styles from "../../css/index/newscarrousel.module.css"
 
 const CompNewsCarrousel = () => {
 
