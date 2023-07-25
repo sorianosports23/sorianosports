@@ -61,19 +61,19 @@
   width: 100%;
 }
 
-.facebook {
+.facebook:hover {
   color: #00f;
 }
 
-.instagram {
+.instagram:hover {
   color: #c0c;
 }
 
-.twitter {
+.twitter:hover {
   color: #0cc;
 }
 
-.youtube {
+.youtube:hover {
   color: #a00;
 }
 

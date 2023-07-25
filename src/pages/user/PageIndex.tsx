@@ -5,11 +5,13 @@ import CompNewsCarrousel from "../../components/index/CompNewsCarrousel"
 import CompSportsGround from "../../components/index/CompSportsGround"
 import CompSportsWater from "../../components/index/CompSportsWater"
 import CompFooter from "../../components/templates/CompFooter"
+import CompSocialAside from "../../components/templates/CompSocialAside"
 
 const PageIndex = () => {
   return (
     <>
     <CompHeader/>
+    <CompSocialAside/>
 
     <main className={styles.main}>
       {/* <div className={styles["city-carrousel"]}>
