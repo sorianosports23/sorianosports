@@ -1,0 +1,38 @@
+.results {
+  position: absolute;
+  width: 100%;
+  height: 20rem;
+  left: 0;
+  bottom: 0;
+  transform: translateY(20rem);
+  background-color: #fff;
+  border: 1px solid #222;
+  border-radius: 1rem;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.result {
+  border-top: 1px solid #222;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.result:first-of-type {
+  border: none;
+}
+
+.noresult {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+.noresult > div {
+  font-size: 3em;
+}

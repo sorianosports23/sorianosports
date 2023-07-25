@@ -58,7 +58,7 @@
   flex-wrap: wrap;
   justify-content: center;
   color: #eee;
-  z-index: 5;
+  z-index: 4;
 }
 
 .news > div {
