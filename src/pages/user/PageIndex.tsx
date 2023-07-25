@@ -12,11 +12,11 @@ const PageIndex = () => {
     <CompHeader/>
 
     <main className={styles.main}>
-      <div className={styles["city-carrousel"]}>
+      {/* <div className={styles["city-carrousel"]}>
         <nav>
           <CompCityCarrousel/>
         </nav>
-      </div>
+      </div> */}
 
       <div className={styles.news}>
         <CompNewsCarrousel/>

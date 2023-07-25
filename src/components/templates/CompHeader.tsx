@@ -25,12 +25,12 @@ const useSearch = () => {
 }
 
 const docs = [
-  { text: "Inicio" },
-  { text: "Mision" },
-  { text: "Deportes" },
-  { text: "Eventos" },
-  { text: "Registrarse" },
-  { text: "Iniciar sesion" }
+  { title: "Inicio", keywords: ["index", "inicio"], to: "/" },
+  { title: "Mision", keywords: ["mision"], to: "/about/mission" },
+  { title: "Deportes", keywords: ["deportes", "futbol", "basquetbol"], to: "/sports" },
+  { title: "Eventos", keywords: ["eventos"], to: "/events" },
+  { title: "Registrarse", keywords: ["cuenta", "registrarse"], to: "/auth/register" },
+  { title: "Iniciar sesion", keywords: ["cuenta", "iniciar sesion"], to: "/auth/login" }
 ]
 
 const CompHeader = () => {
@@ -51,7 +51,15 @@ const CompHeader = () => {
     }
 
     setShowResults(true)
-    setSearchResults(docs.filter(value => value.text.toLowerCase().includes(search.value.toLowerCase())))
+
+    const results = [] as typeof docs
+    docs.map(value => {
+      const keys = value.keywords.filter(key => key.includes(search.value.toLowerCase()))
+      if (keys.length > 0) results.push(value)
+
+      return null
+    })
+    setSearchResults(results)
   }, [search.value])
 
   return (
@@ -77,7 +85,7 @@ const CompHeader = () => {
                 searchResults.length > 0 
                   ?                
                     searchResults.map((result, i) => (
-                      <div key={i} className={styleBar.result}>{result.text}</div>
+                      <div key={i} className={styleBar.result}>{result.title}</div>
                     ))
                   : 
                     <div className={styleBar.noresult}>
