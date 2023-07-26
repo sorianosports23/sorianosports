@@ -117,12 +117,13 @@ const CompHeader = () => {
           <Link to="/" className={stylesName.link_header2}>
             Inicio
           </Link>
-          <div
-            onMouseEnter={() => setActivitiesDropDown(true)}
-            onMouseLeave={() => setActivitiesDropDown(false)}
+          <button
+            onClick={() => setActivitiesDropDown(prev => !prev)}
           >
             <p className={stylesName.link_header2}>
-              <BsChevronDown/> 
+              <BsChevronDown style={{
+                rotate: activitiesDropdown ? "-180deg" : "0deg"
+              }}/> 
               Actividades
             </p>
 
@@ -130,32 +131,32 @@ const CompHeader = () => {
               style={{
                 opacity: activitiesDropdown ? "1" : "0",
                 transform: `translateY(${activitiesDropdown ? "5.2rem" : "0"})`
-              }}
-            >
+              }}            >
               <li>
-                <Link to="/">
+                <Link to="/" tabIndex={activitiesDropdown ? 0 : -1}>
                   Deportes
                 </Link>
               </li>
               <li>
-                <Link to="/">
+                <Link to="/" tabIndex={activitiesDropdown ? 0 : -1}>
                   Escuelas
                 </Link>
               </li>
             </ul>
-          </div>
+          </button>
           <Link to="/" className={stylesName.link_header2}>
             Eventos
           </Link>
           <Link to="/" className={stylesName.link_header2}>
             Blog
           </Link>
-          <div
-            onMouseEnter={() => setAboutDropDown(true)}
-            onMouseLeave={() => setAboutDropDown(false)}
+          <button
+            onClick={() => setAboutDropDown(prev => !prev)}
           >
             <p className={stylesName.link_header2}>
-              <BsChevronDown/> 
+              <BsChevronDown style={{
+                rotate: aboutDropdown ? "-180deg" : "0deg"
+              }}/> 
               Institución
             </p>
 
@@ -166,27 +167,27 @@ const CompHeader = () => {
               }}
             >
               <li>
-                <Link to="/">
+                <Link to="/" tabIndex={aboutDropdown ? 0 : -1}>
                   Nosotros
                 </Link>
               </li>
               <li>
-                <Link to="/">
+                <Link to="/" tabIndex={aboutDropdown ? 0 : -1}>
                   Contactos
                 </Link>
               </li>
               <li>
-                <Link to="/">
+                <Link to="/" tabIndex={aboutDropdown ? 0 : -1}>
                   Visión
                 </Link>
               </li>
               <li>
-                <Link to="/">
+                <Link to="/" tabIndex={aboutDropdown ? 0 : -1}>
                   Misión
                 </Link>
               </li>
             </ul>
-          </div>
+          </button>
         </nav>
       </div>
     </header>

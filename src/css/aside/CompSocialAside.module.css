@@ -9,6 +9,7 @@
   padding: .5rem;
   border-left: none;
   border-radius: 0 1rem 1rem 0;
+  border: 1px solid #222;
 }
 
 .ul {
@@ -19,10 +20,6 @@
   font-size: 2em;
   width: 100%;
   height: 100%;
-}
-
-.ul > li:hover {
-  border: 1px solid #222;
 }
 
 .ul > li > a {

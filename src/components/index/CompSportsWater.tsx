@@ -25,16 +25,15 @@ const CompSportsWater = () => {
               <span>Acuaticas</span>
             </h2>
             <p>Recuerda hacer las cosas que disfrutas.</p>
-          </div>
-        </div>
-        <div>
-          <button
-            onClick={() => setListOpen(!listOpen)}
-          >
+
+            <button
+              onClick={() => setListOpen(!listOpen)}
+            >
             {
               listOpen ? "Cerrar" : "Abrir"
             }
           </button>
+          </div>
         </div>
 
         <div className={styles.circle}></div>

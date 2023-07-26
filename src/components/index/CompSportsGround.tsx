@@ -22,21 +22,19 @@ const CompSportsGround = () => {
               <span>En tierra</span>
             </h2>
             <p>Simplemente juega. Diviértete. Disfruta el juego.</p>
+              <button
+                onClick={() => setListOpen(!listOpen)}
+              >
+              {
+                listOpen ? "Cerrar" : "Abrir"
+              }
+            </button>
           </div>
           <div className={styles.img}>
             <img src={process.env.PUBLIC_URL + "/assets/img/sportsground.jpg"} alt="sports-ground" />
           </div>
         </div>
-        <div>
-          <button
-            onClick={() => setListOpen(!listOpen)}
-          >
-            {
-              listOpen ? "Cerrar" : "Abrir"
-            }
-          </button>
-        </div>
-
+        
         <div className={styles.circle}></div>
       </div>
       
