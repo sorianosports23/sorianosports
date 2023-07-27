@@ -40,6 +40,8 @@
   height: 2rem;
   padding: 0 2rem;
   position: relative;
+  z-index: 9;
+  transition: transform .3s;
 }
 
 .search-bar input {

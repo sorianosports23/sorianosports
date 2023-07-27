@@ -16,7 +16,6 @@ const CompNewsCarrousel = () => {
   }, [])
 
   const handleTransitionEnd = () => {
-    console.log("end")
     setOnTransition(false)
   }
 

@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom"
 import { BsSearch, BsFillChatSquareDotsFill, BsFillPersonFill, BsChevronDown } from "react-icons/bs"
-import { FaRegFaceFrown } from "react-icons/fa6"
 import styles from "../../css/header/CompHeader.module.css"
-import styleBar from "../../css/header/SearchBar.module.css"
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, useState } from "react"
+import CompSearchBar from "../header/CompSearchBar"
 
 const stylesName = {
   link_header2: `${styles.link} ${styles["link-header2"]}`
@@ -24,43 +23,13 @@ const useSearch = () => {
   }
 }
 
-const docs = [
-  { title: "Inicio", keywords: ["index", "inicio"], to: "/" },
-  { title: "Mision", keywords: ["mision"], to: "/about/mission" },
-  { title: "Deportes", keywords: ["deportes", "futbol", "basquetbol"], to: "/sports" },
-  { title: "Eventos", keywords: ["eventos"], to: "/events" },
-  { title: "Registrarse", keywords: ["cuenta", "registrarse"], to: "/auth/register" },
-  { title: "Iniciar sesion", keywords: ["cuenta", "iniciar sesion"], to: "/auth/login" }
-]
-
 const CompHeader = () => {
 
   const search = useSearch()
 
   const [activitiesDropdown, setActivitiesDropDown] = useState(false)
   const [aboutDropdown, setAboutDropDown] = useState(false)
-
-  const [showResults, setShowResults] = useState(false)
-  const [searchResults, setSearchResults] = useState<typeof docs>([])
-
-  useEffect(() => {
-
-    if (!search.value) {
-      setShowResults(false)
-      return
-    }
-
-    setShowResults(true)
-
-    const results = [] as typeof docs
-    docs.map(value => {
-      const keys = value.keywords.filter(key => key.includes(search.value.toLowerCase()))
-      if (keys.length > 0) results.push(value)
-
-      return null
-    })
-    setSearchResults(results)
-  }, [search.value])
+  const [searchBarHover, setSearchBarHover] = useState(false)
 
   return (
     <header className={styles.header}>
@@ -69,33 +38,19 @@ const CompHeader = () => {
           <img src={process.env.PUBLIC_URL + "/assets/img/deportesyrecreacions.png"} alt="page-logo" />
         </div>
 
-        <div className={styles["search-bar"]}>
+        <div 
+          className={styles["search-bar"]} 
+          onPointerEnter={() => setSearchBarHover(true)} 
+          onPointerLeave={() => setSearchBarHover(false)}
+        >
           <div>
             <input {...search} />
             <button className={styles["search-bar__icon"]}>
               <BsSearch/>
             </button>
 
-            <div className={styleBar.results}
-              style={{
-                display: showResults ? "initial" : "none"
-              }}
-            >
-              {
-                searchResults.length > 0 
-                  ?                
-                    searchResults.map((result, i) => (
-                      <div key={i} className={styleBar.result}>{result.title}</div>
-                    ))
-                  : 
-                    <div className={styleBar.noresult}>
-                      <div>
-                        <FaRegFaceFrown/>
-                      </div>
-                      No se encontraron resultados
-                    </div>
-              }
-            </div>
+            <CompSearchBar search={search.value} searchHover={searchBarHover}/>
+
           </div>
         </div>
 

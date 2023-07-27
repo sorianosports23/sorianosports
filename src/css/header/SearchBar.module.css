@@ -10,13 +10,39 @@
   border-radius: 1rem;
   padding: 1rem;
   overflow: hidden;
+  z-index: 8;
 }
 
 .result {
   border-top: 1px solid #222;
   height: 3rem;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: .2rem 1rem;
+  text-decoration: none;
+}
+
+.result > h3 {
+  font-size: 1em;
+  color: #222;
+}
+
+.result > p {
+  font-size: .85em;
+  color: #2229;
+}
+
+.result:first-of-type { 
+  border-radius: 1rem 1rem 0 0;
+}
+
+.result:last-of-type {
+  border-radius: 0 0 1rem 1rem;
+}
+
+.result:hover {
+  background-color: #4444;
 }
 
 .result:first-of-type {
