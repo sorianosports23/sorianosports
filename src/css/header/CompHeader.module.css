@@ -3,6 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   height: 8rem;
+  background-color: #c1f6e4;
 }
 
 .header-top {
