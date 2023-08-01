@@ -99,7 +99,7 @@ const CompHeader = () => {
               </li>
             </ul>
           </button>
-          <Link to="/" className={stylesName.link_header2}>
+          <Link to="/events" className={stylesName.link_header2}>
             Eventos
           </Link>
           <Link to="/" className={stylesName.link_header2}>

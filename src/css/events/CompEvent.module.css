@@ -1,0 +1,30 @@
+.event {
+  width: 17rem;
+  height: 13rem;
+  border: 1px solid #222;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  background-color: #eee;
+}
+
+.date {
+  background-color: #099;
+  height: 100%;
+  border-radius: 1rem;
+  display: grid;
+  place-content: center;
+  width: 40%;
+}
+
+.place {
+  width: 60%;
+  height: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
