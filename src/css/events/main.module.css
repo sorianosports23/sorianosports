@@ -1,11 +1,20 @@
 .programation {
   background: #c1f6e4;
-  height: 20rem;
+  height: max-content;
 }
 
 .events {
   width: 100%;
-  height: 15rem;
+  height: max-content;
+  display: flex;
+  justify-content: space-around;
+  align-content: space-around;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.events > div {
+  margin-top: 1rem;
 }
 
 .title {
@@ -18,15 +27,10 @@
 }
 
 .title > div {
-  width: 15rem;
+  width: 18rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.title > div button {
-  width: 6rem;
-  height: 1.5rem;
 }
 
 .title > div > div {
@@ -35,4 +39,53 @@
 
 .title > div > div > p {
   position: absolute;
+}
+
+.btn_cont > div > button, .btn_cont > button {
+  width: 8rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  border-radius: 1rem;
+  border: 1px solid #222;
+  background: #099;
+  color: #eee;
+}
+
+.btn_cont > div > button {
+  border-radius: 1rem 1rem 0 0 !important;
+}
+
+.btn_cont > div > p, .btn_cont_list > li {
+  background: #eee;
+  width: 100%;
+  height: 2rem;
+  display: grid;
+  place-content: center;
+  font-size: 1.2em;
+  border: 1px solid #222;
+  /* border-radius: 0 0 1rem 1rem; */
+  /* border-radius: 0 0 0rem 0rem; */
+}
+
+.btn_cont svg {
+  margin-left: .5rem;
+}
+
+.btn_cont_list {
+  list-style-type: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(4rem);
+  width: 100%;
+  height: max-content;
+  border: 1px solid #222;
+}
+
+.btn_cont_list > li {
+  border: none;
+  border-top: 1px solid #222;
 }
