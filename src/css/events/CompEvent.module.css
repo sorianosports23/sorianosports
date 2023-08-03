@@ -14,9 +14,18 @@
   background-color: #099;
   height: 100%;
   border-radius: 1rem;
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: .9em;
   width: 40%;
+}
+
+.date > span {
+  width: 100%;
+  text-align: center;
+  height: max-content;
 }
 
 .place {
@@ -27,4 +36,18 @@
   align-items: center;
   flex-direction: column;
   text-align: center;
+}
+
+.place > button {
+  border: 1px solid #222;
+  width: max-content;
+  height: 1.5rem;
+  padding: .5rem;
+  display: grid;
+  place-content: center;
+  border-radius: .5rem;
+  background: #099;
+  font-weight: bold;
+  color: #ccc;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
 }

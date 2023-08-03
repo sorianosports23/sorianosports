@@ -8,7 +8,10 @@ type TEventProps = {
   place: string
 }
 
-const CompEvent = ({ dayNumber, day, hour, sportName, place }: TEventProps) => {
+const CompEvent = (event: TEventProps) => {
+  
+  const { dayNumber, day, hour, sportName, place } = event
+  
   return (
     <div className={styles.event}>
       <div className={styles.date}>
@@ -20,7 +23,9 @@ const CompEvent = ({ dayNumber, day, hour, sportName, place }: TEventProps) => {
       <div className={styles.place}>
         <h4>{sportName}</h4>
         <p>{place}</p>
+        <button onClick={() => console.log(event)}>Ver informacion</button>
       </div>
+
     </div>
   )
 }
