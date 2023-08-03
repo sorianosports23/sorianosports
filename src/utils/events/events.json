@@ -1,0 +1,17 @@
+{
+  "Mercedes": [
+    { "name": "Evento 1 Mercedes", "description": "El primer evento de Mercedes", "dayNumber": 2, "day": "Martes", "hour": "15:00", "sportName": "Futbol", "place": "Club Remeros Mercedes" },
+    { "name": "Evento 2 Mercedes", "description": "El segundo evento de Mercedes", "dayNumber": 6, "day": "Sabado", "hour": "18:00", "sportName": "Basquetbol", "place": "Lugar N1" },
+    { "name": "Evento 3 Mercedes", "description": "El tercer evento de Mercedes", "dayNumber": 20, "day": "Jueves", "hour": "20:00", "sportName": "Futbol", "place": "CRM" }
+  ],
+  "Risso": [
+    { "name": "Evento N~1 de Risso", "description": "El primer evento en Risso", "dayNumber": 4, "day": "Jueves", "hour": "15:00", "sportName": "Basquetbol", "place": "Lugar N~1" },
+    { "name": "Evento N~2 de Risso", "description": "El segundo evento en Risso", "dayNumber": 10, "day": "Miercoles", "hour": "18:00", "sportName": "Basquetbol", "place": "Lugar N~2" },
+    { "name": "Evento N~3 de Risso", "description": "El tercer evento en Risso", "dayNumber": 16, "day": "Lunes", "hour": "12:00", "sportName": "Futbol", "place": "Lugar N~3" }
+  ],
+  "Dolores": [
+    { "name": "Evento N~1 de Dolores", "description": "El primer evento en Dolores", "dayNumber": 4, "day": "Jueves", "hour": "15:00", "sportName": "Basquetbol", "place": "Lugar N~1" },
+    { "name": "Evento N~2 de Dolores", "description": "El segundo evento en Dolores", "dayNumber": 6, "day": "Sabado", "hour": "22:00", "sportName": "Futbol", "place": "Lugar N~2" },
+    { "name": "Evento N~3 de Dolores", "description": "El tercer evento en Dolores", "dayNumber": 20, "day": "Lunes", "hour": "15:00", "sportName": "Futbol", "place": "Lugar N~3" }
+  ]
+}

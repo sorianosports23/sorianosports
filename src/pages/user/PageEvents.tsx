@@ -1,12 +1,15 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import CompEvent from "../../components/events/CompEvent"
 import CompHeader from "../../components/templates/CompHeader"
 import styles from "../../css/events/main.module.css"
 import { BsFillCaretDownFill, BsFillCalendarDateFill , BsFillCaretUpFill} from "react-icons/bs"
+import listEvents from "../../utils/events/events.json"
 
 const PageEvents = () => {
 
   const [showPlaces, setShowPlaces] = useState(false)
+  const [events] = useState<IEvents>(listEvents as IEvents)
+  const [eventsCity, setEventsCity] = useState("Mercedes")
 
   return (
     <>
@@ -35,16 +38,20 @@ const PageEvents = () => {
                     ? "0" 
                     : "0 0 1rem 1rem"
                 }}
-              >Mercedes</p>
+              >{eventsCity}</p>
 
               <ul className={styles.btn_cont_list}
                 style={{
                   display: showPlaces ? "block" : "none"
                 }}
               >
-                <li>Dolores</li>
-                <li>Risso</li>
-                <li>Palmitas</li>
+                {
+                  Object.keys(events).map((city, i) => (
+                    <li key={i}>
+                      <button onClick={() => setEventsCity(city)}>{city}</button>
+                    </li>
+                  ))
+                }
               </ul>
             </div>
 
@@ -53,62 +60,15 @@ const PageEvents = () => {
         </div>
 
         <div className={styles.events}>
-          <CompEvent
-            dayNumber={8}
-            day={"SAB"}
-            hour={"12:00 H"}
-            sportName="REMO"
-            place="Club Remeros Mercedes"
-          />
-          <CompEvent
-            dayNumber={8}
-            day={"SAB"}
-            hour={"12:00 H"}
-            sportName="REMO"
-            place="Club Remeros Mercedes"
-          />
-          <CompEvent
-            dayNumber={8}
-            day={"SAB"}
-            hour={"12:00 H"}
-            sportName="REMO"
-            place="Club Remeros Mercedes"
-          />
-          <CompEvent
-            dayNumber={8}
-            day={"SAB"}
-            hour={"12:00 H"}
-            sportName="REMO"
-            place="Club Remeros Mercedes"
-          />
-          <CompEvent
-            dayNumber={8}
-            day={"SAB"}
-            hour={"12:00 H"}
-            sportName="REMO"
-            place="Club Remeros Mercedes"
-          />
-          <CompEvent
-            dayNumber={8}
-            day={"SAB"}
-            hour={"12:00 H"}
-            sportName="REMO"
-            place="Club Remeros Mercedes"
-          />
-          <CompEvent
-            dayNumber={8}
-            day={"SAB"}
-            hour={"12:00 H"}
-            sportName="REMO"
-            place="Club Remeros Mercedes"
-          />
-          <CompEvent
-            dayNumber={8}
-            day={"SAB"}
-            hour={"12:00 H"}
-            sportName="REMO"
-            place="Club Remeros Mercedes"
-          />
+          {
+            events[eventsCity].map((event) => (
+              <CompEvent
+                {
+                  ...event
+                }
+              />
+            ))
+          }
         </div>
         
       </div>
