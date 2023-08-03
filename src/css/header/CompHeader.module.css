@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   height: 8rem;
-  background-color: #c1f6e4;
+  /* background-color: #c1f6e4; */
 }
 
 .header-top {
@@ -43,7 +43,7 @@
   position: relative;
   z-index: 9;
   transition: transform .3s;
-  background-color: #eee;
+  /* background-color: #8FB399; */
 }
 
 .search-bar input {
