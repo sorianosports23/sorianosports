@@ -11,7 +11,7 @@
   ],
   "Dolores": [
     { "name": "Evento N~1 de Dolores", "description": "El primer evento en Dolores", "dayNumber": 4, "day": "Jueves", "hour": "15:00", "sportName": "Basquetbol", "place": "Lugar N~1" },
-    { "name": "Evento N~2 de Dolores", "description": "El segundo evento en Dolores", "dayNumber": 6, "day": "Sabado", "hour": "22:00", "sportName": "Futbol", "place": "Lugar N~2" },
+    { "name": "Evento N~2 de Dolores", "description": "El segundo evento en Dolores", "dayNumber": 6, "day": "Sabado", "hour": "22:00", "sportName": "Futbolsala", "place": "Lugar N~2" },
     { "name": "Evento N~3 de Dolores", "description": "El tercer evento en Dolores", "dayNumber": 20, "day": "Lunes", "hour": "15:00", "sportName": "Futbol", "place": "Lugar N~3" }
   ]
 }

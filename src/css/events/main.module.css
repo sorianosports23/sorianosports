@@ -26,8 +26,8 @@
   padding: 1rem 5rem;
 }
 
-.title > div {
-  width: 18rem;
+.btn_cont {
+  width: 25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

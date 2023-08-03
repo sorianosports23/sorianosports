@@ -52,8 +52,6 @@ const CompNewsCarrousel = () => {
   useEffect(() => {   
     const firstChild = news.current.firstChild as HTMLDivElement
     const lastChild = news.current.lastChild as HTMLDivElement
-    console.log(firstChild)
-    console.log(lastChild)
     const clonLastChild = document.createElement("div")
     clonLastChild.innerHTML = lastChild.innerHTML
     news.current.insertBefore(clonLastChild, firstChild)
