@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   height: 8rem;
-  /* background-color: #c1f6e4; */
+  background: linear-gradient(to right, #30588C10, #30588C90,#30588C90, #30588C90, #30588C10);
 }
 
 .header-top {
@@ -43,7 +43,7 @@
   position: relative;
   z-index: 9;
   transition: transform .3s;
-  /* background-color: #8FB399; */
+  background-color: #eee;
 }
 
 .search-bar input {
@@ -77,6 +77,25 @@
   flex-direction: column;
   width: 3rem;
   height: 4rem;
+}
+
+.link, .header-nav > button {
+  position: relative;
+}
+
+.link::before, .header-nav > button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: #222;
+  transition: width .3s;
+}
+
+.link:hover::before, .header-nav > button:hover::before {
+  width: 100%;
 }
 
 .link-header > svg {
@@ -113,7 +132,7 @@
 }
 
 .header-nav > a, .header-nav > div, .header-nav > button {
-  width: 10rem;
+  width: max-content;
   display: flex;
   justify-content: center;
   font-size: 1.5em;
