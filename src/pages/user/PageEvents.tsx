@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import CompEvent from "../../components/events/CompEvent"
 import CompHeader from "../../components/templates/CompHeader"
-import styles from "../../css/events/main.module.css"
+import styles from "../../css/events/PageEvents.module.css"
 import { BsFillCaretDownFill, BsFillCalendarDateFill , BsFillCaretUpFill} from "react-icons/bs"
 import listEvents from "../../utils/events/events.json"
 
@@ -153,6 +153,41 @@ const PageEvents = () => {
           }
         </div>
         
+      </div>
+
+      <div className={styles.divider}></div>
+
+      <div className={styles.info}>
+        <div>
+          <div className={styles.text}>
+            <h2>Informacion:</h2>
+            <ul>
+              <li>
+                <div>Nombre:</div>
+                <div>Evento prueba</div>
+              </li>
+              <li>
+                <div>Descripcion:</div>
+                <div>Descripcion de prueba para un evento de prueba</div>
+              </li>
+              <li>
+                <div>Lugar:</div>
+                <div>Lugar de prueba</div>
+              </li>
+              <li>
+                <div>Horario:</div>
+                <div>17:00 - 20:00</div>
+              </li>
+              <li>
+                <div>Fecha:</div>
+                <div>20/8</div>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.photos}>
+            
+          </div>          
+        </div>
       </div>
     </main>
     </>
