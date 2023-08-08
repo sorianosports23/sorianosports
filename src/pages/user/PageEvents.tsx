@@ -4,6 +4,42 @@ import CompHeader from "../../components/templates/CompHeader"
 import styles from "../../css/events/PageEvents.module.css"
 import { BsFillCaretDownFill, BsFillCalendarDateFill , BsFillCaretUpFill} from "react-icons/bs"
 import listEvents from "../../utils/events/events.json"
+import CompFooter from "../../components/templates/CompFooter"
+
+const CompSelectedEvent = (event: TEvent) => {
+  return (
+    <div>
+      <div className={styles.text}>
+        <h2>Informacion:</h2>
+        <ul>
+          <li className={styles.info_li}>
+            <div>Nombre:</div>
+            <div>{event.name}</div>
+          </li>
+          <li className={styles.info_li}>
+            <div>Descripcion:</div>
+            <div>{event.description}</div>
+          </li>
+          <li className={styles.info_li}>
+            <div>Lugar:</div>
+            <div>{event.place}</div>
+          </li>
+          <li className={styles.info_li}>
+            <div>Horario:</div>
+            <div>{event.hour}</div>
+          </li>
+          <li className={styles.info_li}>
+            <div>Fecha:</div>
+            <div>{event.day} {event.dayNumber}</div>
+          </li>
+        </ul>
+      </div>
+      <div className={styles.photos}>
+        <img src={process.env.PUBLIC_URL + "assets/img/img_placeholder.png"} alt="img-placeholder" />
+      </div>          
+  </div>    
+  )
+}
 
 const PageEvents = () => {
 
@@ -14,6 +50,7 @@ const PageEvents = () => {
   const [sportSelected, setSportSelected] = useState("Todos")
   const [sportsName, setSportsName] = useState<Array<string>>([])
   const [eventsToShow, setEventsToShow] = useState<Array<TEvent>>([])
+  const [selectedEvent, setSelectedEvent] = useState<TEvent | null>(null)
 
   const handleChangeEventsCity = (city: string) => {
     setEventsCity(city)
@@ -143,13 +180,14 @@ const PageEvents = () => {
 
         <div className={styles.events}>
           {
-            eventsToShow.map((event) => (
-              <CompEvent
-                {
-                  ...event
-                }
-              />
-            ))
+            eventsToShow.map((event) => {
+              const props = {
+                ...event,
+                handleSelectEvent: setSelectedEvent
+              }
+
+              return <CompEvent {...props}/>
+            })
           }
         </div>
         
@@ -158,38 +196,15 @@ const PageEvents = () => {
       <div className={styles.divider}></div>
 
       <div className={styles.info}>
-        <div>
-          <div className={styles.text}>
-            <h2>Informacion:</h2>
-            <ul>
-              <li>
-                <div>Nombre:</div>
-                <div>Evento prueba</div>
-              </li>
-              <li>
-                <div>Descripcion:</div>
-                <div>Descripcion de prueba para un evento de prueba</div>
-              </li>
-              <li>
-                <div>Lugar:</div>
-                <div>Lugar de prueba</div>
-              </li>
-              <li>
-                <div>Horario:</div>
-                <div>17:00 - 20:00</div>
-              </li>
-              <li>
-                <div>Fecha:</div>
-                <div>20/8</div>
-              </li>
-            </ul>
-          </div>
-          <div className={styles.photos}>
-            
-          </div>          
-        </div>
+        {
+          selectedEvent 
+            ? <CompSelectedEvent {...selectedEvent as TEvent}/>
+            : <div>Nada seleccionado</div>
+        }
       </div>
     </main>
+
+    <CompFooter/>
     </>
   )
 }

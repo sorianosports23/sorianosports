@@ -1,17 +1,19 @@
 import styles from "../../css/events/CompEvent.module.css"
 
 type TEventProps = {
-  dayNumber: number,
-  day: string,
+  dayNumber: number
+  day: string
   hour: string
-  sportName: string,
+  sportName: string
   place: string
+  handleSelectEvent: (event: TEvent) => void
 }
 
 const CompEvent = (event: TEventProps) => {
   
   const { dayNumber, day, hour, sportName, place } = event
-  
+  const { handleSelectEvent, ...eventToHandle } = event
+
   return (
     <div className={styles.event}>
       <div className={styles.date}>
@@ -23,7 +25,7 @@ const CompEvent = (event: TEventProps) => {
       <div className={styles.place}>
         <h4>{sportName}</h4>
         <p>{place}</p>
-        <button onClick={() => console.log(event)}>Ver informacion</button>
+        <button onClick={() => handleSelectEvent(eventToHandle as TEvent)}>Ver informacion</button>
       </div>
 
     </div>
