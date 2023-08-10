@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PageIndex from "./pages/user/PageIndex";
 import "./css/global.css"
+import "./css/colors.css"
 import PageEvents from "./pages/user/PageEvents";
 
 const pageRoutes = createBrowserRouter([

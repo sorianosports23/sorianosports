@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   height: 8rem;
-  background: linear-gradient(to right, #F9F37F10, #F9F37F90,#F9F37F90, #F9F37F90, #F9F37F10);
+  background: linear-gradient(to right, var(--header-bg-10), var(--header-bg-90),var(--header-bg-90), var(--header-bg-90), var(--header-bg-10));
 }
 
 .header-top {
@@ -106,7 +106,7 @@
 .header-bottom {
   width: 100%;
   height: 2rem;
-  background-color: #F9F37F;
+  background-color: var(--header-bg);
   display: flex;
   justify-content: center;
   align-items: center;
