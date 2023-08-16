@@ -129,6 +129,7 @@
 .link-header2 > svg {
   margin-right: .3rem;
   transition: rotate .3s;
+  font-size: .9em;
 }
 
 .header-nav > a, .header-nav > div, .header-nav > button {
@@ -154,7 +155,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #1ebbcc;
+  background-color: var(--header-bg);
   border: 1px solid #222;
   border-top: none;
   border-radius: .5rem;
@@ -166,7 +167,7 @@
 
 .activities-list li > a {
   text-decoration: none;
-  color: #eee;
+  color: #222;
   display: flex;
   align-items: center;
   justify-content: center;

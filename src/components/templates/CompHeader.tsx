@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { BsSearch, BsFillChatSquareDotsFill, BsFillPersonFill, BsChevronDown } from "react-icons/bs"
+import { BsSearch, BsFillChatSquareDotsFill, BsFillPersonFill, BsChevronDown, BsFillHouseFill, BsCalendarDateFill, BsPeopleFill } from "react-icons/bs"
 import styles from "../../css/header/CompHeader.module.css"
 import { ChangeEvent, useState } from "react"
 import CompSearchBar from "../header/CompSearchBar"
@@ -70,6 +70,7 @@ const CompHeader = () => {
       <div className={styles["header-bottom"]}>
         <nav className={styles["header-nav"]}>
           <Link to="/" className={stylesName.link_header2}>
+            <BsFillHouseFill/>
             Inicio
           </Link>
           <button
@@ -100,9 +101,11 @@ const CompHeader = () => {
             </ul>
           </button>
           <Link to="/events" className={stylesName.link_header2}>
+            <BsCalendarDateFill/>
             Eventos
           </Link>
           <Link to="/" className={stylesName.link_header2}>
+            <BsPeopleFill/>
             Blog
           </Link>
           <button
