@@ -5,7 +5,7 @@ import styles from "../../../css/admin/header/CompHeaderAdmin.module.css"
 
 const CompHeaderAdmin = () => {
   return (
-    <header className={styles.header}>
+    <header className={styles.header} id="admin-header">
       <div className={styles.title}>
         <h1>Deportes y Recreación</h1>
         <p>Admin</p>
@@ -21,6 +21,8 @@ const CompHeaderAdmin = () => {
         </div>
 
         {/* navegacion */}
+
+        <div className={styles.divisor}></div>
 
         <nav className={styles.nav}>
           <Link to="/admin/" className={styles.nav_selected}>

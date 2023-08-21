@@ -4,8 +4,19 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 #root {
   position: relative;
+}
+
+#root:has(#admin-header) { /* PAGINA DE ADMIN GENERAL */
+  background-color: #3165f4;
+  display: grid;
+  grid-template: 100% / var(--header-width) 1fr;
+  height: 100%;
 }
 
 button {
