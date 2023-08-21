@@ -88,9 +88,21 @@
   top: 0;
   height: 100%;
   width: 40%;
-  border-radius: 0 15rem 15rem 0;
-  background-color: #0acbe8;
+  border-radius: 0 0 13rem 0;
+  background-color: var(--circle-water-bg);
   z-index: 1;
+}
+
+.circle::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--circle-water-bg);
+  top: 0;
+  right: 0;
+  position: absolute;
+  transform: translateX(.5rem) translateY(-.5rem);
+  border-radius: 100%;
 }
 
 .list {

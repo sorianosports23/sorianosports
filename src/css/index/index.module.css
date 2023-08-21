@@ -28,9 +28,13 @@
 }
 
 .ground {
-  background-color: #eee;
+  background-color: var(--index-ground-bg);
 }
 
 .water {
-  background-color: #eee;
+  background-color: var(--index-water-bg);
+}
+
+.ground > div[data-ground-open="true"] > .circle::before {
+  background-color: var(--index-ground-bg);
 }

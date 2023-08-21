@@ -35,7 +35,7 @@ const CompSportsGround = () => {
           </div>
         </div>
         
-        <div className={styles.circle}></div>
+        <div className={styles.circle} data-ground-open={listOpen}></div>
       </div>
       
       <div className={styles.list}>
