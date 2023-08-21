@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { BsSearch, BsFillChatSquareDotsFill, BsFillPersonFill, BsChevronDown, BsFillHouseFill, BsCalendarDateFill, BsPeopleFill } from "react-icons/bs"
 import styles from "../../css/header/CompHeader.module.css"
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, MutableRefObject, useRef, useState } from "react"
 import CompSearchBar from "../header/CompSearchBar"
 
 const stylesName = {
@@ -27,10 +27,14 @@ const CompHeader = () => {
 
   const search = useSearch()
 
+  
   const [activitiesDropdown, setActivitiesDropDown] = useState(false)
   const [aboutDropdown, setAboutDropDown] = useState(false)
   const [searchBarHover, setSearchBarHover] = useState(false)
-
+  
+  const activitiesDropdownUL = useRef<HTMLUListElement>(null) as MutableRefObject<HTMLUListElement>
+  const activitesDropdownTransformValue = activitiesDropdown ? `${activitiesDropdownUL.current.children.length * 2.55}rem` : "0"
+  
   return (
     <header className={styles.header}>
       <div className={styles["header-top"]}>
@@ -86,8 +90,15 @@ const CompHeader = () => {
             <ul className={styles["activities-list"]}
               style={{
                 opacity: activitiesDropdown ? "1" : "0",
-                transform: `translateY(${activitiesDropdown ? "5.2rem" : "0"})`
-              }}            >
+                transform: `translateY(${activitesDropdownTransformValue})`
+              }}
+              ref={activitiesDropdownUL}
+            >
+              <li>
+                <Link to="/activities/departments" tabIndex={activitiesDropdown ? 0 : -1}>
+                  Departamentos
+                </Link>
+              </li>
               <li>
                 <Link to="/" tabIndex={activitiesDropdown ? 0 : -1}>
                   Deportes

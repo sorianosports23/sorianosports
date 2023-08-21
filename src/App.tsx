@@ -4,6 +4,7 @@ import "./css/global.css"
 import "./css/colors.css"
 import PageEvents from "./pages/user/PageEvents";
 import PageIndexAdmin from "./pages/admin/PageIndexAdmin";
+import PageDepartments from "./pages/user/activities/PageDepartments";
 
 const pageUserRoutes: RouteObject[] = [
   {
@@ -11,6 +12,9 @@ const pageUserRoutes: RouteObject[] = [
   },
   {
     path: "/events", element: <PageEvents/>
+  },
+  {
+    path: "/activities/departments", element: <PageDepartments/>
   }
 ]
 
