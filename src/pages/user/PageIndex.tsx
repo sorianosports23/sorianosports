@@ -1,25 +1,12 @@
-import CompHeader from "../../components/templates/CompHeader"
 import styles from "../../css/index/index.module.css"
-import CompCityCarrousel from "../../components/index/CompCityCarrousel"
 import CompNewsCarrousel from "../../components/index/CompNewsCarrousel"
 import CompSportsGround from "../../components/index/CompSportsGround"
 import CompSportsWater from "../../components/index/CompSportsWater"
-import CompFooter from "../../components/templates/CompFooter"
-import CompSocialAside from "../../components/templates/CompSocialAside"
+import PageUser from "./PageUser"
 
 const PageIndex = () => {
-  return (
-    <>
-    <CompHeader/>
-    <CompSocialAside/>
-
-    <main className={styles.main}>
-      {/* <div className={styles["city-carrousel"]}>
-        <nav>
-          <CompCityCarrousel/>
-        </nav>
-      </div> */}
-
+  return (    
+    <PageUser>
       <div className={styles.news}>
         <CompNewsCarrousel/>
       </div>
@@ -31,10 +18,7 @@ const PageIndex = () => {
       <div className={`${styles.sport} ${styles.water}`}>
         <CompSportsWater/>
       </div>
-    </main>
-
-    <CompFooter/>
-    </>
+    </PageUser>
   )
 }
 

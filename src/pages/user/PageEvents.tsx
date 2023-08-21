@@ -5,6 +5,7 @@ import styles from "../../css/events/PageEvents.module.css"
 import { BsFillCaretDownFill, BsFillCalendarDateFill , BsFillCaretUpFill} from "react-icons/bs"
 import listEvents from "../../utils/events/events.json"
 import CompFooter from "../../components/templates/CompFooter"
+import PageUser from "./PageUser"
 
 const CompSelectedEvent = (event: TEvent) => {
   return (
@@ -90,10 +91,7 @@ const PageEvents = () => {
   }, [events, sportSelected, eventsCity])
 
   return (
-    <>
-    <CompHeader/>
-
-    <main>
+    <PageUser>
       <div className={styles.programation}>
         <div className={styles.title}>
           <h1>Programación</h1>
@@ -202,10 +200,7 @@ const PageEvents = () => {
             : <div>Nada seleccionado</div>
         }
       </div>
-    </main>
-
-    <CompFooter/>
-    </>
+    </PageUser>
   )
 }
 
