@@ -27,6 +27,7 @@
   border: 1px solid #222;
   border-radius: .5rem;
   font-size: 1.2em;
+  position: relative;
 }
 
 .filters_content > button > p {
@@ -37,6 +38,31 @@
 
 .filters_content > button > p > svg {
   margin-right: .5rem;
+}
+
+.sports_dropdown > ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(2rem);
+  width: 100%;
+  list-style-type: none;
+  border: 1px solid #222;
+  border-top: none;
+}
+
+.sports_dropdown[data-open="true"] {
+  border-radius: 1rem 1rem 0 0;
+  border-bottom: none;
+}
+
+.sports_dropdown > ul li {
+  height: 2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
 }
 
 .input {

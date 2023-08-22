@@ -2,7 +2,7 @@ import { BsList, BsSearch } from "react-icons/bs"
 import PageUser from "../PageUser"
 import styles from "../../../css/activities/departments/PageDepartments.module.css"
 import CompDepartmentsMap from "../../../components/activities/departments/CompDepartmentsMap"
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 
 const departments = {
   Dolores: {
@@ -39,19 +39,37 @@ const PageDepartments = () => {
 
   const [selectedDepartment, setSelectedDepartment] = useState<string | typeof NoSelected>(NoSelected)
 
+  const [searchDepartments, setSearchDepartments] = useState(Object.keys(departments))
+
+  useEffect(() => {
+    if (!searchInput.value) {
+      setSearchDepartments(Object.keys(departments))
+    } else {
+      setSearchDepartments(
+        Object.keys(departments).filter(name => name.toLowerCase().includes(searchInput.value.toLowerCase())) as typeof searchDepartments
+      )
+    }
+  }, [searchInput.value])
+
   return (
     <PageUser>
       {/* FILTROS */}
       <div className={styles.filters}>
         <div className={styles.filters_content}>
-          <button>
+          <button
+            className={styles.sports_dropdown}
+            data-open={true}
+          >
             <p>
               <BsList/> Todos
             </p>
 
-            <div>
-
-            </div>
+            <ul>
+              <li>Futbol</li>
+              <li>Basquetbol</li>
+              <li>Boleibol</li>
+              <li>Remo</li>
+            </ul>
           </button>
 
           <div className={styles.input}>
@@ -66,7 +84,8 @@ const PageDepartments = () => {
       {/* MAPA DEL DEPARTAMENTO */}
       <div className={styles.content} id="test">
         <CompDepartmentsMap
-          selectDepartment={setSelectedDepartment}  
+          selectDepartment={setSelectedDepartment}
+          departments={searchDepartments}
         />
       </div>
 
