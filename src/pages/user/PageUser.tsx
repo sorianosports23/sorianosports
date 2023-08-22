@@ -9,7 +9,7 @@ const PageUser = ({ children }: PropsWithChildren) => {
     <CompHeader/>
     <CompSocialAside/>
 
-    <main>
+    <main className="background-main">
       { children }
     </main>
 
