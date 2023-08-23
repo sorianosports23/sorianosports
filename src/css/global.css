@@ -8,6 +8,10 @@ html, body {
   height: 100%;
 }
 
+body:has(.background-main) {
+  background: fixed url("../../public/assets/img/background.jpg");
+}
+
 #root {
   position: relative;
 }
@@ -23,6 +27,6 @@ button {
   cursor: pointer;
 }
 
-.background-main {
+/* .background-main {
   background: var(--body-bg);
-}
+} */
