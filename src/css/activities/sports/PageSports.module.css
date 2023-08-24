@@ -5,6 +5,7 @@
   justify-content: space-around;
   align-items: center;
   height: 25rem;
+  border-bottom: 1px solid #222;
 }
 
 .ground, .water {
@@ -18,6 +19,7 @@
   text-transform: uppercase;
   text-decoration: underline;
   border-radius: 1rem;
+  border: 1px solid #222;
 }
 
 .ground {
@@ -44,59 +46,14 @@
 
 .separator {
   transform: translateY(-5rem);
+  margin: 0 2rem;
 }
 
 .sports {
-  height: 20rem;
-}
-
-.sportIcon {
-  width: 2rem;
-  height: 2rem;
-  padding: .2rem;
+  height: max-content;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #222;
-  border-radius: 100%;
-  background: #eee;
-  margin-right: .5rem;
-}
-
-.sportIcon > img {
-  width: 100%;
-  height: 100%;
-}
-
-.sportCard {
-  width: 20rem;
-  height: 10rem;
-  border: 1px solid #222;
-  border-radius: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.3em;
-  font-weight: bold;
-  text-transform: uppercase;
-  background: url("../../../../public/assets/img/cards/basketball.jfif");
-  background-position: center;
-  background-size: contain;
-  position: relative;
-  overflow: hidden;
-  color: #fff;
-}
-
-.sportCard > p, .sportCard > div {
-  position: relative;
-}
-
-.sportCard::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: linear-gradient(to right, #eee8, #142B4F);
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1rem 0;
+  margin-top: 1rem;
 }

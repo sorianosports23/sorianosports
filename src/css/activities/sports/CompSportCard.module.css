@@ -1,0 +1,105 @@
+.sportCard {
+  width: 20rem;
+  height: 10rem;
+  border: 1px solid #222;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  transition: all .3s;
+}
+
+.sportCard > div {
+  position: relative;
+  margin-left: 2rem;
+  transition: margin .3s;
+}
+
+.sportCard > div > p {
+  position: relative;
+  z-index: 10;
+  transition: font-size .3s, text-shadow .3s, background .3s;
+}
+
+.sportCard > div > div {
+  z-index: 5;
+}
+
+.sportCard::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, #eee8, #142B4F);
+  transition: background 1s;
+}
+
+.sportIcon {
+  width: 2rem;
+  height: 2rem;
+  padding: .2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #222;
+  border-radius: 100%;
+  background: #eee;
+  margin-right: .5rem;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-2.5rem, -50%);
+  transition: transform .3s, left .3s;
+}
+
+.sportIcon > img {
+  width: 100%;
+  height: 100%;
+}
+
+.sportCard:hover {
+  width: 22rem;
+  height: 12rem;
+}
+
+.sportCard:hover > div {
+  margin-left: 0;
+}
+
+.sportCard:hover .sportIcon {
+  left: 50%;
+  transform: translate(-50%, -50%) scale(3);
+  /* background: none;
+  border: 1px solid transparent; */
+}
+
+.sportCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #142B4F;
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.sportCard:hover::after {
+  opacity: 1;
+}
+
+.sportCard:hover > div p {
+  font-size: 1.5em;
+  background: #142b4fa1;
+  text-shadow: 2px 1px #000;
+}

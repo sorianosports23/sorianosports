@@ -10,10 +10,17 @@ html, body {
 
 body:has(.background-main) {
   background: fixed url("../../public/assets/img/background.jpg");
+  background-size: cover;
 }
 
 #root {
   position: relative;
+}
+
+#root:has(.background-main) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 #root:has(#admin-header) { /* PAGINA DE ADMIN GENERAL */
@@ -27,6 +34,6 @@ button {
   cursor: pointer;
 }
 
-/* .background-main {
-  background: var(--body-bg);
-} */
+.background-main {
+  flex: 1;
+}
