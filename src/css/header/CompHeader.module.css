@@ -83,7 +83,7 @@
   position: relative;
 }
 
-.link::before, .header-nav > button::before {
+.link:is(a):before {
   content: "";
   position: absolute;
   bottom: 0;
@@ -94,7 +94,7 @@
   transition: width .3s;
 }
 
-.link:hover::before, .header-nav > button:hover::before {
+.link:hover::before {
   width: 100%;
 }
 
@@ -109,13 +109,11 @@
   background-color: var(--header-bg);
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .header-nav {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   width: 60rem;
 }
 
@@ -146,19 +144,35 @@
   border: none;
   background: none;
   font-weight: unset;
+  height: 2rem;
+  overflow: hidden;
+  transition: height .5s;
+}
+
+.header-nav > button > p {
+  height: 2rem;
+}
+
+.header-nav > button:hover {
+  height: 16rem;
+}
+
+.header-nav > button:hover > p svg {
+  rotate: -180deg;
 }
 
 .activities-list {
   transition: transform .3s, opacity .5s;
   list-style-type: none;
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
   background-color: var(--header-bg);
   border: 1px solid #222;
   border-top: none;
   border-radius: .5rem;
+  transform: translateY(2rem);
 }
 
 .activities-list li {

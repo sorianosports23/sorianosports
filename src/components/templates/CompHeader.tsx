@@ -82,16 +82,16 @@ const CompHeader = () => {
           >
             <p className={stylesName.link_header2}>
               <BsChevronDown style={{
-                rotate: activitiesDropdown ? "-180deg" : "0deg"
+                // rotate: activitiesDropdown ? "-180deg" : "0deg"
               }}/> 
               Actividades
             </p>
 
             <ul className={styles["activities-list"]}
-              style={{
-                opacity: activitiesDropdown ? "1" : "0",
-                transform: `translateY(${activitesDropdownTransformValue})`
-              }}
+              // style={{
+              //   opacity: activitiesDropdown ? "1" : "0",
+              //   transform: `translateY(${activitesDropdownTransformValue})`
+              // }}
               ref={activitiesDropdownUL}
             >
               <li>
@@ -124,16 +124,16 @@ const CompHeader = () => {
           >
             <p className={stylesName.link_header2}>
               <BsChevronDown style={{
-                rotate: aboutDropdown ? "-180deg" : "0deg"
+                // rotate: aboutDropdown ? "-180deg" : "0deg"
               }}/> 
               Institución
             </p>
 
             <ul className={styles["activities-list"]}
-              style={{
-                opacity: aboutDropdown ? "1" : "0",
-                transform: `translateY(${aboutDropdown ? "10.2rem" : "0"})`
-              }}
+              // style={{
+              //   opacity: aboutDropdown ? "1" : "0",
+              //   transform: `translateY(${aboutDropdown ? "10.2rem" : "0"})`
+              // }}
             >
               <li>
                 <Link to="/" tabIndex={aboutDropdown ? 0 : -1}>
