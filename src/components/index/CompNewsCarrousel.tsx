@@ -12,7 +12,7 @@ const CompNewsCarrousel = () => {
   const [onTransition, setOnTransition] = useState(false)
 
   useEffect(() => {
-    carrousel.current.style.backgroundImage = `url(${process.env.PUBLIC_URL}/assets/img/news/n1.jpg)`
+    carrousel.current.style.backgroundImage = `url(${process.env.PUBLIC_URL}assets/img/news/n1.jpg)`
   }, [])
 
   const handleTransitionEnd = () => {

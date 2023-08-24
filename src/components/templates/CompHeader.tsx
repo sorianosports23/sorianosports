@@ -39,7 +39,7 @@ const CompHeader = () => {
     <header className={styles.header}>
       <div className={styles["header-top"]}>
         <div className={styles.logo}>
-          <img src={process.env.PUBLIC_URL + "/assets/img/deportesyrecreacions.png"} alt="page-logo" />
+          <img src={process.env.PUBLIC_URL + "assets/img/deportesyrecreacions.png"} alt="page-logo" />
         </div>
 
         <div 

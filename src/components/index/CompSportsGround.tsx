@@ -31,7 +31,7 @@ const CompSportsGround = () => {
             </button>
           </div>
           <div className={styles.img}>
-            <img src={process.env.PUBLIC_URL + "/assets/img/sportsground.jpg"} alt="sports-ground" />
+            <img src={process.env.PUBLIC_URL + "assets/img/sportsground.jpg"} alt="sports-ground" />
           </div>
         </div>
         

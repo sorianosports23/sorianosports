@@ -29,21 +29,21 @@ const PageSports = () => {
             onClick={() => setEventTypeSelected("ground")}
           >
             <div className={styles.icon}>
-              <img src={process.env.PUBLIC_URL + "/assets/img/icons/running.png"} alt="person-running" />
+              <img src={process.env.PUBLIC_URL + "assets/img/icons/running.png"} alt="person-running" />
             </div>
             <p>
               Deportes terrestres
             </p>
           </button>
           <div className={styles.separator}>
-            <img src={process.env.PUBLIC_URL + "/assets/img/secretaria_deportes.svg"} alt="deportes" />
+            <img src={process.env.PUBLIC_URL + "assets/img/secretaria_deportes.svg"} alt="deportes" />
           </div>
           <button 
             className={styles.water}
             onClick={() => setEventTypeSelected("water")}
           >
             <div className={styles.icon}>
-              <img src={process.env.PUBLIC_URL + "/assets/img/icons/swimming.png"} alt="person-swimming" />
+              <img src={process.env.PUBLIC_URL + "assets/img/icons/swimming.png"} alt="person-swimming" />
             </div>
             <p>
               Deportes acuaticos

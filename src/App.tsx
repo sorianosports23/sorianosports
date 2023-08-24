@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouteObject, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createHashRouter, RouteObject, RouterProvider } from "react-router-dom";
 import PageIndex from "./pages/user/PageIndex";
 import "./css/global.css"
 import "./css/colors.css"
@@ -28,7 +28,9 @@ const pageAdminRoutes: RouteObject[] = [
   }
 ]
 
-const pageRoutes = createBrowserRouter([...pageUserRoutes, ...pageAdminRoutes])
+const pageRoutes = process.env.NODE_ENV === "development" 
+  ? createBrowserRouter([...pageUserRoutes, ...pageAdminRoutes])
+  : createHashRouter([...pageUserRoutes, ...pageAdminRoutes])
 
 
 
