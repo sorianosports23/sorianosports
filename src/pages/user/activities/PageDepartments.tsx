@@ -90,7 +90,9 @@ const PageDepartments = () => {
       </div>
 
       {/* INFO DEL DEPARTAMENTO SELECCIONADO */}
-      <div className={styles.department}>
+      {
+      selectedDepartment !== NoSelected
+      && <div className={styles.department}>
         <div className={styles.selected}>
           <h3>{selectedDepartment}</h3>
 
@@ -130,6 +132,7 @@ const PageDepartments = () => {
           </div>
         </div>
       </div>
+      }
     </PageUser>
   )
 }
