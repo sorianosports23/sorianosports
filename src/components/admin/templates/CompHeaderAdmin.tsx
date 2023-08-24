@@ -15,7 +15,7 @@ const CompHeaderAdmin = () => {
         {/* usuario */}
         <div className={styles.user}>
           <div>
-            <img src={process.env.PUBLIC_URL + "assets/img/img_placeholder.png"} alt="user-img" />
+            <img src={require("../../../assets/img_placeholder.png")} alt="user-img" />
           </div>
           <p>Usuario</p>
         </div>

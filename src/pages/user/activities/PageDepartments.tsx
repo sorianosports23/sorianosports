@@ -102,12 +102,11 @@ const PageDepartments = () => {
               <h4>Terrestres</h4>
               <ul>
                 {
-                  selectedDepartment === NoSelected
-                    ? <></>
-                    : 
-                      departments[selectedDepartment as keyof typeof departments].ground.map((sport, i) => (
+                  selectedDepartment 
+                    !== NoSelected
+                    && departments[selectedDepartment as keyof typeof departments].ground.map((sport, i) => (
                         <li key={i}>{sport}</li>
-                      ))
+                       ))
                 }
               </ul>
             </div>

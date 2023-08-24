@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react"
 import CompEvent from "../../components/events/CompEvent"
-import CompHeader from "../../components/templates/CompHeader"
 import styles from "../../css/events/PageEvents.module.css"
 import { BsFillCaretDownFill, BsFillCalendarDateFill , BsFillCaretUpFill} from "react-icons/bs"
 import listEvents from "../../utils/events/events.json"
-import CompFooter from "../../components/templates/CompFooter"
 import PageUser from "./PageUser"
 
 const CompSelectedEvent = (event: TEvent) => {
@@ -36,7 +34,7 @@ const CompSelectedEvent = (event: TEvent) => {
         </ul>
       </div>
       <div className={styles.photos}>
-        <img src={process.env.PUBLIC_URL + "assets/img/img_placeholder.png"} alt="img-placeholder" />
+        <img src={require("../../assets/img_placeholder.png")} alt="img-placeholder" />
       </div>          
   </div>    
   )

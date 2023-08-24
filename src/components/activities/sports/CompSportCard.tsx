@@ -8,8 +8,8 @@ type TCardProps = {
 
 const CompSportCard = ({ name, iconUrlName, backgroundUrlName }: TCardProps) => {
 
-  const iconImage = process.env.PUBLIC_URL + "assets/img/icons/" + iconUrlName
-  const backgroundImage = process.env.PUBLIC_URL + "assets/img/cards/" + backgroundUrlName
+  const iconImage = require(`../../../assets/icons/${iconUrlName}`)
+  const backgroundImage = require(`../../../assets/cards/${backgroundUrlName}`)
 
   return (
     <div 

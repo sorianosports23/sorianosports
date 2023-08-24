@@ -28,11 +28,11 @@ const pageAdminRoutes: RouteObject[] = [
   }
 ]
 
-const pageRoutes = process.env.NODE_ENV === "development" 
-  ? createBrowserRouter([...pageUserRoutes, ...pageAdminRoutes])
-  : createHashRouter([...pageUserRoutes, ...pageAdminRoutes])
+// const pageRoutes = process.env.NODE_ENV === "development" 
+//   ? createBrowserRouter([...pageUserRoutes, ...pageAdminRoutes])
+//   : createHashRouter([...pageUserRoutes, ...pageAdminRoutes])
 
-
+const pageRoutes = createBrowserRouter([...pageUserRoutes, ...pageAdminRoutes])
 
 const App = () => <RouterProvider router={pageRoutes}/>
 
