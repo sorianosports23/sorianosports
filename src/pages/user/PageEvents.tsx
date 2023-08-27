@@ -5,15 +5,9 @@ import styles from "../../css/events/PageEvents.module.css"
 import { BsFillCaretDownFill, BsFillCalendarDateFill , BsFillCaretUpFill} from "react-icons/bs"
 import listEvents from "../../utils/events/events.json"
 import PageUser from "./PageUser"
+import PageLoading from "../PageLoading"
 
 const CompSelectedEvent = (event: TEvent) => {
-
-  const data = useLoaderData()
-
-  useEffect(() => {
-    console.log(data)
-  }, [data])
-
   return (
     <div>
       <div className={styles.text}>
@@ -50,6 +44,26 @@ const CompSelectedEvent = (event: TEvent) => {
 
 const PageEvents = () => {
 
+  //!
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState<any>(undefined)
+
+  useEffect(() => {
+    (async () => {
+      const res = await fetch(`http://${window.location.hostname}/api/test.php`)
+      setData(await res.json())
+    })()
+  })
+
+  //!
+
+  useEffect(() => {
+    if (data) {
+      setLoading(false)
+      console.log(data)
+    }
+  }, [data])
+
   const [showPlaces, setShowPlaces] = useState(false)
   const [showSports, setShowSports] = useState(false)
   const [events] = useState<IEvents>(listEvents as IEvents)
@@ -83,7 +97,7 @@ const PageEvents = () => {
 
       return null
     })
-    console.log(sportsName)
+    // console.log(sportsName)
   }, [events, sportsName, sportSelected, eventsCity])
 
   useEffect(() => {
@@ -95,6 +109,8 @@ const PageEvents = () => {
       )
     }
   }, [events, sportSelected, eventsCity])
+
+  if (loading) return <PageLoading/>
 
   return (
     <PageUser>
@@ -184,13 +200,13 @@ const PageEvents = () => {
 
         <div className={styles.events}>
           {
-            eventsToShow.map((event) => {
+            eventsToShow.map((event, i) => {
               const props = {
                 ...event,
                 handleSelectEvent: setSelectedEvent
               }
 
-              return <CompEvent {...props}/>
+              return <CompEvent {...props} key={i}/>
             })
           }
         </div>

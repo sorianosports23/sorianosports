@@ -1,4 +1,4 @@
-import { createBrowserRouter, createHashRouter, RouteObject, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Link, RouteObject, RouterProvider } from "react-router-dom";
 import PageIndex from "./pages/user/PageIndex";
 import "./css/global.css"
 import "./css/colors.css"
@@ -8,36 +8,18 @@ import PageDepartments from "./pages/user/activities/PageDepartments";
 import PageSports from "./pages/user/activities/PageSports";
 import PageLoading from "./pages/PageLoading";
 
-const testRoute = new Promise((resolve) => {
-  setTimeout(() => {
-    resolve(true)
-  }, 5000);
-})
-
 const pageUserRoutes: RouteObject[] = [
   {
     path: "/", element: <PageIndex/>, 
-    loader: async () => {
-      return await testRoute
-    }
   },
   {
     path: "/events", element: <PageEvents/>, 
-      loader: async () => {
-        return await testRoute
-      }
   },
   {
     path: "/activities/departments", element: <PageDepartments/>, 
-    loader: async () => {
-      return await testRoute
-    }
   },
   {
     path: "/activities/sports", element: <PageSports/>, 
-    loader: async () => {
-      return await testRoute
-    }
   },
 ]
 
@@ -51,7 +33,15 @@ const pageAdminRoutes: RouteObject[] = [
 //   ? createBrowserRouter([...pageUserRoutes, ...pageAdminRoutes])
 //   : createHashRouter([...pageUserRoutes, ...pageAdminRoutes])
 
-const pageRoutes = createBrowserRouter([...pageUserRoutes, ...pageAdminRoutes], {
+const pageRoutes = createBrowserRouter(
+[
+  ...pageUserRoutes, 
+  ...pageAdminRoutes, 
+  {
+  path: "*",
+  element: <div>Not found... (<Link to="/">Go to /</Link>)</div>
+}
+], {
   basename: "/deportes"
 })
 
