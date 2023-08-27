@@ -23,6 +23,8 @@ body:has(.background-main) {
   height: 100%;
 }
 
+#root:has(.loading-page) { height: 100% }
+
 #root:has(#admin-header) { /* PAGINA DE ADMIN GENERAL */
   background-color: #3165f4;
   display: grid;

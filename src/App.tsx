@@ -6,20 +6,39 @@ import PageEvents from "./pages/user/PageEvents";
 import PageIndexAdmin from "./pages/admin/PageIndexAdmin";
 import PageDepartments from "./pages/user/activities/PageDepartments";
 import PageSports from "./pages/user/activities/PageSports";
+import PageLoading from "./pages/PageLoading";
+
+const testRoute = new Promise((resolve) => {
+  setTimeout(() => {
+    resolve(true)
+  }, 5000);
+})
 
 const pageUserRoutes: RouteObject[] = [
   {
-    path: "/", element: <PageIndex/>
+    path: "/", element: <PageIndex/>, 
+    loader: async () => {
+      return await testRoute
+    }
   },
   {
-    path: "/events", element: <PageEvents/>
+    path: "/events", element: <PageEvents/>, 
+      loader: async () => {
+        return await testRoute
+      }
   },
   {
-    path: "/activities/departments", element: <PageDepartments/>
+    path: "/activities/departments", element: <PageDepartments/>, 
+    loader: async () => {
+      return await testRoute
+    }
   },
   {
-    path: "/activities/sports", element: <PageSports/>
-  }
+    path: "/activities/sports", element: <PageSports/>, 
+    loader: async () => {
+      return await testRoute
+    }
+  },
 ]
 
 const pageAdminRoutes: RouteObject[] = [
@@ -32,9 +51,11 @@ const pageAdminRoutes: RouteObject[] = [
 //   ? createBrowserRouter([...pageUserRoutes, ...pageAdminRoutes])
 //   : createHashRouter([...pageUserRoutes, ...pageAdminRoutes])
 
-const pageRoutes = createBrowserRouter([...pageUserRoutes, ...pageAdminRoutes])
+const pageRoutes = createBrowserRouter([...pageUserRoutes, ...pageAdminRoutes], {
+  basename: "/deportes"
+})
 
-const App = () => <RouterProvider router={pageRoutes}/>
+const App = () => <RouterProvider router={pageRoutes} fallbackElement={<PageLoading/>}/>
 
 
 export default App;

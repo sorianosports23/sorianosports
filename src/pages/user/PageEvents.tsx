@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useLoaderData } from "react-router-dom"
 import CompEvent from "../../components/events/CompEvent"
 import styles from "../../css/events/PageEvents.module.css"
 import { BsFillCaretDownFill, BsFillCalendarDateFill , BsFillCaretUpFill} from "react-icons/bs"
@@ -6,6 +7,13 @@ import listEvents from "../../utils/events/events.json"
 import PageUser from "./PageUser"
 
 const CompSelectedEvent = (event: TEvent) => {
+
+  const data = useLoaderData()
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+
   return (
     <div>
       <div className={styles.text}>
