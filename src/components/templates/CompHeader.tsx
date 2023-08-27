@@ -95,12 +95,12 @@ const CompHeader = () => {
               ref={activitiesDropdownUL}
             >
               <li>
-                <Link to="/activities/departments" tabIndex={activitiesDropdown ? 0 : -1}>
+                <Link to="/actividades/departamentos" tabIndex={activitiesDropdown ? 0 : -1}>
                   Departamentos
                 </Link>
               </li>
               <li>
-                <Link to="/activities/sports" tabIndex={activitiesDropdown ? 0 : -1}>
+                <Link to="/actividades/deportes" tabIndex={activitiesDropdown ? 0 : -1}>
                   Deportes
                 </Link>
               </li>
@@ -111,7 +111,7 @@ const CompHeader = () => {
               </li>
             </ul>
           </button>
-          <Link to="/events" className={stylesName.link_header2}>
+          <Link to="/eventos" className={stylesName.link_header2}>
             <BsCalendarDateFill/>
             Eventos
           </Link>

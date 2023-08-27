@@ -13,13 +13,13 @@ const pageUserRoutes: RouteObject[] = [
     path: "/", element: <PageIndex/>, 
   },
   {
-    path: "/events", element: <PageEvents/>, 
+    path: "/eventos", element: <PageEvents/>, 
   },
   {
-    path: "/activities/departments", element: <PageDepartments/>, 
+    path: "/actividades/departamentos", element: <PageDepartments/>, 
   },
   {
-    path: "/activities/sports", element: <PageSports/>, 
+    path: "/actividades/deportes", element: <PageSports/>, 
   },
 ]
 
