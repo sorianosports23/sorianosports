@@ -16,7 +16,7 @@ const pageUserRoutes: RouteObject[] = [
     path: "/eventos", element: <PageEvents/>, 
   },
   {
-    path: "/actividades/departamentos", element: <PageDepartments/>, 
+    path: "/actividades/ciudades", element: <PageDepartments/>, 
   },
   {
     path: "/actividades/deportes", element: <PageSports/>, 

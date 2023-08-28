@@ -9,7 +9,7 @@ const PageLoading = () => {
     }}
       className="loading-page"
     >
-      <img src={require("../assets/logo.gif")} alt="logo-loading" 
+      <img src={process.env.PUBLIC_URL + "logo.gif"} alt="logo-loading" 
         style={{
           width: "150px",
           height: "200px"

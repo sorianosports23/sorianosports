@@ -33,7 +33,6 @@ const CompHeader = () => {
   const [searchBarHover, setSearchBarHover] = useState(false)
   
   const activitiesDropdownUL = useRef<HTMLUListElement>(null) as MutableRefObject<HTMLUListElement>
-  const activitesDropdownTransformValue = activitiesDropdown ? `${activitiesDropdownUL.current.children.length * 2.55}rem` : "0"
   
   return (
     <header className={styles.header}>
@@ -95,8 +94,8 @@ const CompHeader = () => {
               ref={activitiesDropdownUL}
             >
               <li>
-                <Link to="/actividades/departamentos" tabIndex={activitiesDropdown ? 0 : -1}>
-                  Departamentos
+                <Link to="/actividades/ciudades" tabIndex={activitiesDropdown ? 0 : -1}>
+                  Ciudades
                 </Link>
               </li>
               <li>
@@ -114,10 +113,6 @@ const CompHeader = () => {
           <Link to="/eventos" className={stylesName.link_header2}>
             <BsCalendarDateFill/>
             Eventos
-          </Link>
-          <Link to="/" className={stylesName.link_header2}>
-            <BsPeopleFill/>
-            Blog
           </Link>
           <button
             onClick={() => setAboutDropDown(prev => !prev)}

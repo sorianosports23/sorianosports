@@ -16,7 +16,7 @@ const CompSportsWater = () => {
       <div className={styles["sportsmain_main"]}>
         <div className={styles.textDiv}>
           <div className={styles.img}>
-            <img src={require("../../assets/sportswater.jfif")} alt="sports-ground" />
+            <img src={process.env.PUBLIC_URL + "assets/img/sportswater.jfif"} alt="sports-ground" />
           </div>
           <div>
             <h2>

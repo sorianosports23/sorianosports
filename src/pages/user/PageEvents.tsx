@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { useLoaderData } from "react-router-dom"
 import CompEvent from "../../components/events/CompEvent"
 import styles from "../../css/events/PageEvents.module.css"
 import { BsFillCaretDownFill, BsFillCalendarDateFill , BsFillCaretUpFill} from "react-icons/bs"
@@ -36,7 +35,7 @@ const CompSelectedEvent = (event: TEvent) => {
         </ul>
       </div>
       <div className={styles.photos}>
-        <img src={require("../../assets/img_placeholder.png")} alt="img-placeholder" />
+        <img src={process.env.PUBLIC_URL + "../assets/img/img_placeholder.png"} alt="img-placeholder" />
       </div>          
   </div>    
   )
