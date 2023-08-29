@@ -6,6 +6,7 @@ import listEvents from "../../utils/events/events.json"
 import PageUser from "./PageUser"
 import PageLoading from "../PageLoading"
 import assetsFolder from "../../utils/publicfolder"
+import { redirect, useNavigate } from "react-router-dom"
 
 const CompSelectedEvent = (event: TEvent) => {
   return (
@@ -44,14 +45,20 @@ const CompSelectedEvent = (event: TEvent) => {
 
 const PageEvents = () => {
 
+  const navigate = useNavigate()
+
   //!
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<any>(undefined)
 
   useEffect(() => {
     (async () => {
-      const res = await fetch(`http://${window.location.hostname}/api/test.php`)
-      setData(await res.json())
+      try {
+        const res = await fetch(`http://${window.location.hostname}/api/test.php`)
+        setData(await res.json())
+      } catch (error) {
+        navigate("/error")
+      }
     })()
   })
 

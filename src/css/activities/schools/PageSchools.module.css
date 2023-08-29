@@ -1,0 +1,68 @@
+:root {
+  --selector-card-w: 20rem;
+  --selector-card-h: 18rem;
+
+  /**/
+  --card-color: #62AAA1;
+  --card-color-10: #C4D1CF;
+}
+
+.schools_type {
+  height: 25rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.schools_type > div {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  width: var(--selector-card-w);
+  height: var(--selector-card-h);
+  border: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(180deg, var(--card-color-10) 0%, var(--card-color) 50%, var(--card-color-10) 100%);
+  z-index: 0;
+}
+
+.schools_type > div > img {
+  width: 5rem;
+  height: 5rem;
+  object-fit: contain;
+}
+
+.schools_type > div > p {
+  font-size: 2em;
+  font-weight: bold;
+  color: #eee;
+  margin-top: 1rem;
+}
+
+.inside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-.5rem, -.5rem);
+  background: #222;
+  width: calc(var(--selector-card-w) + 1rem);
+  height: calc(var(--selector-card-h) + 1rem);
+  z-index: -5;
+}
+
+.schools_cont {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .schools_type {
+    margin: 1rem 0;
+  }
+}

@@ -130,7 +130,7 @@ const CompHeader = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/" tabIndex={activitiesDropdown ? 0 : -1}>
+                <Link to="/actividades/escuelas" tabIndex={activitiesDropdown ? 0 : -1}>
                   Escuelas
                 </Link>
               </li>

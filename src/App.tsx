@@ -7,6 +7,8 @@ import PageIndexAdmin from "./pages/admin/PageIndexAdmin";
 import PageDepartments from "./pages/user/activities/PageDepartments";
 import PageSports from "./pages/user/activities/PageSports";
 import PageLoading from "./pages/PageLoading";
+import PageError from "./pages/PageError";
+import PageSchools from "./pages/user/activities/PageSchools";
 
 const pageUserRoutes: RouteObject[] = [
   {
@@ -21,6 +23,9 @@ const pageUserRoutes: RouteObject[] = [
   {
     path: "/actividades/deportes", element: <PageSports/>, 
   },
+  {
+    path: "/actividades/escuelas", element: <PageSchools/>
+  }
 ]
 
 const pageAdminRoutes: RouteObject[] = [
@@ -38,9 +43,13 @@ const pageRoutes = createBrowserRouter(
   ...pageUserRoutes, 
   ...pageAdminRoutes, 
   {
-  path: "*",
-  element: <div>Not found... (<Link to="/">Go to /</Link>)</div>
-}
+    path: "*",
+    element: <div>Not found... (<Link to="/">Go to /</Link>)</div>
+  },
+  {
+    path: "/error",
+    element: <PageError/>
+  }
 ], {
   basename: "/deportes"
 })
