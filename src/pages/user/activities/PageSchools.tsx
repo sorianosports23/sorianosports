@@ -28,6 +28,15 @@ const PageSchools = () => {
 
       <div className={styles.schools_cont}>
         <CompSchool name="Escuela X"/>
+        <CompSchool name="Escuela X"/>
+        <CompSchool name="Escuela X"/>
+        <CompSchool name="Escuela X"/>
+        <CompSchool name="Escuela X"/>
+        <CompSchool name="Escuela X"/>
+        <CompSchool name="Escuela X"/>
+        <CompSchool name="Escuela X"/>
+        <CompSchool name="Escuela X"/>
+        <CompSchool name="Escuela X"/>
       </div>
     </PageUser>
   )
