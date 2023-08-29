@@ -1,8 +1,8 @@
 import { BsList, BsSearch } from "react-icons/bs"
 import PageUser from "../PageUser"
 import styles from "../../../css/activities/departments/PageDepartments.module.css"
-import CompDepartmentsMap from "../../../components/activities/departments/CompDepartmentsMap"
 import { ChangeEvent, useEffect, useState } from "react"
+import CompCityMap from "../../../components/activities/departments/CompCityMap"
 
 const departments = {
   Dolores: {
@@ -115,7 +115,7 @@ const PageDepartments = () => {
 
       {/* MAPA DEL DEPARTAMENTO */}
       <div className={styles.content} id="test">
-        <CompDepartmentsMap
+        <CompCityMap
           selectDepartment={setSelectedDepartment}
           departments={searchDepartments}
         />
