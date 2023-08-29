@@ -1,5 +1,6 @@
 import { BsFillHouseFill, BsEnvelopeAtFill, BsTelephoneFill, BsClockFill, BsFacebook, BsInstagram, BsTwitter, BsYoutube } from "react-icons/bs"
 import styles from "../../css/footer/CompFooter.module.css"
+import assetsFolder from "../../utils/publicfolder"
 
 const CompFooter = () => {
   return (
@@ -55,6 +56,16 @@ const CompFooter = () => {
           </li>
         </ul>
       </div>
+
+      <div className={styles.share}>
+        <div>
+          <h4>Comparte la pagina</h4>
+          <div>
+            <img src={assetsFolder + "/img/qr.png"} alt="qr" id="qr-photo"/>
+          </div>
+        </div>
+      </div>
+
       <div className={styles.copyright}>
         Copyright © {new Date().getFullYear()} Intendencia de Soriano
       </div>
