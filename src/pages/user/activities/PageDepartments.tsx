@@ -12,7 +12,39 @@ const departments = {
   Cardona: {
     ground: ["Atletismo", "Karate", "Basquetbol", "Gimnadia 3ra Edad", "Hockey", "Zumba"],
     water: []
-  }
+  },
+  Mercedes: {
+    ground: [],
+    water: []
+  },
+  VillaSoriano: {
+    ground: [],
+    water: []
+  },
+  Palmar: {
+    ground: [],
+    water: []
+  },
+  Palmitas: {
+    ground: [],
+    water: []
+  },
+  Egaña: {
+    ground: [],
+    water: []
+  },
+  Risso: {
+    ground: [],
+    water: []
+  },
+  StaCatalina: {
+    ground: [],
+    water: []
+  },
+  JERodo: {
+    ground: [],
+    water: []
+  },
 }
 
 const useSearch = () => {

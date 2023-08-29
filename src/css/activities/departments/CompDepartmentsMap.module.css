@@ -15,3 +15,29 @@
   margin-top: 10%;
   font-size: 1.5em;
 }
+
+.cityIcon {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  /* box-shadow: 0 5px 4px rgba(0, 0, 0, 0.75); */
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+}
+
+.cityIcon > p {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.map {
+  position: relative;
+  /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.75); */
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 18rem;
+  height: 40rem;
+}
