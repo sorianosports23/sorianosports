@@ -1,6 +1,7 @@
 import { FaBasketballBall, FaVolleyballBall } from "react-icons/fa"
 import styles from "../../css/index/sportsground.module.css"
 import { useState } from "react"
+import assetsFolder from "../../utils/publicfolder"
 
 const CompSportsGround = () => {
 
@@ -31,7 +32,7 @@ const CompSportsGround = () => {
             </button>
           </div>
           <div className={styles.img}>
-            <img src={process.env.PUBLIC_URL + "assets/img/sportsground.jpg"} alt="sports-ground" />
+            <img src={assetsFolder + "/img/sportsground.jpg"} alt="sports-ground" />
           </div>
         </div>
         

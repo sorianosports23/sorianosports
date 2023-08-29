@@ -38,3 +38,9 @@
 .ground > div[data-ground-open="true"] > .circle::before {
   background-color: var(--index-ground-bg);
 }
+
+@media (max-width: 768px) {
+  .news {
+    height: 24rem;
+  }
+}

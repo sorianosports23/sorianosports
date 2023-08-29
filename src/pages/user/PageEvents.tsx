@@ -5,6 +5,7 @@ import { BsFillCaretDownFill, BsFillCalendarDateFill , BsFillCaretUpFill} from "
 import listEvents from "../../utils/events/events.json"
 import PageUser from "./PageUser"
 import PageLoading from "../PageLoading"
+import assetsFolder from "../../utils/publicfolder"
 
 const CompSelectedEvent = (event: TEvent) => {
   return (
@@ -35,7 +36,7 @@ const CompSelectedEvent = (event: TEvent) => {
         </ul>
       </div>
       <div className={styles.photos}>
-        <img src={process.env.PUBLIC_URL + "../assets/img/img_placeholder.png"} alt="img-placeholder" />
+        <img src={assetsFolder + "/img/img_placeholder.png"} alt="img-placeholder" />
       </div>          
   </div>    
   )

@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
-import { BsSearch, BsFillChatSquareDotsFill, BsFillPersonFill, BsChevronDown, BsFillHouseFill, BsCalendarDateFill, BsPeopleFill } from "react-icons/bs"
+import { BsSearch, BsFillChatSquareDotsFill, BsFillPersonFill, BsChevronDown, BsFillHouseFill, BsCalendarDateFill, BsList } from "react-icons/bs"
 import styles from "../../css/header/CompHeader.module.css"
 import { ChangeEvent, MutableRefObject, useRef, useState } from "react"
 import CompSearchBar from "../header/CompSearchBar"
+import assetsFolder from "../../utils/publicfolder"
+import CompHeaderMobile from "./CompHeaderMobile"
 
 const stylesName = {
   link_header2: `${styles.link} ${styles["link-header2"]}`
@@ -27,10 +29,13 @@ const CompHeader = () => {
 
   const search = useSearch()
 
+  const [menuMobileOpen, setMenuMobileOpen] = useState(false)
+
   
   const [activitiesDropdown, setActivitiesDropDown] = useState(false)
   const [aboutDropdown, setAboutDropDown] = useState(false)
   const [searchBarHover, setSearchBarHover] = useState(false)
+  const [searchBarTabletHover, setSearchBarTabletHover] = useState(false)
   
   const activitiesDropdownUL = useRef<HTMLUListElement>(null) as MutableRefObject<HTMLUListElement>
   
@@ -38,7 +43,7 @@ const CompHeader = () => {
     <header className={styles.header}>
       <div className={styles["header-top"]}>
         <div className={styles.logo}>
-          <img src={require("../../assets/deportesyrecreacions.png")} alt="page-logo" />
+          <img src={assetsFolder + "/img/deportesyrecreaciones.png"} alt="page-logo" />
         </div>
 
         <div 
@@ -67,6 +72,27 @@ const CompHeader = () => {
             <BsFillPersonFill/>
             Registrarse
           </Link>
+
+          <button className={styles.menu_mobile}
+            onClick={() => setMenuMobileOpen(true)}
+          >
+            <BsList/>
+          </button>
+        </div>
+      </div>
+
+      <div className={styles.header_searchbar_tablet}>
+        <div
+          onPointerEnter={() => setSearchBarTabletHover(true)} 
+          onPointerLeave={() => setSearchBarTabletHover(false)}
+        >
+          <input {...search} />
+          <button className={styles["search-bar__icon"]}>
+            <BsSearch/>
+          </button>
+
+          <CompSearchBar search={search.value} searchHover={searchBarTabletHover}/>
+
         </div>
       </div>
 
@@ -154,6 +180,11 @@ const CompHeader = () => {
           </button>
         </nav>
       </div>
+
+      <CompHeaderMobile 
+        open={menuMobileOpen}
+        closeMenu={() => setMenuMobileOpen(false)}
+      />
     </header>
   )
 }

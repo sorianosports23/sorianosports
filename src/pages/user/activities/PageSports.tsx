@@ -3,6 +3,7 @@ import styles from "../../../css/activities/sports/PageSports.module.css"
 import CompContainer from "../../../components/templates/CompContainer"
 import CompSportCard from "../../../components/activities/sports/CompSportCard"
 import { useState } from "react"
+import assetsFolder from "../../../utils/publicfolder"
 
 const sports = {
   ground: [
@@ -29,21 +30,21 @@ const PageSports = () => {
             onClick={() => setEventTypeSelected("ground")}
           >
             <div className={styles.icon}>
-              <img src={process.env.PUBLIC_URL + "../assets/img/icons/running.png"} alt="person-running" />
+              <img src={assetsFolder + "/img/icons/running.png"} alt="person-running" />
             </div>
             <p>
               Deportes terrestres
             </p>
           </button>
           <div className={styles.separator}>
-            <img src={process.env.PUBLIC_URL + "../assets/img/secretaria_deportes.svg"} alt="deportes" />
+            <img src={assetsFolder + "/img/secretaria_deportes.svg"} alt="deportes" />
           </div>
           <button 
             className={styles.water}
             onClick={() => setEventTypeSelected("water")}
           >
             <div className={styles.icon}>
-              <img src={process.env.PUBLIC_URL + "../assets/img/icons/swimming.png"} alt="person-swimming" />
+              <img src={assetsFolder + "/img/icons/swimming.png"} alt="person-swimming" />
             </div>
             <p>
               Deportes acuaticos

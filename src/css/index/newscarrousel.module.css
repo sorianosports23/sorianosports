@@ -30,7 +30,11 @@
   background-color: #222;
 }
 
-.arrow-left > button, .arrow-right > button {
+.arrows_mobile {
+  display: none;
+}
+
+.arrow-left > button, .arrow-right > button, .arrows_mobile > button {
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 100%;
@@ -43,7 +47,12 @@
   transition: border .1s, background .3s, color .3s, transform .3s;
 }
 
-.arrow-left > button:hover, .arrow-right > button:hover {
+.arrows_mobile > button {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.arrow-left > button:hover, .arrow-right > button:hover, .arrows_mobile > button:hover {
   background: none;
   border: 2px solid #0acbe8;
   transform: scale(1.1);
@@ -103,4 +112,19 @@
   border: 2px solid #0acbe8;
   background: none;
   transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .arrow-left, .arrow-right {
+    display: none;
+  }
+
+  .arrows_mobile {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-1rem);
+    display: flex;
+    gap: 1rem;
+  }
 }

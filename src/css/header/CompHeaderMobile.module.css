@@ -1,0 +1,156 @@
+.menu {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  z-index: 50;
+  transition: transform .3s;
+  top: 0;
+  left: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid #eee9;
+}
+
+.header > h2 {
+  font-size: 1.2em;
+  color: #eee;
+  letter-spacing: 1px;
+}
+
+.header > button {
+  background: none;
+  border: none;
+  color: #eee;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 1rem;
+  display: grid;
+  place-content: center;
+}
+
+.account {
+  height: 5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.account > a {
+  text-decoration: none;
+  border: 1px solid #eee;
+  width: 8rem;
+  height: 2rem;
+  display: grid;
+  place-content: center;
+  border-radius: .5rem;
+  color: #eee;
+  font-weight: bold;
+  box-shadow: 2px 1px #eee;
+  transition: box-shadow .3s;
+}
+
+.account > a:hover {
+  box-shadow: 4px 2px #eee;
+}
+
+.account > a:first-of-type {
+  background: #0c09;
+}
+
+.account > a:last-of-type {
+  background: #0fc9;
+}
+
+.nav > nav {
+  display: flex;
+  padding: 0 10%;
+  border-top: 1px solid #eee9;
+  padding-top: .5rem;
+}
+
+.nav ul {
+  list-style: none;
+}
+
+.nav nav > ul > li {
+  width: 10rem;
+  height: 2rem;
+  display: flex;
+  /* align-items: center; */
+  margin: 1rem 0;
+}
+
+.nav nav > ul > li > a, .nav ul > li > button {
+  text-decoration: none;
+  border: none;
+  background: none;
+  color: #eee;
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+  position: relative;
+}
+
+.link_dropdown > button, .link_dropdown {
+  height: 2rem;
+  overflow: hidden;
+  transition: height .3s;
+}
+
+/* .link_dropdown, .link_dropdown > button {
+  height: 10rem !important;
+} */
+
+.link_dropdown > button {
+  flex-direction: column;
+}
+
+.link_dropdown > button ul {
+  margin-top: .5rem;
+}
+
+.link_dropdown > button p {
+  margin-top: .25rem;
+  font-size: .95em;
+}
+
+.link_dropdown > button li {
+  height: 2rem;
+}
+
+.link_dropdown > button a {
+  text-decoration: none;
+  color: #eee;
+  font-size: .85em;
+  display: flex;
+}
+
+.link_dropdown > button a::before {
+  content: "•";
+  margin-right: .5rem;
+}
+
+.link_dropdown svg {
+  transition: transform .3s;
+}
+
+.nav nav > ul li > button p {
+  display: flex;
+  align-items: center;
+}
+
+.nav nav > ul li > a svg, .nav > ul li > button svg {
+  margin-right: .5rem;
+}
+
+.nav li:nth-child(4) > ul {
+  display: none;
+}

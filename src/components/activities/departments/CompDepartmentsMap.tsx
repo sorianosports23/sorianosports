@@ -1,5 +1,6 @@
 import { useState } from "react"
 import styles from "../../../css/activities/departments/CompDepartmentsMap.module.css"
+import assetsFolder from "../../../utils/publicfolder"
 
 type TMapProps = {
   selectDepartment: (department: string) => void
@@ -45,7 +46,7 @@ const CompDepartment = ({name, select, x, y}: TDepartmentProps) => {
         height: 47,
         border: "none",
         backgroundColor: "unset",
-        backgroundImage: `url(${process.env.PUBLIC_URL + "../assets/map/department_icon.svg"})`
+        backgroundImage: `url(${assetsFolder + "/map/department_icon.svg"})`
       }}
       onClick={() => select(name)}
       onMouseEnter={() => setSize(hoverSize)}
@@ -74,7 +75,7 @@ const departmentsPos = {
 const CompDepartmentsMap = ({ selectDepartment, departments }: TMapProps) => {
   return (
   <div id="departments_map" style={{width: 645, height: 451, position: 'relative'}}>
-    <div id="department_background" style={{width: 645, height: 451, left: 0, top: 0, position: 'absolute', background: `url(${process.env.PUBLIC_URL + "../assets/map/background.svg"})`, border: '0.94px #373435 solid'}}></div>
+    <div id="department_background" style={{width: 645, height: 451, left: 0, top: 0, position: 'absolute', background: `url(${assetsFolder + "/map/background.svg"})`, border: '0.94px #373435 solid'}}></div>
     {/* <button onClick={() => selectDepartment("Dolores")} id="department_dolores" style={{width: 32, height: 47, left: 111, top: 178, position: 'absolute', background: `url(${process.env.PUBLIC_URL + "/assets/map/department_icon.svg"})`, border: "none"}}></button>
     <button onClick={() => selectDepartment("Cardona")} id="department_unknown" style={{width: 31, height: 47, left: 385, top: 105, position: 'absolute', background: `url(${process.env.PUBLIC_URL + "/assets/map/department_icon.svg"})`, border: "none"}}></button> */}
     {

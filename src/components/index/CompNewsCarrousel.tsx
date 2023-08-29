@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, MutableRefObject } from "react"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 import styles from "../../css/index/newscarrousel.module.css"
+import assetsFolder from "../../utils/publicfolder"
 
 const CompNewsCarrousel = () => {
 
@@ -12,7 +13,7 @@ const CompNewsCarrousel = () => {
   const [onTransition, setOnTransition] = useState(false)
 
   useEffect(() => {
-    carrousel.current.style.backgroundImage = `url(${process.env.PUBLIC_URL + "assets/img/news/n1.jpg"})`
+    carrousel.current.style.backgroundImage = `url(${assetsFolder + "/img/news/n1.jpg"})`
   }, [])
 
   const handleTransitionEnd = () => {
@@ -108,6 +109,15 @@ const CompNewsCarrousel = () => {
       </div>
       <div className={styles["arrow-right"]}>
         <button onClick={() => handleChangeSlide("next")} disabled={onTransition}>
+          <BsChevronRight/>
+        </button>
+      </div>
+
+      <div className={styles.arrows_mobile}>
+        <button onClick={() => handleChangeSlide("prev")}>
+          <BsChevronLeft/>
+        </button>
+        <button onClick={() => handleChangeSlide("next")}>
           <BsChevronRight/>
         </button>
       </div>

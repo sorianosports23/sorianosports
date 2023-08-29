@@ -1,6 +1,7 @@
 import { BsQuestionCircle } from "react-icons/bs"
 import styles from "../../css/index/sportswater.module.css"
 import { useState } from "react"
+import assetsFolder from "../../utils/publicfolder"
 
 const CompSportsWater = () => {
 
@@ -16,7 +17,7 @@ const CompSportsWater = () => {
       <div className={styles["sportsmain_main"]}>
         <div className={styles.textDiv}>
           <div className={styles.img}>
-            <img src={process.env.PUBLIC_URL + "assets/img/sportswater.jfif"} alt="sports-ground" />
+            <img src={assetsFolder + "/img/sportswater.jfif"} alt="sports-ground" />
           </div>
           <div>
             <h2>

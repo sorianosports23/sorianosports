@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { BsFillHouseFill, BsPersonFill, BsPeopleFill, BsFillCalendarDateFill } from "react-icons/bs"
 import { GiSoccerBall } from "react-icons/gi"
 import styles from "../../../css/admin/header/CompHeaderAdmin.module.css"
+import assetsFolder from "../../../utils/publicfolder"
 
 const CompHeaderAdmin = () => {
   return (
@@ -15,7 +16,7 @@ const CompHeaderAdmin = () => {
         {/* usuario */}
         <div className={styles.user}>
           <div>
-            <img src={process.env.PUBLIC_URL + "assets/img/img_placeholder.png"} alt="user-img" />
+            <img src={assetsFolder + "/img/img_placeholder.png"} alt="user-img" />
           </div>
           <p>Usuario</p>
         </div>
