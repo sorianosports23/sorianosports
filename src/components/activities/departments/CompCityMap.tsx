@@ -16,10 +16,8 @@ type TDepartmentProps = {
 const CompDepartment = ({name, select, x, y}: TDepartmentProps) => {
   return (
     <button
-      className={styles.cityIcon}
+      className={`${styles.cityIcon} ${styles[name]}`}
       style={{
-        left: x,
-        top: y,
         backgroundColor: "unset",
         backgroundImage: `url(${assetsFolder}/map/department_icon.svg)`
       }}
@@ -38,8 +36,8 @@ const departmentsPos = {
     y: 76
   },
   Mercedes: {
-    x: 140,
-    y: 58
+    x: 120,
+    y: 48
   },
   Dolores: {
     x: 58,
@@ -80,8 +78,8 @@ const CompDepartmentsMap = ({ selectDepartment, departments }: TMapProps) => {
     <div className={styles.map}
       style={{
         backgroundImage: `url(${assetsFolder}/map/backgroundMap.svg)`,
-        height: "28rem",
-        width: "40rem"
+        // height: "28rem",
+        // width: "40rem"
       }}
     >
       {

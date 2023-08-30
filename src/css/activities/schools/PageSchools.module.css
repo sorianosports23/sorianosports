@@ -15,9 +15,10 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+  border-bottom: 1px solid #222;
 }
 
-.schools_type > div {
+.summer, .year {
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
   width: var(--selector-card-w);
   height: var(--selector-card-h);
@@ -31,13 +32,26 @@
   z-index: 0;
 }
 
-.schools_type > div > img {
+.summer {
+  order: 1;
+}
+
+.separator {
+  order: 2;
+  transform: translateY(-5rem);
+}
+
+.year {
+  order: 3;
+}
+
+.summer > img, .year > img {
   width: 5rem;
   height: 5rem;
   object-fit: contain;
 }
 
-.schools_type > div > p {
+.summer > p, .year > p {
   font-size: 2em;
   font-weight: bold;
   color: #eee;
@@ -64,8 +78,20 @@
   gap: 1rem;
 }
 
+@media (max-width: 992px) {
+  .separator {
+    order: 0;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 768px) {
   .schools_type {
     margin: 1rem 0;
+  }
+
+  .separator {
+    order: 0;
+    transform: translateY(0);
   }
 }

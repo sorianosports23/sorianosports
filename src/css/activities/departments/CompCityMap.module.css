@@ -43,6 +43,56 @@
   opacity: 1;
 }
 
+.VillaSoriano {
+  left: 97px;
+  top: 25px;
+}
+
+.Mercedes {
+  left: 127px;
+  top: 5px;
+}
+
+.Dolores {
+  left: 58px;
+  top: 50px;
+}
+
+.Palmar {
+  left: 260px;
+  top: 0px;
+}
+
+.Palmitas {
+  left: 175px;
+  top: 25px;
+}
+
+.Egaña {
+  left: 225px;
+  top: 45px;
+}
+
+.Risso {
+  left: 255px;
+  top: 65px;
+}
+
+.StaCatalina {
+  left: 330px;
+  top: 85px;
+}
+
+.JERodo {
+  left: 290px;
+  top: 75px;
+}
+
+.Cardona {
+  left: 360px;
+  top: 95px;
+}
+
 @keyframes bounce {
   0% {
     transform: translateY(0);
@@ -62,6 +112,64 @@
   /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.75); */
   background-repeat: no-repeat;
   background-size: contain;
-  width: 18rem;
+  width: 28rem;
   height: 40rem;
+}
+
+@media (max-width: 768px) {
+  .map {
+    min-width: 300px;
+    width: 300px;
+    height: 12rem;
+  }
+
+  .VillaSoriano {
+    left: 40px;
+    top: 10px;
+  }
+
+  .Mercedes {
+    left: 65px;
+    top: 0px;
+  }
+  
+  .Dolores {
+    left: 27px;
+    top: 30px;
+  }
+
+  .Palmar {
+    left: 170px;
+    top: -20px;
+  }
+
+  .Palmitas {
+    left: 95px;
+    top: 30px;
+  }
+
+  .Egaña {
+    left: 125px;
+    top: 40px;
+  }
+
+  .Risso {
+    left: 155px;
+    top: 50px;
+  }
+
+  .StaCatalina {
+    left: 206px;
+    top: 50px;
+  }
+
+  .JERodo {
+    left: 180px;
+    top: 50px;
+  }
+
+  .Cardona {
+    left: 240px;
+    top: 50px;
+  }
 }
