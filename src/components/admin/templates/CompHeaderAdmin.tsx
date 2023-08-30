@@ -39,12 +39,16 @@ const CompHeaderAdmin = () => {
             Deportes
           </Link>
           <Link to="/admin/">
-            <BsPeopleFill/>
-            Blog
+            <BsFillCalendarDateFill/>
+            Eventos
           </Link>
           <Link to="/admin/">
             <BsFillCalendarDateFill/>
-            Eventos
+            Base de datos
+          </Link>
+          <Link to="/admin/">
+            <BsFillCalendarDateFill/>
+            Noticias
           </Link>
         </nav>
       </div>
