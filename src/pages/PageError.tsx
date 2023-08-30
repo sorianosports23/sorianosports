@@ -1,9 +1,22 @@
-import { Link } from "react-router-dom"
+import { useEffect } from "react"
+import { Link, useRouteError } from "react-router-dom"
 
 const PageError = () => {
+
+  const error = useRouteError() as {data: string, internal: boolean, status: number, statusText: string}
+
+  useEffect(() => {
+    console.log(error)
+  }, [error])
+
   return (
     <div>
-      Ocurrio un error...
+      {
+        error 
+          ? error.data
+          : "Ocurrio un error inesperado"
+
+      }
       <Link to="/">Volver a /</Link>
     </div>
   )
