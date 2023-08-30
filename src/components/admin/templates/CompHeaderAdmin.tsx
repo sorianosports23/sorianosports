@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { BsFillHouseFill, BsPersonFill, BsPeopleFill, BsFillCalendarDateFill } from "react-icons/bs"
+import { BsFillHouseFill, BsPersonFill, BsFillDatabaseFill, BsNewspaper, BsFillCalendarDateFill } from "react-icons/bs"
 import { GiSoccerBall } from "react-icons/gi"
 import styles from "../../../css/admin/header/CompHeaderAdmin.module.css"
 import assetsFolder from "../../../utils/publicfolder"
@@ -43,11 +43,11 @@ const CompHeaderAdmin = () => {
             Eventos
           </Link>
           <Link to="/admin/">
-            <BsFillCalendarDateFill/>
+            <BsFillDatabaseFill/>
             Base de datos
           </Link>
           <Link to="/admin/">
-            <BsFillCalendarDateFill/>
+            <BsNewspaper/>
             Noticias
           </Link>
         </nav>
