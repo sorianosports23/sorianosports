@@ -9,6 +9,7 @@ import PageSports from "./pages/user/activities/PageSports";
 import PageLoading from "./pages/PageLoading";
 import PageError from "./pages/PageError";
 import PageSchools from "./pages/user/activities/PageSchools";
+import PageSport from "./pages/user/PageSport";
 
 const pageUserRoutes: RouteObject[] = [
   {
@@ -25,6 +26,9 @@ const pageUserRoutes: RouteObject[] = [
   },
   {
     path: "/actividades/escuelas", element: <PageSchools/>
+  },
+  {
+    path: "/deporte/:city/:sport", element: <PageSport/>
   }
 ]
 
