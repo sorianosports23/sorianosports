@@ -99,11 +99,13 @@
 
 .info_cont > div > ul {
   list-style-type: none;
+  width: 100%;
+  padding: 0 .5rem;
 }
 
 .info_cont > div > ul li {
   height: 2rem;
-  width: 20rem;
+  width: 100%;
   border: 1px solid #222;
   margin: 1rem 0;
   display: flex;
@@ -122,4 +124,26 @@
 .info_cont > div ul li:hover {
   transform: scale(1.1);
   font-size: 1.3em;
+}
+
+@media (min-width: 992px) {
+  .info_cont > div > ul {
+    padding: 0 20%;
+  }
+}
+
+@media (max-width: 992px) {
+  .info {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .title_img {
+    display: none;
+  }
+
+  .infoSelector > button {
+    font-size: 1.2em;
+  }
 }
