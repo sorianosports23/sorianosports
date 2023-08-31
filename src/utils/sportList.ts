@@ -18,4 +18,12 @@ const sportList: Array<string> = [
   "Canotaje"
 ]
 
-export default sportList
+const sportIcon: { [x: string]: string } = {
+  Futbol: "football.png",
+  Boxeo: "boxing.png",
+  Remo: "canoe.png",
+  Voleibol: "volei.png",
+  "Básquetbol": "basketball.png"
+}
+
+export { sportList, sportIcon }

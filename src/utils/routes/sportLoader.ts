@@ -1,6 +1,6 @@
 import { LoaderFunction, LoaderFunctionArgs } from "react-router-dom";
 import cityList from "../cityList";
-import sportList from "../sportList";
+import { sportList } from "../sportList";
 
 const sportLoader: LoaderFunction = ({ params }: LoaderFunctionArgs) => {
   const city = params.city

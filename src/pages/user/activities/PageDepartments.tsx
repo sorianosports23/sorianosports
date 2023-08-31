@@ -3,6 +3,7 @@ import PageUser from "../PageUser"
 import styles from "../../../css/activities/departments/PageDepartments.module.css"
 import { ChangeEvent, useEffect, useState } from "react"
 import CompCityMap from "../../../components/activities/departments/CompCityMap"
+import { Link } from "react-router-dom"
 
 const departments = {
   Dolores: {
@@ -10,7 +11,7 @@ const departments = {
     water: ["Canotaje"]
   },
   Cardona: {
-    ground: ["Atletismo", "Karate", "Basquetbol", "Gimnadia 3ra Edad", "Hockey", "Zumba"],
+    ground: ["Atletismo", "Karate", "Básquetbol", "Gimnadia 3ra Edad", "Hockey", "Zumba"],
     water: []
   },
   Mercedes: {
@@ -137,7 +138,9 @@ const PageDepartments = () => {
                   selectedDepartment 
                     !== NoSelected
                     && departments[selectedDepartment as keyof typeof departments].ground.map((sport, i) => (
-                        <li key={i}>{sport}</li>
+                        <li key={i}>
+                          <Link to={`/${selectedDepartment}/${sport}`}>{sport}</Link>
+                        </li>
                        ))
                 }
               </ul>
