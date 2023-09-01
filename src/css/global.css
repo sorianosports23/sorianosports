@@ -9,13 +9,14 @@ html, body {
   overflow-x: hidden;
 }
 
-body:has(.background-main) {
+body:has(.background-main), .page-bg {
   background: fixed url("../../public/assets/img/background.jpg");
   background-size: cover;
 }
 
 #root {
   position: relative;
+  height: 100%;
 }
 
 #root:has(.background-main) {

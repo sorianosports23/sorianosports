@@ -11,6 +11,7 @@ import PageError from "./pages/PageError";
 import PageSchools from "./pages/user/activities/PageSchools";
 import PageSport from "./pages/user/PageSport";
 import sportLoader from "./utils/routes/sportLoader";
+import PageRegister from "./pages/session/PageRegister";
 
 // const pageUserRoutes: RouteObject[] = [
 //   {
@@ -43,6 +44,10 @@ const pageUserRoutes = createRoutesFromElements(
       <Route path="escuelas" element={<PageSchools/>}/>
     </Route>
     <Route path=":city/:sport" element={<PageSport/>} loader={sportLoader}/>
+
+    <Route path="/auth">
+      <Route path="registro" element={<PageRegister/>}/>
+    </Route>
   </Route>
 )
 
@@ -59,7 +64,7 @@ const pageAdminRoutes: RouteObject[] = [
 const pageRoutes = createBrowserRouter(
 [
   ...pageUserRoutes, 
-  ...pageAdminRoutes, 
+  ...pageAdminRoutes,
   {
     path: "*",
     element: <div>Not found... (<Link to="/">Go to /</Link>)</div>
