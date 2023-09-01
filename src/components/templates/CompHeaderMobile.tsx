@@ -32,7 +32,7 @@ const CompHeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
       </div>
 
       <div className={styles.account}>
-        <Link to="/">Registrarse</Link>
+        <Link to="/auth/registro">Registrarse</Link>
         <Link to="/">Iniciar sesión</Link>
       </div>
 

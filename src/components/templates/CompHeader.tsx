@@ -68,7 +68,7 @@ const CompHeader = () => {
             Ayuda
           </Link>
 
-          <Link to="/" className={`${styles.link} ${styles["link-header"]}`}>
+          <Link to="/auth/registro" className={`${styles.link} ${styles["link-header"]}`}>
             <BsFillPersonFill/>
             Registrarse
           </Link>
