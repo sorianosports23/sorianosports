@@ -10,8 +10,8 @@ html, body {
 }
 
 body:has(.background-main), .page-bg {
-  background: fixed url("../../public/assets/img/background.jpg");
   background-size: cover;
+  background-attachment: fixed;
 }
 
 #root {

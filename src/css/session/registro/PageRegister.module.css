@@ -207,6 +207,7 @@
   gap: .5rem;
   transition: transform .5s;
   margin: auto;
+  background: var(--bg-color);
 }
 
 .circle_register_completed > div:first-of-type {

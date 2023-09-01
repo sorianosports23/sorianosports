@@ -12,6 +12,8 @@ import PageSchools from "./pages/user/activities/PageSchools";
 import PageSport from "./pages/user/PageSport";
 import sportLoader from "./utils/routes/sportLoader";
 import PageRegister from "./pages/session/PageRegister";
+import { useEffect } from "react";
+import assetsFolder from "./utils/publicfolder";
 
 // const pageUserRoutes: RouteObject[] = [
 //   {
@@ -43,7 +45,8 @@ const pageUserRoutes = createRoutesFromElements(
       <Route path="deportes" element={<PageSports/>}/>
       <Route path="escuelas" element={<PageSchools/>}/>
     </Route>
-    <Route path=":city/:sport" element={<PageSport/>} loader={sportLoader}/>
+
+    <Route path="info/:city/:sport" element={<PageSport/>} loader={sportLoader}/>
 
     <Route path="/auth">
       <Route path="registro" element={<PageRegister/>}/>
@@ -77,7 +80,20 @@ const pageRoutes = createBrowserRouter(
   basename: "/deportes"
 })
 
-const App = () => <RouterProvider router={pageRoutes} fallbackElement={<PageLoading/>}/>
+const App = () => {
+
+  useEffect(() => {
+    document.body.style.backgroundImage = `url(${assetsFolder}/img/background.jpg)`
+
+    return () => {
+      document.body.style.backgroundImage = ""
+    }
+  }, [])
+
+  return (
+    <RouterProvider router={pageRoutes} fallbackElement={<PageLoading/>}/>
+  )
+}
 
 
 export default App;

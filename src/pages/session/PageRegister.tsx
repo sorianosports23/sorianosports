@@ -108,7 +108,7 @@ const PageRegister = () => {
           <div className={styles.circle_register_completed}
             style={{
               display: `${registerSlide === 3 ? "flex" : "none"}`,
-              transform: `${registerSlide === 3 ? "scale(1)" : "scale(0)"}`
+              transform: `${registerSlide === 3 ? "scale(1) translateX(-5rem)" : "scale(0)"}`
             }}
           >
             <div>

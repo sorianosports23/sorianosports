@@ -4,6 +4,7 @@ import styles from "../../../css/activities/departments/PageDepartments.module.c
 import { ChangeEvent, useEffect, useState } from "react"
 import CompCityMap from "../../../components/activities/departments/CompCityMap"
 import { Link } from "react-router-dom"
+import useSearchParams from "../../../utils/useSearchParams"
 
 const departments = {
   Dolores: {
@@ -66,6 +67,10 @@ const useSearch = () => {
 
 const NoSelected = "Ninguno seleccionado"
 
+const setSearchParams = (cityName: string) => {
+  window.history.pushState('', '', `?selected=${cityName}`)
+}
+
 const PageDepartments = () => {
 
   const searchInput = useSearch()
@@ -73,6 +78,8 @@ const PageDepartments = () => {
   const [selectedDepartment, setSelectedDepartment] = useState<string | typeof NoSelected>(NoSelected)
 
   const [searchDepartments, setSearchDepartments] = useState(Object.keys(departments))
+
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     if (!searchInput.value) {
@@ -83,6 +90,22 @@ const PageDepartments = () => {
       )
     }
   }, [searchInput.value])
+
+  useEffect(() => {
+    if (searchParams.searchParams && searchParams.params?.selected) {
+      const selectedParam = searchParams.params.selected
+
+      if (Object.keys(departments).includes(selectedParam)) {
+        setSelectedDepartment(selectedParam)
+      }
+
+    }
+  }, [searchParams])
+  
+  const handleSelectCity = (cityName: string) => {
+    setSelectedDepartment(cityName)
+    setSearchParams(cityName)
+  }
 
   return (
     <PageUser>
@@ -117,7 +140,7 @@ const PageDepartments = () => {
       {/* MAPA DEL DEPARTAMENTO */}
       <div className={styles.content} id="test">
         <CompCityMap
-          selectDepartment={setSelectedDepartment}
+          selectDepartment={handleSelectCity}
           departments={searchDepartments}
         />
       </div>
@@ -139,7 +162,7 @@ const PageDepartments = () => {
                     !== NoSelected
                     && departments[selectedDepartment as keyof typeof departments].ground.map((sport, i) => (
                         <li key={i}>
-                          <Link to={`/${selectedDepartment}/${sport}`}>{sport}</Link>
+                          <Link to={`/info/${selectedDepartment}/${sport}`}>{sport}</Link>
                         </li>
                        ))
                 }
@@ -158,7 +181,9 @@ const PageDepartments = () => {
                     ? <></>
                     : 
                       departments[selectedDepartment as keyof typeof departments].water.map((sport, i) => (
-                          <li key={i}>{sport}</li>
+                          <li key={i}>
+                            <Link to={`/info/${selectedDepartment}/${sport}`}>{sport}</Link>
+                          </li>
                       ))
                 }
               </ul>
