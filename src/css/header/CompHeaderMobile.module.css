@@ -82,7 +82,7 @@
 
 .nav nav > ul > li {
   width: 10rem;
-  height: 2rem;
+  height: 2.5rem;
   display: flex;
   /* align-items: center; */
   margin: 1rem 0;
@@ -95,7 +95,7 @@
   color: #eee;
   display: flex;
   align-items: center;
-  font-size: 1.1em;
+  font-size: 1.2em;
   position: relative;
 }
 
@@ -153,4 +153,40 @@
 
 .nav li:nth-child(4) > ul {
   display: none;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .2rem;
+}
+
+.username {
+  display: flex;
+  gap: .5rem;
+  font-size: 1.3em;
+  border: 1px solid #eee;
+  border-radius: 1rem;
+  padding: .2rem;
+  width: 10rem;
+  justify-content: center;
+  align-items: center;
+  color: #eee;
+}
+
+.username a {
+  text-decoration: none;
+  color: #eee;
+  text-overflow: clip;
+  font-size: .9em;
+}
+
+.logout > button {
+  width: 8rem;
+  height: 1.5rem;
+  background: none;
+  color: #eee;
+  border: none;
 }

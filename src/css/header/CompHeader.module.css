@@ -78,7 +78,90 @@
 .user-info {
   display: flex;
   justify-content: space-between;
-  width: 9rem;
+  width: 14rem;
+  gap: .5rem;
+}
+
+.user-info > a:last-of-type {
+  width: unset !important;
+}
+
+.user-info:has(.user) {
+  height: 4rem;
+  gap: .5rem;
+}
+
+.user {
+  width: 8rem;
+  height: 2rem;
+  /* height: 10rem; */
+  overflow: hidden;
+  margin-top: 1rem;
+  transition: heigth .3s;
+}
+
+.user:hover {
+  height: 10rem;
+}
+
+.user > button {
+  width: 100%;
+  height: 2rem;
+  /* margin-bottom: 1rem; */
+  border-radius: 1rem;
+  background: none;
+  border: 1px solid #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .2rem;
+  /* transition: border-radius .3s; */
+}
+
+.user:hover > button {
+  border-radius: 1rem 1rem 0 0;
+}
+
+.user:hover > button svg {
+  rotate: 180deg;
+}
+
+.user > button p {
+  font-size: 1.1em;
+  text-overflow: clip;
+}
+
+.user > button svg {
+  font-size: 1.2em;
+}
+
+.user > ul {
+  width: 100%;
+  background: #eee;
+  height: max-content;
+  border: 1px solid #222;
+  border-top: none;
+}
+
+.user > ul li {
+  height: 2.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: .5rem;
+}
+
+.user > ul li:hover {
+  background: #aaa;
+}
+
+.user > ul li > a, .user > ul li > button {
+  text-decoration: none;
+  border: none;
+  background: none;
+  color: #222;
+  font-size: 1.05em;
+  font-family: arial;
 }
 
 .link-header {
@@ -244,12 +327,13 @@
 }
 
 @media (max-width: 768px) {
-  .header_searchbar_tablet, .header-bottom, .user-info > a {
+  .header_searchbar_tablet, .header-bottom, .user-info > a, .user {
     display: none;
   }
 
   .user-info {
     width: max-content;
+    height: 2rem !important;
   }
 
   .menu_mobile {

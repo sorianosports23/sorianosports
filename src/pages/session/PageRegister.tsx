@@ -1,30 +1,19 @@
 import assetsFolder from "../../utils/publicfolder"
 import styles from "../../css/session/registro/PageRegister.module.css"
 import CompAccountDetails from "../../components/session/registro/CompAccountDetails"
-import { ChangeEvent, useEffect, useState } from "react"
+import { useState } from "react"
 import CompUserContact from "../../components/session/registro/CompUserContact"
 import CompExtraDetails from "../../components/session/registro/CompExtraDetails"
 import { BsCheckAll } from "react-icons/bs"
 import { Link } from "react-router-dom"
+import useForm from "../../utils/useForm"
 
-const useForm = (initialValue: any) => {
-  const [value, setValue] = useState<any>(initialValue)
 
-  const onChange = (ev: ChangeEvent<HTMLInputElement>) => {
-    setValue(ev.target.value)
-  }
-
-  return {
-    value,
-    onChange
-  }
-}
 
 const PageRegister = () => {
 
   ///
 
-  const borderRadiusCircle = "0 100% 100% 0"
   const circleClipPath = "ellipse(100% 60% at 0% 50%)"
   const circle1InitialWidth = "20%"
   const circle2InitialWidth = "25%"

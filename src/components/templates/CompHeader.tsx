@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom"
-import { BsSearch, BsFillChatSquareDotsFill, BsFillPersonFill, BsChevronDown, BsFillHouseFill, BsCalendarDateFill, BsList } from "react-icons/bs"
+import { Link, useNavigate } from "react-router-dom"
+import { BsSearch, BsFillChatSquareDotsFill, BsFillPersonFill, BsChevronDown, BsFillHouseFill, BsCalendarDateFill, BsList, BsPersonFillUp } from "react-icons/bs"
 import styles from "../../css/header/CompHeader.module.css"
-import { ChangeEvent, MutableRefObject, useRef, useState } from "react"
+import { ChangeEvent, MutableRefObject, useRef, useState, useContext, useEffect } from "react"
 import CompSearchBar from "../header/CompSearchBar"
 import assetsFolder from "../../utils/publicfolder"
 import CompHeaderMobile from "./CompHeaderMobile"
+import { userSessionContext } from "../../context/session/UserSessionContext"
 
 const stylesName = {
   link_header2: `${styles.link} ${styles["link-header2"]}`
@@ -27,17 +28,26 @@ const useSearch = () => {
 
 const CompHeader = () => {
 
+  const navigate = useNavigate()
+
   const search = useSearch()
 
   const [menuMobileOpen, setMenuMobileOpen] = useState(false)
 
-  
+  const { username, logout } = useContext(userSessionContext)
+
   const [activitiesDropdown, setActivitiesDropDown] = useState(false)
   const [aboutDropdown, setAboutDropDown] = useState(false)
   const [searchBarHover, setSearchBarHover] = useState(false)
   const [searchBarTabletHover, setSearchBarTabletHover] = useState(false)
   
   const activitiesDropdownUL = useRef<HTMLUListElement>(null) as MutableRefObject<HTMLUListElement>
+
+  const handleLogout = () => {
+    logout()
+    // eslint-disable-next-line no-self-assign
+    window.location.href = window.location.href
+  }
   
   return (
     <header className={styles.header}>
@@ -63,15 +73,43 @@ const CompHeader = () => {
         </div>
 
         <div className={styles["user-info"]}>
+          {/* eslint-disable-next-line sonarjs/no-duplicate-string */ }
           <Link to="/" className={`${styles.link} ${styles["link-header"]}`}>
             <BsFillChatSquareDotsFill/>
             Ayuda
           </Link>
 
-          <Link to="/auth/registro" className={`${styles.link} ${styles["link-header"]}`}>
-            <BsFillPersonFill/>
-            Registrarse
-          </Link>
+
+          {
+            username 
+              ? (
+                <div className={styles.user}>
+                  <button><p>{username}</p> <BsChevronDown/></button>
+
+                  <ul>
+                    <li><Link to="/auth/perfil">Perfil</Link></li>
+                    <li>
+                      <button
+                        onClick={handleLogout}
+                      >Cerrar sesión</button>
+                    </li>
+                  </ul>
+                </div>
+              )
+              : (
+                <>
+                <Link to="/auth/registro" className={`${styles.link} ${styles["link-header"]}`}>
+                  <BsFillPersonFill/>
+                  Registrarse
+                </Link>
+
+                <Link to="/auth/login" className={`${styles.link} ${styles["link-header"]}`}>
+                  <BsPersonFillUp/>
+                  Iniciar sesión
+                </Link>
+                </>
+              )
+          }
 
           <button className={styles.menu_mobile}
             onClick={() => setMenuMobileOpen(true)}

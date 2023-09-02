@@ -14,6 +14,8 @@ import sportLoader from "./utils/routes/sportLoader";
 import PageRegister from "./pages/session/PageRegister";
 import { useEffect } from "react";
 import assetsFolder from "./utils/publicfolder";
+import PageLogin from "./pages/session/PageLogin";
+import { UserSessionProvider } from "./context/session/UserSessionContext";
 
 // const pageUserRoutes: RouteObject[] = [
 //   {
@@ -50,6 +52,7 @@ const pageUserRoutes = createRoutesFromElements(
 
     <Route path="/auth">
       <Route path="registro" element={<PageRegister/>}/>
+      <Route path="login" element={<PageLogin/>}/>
     </Route>
   </Route>
 )
@@ -91,7 +94,9 @@ const App = () => {
   }, [])
 
   return (
-    <RouterProvider router={pageRoutes} fallbackElement={<PageLoading/>}/>
+    <UserSessionProvider>
+      <RouterProvider router={pageRoutes} fallbackElement={<PageLoading/>}/>
+    </UserSessionProvider>
   )
 }
 

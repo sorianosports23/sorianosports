@@ -1,7 +1,8 @@
-import { useState } from "react"
-import { BsXLg, BsFillHouseFill, BsChevronRight, BsCalendarDateFill, BsChatSquareDotsFill } from "react-icons/bs"
+import { useState, useContext } from "react"
+import { BsXLg, BsFillHouseFill, BsChevronRight, BsCalendarDateFill, BsChatSquareDotsFill, BsPersonCircle } from "react-icons/bs"
 import styles from "../../css/header/CompHeaderMobile.module.css"
 import { Link } from "react-router-dom"
+import { userSessionContext } from "../../context/session/UserSessionContext"
 
 type THeaderMobileProps = {
   open: boolean,
@@ -10,9 +11,17 @@ type THeaderMobileProps = {
 
 const CompHeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
   
+  const { username, logout } = useContext(userSessionContext)
+
   const [activitiesOpen, setActivitiesOpen] = useState(false)
   const [institutionOpen, setInstitutionOpen] = useState(false)
   
+  const handleLogout = () => {
+    logout()
+    // eslint-disable-next-line no-self-assign
+    window.location.href = window.location.href
+  }
+
   return (
     <div className={styles.menu}
       style={{
@@ -32,8 +41,31 @@ const CompHeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
       </div>
 
       <div className={styles.account}>
-        <Link to="/auth/registro">Registrarse</Link>
-        <Link to="/">Iniciar sesión</Link>
+        {
+          username
+            ? (
+              <div className={styles.user}>
+                <div className={styles.username}>
+                  <BsPersonCircle/>
+                  <Link to="/auth/perfil">
+                    {username}
+                  </Link>
+                </div>
+
+                <div className={styles.logout}>
+                  <button onClick={handleLogout}>
+                    Cerrar sesión
+                  </button>
+                </div>
+              </div>
+            )
+            : (
+              <>
+              <Link to="/auth/registro">Registrarse</Link>
+              <Link to="/auth/login">Iniciar sesión</Link>
+              </>
+            )
+        }
       </div>
 
       <div className={styles.nav}>

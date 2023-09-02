@@ -47,7 +47,7 @@
 }
 
 .form {
-  border: 1px solid #f00;
+  /* border: 1px solid #f00; */
   height: max-content;
   padding: 1rem;
   width: 23rem;

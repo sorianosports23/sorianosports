@@ -1,0 +1,113 @@
+.main {
+  height: 100%;
+  display: grid;
+  place-content: center;
+}
+
+.form_content {
+  border: 1px solid #222;
+  width: 22rem;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.title {
+  width: 100%;
+  height: 6rem;
+  display: grid;
+  place-content: center;
+}
+
+.title > div {
+  width: 5rem;
+  height: 5rem;
+}
+
+.title > div > img {
+  width: 100%;
+  height: 100%;
+}
+
+.form {
+  height: 20rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.form > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 4rem;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.form > div > div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 2.5rem;
+}
+
+.form > div > div > div {
+  width: 2rem;
+  height: 100%;
+  font-size: 1.2em;
+  display: grid;
+  place-content: center;
+}
+
+.form input {
+  background: none;
+  border: none;
+  outline: none;
+  height: 100%;
+  border-bottom: 1px solid #222;
+  padding: .3rem;
+  font-size: 1.1em;
+  flex: 1;
+}
+
+.form input:focus {
+  border: 1px solid #222;
+  border-radius: 1rem;
+}
+
+.form label {
+  align-self: flex-start;
+  color: var(--label-color);
+  font-size: 1.2em;
+}
+
+.form > div:has(button) {
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+}
+
+.form > div button {
+  width: 10rem;
+  height: 2.5rem;
+  background: var(--button-color);
+  color: var(--button-text-color);
+  border-radius: 6rem;
+  border: none;
+  font-size: 1.2em;
+  font-weight: 700;
+  padding: .5rem;
+  display: grid;
+  place-content: center;
+}
+
+@media (max-width: 576px) {
+  .form_content {
+    width: 20rem;
+    padding: .5rem;
+  }
+}
