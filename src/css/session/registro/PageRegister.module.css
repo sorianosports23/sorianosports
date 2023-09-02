@@ -47,7 +47,7 @@
 }
 
 .form {
-  /* border: 1px solid #f00; */
+  border: 1px solid #f00;
   height: max-content;
   padding: 1rem;
   width: 23rem;
@@ -155,8 +155,8 @@
   position: absolute;
   inset: 0;
   height: 100%;
-  border-radius: 0 var(--circle-radius) var(--circle-radius) 0;
-  transition: width .3s, border-radius .3s;
+  /* border-radius: 0 var(--circle-radius) var(--circle-radius) 0; */
+  transition: width .3s, border-radius .3s, clip-path .3s;
   z-index: 0;
 }
 
@@ -241,6 +241,22 @@
   box-shadow: 1px 1px 2px #0a0;
 }
 
+.circle_register_completed[data-ready='true'] {
+  transform: scale(1) translateX(-5rem);
+}
+
+.form_content[data-slide='1'] {
+  transform: translateX(-21rem);
+}
+
+.form_content[data-slide='2'] {
+  transform: translateX(-42rem);
+}
+
+.form_content[data-slide='3'] {
+  transform: translateX(-63rem);
+}
+
 @keyframes disappear {
   0% {
     transform: translateX(.5rem);
@@ -248,5 +264,75 @@
 
   100% {
     transform: translateX(-100vw);
+  }
+}
+
+@media (max-width: 992px) {
+
+}
+
+@media (max-width: 768px) {
+  .circles > div[data-open='false'] {
+    width: 0 !important;
+  }
+
+  .circle_img {
+    display: none;
+  }
+
+  .circle_register_completed[data-ready='true'] {
+    transform: scale(1);
+  }
+
+  .content {
+    padding-right: 0;
+    align-items: center;
+  }
+  
+  .title, .form {
+    width: 18rem;
+  }
+
+  .form_content > form {
+    width: 15rem;
+  }
+
+  .form_content > form:nth-child(1) {
+    margin: 0;
+    margin-right: 1rem;
+  }
+  .form_content > form:nth-child(2) {
+    margin: 0 1rem;
+  }
+  .form_content > form:nth-child(3) {
+    margin: 0;
+    margin-left: 1rem;
+  }
+
+  .form_content > form input {
+    /* width: 0; */
+    flex: 1;
+  }
+
+  .form_content > form > div > div {
+    width: 15rem;
+  }
+
+  .form_content[data-slide='1'] {
+    transform: translateX(-17.1rem);
+  }
+
+  .form_content[data-slide='2'] {
+    transform: translateX(-34.2rem);
+  }
+
+  .form_content[data-slide='3'] {
+    transform: translateX(-51rem);
+  }
+
+  .form_content > form > div button {
+    width: 6rem;
+    height: 2rem;
+    font-size: 1em;
   }
 }

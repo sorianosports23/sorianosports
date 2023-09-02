@@ -25,9 +25,10 @@ const PageRegister = () => {
   ///
 
   const borderRadiusCircle = "0 100% 100% 0"
-  const circle1InitialWidth = "15rem"
-  const circle2InitialWidth = "20rem"
-  const circle3InitialWidth = "25rem"
+  const circleClipPath = "ellipse(100% 60% at 0% 50%)"
+  const circle1InitialWidth = "20%"
+  const circle2InitialWidth = "25%"
+  const circle3InitialWidth = "30%"
 
   ///
 
@@ -60,10 +61,11 @@ const PageRegister = () => {
         <div className={styles.form}>
           <div className={styles.form_content}
             style={{
-              transform: `
-                translateX(-${21.25 * registerSlide}rem)
-              `
+              // transform: `
+              //   translateX(-${21.25 * registerSlide}rem)
+              // `
             }}
+            data-slide={registerSlide}
           >
             <CompAccountDetails
               userInput={user}
@@ -92,8 +94,10 @@ const PageRegister = () => {
         <div className={styles.circles_1}
           style={{
             width: registerSlide >= 3 ? "100%" : circle1InitialWidth,
-            borderRadius: registerSlide >= 3 ? "0" : borderRadiusCircle
+            // borderRadius: registerSlide >= 3 ? "0" : borderRadiusCircle
+            clipPath: registerSlide >= 3 ? "unset" : circleClipPath
           }}
+          data-open={registerSlide >= 3}
         >
           <div className={styles.circle_img}
             style={{
@@ -108,8 +112,9 @@ const PageRegister = () => {
           <div className={styles.circle_register_completed}
             style={{
               display: `${registerSlide === 3 ? "flex" : "none"}`,
-              transform: `${registerSlide === 3 ? "scale(1) translateX(-5rem)" : "scale(0)"}`
+              // transform: `${registerSlide === 3 ? "scale(1) translateX(-5rem)" : "scale(0)"}`
             }}
+            data-ready={registerSlide === 3}
           >
             <div>
               <h1>Registro completo</h1>
@@ -124,14 +129,18 @@ const PageRegister = () => {
         <div className={styles.circles_2}
           style={{
             width: registerSlide >= 2 ? "100%" : circle2InitialWidth,
-            borderRadius: registerSlide >= 2 ? "0" : borderRadiusCircle
+            // borderRadius: registerSlide >= 2 ? "0" : borderRadiusCircle
+            clipPath: registerSlide >= 2 ? "unset" : circleClipPath
           }}
+          data-open={registerSlide >= 2}
         ></div>
         <div className={styles.circles_3}
           style={{
             width: registerSlide >= 1 ? "100%" : circle3InitialWidth,
-            borderRadius: registerSlide >= 1 ? "0" : borderRadiusCircle
+            // borderRadius: registerSlide >= 1 ? "0" : borderRadiusCircle
+            clipPath: registerSlide >= 1 ? "unset" : circleClipPath
           }}
+          data-open={registerSlide >= 1}
         ></div>
       </div>
     </main>
