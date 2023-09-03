@@ -5,9 +5,13 @@ type TAccountDetailsProps = {
   userInput: TInputProps
   passwordInput: TInputProps
   buttonClick: () => void
+  errorInputs: {
+    username: boolean
+    password: boolean
+  }
 }
 
-const CompAccountDetails = ({ userInput, passwordInput, buttonClick }: TAccountDetailsProps) => { 
+const CompAccountDetails = ({ userInput, passwordInput, buttonClick, errorInputs }: TAccountDetailsProps) => { 
   return (
     <form>
       <div>
@@ -15,6 +19,7 @@ const CompAccountDetails = ({ userInput, passwordInput, buttonClick }: TAccountD
         <div>
           <input type="text" 
             {...userInput}
+            data-error={errorInputs.username}
           />
           <div>
             <BsFillPersonFill/>
@@ -27,6 +32,7 @@ const CompAccountDetails = ({ userInput, passwordInput, buttonClick }: TAccountD
         <div>
           <input type="password" 
             {...passwordInput}
+            data-error={errorInputs.password}
           />
           <div>
             <BsKeyFill/>

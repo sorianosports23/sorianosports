@@ -1,7 +1,7 @@
 import assetsFolder from "../../utils/publicfolder"
 import styles from "../../css/session/registro/PageRegister.module.css"
 import CompAccountDetails from "../../components/session/registro/CompAccountDetails"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import CompUserContact from "../../components/session/registro/CompUserContact"
 import CompExtraDetails from "../../components/session/registro/CompExtraDetails"
 import { BsCheckAll } from "react-icons/bs"
@@ -27,6 +27,7 @@ const PageRegister = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const modalTitle = "Registro"
   const [modalBody, setModalBody] = useState("")
+  const [modalError, setModalError] = useState(true)
 
   ///
 
@@ -36,10 +37,40 @@ const PageRegister = () => {
   const userPhone = useForm(0)
   const userCI = useForm(0)
 
+  const errorInputName = "data_error"
+
+  ///
+
+  const [submitDisabled, setSubmitDisabled] = useState(true)
+
+  useEffect(() => {
+    if (user.data_error) return setSubmitDisabled(true)
+    if (userPassword.data_error) return setSubmitDisabled(true)
+    if (userEmail.data_error) return setSubmitDisabled(true)
+    if (userPhone.data_error) return setSubmitDisabled(true)
+    if (userCI.data_error) return setSubmitDisabled(true)
+    setSubmitDisabled(false)
+  }, [user.data_error, userPassword.data_error, userEmail.data_error, userPhone.data_error, userCI.data_error])
+
+  ///
+
   const [registerSlide, setRegisterSlide] = useState(0)
   const [loadingRegister, setLoadingRegister] = useState(false)
 
+  useEffect(() => {
+    if (loadingRegister) setSubmitDisabled(true)
+  }, [loadingRegister])
+
+
   const handleRegister = async () => {
+
+    if (!user.value || !userPassword.value || !userEmail.value || !userPhone.value || !userCI.value) {
+      setModalBody("Debes ingresar todos los campos")
+      setModalError(false)
+      setModalOpen(true)
+      return
+    }
+
     setLoadingRegister(true)
     // setTimeout(() => {
     //   setLoadingRegister(false)
@@ -89,6 +120,10 @@ const PageRegister = () => {
               userInput={user}
               passwordInput={userPassword}
               buttonClick={() => setRegisterSlide(1)}
+              errorInputs={{
+                username: user[errorInputName],
+                password: userPassword[errorInputName]
+              }}
             />
 
             <CompUserContact
@@ -96,6 +131,10 @@ const PageRegister = () => {
               phoneInput={userPhone}
               buttonPrevClick={() => setRegisterSlide(0)}
               buttonClick={() => setRegisterSlide(2)}
+              errorInputs={{
+                email: userEmail[errorInputName],
+                phone: userPhone[errorInputName]
+              }}
             />
 
             <CompExtraDetails
@@ -103,6 +142,10 @@ const PageRegister = () => {
               prevButtonClick={() => setRegisterSlide(1)}
               buttonClick={() => handleRegister()}
               loading={loadingRegister}
+              errorInputs={{
+                ci: userCI[errorInputName]
+              }}
+              buttonDisabled={submitDisabled}
             />
           </div>
         </div>
@@ -167,7 +210,7 @@ const PageRegister = () => {
         close={() => setModalOpen(false)}
         title={modalTitle}
         body={modalBody}
-        error={true}
+        error={modalError}
       />
     </main>
   )

@@ -7,9 +7,13 @@ type TExtraDetailsProps = {
   loading: boolean
   buttonClick: () => void
   prevButtonClick: () => void
+  errorInputs: {
+    ci: boolean
+  }
+  buttonDisabled: boolean
 }
 
-const CompExtraDetails = ({ ciInput, loading, buttonClick, prevButtonClick }: TExtraDetailsProps) => {
+const CompExtraDetails = ({ ciInput, loading, buttonClick, prevButtonClick, errorInputs, buttonDisabled }: TExtraDetailsProps) => {
   
   const handleFinish = () => {
     if (loading) return
@@ -23,6 +27,7 @@ const CompExtraDetails = ({ ciInput, loading, buttonClick, prevButtonClick }: TE
         <div>
           <input type="number" maxLength={8} 
             {...ciInput}
+            data-error={errorInputs.ci}
           />
           <div>
             <BsFillPersonVcardFill/>
@@ -35,7 +40,7 @@ const CompExtraDetails = ({ ciInput, loading, buttonClick, prevButtonClick }: TE
           Anterior
         </button>
 
-        <button type="button" onClick={() => handleFinish()}>
+        <button type="button" onClick={() => handleFinish()} disabled={buttonDisabled}>
           {
             loading 
               ? <CompLoader/>

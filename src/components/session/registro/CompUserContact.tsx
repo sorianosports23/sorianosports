@@ -6,9 +6,13 @@ type TUserContactProps = {
   phoneInput: TInputProps
   buttonClick: () => void
   buttonPrevClick: () => void
+  errorInputs: {
+    email: boolean
+    phone: boolean
+  }
 }
 
-const CompUserContact = ({ emailInput, phoneInput, buttonClick, buttonPrevClick }: TUserContactProps) => {
+const CompUserContact = ({ emailInput, phoneInput, buttonClick, buttonPrevClick, errorInputs }: TUserContactProps) => {
   return (
     <form>
       <div>
@@ -16,6 +20,7 @@ const CompUserContact = ({ emailInput, phoneInput, buttonClick, buttonPrevClick 
         <div>
           <input type="email" 
             {...emailInput}
+            data-error={errorInputs.email}
           />
           <div>
             <BsEnvelopeAtFill/>
@@ -26,8 +31,10 @@ const CompUserContact = ({ emailInput, phoneInput, buttonClick, buttonPrevClick 
       <div>
         <label htmlFor="#">Telefóno</label>
         <div>
-          <input type="tel"
+          <input type="number"
+            maxLength={9}
             {...phoneInput}
+            data-error={errorInputs.phone}
           />
           <div>
             <BsTelephoneFill/>
