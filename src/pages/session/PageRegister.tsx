@@ -7,17 +7,26 @@ import CompExtraDetails from "../../components/session/registro/CompExtraDetails
 import { BsCheckAll } from "react-icons/bs"
 import { Link } from "react-router-dom"
 import useForm from "../../utils/useForm"
+import apiRegister from "../../api/session/register"
+import CompModal from "../../components/modal/CompModal"
 
 
 
 const PageRegister = () => {
-
   ///
 
   const circleClipPath = "ellipse(100% 60% at 0% 50%)"
   const circle1InitialWidth = "20%"
   const circle2InitialWidth = "25%"
   const circle3InitialWidth = "30%"
+
+  ///
+
+  ///
+
+  const [modalOpen, setModalOpen] = useState(false)
+  const modalTitle = "Registro"
+  const [modalBody, setModalBody] = useState("")
 
   ///
 
@@ -30,12 +39,32 @@ const PageRegister = () => {
   const [registerSlide, setRegisterSlide] = useState(0)
   const [loadingRegister, setLoadingRegister] = useState(false)
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     setLoadingRegister(true)
-    setTimeout(() => {
+    // setTimeout(() => {
+    //   setLoadingRegister(false)
+    //   setRegisterSlide(3)
+    // }, 3000);
+    const userData: TApiRegisterRequest = {
+      username: user.value,
+      password: userPassword.value,
+      email: userEmail.value,
+      phone: userPhone.value,
+      ci: userCI.value
+    }
+
+    const register = await apiRegister(userData)
+
+    console.log(register)
+
+    if (!register.status) {
+      setModalBody(register.message)
+      setLoadingRegister(false)
+      setModalOpen(true)
+    } else {
       setLoadingRegister(false)
       setRegisterSlide(3)
-    }, 3000);
+    }
   }
   
 
@@ -132,6 +161,14 @@ const PageRegister = () => {
           data-open={registerSlide >= 1}
         ></div>
       </div>
+
+      <CompModal
+        open={modalOpen}
+        close={() => setModalOpen(false)}
+        title={modalTitle}
+        body={modalBody}
+        error={true}
+      />
     </main>
   )
 }
