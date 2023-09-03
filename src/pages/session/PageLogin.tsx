@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from "react"
+import { FormEvent, useContext, useEffect, useState } from "react"
 import { BsFillPersonFill, BsKeyFill } from "react-icons/bs"
 import styles from "../../css/session/login/PageLogin.module.css"
 import assetsFolder from "../../utils/publicfolder"
@@ -7,14 +7,14 @@ import { userSessionContext } from "../../context/session/UserSessionContext"
 import { useNavigate } from "react-router-dom"
 import apiLogin from "../../api/session/login"
 import CompModal from "../../components/modal/CompModal"
+import CompLoader from "../../components/CompLoader"
 
 const PageLogin = () => {
-
-
   //
 
   const [modalOpen, setModalOpen] = useState(false)
   const [modalBody, setModalBody] = useState("")
+  const [modalError, setModalError] = useState(true)
 
   const modalTitle = "Inicio de sesión"
 
@@ -26,8 +26,29 @@ const PageLogin = () => {
   const user = useForm("")
   const userPassword = useForm("")
 
+  const [submitDisabled, setSubmitDisabled] = useState(true)
+  const [loadingLogin, setLoadingLogin] = useState(false)
+
+  useEffect(() => {
+    if (user.data_error || userPassword.data_error) return setSubmitDisabled(true)
+    setSubmitDisabled(false)
+  }, [user.data_error, userPassword.data_error])
+
+  useEffect(() => {
+    if (loadingLogin) setSubmitDisabled(true)
+  }, [loadingLogin])
+
   const handleSubmit = async (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault()
+
+    if (!user.value || !userPassword.value) {
+      setModalBody("Debes ingresar todos los campos")
+      setModalError(false)
+      setModalOpen(true)
+      return
+    }
+
+    setLoadingLogin(true)
     
     const userData: TApiLoginRequest = {
       username: user.value,
@@ -39,17 +60,22 @@ const PageLogin = () => {
     console.log(loginRes)
 
     if (!loginRes.status) {
-      if (!loginRes.messageError) {
+      if (loginRes.message !== "Ocurrio un error al intentar iniciar sesión") {
         setModalBody(loginRes.message)
+        setModalError(false)
         setModalOpen(true)
       } else {
-        
+        setModalBody(loginRes.message)
+        setModalError(true)
+        setModalOpen(true)
       }
     } else {
       login(loginRes.token as string, user.value)
       navigate("/")
     }
 
+    setLoadingLogin(false)
+    setSubmitDisabled(false)
   }
 
   return (
@@ -68,6 +94,7 @@ const PageLogin = () => {
             <div>
               <input type="text" 
                 {...user}
+                data-error={user.data_error}
               />
               <div>
                 <BsFillPersonFill/>
@@ -80,6 +107,7 @@ const PageLogin = () => {
             <div>
               <input type="password" 
                 {...userPassword}
+                data-error={userPassword.data_error}
               />
               <div>
                 <BsKeyFill/>
@@ -88,7 +116,13 @@ const PageLogin = () => {
           </div>
 
           <div>
-            <button>Iniciar sesión</button>
+            <button disabled={submitDisabled}>
+              {
+                loadingLogin
+                  ? <CompLoader/>
+                  : "Iniciar sesión"
+              }
+            </button>
           </div>
         </form>
       </div>
@@ -98,7 +132,7 @@ const PageLogin = () => {
         close={() => setModalOpen(false)}
         body={modalBody}
         title={modalTitle}
-        error={true}
+        error={modalError}
       />
     </main>
   )
