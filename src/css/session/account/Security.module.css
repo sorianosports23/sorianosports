@@ -1,0 +1,103 @@
+.change_password {
+  width: 100%;
+  height: max-content;
+  border: 1px solid #2222;
+  border-radius: .5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.change_password h2 {
+  font-size: 1.4em;
+}
+
+.change_password form {
+  margin-top: .5rem;
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 1rem;
+}
+
+.block {
+  width: 100%;
+}
+
+.change_password form > div {
+  /* border: 1px solid #222; */
+  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.change_password label {
+  font-size: .8em;
+  color: #222;
+  font-weight: bold;
+}
+
+.change_password input {
+  width: 15rem;
+  height: 2rem;
+  border: 1px solid #aaa;
+  border-radius: .3rem;
+  background: #eee9;
+  padding: .5rem;
+  text-align: center;
+}
+
+.change_password input:hover, .change_password input:focus {
+  background: #fff;
+}
+
+.change_password button, .delete_account button {
+  width: 12rem;
+  height: 2rem;
+  background: #0f0a;
+  border: none;
+  border-radius: .5rem;
+  color: #222;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: .9em;
+  padding: .5rem;
+  border: 1px solid #0f0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.change_password button:hover {
+  background: none;
+}
+
+.delete_account button {
+  background: #f00a;
+  border: 1px solid #f00a;
+  color: #eee;
+}
+
+.delete_account button:hover {
+  background: none;
+  color: #222;
+}
+
+@media (max-width: 768px) {
+  .change_password {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .change_password form {
+    justify-content: center;
+  }
+
+  .block {
+    align-items: center;
+  }
+  
+  .block label {
+    width: 15rem;
+  }
+}

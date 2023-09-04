@@ -73,3 +73,21 @@
 .user_info div:has(button) {
   margin-bottom: 1.5rem;
 }
+
+@media (max-width: 768px) {
+  .title {
+    justify-content: center;
+  }
+
+  .user_info {
+    justify-content: center;
+  }
+
+  .input_block {
+    align-items: center;
+  }
+
+  .input_block label {
+    width: 15rem;
+  }
+}

@@ -7,6 +7,7 @@ import User from "./User"
 import Loading from "../Loading"
 import assetsFolder from "../../utils/publicfolder"
 import { useNavigate } from "react-router-dom"
+import apiLoaded from "../../utils/apiLoaded"
 
 const SelectedEvent = (event: TEvent) => {
   return (
@@ -53,6 +54,12 @@ const Events = () => {
 
   useEffect(() => {
     (async () => {
+
+      if (!apiLoaded) {
+        setLoading(false)
+        return
+      }
+
       try {
         const res = await fetch(`http://${window.location.hostname}/api/test.php`)
         setData(await res.json())
