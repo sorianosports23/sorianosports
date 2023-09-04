@@ -1,7 +1,7 @@
 import { RouterProvider } from "react-router-dom";
 import "./css/global.css"
 import "./css/colors.css"
-import PageLoading from "./pages/PageLoading";
+import PageLoading from "./pages/Loading";
 import { useEffect } from "react";
 import assetsFolder from "./utils/publicfolder";
 import { UserSessionProvider } from "./context/session/UserSessionContext";
