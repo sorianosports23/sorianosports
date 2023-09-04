@@ -1,0 +1,29 @@
+.user_profile {
+  display: flex;
+  flex-direction: row;
+  padding: 2rem 10%;
+  gap: 1rem;
+}
+
+.user_profile ul {
+  list-style-type: none;
+}
+
+.user_profile > div:nth-child(2) {
+  background: #fffa;
+  border-left: 1px solid #2222;
+  height: max-content;
+  width: 100%;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .user_profile {
+    flex-direction: column;
+  }
+
+  .user_profile > div:nth-child(2) {
+    border-left: none;
+    border-top: 1px solid #2222;
+  }
+}

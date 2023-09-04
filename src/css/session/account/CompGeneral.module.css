@@ -1,0 +1,75 @@
+.title {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  padding: 0 10%;
+  font-size: 1.5em;
+  text-overflow: clip;
+  border-top: 1px solid #2222;
+  border-bottom: 1px solid #2222;
+  margin-bottom: 1.5rem;
+}
+
+.user_info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 1px solid #2222;
+}
+
+.user_info > div {
+  /* border: 1px solid #222; */
+  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.user_info label {
+  font-size: .8em;
+  color: #888;
+  font-weight: bold;
+}
+
+.user_info input {
+  width: 15rem;
+  height: 2rem;
+  border: 1px solid #aaa;
+  border-radius: .3rem;
+  background: #eee9;
+  padding: .5rem;
+  text-align: center;
+}
+
+.user_info input:hover, .user_info input:focus {
+  background: #fff;
+}
+
+.input_block {
+  width: 100%;
+}
+
+.user_info button {
+  width: 12rem;
+  height: 2rem;
+  background: #0f0a;
+  border: none;
+  border-radius: .5rem;
+  color: #222;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: .9em;
+  padding: .5rem;
+  border: 1px solid #0f0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user_info button:hover {
+  background: none;
+}
+
+.user_info div:has(button) {
+  margin-bottom: 1.5rem;
+}
