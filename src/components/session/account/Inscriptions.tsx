@@ -28,7 +28,7 @@ const IncriptionRecord = ({ sport, signedUp, dateStart, dateEnd, teacher, place 
         <p>Fecha de inscripción</p>
         <span>
           {dateStart}
-          {dateEnd && ` - ${dateEnd}`}
+          {!signedUp && ` - ${dateEnd}`}
         </span>
       </div>
 
