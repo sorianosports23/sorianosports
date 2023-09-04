@@ -1,6 +1,14 @@
+import apiLoaded from "../../utils/apiLoaded";
 import api from "../../utils/apiRoute";
 
 const apiLogin = async ({ username, password }: TApiLoginRequest): Promise<IApiLoginResponse> => {
+  if (!apiLoaded) {
+    return {
+      status: true,
+      message: ""
+    }
+  }
+  
   try {
     const userData = {
       username,
