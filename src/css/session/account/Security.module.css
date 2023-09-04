@@ -30,6 +30,11 @@
   gap: .5rem;
 }
 
+.change_password form > div span {
+  font-size: .8em;
+  color: #f00a;
+}
+
 .change_password label {
   font-size: .8em;
   color: #222;
@@ -80,6 +85,29 @@
 .delete_account button:hover {
   background: none;
   color: #222;
+}
+
+.change_password input[data-error='true'] {
+  animation: shake .2s linear;
+  border: 1px solid #f00;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  40% {
+    transform: translateX(1rem);
+  }
+
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @media (max-width: 768px) {

@@ -15,3 +15,13 @@ interface IApiLoginResponse extends TApiResponse {
   token?: string
   messageError?: string
 }
+
+type TApiChangePasswordRequest = {
+  username: string
+  password: string
+  newPassword: string
+}
+
+interface IApiChangePasswordResponse extends TApiResponse {
+  err?: string
+}
