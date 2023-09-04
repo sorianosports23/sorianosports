@@ -1,7 +1,7 @@
 .user_profile {
   display: flex;
   flex-direction: row;
-  padding: 2rem 10%;
+  padding: 2rem 2%;
   gap: 1rem;
 }
 
@@ -12,9 +12,10 @@
 .user_profile > div:nth-child(2) {
   background: #fffa;
   border-left: 1px solid #2222;
-  height: max-content;
+  /* height: max-content; */
   width: 100%;
   padding: 1rem;
+  overflow-x: auto;
 }
 
 @media (max-width: 768px) {
