@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { BsBoxArrowRight, BsChevronDown } from "react-icons/bs"
+import { RxSlash } from "react-icons/rx"
 import { Link } from "react-router-dom"
 import { userSessionContext } from "../../context/session/UserSessionContext"
 import assetsFolder from "../../utils/publicfolder"
@@ -16,7 +17,7 @@ const AdminMenu = () => {
           <div className={styles.title_icon}>
             <img src={assetsFolder + "/img/secretaria_deportes.svg"} alt="logo" />
           </div>
-          <span>/</span>
+          <span><RxSlash/></span>
           <h1>Admin</h1>
         </div>
 

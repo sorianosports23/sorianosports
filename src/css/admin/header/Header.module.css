@@ -4,21 +4,86 @@
   display: flex;
   flex-direction: column;
   padding: .5rem;
+  background: #232323;
+  color: #eee;
 }
 
 .div {
   height: 5rem;
-  padding: .5rem 0;
+  padding: .5rem 1rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .title_icon {
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 3rem;
+  background: #efefef;
+  border-radius: 1rem;
+  padding: .3rem;
 }
 
 .title_icon > img {
   width: 100%;
   height: 100%;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title span > svg {
+  font-size: 1.4em;
+  color: #999;
+}
+
+.title > h1 {
+  font-size: 1.3em;
+}
+
+.user button {
+  width: 8rem;
+  height: 2rem;
+  background: none;
+  border: 1px solid #999;
+  border-radius: .5rem;
+  background: #323232;
+  font-size: .9em;
+  color: #aaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+}
+
+.user button:hover {
+  color: #eee;
+}
+
+.nav {
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.nav > nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav a {
+  width: max-content;
+  padding: .5rem;
+  color: #aeaeae;
+  text-decoration: none;
+  border-radius: .5rem;
+}
+
+.nav a:hover {
+  color: #fff;
+  background: #4e4e4e;
 }
