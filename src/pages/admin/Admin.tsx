@@ -2,14 +2,14 @@ import { Link } from "react-router-dom"
 import styles from "../../css/admin/adminGlobal.module.css"
 import { PropsWithChildren } from "react"
 import { BsFillHouseFill } from "react-icons/bs"
-import HeaderAdmin from "../../components/admin/templates/HeaderAdmin"
+import AdminMenu from "../../components/menu/AdminMenu"
 
 const Admin = ({ children }: PropsWithChildren) => {
   return (
     <>
-    <HeaderAdmin/>
+    <AdminMenu/>
 
-    <main className={styles.main}>
+    {/* <main className={styles.main}>
       <header className={styles.header}>
         <h1>Inicio</h1>
 
@@ -20,7 +20,7 @@ const Admin = ({ children }: PropsWithChildren) => {
       <div className={styles.content}>
         { children }
       </div>
-    </main>    
+    </main> */}
     </>
   )
 }

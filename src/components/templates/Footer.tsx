@@ -30,7 +30,7 @@ const Footer = () => {
             <div className={styles.icon}>
               <BsFillHouseFill/>
             </div>
-              Mercedes - Soriano, Calle Falsa 123.
+            <a href="https://goo.gl/maps/NaShZAzvMVaJ51ue7" target="_blank" style={{textDecoration: "none"}}>Mercedes - Estadio Luis Köster</a>
           </li>
           <li>
             <div className={styles.icon}>
@@ -44,15 +44,15 @@ const Footer = () => {
             <div className={styles.icon}>
               <BsTelephoneFill/>
             </div>
-            <a href="tel:59812345678">
-              (+598) 1234 5678
+            <a href="tel:45322201">
+              4532 2201
             </a>
           </li>
           <li>
             <div className={styles.icon}>
               <BsClockFill/>
             </div>
-            8:00 a 19:00
+            8:00 a 14:00
           </li>
         </ul>
       </div>
@@ -67,7 +67,9 @@ const Footer = () => {
       </div>
 
       <div className={styles.copyright}>
-        Copyright © {new Date().getFullYear()} Intendencia de Soriano
+        Copyright © {new Date().getFullYear()} <a href="https://soriano.gub.uy" style={{textDecoration: "none", color: "#222"}}>Intendencia de Soriano</a>
+        <br />
+        by SorianoSports - UTU
       </div>
     </footer>
   )

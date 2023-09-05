@@ -1,4 +1,7 @@
+import { useContext } from "react"
 import { BsJournalCheck, BsShieldLock, BsPerson, BsBoxArrowLeft } from "react-icons/bs"
+import { useNavigate } from "react-router-dom"
+import { userSessionContext } from "../../context/session/UserSessionContext"
 import styles from "../../css/session/account/AccountMenu.module.css"
 
 type TAccountMenuProps = {
@@ -7,6 +10,15 @@ type TAccountMenuProps = {
 }
 
 const AccountMenu = ({ menuSelected, selectMenu }: TAccountMenuProps) => {
+
+  const navigate = useNavigate()
+  const { logout } = useContext(userSessionContext)
+
+  const handleLogout = () => {
+    logout()
+    navigate("/")
+  }
+
   return (
     <div className={styles.menu}>
       <nav>
@@ -45,7 +57,7 @@ const AccountMenu = ({ menuSelected, selectMenu }: TAccountMenuProps) => {
       </nav>
 
       <div className={styles.logout}>
-        <button>
+        <button onClick={handleLogout}>
           <BsBoxArrowLeft/>  
           Cerrar sesión
         </button>
