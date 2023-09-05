@@ -11,6 +11,7 @@ import Register from "../pages/session/Register"
 import Login from "../pages/session/Login"
 import IndexAdmin from "../pages/admin/IndexAdmin"
 import Account from "../pages/session/Account"
+import Faq from "../pages/user/Faq"
 
 const pageUserRoutes = createRoutesFromElements(
   <Route path="/" errorElement={<Error/>}>
@@ -23,6 +24,7 @@ const pageUserRoutes = createRoutesFromElements(
     </Route>
 
     <Route path="info/:city/:sport" element={<Sport/>} loader={sportLoader}/>
+    <Route path="faq" element={<Faq/>}/>
 
     <Route path="/auth">
       <Route path="registro" element={<Register/>}/>

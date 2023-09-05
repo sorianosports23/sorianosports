@@ -71,7 +71,7 @@ const Header = () => {
 
         <div className={styles["user-info"]}>
           {/* eslint-disable-next-line sonarjs/no-duplicate-string */ }
-          <Link to="/" className={`${styles.link} ${styles["link-header"]}`}>
+          <Link to="/faq" className={`${styles.link} ${styles["link-header"]}`}>
             <BsFillChatSquareDotsFill/>
             Ayuda
           </Link>

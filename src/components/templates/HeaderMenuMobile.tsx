@@ -159,7 +159,7 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
               </button>
             </li>
             <li>
-              <Link to="/">
+              <Link to="/faq">
                 <BsChatSquareDotsFill/>
                 Ayuda
               </Link>
