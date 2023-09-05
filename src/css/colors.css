@@ -1,7 +1,10 @@
 :root {
-  --header-bg: #F9F37F;
-  --header-bg-10: #F9F37F10;
-  --header-bg-90: #F9F37F90;
+  --header-bg: #fff;
+  /* --header-bg-10: #F9F37F10;
+  --header-bg-90: #F9F37F90; */
+  --header-bg-10: #fff;
+  --header-bg-90: #fff;
+  --header-bg-2: #F9F37F;
   --footer-bg: #F9F37F;
 
   --body-bg: #c1f6e4;
