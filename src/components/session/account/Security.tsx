@@ -3,18 +3,27 @@ import styles from "../../../css/session/account/Security.module.css"
 import apiChangePassword from "../../../api/session/changePassword"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import { useNavigate } from "react-router-dom"
+import Toast from "../../toast/Toast"
 
 const Security = () => {
 
   const navigate = useNavigate()
 
-  const { username } = useContext(userSessionContext)
+  const { username, logout } = useContext(userSessionContext)
 
   const [actualPassword, setActualPassword] = useState("")
   const [newPassword, setNewPassword] = useState("")
   const [verifyNewPassword, setVerifyNewPassword] = useState("")
   const [newPasswordError, setNewPasswordError] = useState(false)
   const [actualPasswordError, setActualPasswordError] = useState(false)
+
+  //
+
+  const [toastMessage] = useState("Contraseña cambiada")
+  const [toastSecondMessage] = useState("Redirigiendo...")
+  const [toastOpen, setToastOpen] = useState(false)
+
+  //
 
   const handleVerifyNewPassword = (): boolean => {
     return newPassword === verifyNewPassword
@@ -41,8 +50,8 @@ const Security = () => {
       return
     }
 
-    //TODO MOSTRAR TOAST QUE DIGA QUE SE CAMBIO LA CONTRASEÑA Y TE ENVIE A INICIAR SESION
-    //! NUEVA FUNCION LOGOUT QUE NO TE REDIRIJA A NINGUN LADO SINO QUE BORRE LA SESION :P
+    setToastOpen(true)
+    logout()
 
     setTimeout(() => {
       navigate("/auth/login")
@@ -104,6 +113,14 @@ const Security = () => {
       <div className={styles.delete_account}>
         <button>Borrar cuenta</button>
       </div>
+
+      <Toast
+        message={toastMessage}
+        secondMessage={toastSecondMessage}
+        closeIn={5}
+        icon="ok"
+        open={toastOpen}
+      />
     </div>
   )
 }
