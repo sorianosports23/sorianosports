@@ -1,0 +1,73 @@
+:root {
+  --poly--h: 20%;
+}
+
+.bg {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  width: 60rem;
+  height: 60rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: -1;
+}
+
+.white_bg {
+  width: 100%;
+  height: 100%;
+  background: #f6fafb;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.miniPoly {
+  position: absolute;
+  width: 20%;
+  height: 30%;
+  z-index: 2;
+  position: relative;
+  --r: 25px;
+  aspect-ratio: 1;
+  clip-path: 
+   polygon(
+    50% calc(-.414*var(--r)), calc(100% + .414*var(--r)) 50%, 
+    50% calc(100% + .414*var(--r)), calc(-.414*var(--r)) 50%
+   );
+  --_l: #0000 calc(25% + .707*var(--r)),
+       #000 0 calc(75% - .707*var(--r)), #0000 0;
+  --_g:/calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%,#0000 72%);
+  mask:
+    linear-gradient(45deg,var(--_l)),linear-gradient(-45deg,var(--_l)),
+    top var(--_g) no-repeat space,left var(--_g) space no-repeat;
+}
+
+.bigPoly {
+  position: absolute;
+  right: -15%;
+  width: 30%;
+  height: 60%;
+  align-self: flex-end;
+  --r: 0px; /* the radius */
+  aspect-ratio: 1;
+  clip-path: 
+   polygon(
+    50% calc(-.414*var(--r)), calc(100% + .414*var(--r)) 50%, 
+    50% calc(100% + .414*var(--r)), calc(-.414*var(--r)) 50%
+   );
+  --_l: #0000 calc(25% + .707*var(--r)),
+       #000 0 calc(75% - .707*var(--r)), #0000 0;
+  --_g:/calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%,#0000 72%);
+  mask:
+    linear-gradient(45deg,var(--_l)),linear-gradient(-45deg,var(--_l)),
+    top var(--_g) no-repeat space,left var(--_g) space no-repeat;
+
+}
+
+@media (max-width: 992px) {
+  .bg {
+    display: none;
+  }
+}

@@ -144,16 +144,7 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
 
                 <ul>
                   <li>
-                    <Link to="/">Nosotros</Link>
-                  </li>
-                  <li>
-                    <Link to="/">Contacto</Link>
-                  </li>
-                  <li>
-                    <Link to="/">Misión</Link>
-                  </li>
-                  <li>
-                    <Link to="/">Visión</Link>
+                    <Link to="/acerca/misionvision">Misión y Visión</Link>
                   </li>
                 </ul>
               </button>

@@ -192,23 +192,8 @@ const Header = () => {
               // }}
             >
               <li>
-                <Link to="/" tabIndex={aboutDropdown ? 0 : -1}>
-                  Nosotros
-                </Link>
-              </li>
-              <li>
-                <Link to="/" tabIndex={aboutDropdown ? 0 : -1}>
-                  Contactos
-                </Link>
-              </li>
-              <li>
-                <Link to="/" tabIndex={aboutDropdown ? 0 : -1}>
-                  Visión
-                </Link>
-              </li>
-              <li>
-                <Link to="/" tabIndex={aboutDropdown ? 0 : -1}>
-                  Misión
+                <Link to="/acerca/misionvision" tabIndex={aboutDropdown ? 0 : -1}>
+                  Misión y Visión
                 </Link>
               </li>
             </ul>

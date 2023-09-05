@@ -1,0 +1,25 @@
+.border_cont {
+  width: 15rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.border_line {
+  width: 1px;
+  height: 1px;
+  flex: 1;
+  background: #222;
+}
+
+.poly {
+  width: 2.5rem;
+  height: 2.5rem;
+  clip-path: polygon(49% 20%, 100% 50%, 50% 80%, 0% 50%);
+  background: #4D6D41;
+}
+
+.border_cont[data-pos='bottom'] {
+  /* justify-content: flex-end; */
+  align-self: flex-end;
+}

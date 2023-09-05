@@ -12,6 +12,7 @@ import Login from "../pages/session/Login"
 import IndexAdmin from "../pages/admin/IndexAdmin"
 import Account from "../pages/session/Account"
 import Faq from "../pages/user/Faq"
+import MissionVission from "../pages/user/institution/MissionVission"
 
 const pageUserRoutes = createRoutesFromElements(
   <Route path="/" errorElement={<Error/>}>
@@ -26,15 +27,19 @@ const pageUserRoutes = createRoutesFromElements(
     <Route path="info/:city/:sport" element={<Sport/>} loader={sportLoader}/>
     <Route path="faq" element={<Faq/>}/>
 
-    <Route path="/auth">
+    <Route path="auth">
       <Route path="registro" element={<Register/>}/>
       <Route path="login" element={<Login/>}/>
       <Route path="perfil" element={<Account/>}/>
     </Route>
 
+    <Route path="acerca">
+      <Route path="misionvision" element={<MissionVission/>}/>
+    </Route>
+
     <Route path="/admin" errorElement={<Error/>}>
       <Route index element={<IndexAdmin/>} />
-    </Route>
+    R</Route>
   </Route>
 )
 
