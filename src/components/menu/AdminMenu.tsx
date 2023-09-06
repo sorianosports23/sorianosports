@@ -30,7 +30,7 @@ const AdminMenu = () => {
         <nav>
           <Link to="/admin/">Inicio</Link>
           <Link to="/admin/users">Usuarios</Link>
-          <Link to="/admin/">Deportes</Link>
+          <Link to="/admin/sports">Deportes</Link>
           <Link to="/admin/">Eventos</Link>
           <Link to="/admin/">Base de datos</Link>
           <Link to="/admin/">Noticias</Link>

@@ -1,0 +1,22 @@
+.sports {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  width: 80%;
+  margin: auto;
+  height: max-content;
+  padding: .5rem;
+  border: 1px solid #232323;
+  border-radius: .5rem;
+}
+
+.sports > p {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  .sports {
+    width: 100%;
+  }
+}

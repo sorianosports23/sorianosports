@@ -14,6 +14,7 @@ import Account from "../pages/session/Account"
 import Faq from "../pages/user/Faq"
 import MissionVission from "../pages/user/institution/MissionVission"
 import Users from "../pages/admin/Users"
+import SportsAdmin from "../pages/admin/Sports"
 
 const pageUserRoutes = createRoutesFromElements(
   <Route path="/" errorElement={<Error/>}>
@@ -41,6 +42,7 @@ const pageUserRoutes = createRoutesFromElements(
     <Route path="/admin" errorElement={<Error/>}>
       <Route index element={<IndexAdmin/>} />
       <Route path="users" element={<Users/>} />
+      <Route path="sports" element={<SportsAdmin/>}/>
     </Route>
   </Route>
 )
