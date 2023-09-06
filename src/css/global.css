@@ -43,3 +43,17 @@ button {
   flex: 1;
   position: relative;
 }
+
+.admin-title {
+  height: 8rem;
+  border-bottom: 2px solid #232323;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+  font-size: 1.2em;
+}
+
+.admin-title > h1 {
+  font-weight: 300;
+}

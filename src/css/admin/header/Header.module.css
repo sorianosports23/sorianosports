@@ -87,3 +87,19 @@
   color: #fff;
   background: #4e4e4e;
 }
+
+@media (max-width: 576px) {
+  .nav nav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .nav {
+    height: max-content;
+  }
+
+  .user button {
+    width: max-content;
+    padding: .5rem;
+  }
+}

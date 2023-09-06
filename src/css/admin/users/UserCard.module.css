@@ -1,0 +1,51 @@
+.card {
+  width: 20rem;
+  border: 1px solid #232323;
+  border-radius: 1rem;
+  padding: 1rem;
+  height: max-content;
+  background: #fffa;
+  transition: box-shadow .3s;
+}
+
+.card:hover {
+  box-shadow: 2px 2px 2px #111;
+}
+
+.body {
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #232323;
+}
+
+.body p {
+  font-size: 1.2em;
+}
+
+.body span {
+  font-size: .9em;
+}
+
+.body button {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: grid;
+  place-content: center;
+  border-radius: .2rem;
+  border: 1px solid #232323;
+  background: none;
+}
+
+.footer {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer span {
+  font-size: .8em;
+  letter-spacing: 1px;
+  color: #4d4d4d;
+}

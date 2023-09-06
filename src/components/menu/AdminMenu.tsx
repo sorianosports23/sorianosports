@@ -29,7 +29,7 @@ const AdminMenu = () => {
       <div className={styles.nav}>
         <nav>
           <Link to="/admin/">Inicio</Link>
-          <Link to="/admin/">Usuarios</Link>
+          <Link to="/admin/users">Usuarios</Link>
           <Link to="/admin/">Deportes</Link>
           <Link to="/admin/">Eventos</Link>
           <Link to="/admin/">Base de datos</Link>

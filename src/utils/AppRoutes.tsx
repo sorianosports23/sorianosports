@@ -13,6 +13,7 @@ import IndexAdmin from "../pages/admin/IndexAdmin"
 import Account from "../pages/session/Account"
 import Faq from "../pages/user/Faq"
 import MissionVission from "../pages/user/institution/MissionVission"
+import Users from "../pages/admin/Users"
 
 const pageUserRoutes = createRoutesFromElements(
   <Route path="/" errorElement={<Error/>}>
@@ -39,7 +40,8 @@ const pageUserRoutes = createRoutesFromElements(
 
     <Route path="/admin" errorElement={<Error/>}>
       <Route index element={<IndexAdmin/>} />
-    R</Route>
+      <Route path="users" element={<Users/>} />
+    </Route>
   </Route>
 )
 

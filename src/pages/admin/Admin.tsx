@@ -1,26 +1,27 @@
-import { Link } from "react-router-dom"
-import styles from "../../css/admin/adminGlobal.module.css"
 import { PropsWithChildren } from "react"
-import { BsFillHouseFill } from "react-icons/bs"
 import AdminMenu from "../../components/menu/AdminMenu"
+import Container from "../../components/templates/Container"
 
-const Admin = ({ children }: PropsWithChildren) => {
+type TAdminProps = {
+  route_title: string
+  children: PropsWithChildren["children"]
+}
+
+const Admin = ({ route_title, children }: TAdminProps) => {
   return (
     <>
     <AdminMenu/>
-
-    {/* <main className={styles.main}>
-      <header className={styles.header}>
-        <h1>Inicio</h1>
-
-        <div className={styles.header_btns}>
-          <Link to="/"><BsFillHouseFill/> <p>Pagina principal</p></Link>
+    
+    <main className="background-main">
+      <Container>
+        <div className="admin-title">
+          <h1>{route_title}</h1>
         </div>
-      </header>
-      <div className={styles.content}>
-        { children }
-      </div>
-    </main> */}
+        {
+          children
+        }
+      </Container>
+    </main>
     </>
   )
 }

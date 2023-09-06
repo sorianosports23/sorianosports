@@ -1,0 +1,94 @@
+.search {
+  height: 4rem;
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.search form {
+  display: flex;
+  gap: 1rem;
+  border: 1px solid #232323;
+  padding: .5rem;
+  border-radius: .5rem;
+  width: 50rem;
+  background: #fffa;
+}
+
+.search form > div {
+  height: 2rem;
+}
+
+.icon {
+  width: max-content;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  padding: .5rem;
+}
+
+.btn {
+  width: 8rem;
+}
+
+.btn button {
+  width: 100%;
+  height: 100%;
+  border-radius: .5rem;
+  border: 1px solid #2f2f2f;
+  background: none;
+  font-size: .9em;
+  display: grid;
+  place-content: center;
+}
+
+.btn button:hover {
+  background: #4fef4f;
+  box-shadow: 1px 1px 2px #2f2f2f;
+}
+
+.input {
+  flex: 1;
+  position: relative;
+}
+
+.input input {
+  width: 100%;
+  height: 100%;
+  padding: 0 1rem;
+  border: none;
+  background: none;
+  border-radius: .5rem;
+}
+
+.input::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: #0a0;
+  width: 0;
+  transition: width .3s;
+}
+
+.input input:focus {
+  outline: none;
+  border: none;
+}
+
+.input:has(input:focus)::before {
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  .btn {
+    width: max-content;
+  }
+
+  .btn button {
+    padding: .2rem;
+  }
+}
