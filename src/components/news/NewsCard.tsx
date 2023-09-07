@@ -29,4 +29,5 @@ const NewsCard = ({}: TNewsCardProps) => {
   )
 }
 
+export type { TNewsCardProps }
 export default NewsCard 

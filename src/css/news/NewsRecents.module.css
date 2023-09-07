@@ -1,0 +1,9 @@
+.content {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-around;
+}
+
+.content > a:nth-of-type(2) {
+  transform: translateY(-1.5rem);
+}
