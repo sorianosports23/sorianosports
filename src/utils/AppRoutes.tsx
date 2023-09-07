@@ -15,6 +15,7 @@ import Faq from "../pages/user/Faq"
 import MissionVission from "../pages/user/institution/MissionVission"
 import Users from "../pages/admin/Users"
 import SportsAdmin from "../pages/admin/Sports"
+import News from "../pages/user/News"
 
 const pageUserRoutes = createRoutesFromElements(
   <Route path="/" errorElement={<Error/>}>
@@ -25,6 +26,7 @@ const pageUserRoutes = createRoutesFromElements(
       <Route path="deportes" element={<Sports/>}/>
       <Route path="escuelas" element={<Schools/>}/>
     </Route>
+    <Route path="noticias" element={<News/>}/>
 
     <Route path="info/:city/:sport" element={<Sport/>} loader={sportLoader}/>
     <Route path="faq" element={<Faq/>}/>
