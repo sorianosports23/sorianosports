@@ -2,8 +2,17 @@
   display: flex;
   padding: 1rem;
   justify-content: space-around;
+  gap: 1rem;
 }
 
 .content > a:nth-of-type(2) {
   transform: translateY(-1.5rem);
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-wrap: wrap;
+  }
+
+  .content > a:nth-of-type(2) { transform: none; }
 }

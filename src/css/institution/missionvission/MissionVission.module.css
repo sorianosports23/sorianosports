@@ -10,7 +10,7 @@
   gap: 1rem;
   justify-content: center;
   margin-bottom: 1rem;
-  background: var(--bg-color);
+  background: var(--bg-color-op);
 }
 
 .title > div:has(h1) {
@@ -86,7 +86,7 @@
   flex-direction: column;
   gap: 2rem;
   width: max-content;
-  background: var(--bg-color);
+  background: var(--bg-color-op);
 }
 
 @media (max-width: 992px) {

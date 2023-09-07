@@ -1,5 +1,5 @@
 import { useState, useContext } from "react"
-import { BsXLg, BsFillHouseFill, BsChevronRight, BsCalendarDateFill, BsChatSquareDotsFill, BsPersonCircle } from "react-icons/bs"
+import { BsXLg, BsFillHouseFill, BsChevronRight, BsCalendarDateFill, BsChatSquareDotsFill, BsPersonCircle, BsNewspaper } from "react-icons/bs"
 import styles from "../../css/header/HeaderMenuMobile.module.css"
 import { Link } from "react-router-dom"
 import { userSessionContext } from "../../context/session/UserSessionContext"
@@ -108,11 +108,6 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
                       Deportes
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/actividades/escuelas">
-                      Escuelas
-                    </Link>
-                  </li>
                 </ul>
               </button>
             </li>
@@ -120,6 +115,12 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
               <Link to="/eventos">
                 <BsCalendarDateFill/>
                 Eventos
+              </Link>
+            </li>
+            <li>
+              <Link to="/noticias">
+                <BsNewspaper/>
+                Noticias
               </Link>
             </li>
             <li className={styles.link_dropdown}

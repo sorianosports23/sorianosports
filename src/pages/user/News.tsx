@@ -53,7 +53,7 @@ const News = () => {
                 <form className={styles.filter_by}>
                   <div className={styles.filters_by}
                     data-open={filtersOpen}
-                    onPointerLeave={() => setFiltersOpen(false)}
+                    // onPointerLeave={() => setFiltersOpen(false)}
                   >
                     <button type="button"
                       onClick={() => setFiltersOpen(!filtersOpen)}
