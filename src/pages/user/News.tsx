@@ -8,16 +8,16 @@ const News = () => {
     <User>
       <Container>
         <div className={styles.news_cont}>
-          <NewsCard/>
-          <NewsCard/>
-          <NewsCard/>
-          <NewsCard/>
-          <NewsCard/>
-          <NewsCard/>
-          <NewsCard/>
-          <NewsCard/>
-          <NewsCard/>
-          <NewsCard/>
+          <NewsCard title={""} description={""} date={""} img={""}/>
+          <NewsCard title={""} description={""} date={""} img={""}/>
+          <NewsCard title={""} description={""} date={""} img={""}/>
+          <NewsCard title={""} description={""} date={""} img={""}/>
+          <NewsCard title={""} description={""} date={""} img={""}/>
+          <NewsCard title={""} description={""} date={""} img={""}/>
+          <NewsCard title={""} description={""} date={""} img={""}/>
+          <NewsCard title={""} description={""} date={""} img={""}/>
+          <NewsCard title={""} description={""} date={""} img={""}/>
+          <NewsCard title={""} description={""} date={""} img={""}/>
         </div>
       </Container>
     </User>

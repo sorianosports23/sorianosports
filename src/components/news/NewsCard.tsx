@@ -2,7 +2,14 @@ import { Link } from "react-router-dom"
 import assetsFolder from "../../utils/publicfolder"
 import styles from "../../css/news/NewsCard.module.css"
 
-const NewsCard = () => {
+type TNewsCardProps = {
+  title: string
+  description: string
+  date: string
+  img: string
+}
+
+const NewsCard = ({}: TNewsCardProps) => {
   return (
     <Link to="/noticias" className={styles.card}>
       <div className={styles.img}>
