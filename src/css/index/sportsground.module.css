@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
 .sportsmain {
   width: 100%;
   transition: height .3s;
@@ -34,6 +36,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: "Releway", sans-serif;
 }
 
 .textDiv h2 > span {
@@ -74,8 +77,9 @@
   width: 6rem;
   height: 2.2rem;
   border: none;
-  background-color: #8C30F5;
-  color: #eee;
+  background-color: #0f0a;
+  /* background-color: #8C30F5; */
+  color: #232323;
   border-radius: .3rem;
   font-size: 1em;
   font-style: italic;

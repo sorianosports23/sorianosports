@@ -95,10 +95,7 @@ const Header = () => {
               )
               : (
                 <>
-                <Link to="/auth/registro" className={`${styles.link} ${styles["link-header"]}`}>
-                  <BsFillPersonFill/>
-                  Registrarse
-                </Link>
+
 
                 <Link to="/auth/login" className={`${styles.link} ${styles["link-header"]}`}>
                   <BsPersonFillUp/>

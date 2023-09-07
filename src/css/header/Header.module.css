@@ -80,7 +80,7 @@
 .user-info {
   display: flex;
   justify-content: space-between;
-  width: 14rem;
+  width: max-content;
   gap: .5rem;
 }
 
@@ -94,7 +94,7 @@
 }
 
 .user {
-  width: 8rem;
+  width: max-content;
   height: 2rem;
   /* height: 10rem; */
   overflow: hidden;
@@ -175,10 +175,13 @@
   width: 3rem;
   height: 4rem;
   font-family: 'Raleway', sans-serif;
+  
 }
 
 .link, .header-nav > button {
   position: relative;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .link:is(a):before {

@@ -18,11 +18,11 @@ const SportsGround = () => {
         <div className={styles.textDiv}>
           <div>
             <h2>
-              <span>Deportes</span>
               <span>Actividades</span>
-              <span>En tierra</span>
+              <span>Deportivas</span>
+              <span>Anuales</span>
             </h2>
-            <p>Simplemente juega. Diviértete. Disfruta el juego.</p>
+              <p>Encuentra tu deporte favorito e inscribete</p>
               <button
                 onClick={() => setListOpen(!listOpen)}
               >
@@ -30,6 +30,8 @@ const SportsGround = () => {
                 listOpen ? "Cerrar" : "Abrir"
               }
             </button>
+
+           
           </div>
           <div className={styles.img}>
             <img src={assetsFolder + "/img/sportsground.jpg"} alt="sports-ground" />

@@ -15,9 +15,9 @@ const Index = () => {
         <SportsGround/>
       </div>
 
-      <div className={`${styles.sport} ${styles.water}`}>
+      {/* <div className={`${styles.sport} ${styles.water}`}>
         <SportsWater/>
-      </div>
+      </div> */}
     </User>
   )
 }
