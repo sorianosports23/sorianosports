@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import assetsFolder from "./utils/publicfolder";
 import { UserSessionProvider } from "./context/session/UserSessionContext";
 import pageRoutes from "./utils/AppRoutes";
+import Fonts from "./components/Fonts";
 
 
 const App = () => {
@@ -19,6 +20,9 @@ const App = () => {
 
   return (
     <UserSessionProvider>
+
+      <Fonts/>
+
       <RouterProvider router={pageRoutes} fallbackElement={<PageLoading/>}/>
     </UserSessionProvider>
   )

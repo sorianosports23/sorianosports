@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { BsSearch, BsFillChatSquareDotsFill, BsFillPersonFill, BsChevronDown, BsFillHouseFill, BsCalendarDateFill, BsList, BsPersonFillUp } from "react-icons/bs"
+import { BsSearch, BsFillChatSquareDotsFill, BsFillPersonFill, BsChevronDown, BsFillHouseFill, BsCalendarDateFill, BsList, BsPersonFillUp, BsNewspaper } from "react-icons/bs"
 import styles from "../../css/header/Header.module.css"
 import { ChangeEvent, MutableRefObject, useRef, useState, useContext } from "react"
 import SearchBar from "../header/SearchBar"
@@ -161,16 +161,15 @@ const Header = () => {
                   Deportes
                 </Link>
               </li>
-              <li>
-                <Link to="/actividades/escuelas" tabIndex={activitiesDropdown ? 0 : -1}>
-                  Escuelas
-                </Link>
-              </li>
             </ul>
           </button>
           <Link to="/eventos" className={stylesName.link_header2}>
             <BsCalendarDateFill/>
             Eventos
+          </Link>
+          <Link to="/noticias" className={stylesName.link_header2}>
+            <BsNewspaper/>
+            Noticias
           </Link>
           <button
             onClick={() => setAboutDropDown(prev => !prev)}
