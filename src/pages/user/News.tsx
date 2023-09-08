@@ -2,24 +2,44 @@ import NewsCard, { TNewsCardProps } from "../../components/news/NewsCard"
 import Container from "../../components/templates/Container"
 import User from "./User"
 import styles from "../../css/news/News.module.css"
-import { useEffect, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import NewsRecents from "../../components/news/NewsRecents"
 import { BsList, BsSearch } from "react-icons/bs"
+import newsDemo from "../../utils/demo/news.json"
+import { FaRegFaceFrown } from "react-icons/fa6"
 
-const IMG_PLACEHOLDER = "../img_placeholder.png"
+const IMG_PLACEHOLDER = "img_placeholder.png"
+
+const getNews = (id: number, author: boolean) => {
+  if (author) {
+    return newsDemo[id]
+  } else {
+    const { author, ...restOfProps } = newsDemo[id]
+    return restOfProps
+  }
+}
 
 const NEWS_RECENTS_INITALSTATE: TNewsCardProps[] = [
-  { title: "Titulo 1", description: "Descripcion 1", img: IMG_PLACEHOLDER, date: "12/02/23" },
-  { title: "Titulo 2", description: "Descripcion 2", img: IMG_PLACEHOLDER, date: "12/05/23" },
-  { title: "Titulo 3", description: "Descripcion 3", img: IMG_PLACEHOLDER, date: "17/09/23" }
+  getNews(0, false),
+  getNews(1, false),
+  getNews(2, false)
 ]
 
 type TFiltersBy = "Titulo" | "Autor" | "Fecha" | undefined
 const FILTERSBY_INITIALSTATE: TFiltersBy[] = ["Titulo", "Autor", "Fecha"]
+enum EFiltersBy {
+  Titulo = "title",
+  Autor = "author",
+  Fecha = "date"
+}
 
 const News = () => {
 
-  const [ recentsNews, setRecentsNews ] = useState<Array<TNewsCardProps>>(NEWS_RECENTS_INITALSTATE)
+  const [ recentsNews ] = useState<Array<TNewsCardProps>>(NEWS_RECENTS_INITALSTATE)
+
+  const [searchValue, setSearchValue] = useState("")
+  const [newsResult, setNewsResult] = useState<Array<TNewsCardProps>>([])
+  const [newsSearched, setNewsSearched] = useState(false)
 
   const [ filtersOpen, setFiltersOpen ] = useState(false)
   const [ filterSelected, setFilterSelected ] = useState<TFiltersBy>(undefined)
@@ -28,6 +48,32 @@ const News = () => {
   useEffect(() => {
     setFiltersAvailable(FILTERSBY_INITIALSTATE.filter(filter => filter !== filterSelected))
   }, [filterSelected])
+
+  const handleSearch = () => {
+    setNewsSearched(true)
+    if (!filterSelected || !searchValue) {
+      setNewsResult([])
+      return
+    }
+    const results: Array<TNewsCardProps> = []
+    newsDemo.map((news) => {
+      if (news[EFiltersBy[filterSelected as keyof typeof EFiltersBy]]
+          .toLowerCase()
+          .includes(searchValue.toLowerCase())) {
+        results.push(news)
+      }
+      return null
+    })
+
+    console.log(newsDemo[0][EFiltersBy[filterSelected as keyof typeof EFiltersBy]])
+
+    setNewsResult(results)
+  }
+
+  const handleSubmit = (ev: FormEvent) => {
+    ev.preventDefault()
+    handleSearch()
+  }
 
   return (
     <User>
@@ -50,7 +96,7 @@ const News = () => {
 
             <div className={styles.filters_cont}>
               <div className={styles.filters}>
-                <form className={styles.filter_by}>
+                <form className={styles.filter_by} onSubmit={handleSubmit}>
                   <div className={styles.filters_by}
                     data-open={filtersOpen}
                     // onPointerLeave={() => setFiltersOpen(false)}
@@ -71,7 +117,10 @@ const News = () => {
                           <li key={i}>
                             <button 
                               type="button"
-                              onClick={() => setFilterSelected(filter)}
+                              onClick={() => {
+                                setFiltersOpen(false)
+                                setFilterSelected(filter)
+                              }}
                             >
                               {filter}
                             </button>
@@ -82,7 +131,10 @@ const News = () => {
                   </div>
 
                   <div>
-                    <input type="text" />
+                    <input type="text" 
+                      value={searchValue}
+                      onChange={(ev) => setSearchValue(ev.target.value)}
+                    />
                   </div>
 
                   <div>
@@ -90,18 +142,24 @@ const News = () => {
                   </div>
                 </form>
               </div>
+
+              <div className={styles.news_results}>
+                {
+                  newsSearched ? newsResult.length > 0
+                    ? newsResult.map((news, i) => (
+                      <NewsCard
+                        {...news}
+                      />
+                    ))
+                    : <div className={styles.no_results}>
+                        <FaRegFaceFrown/>
+                        No se encontraron resultados
+                      </div>
+                    : <></>
+                }
+              </div>
             </div>
           </div>
-          {/* <NewsCard title={""} description={""} date={""} img={""}/>
-          <NewsCard title={""} description={""} date={""} img={""}/>
-          <NewsCard title={""} description={""} date={""} img={""}/>
-          <NewsCard title={""} description={""} date={""} img={""}/>
-          <NewsCard title={""} description={""} date={""} img={""}/>
-          <NewsCard title={""} description={""} date={""} img={""}/>
-          <NewsCard title={""} description={""} date={""} img={""}/>
-          <NewsCard title={""} description={""} date={""} img={""}/>
-          <NewsCard title={""} description={""} date={""} img={""}/>
-          <NewsCard title={""} description={""} date={""} img={""}/> */}
         </div>
       </Container>
     </User>
