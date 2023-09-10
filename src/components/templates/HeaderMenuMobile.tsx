@@ -79,12 +79,12 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
             </li>
             <li className={styles.link_dropdown}
               style={{
-                height: activitiesOpen ? "8rem" : "2rem"
+                height: activitiesOpen ? "5rem" : "2rem"
               }}
             >
               <button
                 style={{
-                  height: activitiesOpen ? "8rem" : "2rem"
+                  height: activitiesOpen ? "5rem" : "2rem"
                 }}
                 onClick={() => setActivitiesOpen(!activitiesOpen)}
               >
@@ -125,12 +125,12 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
             </li>
             <li className={styles.link_dropdown}
               style={{
-                height: institutionOpen ? "10rem" : "2rem"
+                height: institutionOpen ? "4rem" : "2rem"
               }}
             >
               <button
                 style={{
-                  height: institutionOpen ? "10rem" : "2rem"
+                  height: institutionOpen ? "4rem" : "2rem"
                 }}
                 onClick={() => setInstitutionOpen(!institutionOpen)}
               >

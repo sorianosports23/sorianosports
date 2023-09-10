@@ -85,7 +85,7 @@
 }
 
 .user-info > a:last-of-type {
-  width: unset !important;
+  width: max-content;
 }
 
 .user-info:has(.user) {
