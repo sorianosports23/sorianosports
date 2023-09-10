@@ -134,6 +134,7 @@
   font-size: .9em;
   padding: .5rem;
   height: 2rem;
+  font-family: 'Metropolis', sans-serif;
 }
 
 .share {
@@ -145,7 +146,7 @@
 }
 
 .share > div {
-  border: 1px solid #222;
+  /* border: 1px solid #222; */
   padding: 1rem;
   border-radius: 1rem;
 }
@@ -155,7 +156,7 @@
   margin-bottom: .5rem;
 }
 
-.share > div >div {
+.share > div > div {
   width: 10rem;
   height: 10rem;
 }
@@ -163,4 +164,5 @@
 .share img {
   width: 100%;
   height: 100%;
+  border-radius: .5rem;
 }

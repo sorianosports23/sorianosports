@@ -22,7 +22,7 @@ const SportsGround = () => {
               <span>Deportivas</span>
               <span>Anuales</span>
             </h2>
-              <p>Encuentra tu deporte favorito e inscribete</p>
+              <p>¡El deporte es vida... Vivi el deporte!</p>
               <button
                 onClick={() => setListOpen(!listOpen)}
               >

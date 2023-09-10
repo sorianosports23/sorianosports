@@ -33,11 +33,13 @@
 .body > h3 {
   font-size: 1.4em;
   font-weight: bold;
+  font-family: 'Metropolis', sans-serif;
 }
 
 .body > p {
   font-size: 1.1em;
   margin-top: .5rem;
+  font-family: 'Raleway', sans-serif;
 }
 
 .footer {

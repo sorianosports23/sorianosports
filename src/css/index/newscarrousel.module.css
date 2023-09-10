@@ -83,6 +83,7 @@
   text-align: center;
   text-decoration: underline;
   text-transform: uppercase;
+  font-family: 'Metropolis', sans-serif;
 }
 
 .news > div p {
@@ -92,6 +93,7 @@
   text-align: center;
   padding: 0 3rem;
   font-size: 1.1em;
+  font-family: 'Raleway', sans-serif;
 }
 
 .news > div button {
