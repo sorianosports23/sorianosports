@@ -4,7 +4,7 @@ import styles from "../../css/session/login/Login.module.css"
 import assetsFolder from "../../utils/publicfolder"
 import useForm from "../../utils/useForm"
 import { userSessionContext } from "../../context/session/UserSessionContext"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import apiLogin from "../../api/session/login"
 import ModalError from "../../components/modal/ModalError"
 import Loader from "../../components/Loader"
@@ -113,6 +113,11 @@ const Login = () => {
                 <BsKeyFill/>
               </div>
             </div>
+          </div>
+
+          <div>
+            ¿No tienes una cuenta?
+            <Link to="/auth/registro">Registrarse</Link>
           </div>
 
           <div>

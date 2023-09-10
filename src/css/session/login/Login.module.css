@@ -48,6 +48,13 @@
   gap: .5rem;
 }
 
+.form > div:has(a) {
+  flex-direction: row;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1em;
+  text-decoration: none;
+}
+
 .form > div > div {
   display: flex;
   align-items: center;
