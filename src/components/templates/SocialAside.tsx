@@ -28,6 +28,9 @@ const SocialAside = () => {
     if (pos === 4 && !onTransition) {
       setPos(0)
     }
+    if (pos >= 5) {
+      setPos(0)
+    }
   }, [pos, onTransition])
 
   // useEffect(() => {

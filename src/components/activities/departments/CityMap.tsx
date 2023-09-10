@@ -1,5 +1,7 @@
 import styles from "../../../css/activities/departments/CityMap.module.css"
 import assetsFolder from "../../../utils/publicfolder"
+import { ReactComponent as SorianoMap } from "../../../map/soriano.svg"
+import { MutableRefObject, useEffect, useRef } from "react"
 
 type TMapProps = {
   selectDepartment: (department: string) => void
@@ -13,22 +15,22 @@ type TDepartmentProps = {
   select: (name: string) => void
 }
 
-const City = ({name, select, x, y}: TDepartmentProps) => {
-  return (
-    <button
-      className={`${styles.cityIcon} ${styles[name]}`}
-      style={{
-        backgroundColor: "unset",
-        backgroundImage: `url(${assetsFolder}/map/department_icon.svg)`
-      }}
-      onClick={() => select(name)}
-    >
-      <p>
-        {name}
-      </p>
-    </button>
-  )
-}
+// const City = ({name, select, x, y}: TDepartmentProps) => {
+//   return (
+//     <button
+//       className={`${styles.cityIcon} ${styles[name]}`}
+//       style={{
+//         backgroundColor: "unset",
+//         backgroundImage: `url(${assetsFolder}/map/department_icon.svg)`
+//       }}
+//       onClick={() => select(name)}
+//     >
+//       <p>
+//         {name}
+//       </p>
+//     </button>
+//   )
+// }
 
 const departmentsPos = {
   VillaSoriano: {
@@ -74,15 +76,41 @@ const departmentsPos = {
 }
 
 const CityMap = ({ selectDepartment, departments }: TMapProps) => {
+
+  const map = useRef<HTMLObjectElement>(null) as MutableRefObject<HTMLObjectElement>
+
+  useEffect(() => {
+    const mapDocument = map.current.contentDocument as Document
+    departments.map((city) => {
+      if (mapDocument) {
+        const cityOnMap = mapDocument.getElementById(city)
+        if (cityOnMap) {
+          const vector = mapDocument.querySelector(`#${city} > #${city}Vec > path`) as SVGClipPathElement
+          cityOnMap.onclick = () => selectDepartment(city)
+          cityOnMap.style.animationDuration = ".8s"
+          cityOnMap.style.animationIterationCount = "infinite"
+          cityOnMap.style.animationTimingFunction = "linear"
+          cityOnMap.onpointerenter = () => {
+            vector.style.fill = "#f00"
+          }
+          cityOnMap.onpointerleave = () => {
+            vector.style.fill = ""
+          }
+        }
+      }
+      return null
+    })
+  }, [departments, selectDepartment])
+
   return (
     <div className={styles.map}
-      style={{
-        backgroundImage: `url(${assetsFolder}/map/backgroundMap.svg)`,
-        // height: "28rem",
-        // width: "40rem"
-      }}
+      // style={{
+      //   backgroundImage: `url(${assetsFolder}/map/backgroundMap.svg)`,
+      //   // height: "28rem",
+      //   // width: "40rem"
+      // }}
     >
-      {
+      {/* {
         departments.map((city, i) => (
           <City
             name={city}
@@ -92,8 +120,13 @@ const CityMap = ({ selectDepartment, departments }: TMapProps) => {
             key={i}
           />
         ))
-      }
+      } */}
+      {/* <SorianoMap/> */}
+      <object ref={map} data={assetsFolder + "/map/soriano.svg"} type="image/svg+xml" style={{width: "100%"}}>
+
+      </object>
     </div>
+
   )
 }
 

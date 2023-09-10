@@ -108,19 +108,12 @@
 }
 
 .map {
-  position: relative;
-  /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.75); */
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 28rem;
-  height: 40rem;
+  width: 60%;
 }
 
 @media (max-width: 768px) {
   .map {
-    min-width: 300px;
-    width: 300px;
-    height: 12rem;
+    width: 100%;
   }
 
   .VillaSoriano {

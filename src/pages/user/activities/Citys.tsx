@@ -31,7 +31,7 @@ const departments = {
     ground: [],
     water: []
   },
-  Egaña: {
+  Egana: {
     ground: [],
     water: []
   },
@@ -39,7 +39,7 @@ const departments = {
     ground: [],
     water: []
   },
-  StaCatalina: {
+  STACatalina: {
     ground: [],
     water: []
   },
@@ -141,7 +141,7 @@ const Departments = () => {
       <div className={styles.content} id="test">
         <CityMap
           selectDepartment={handleSelectCity}
-          departments={searchDepartments}
+          departments={Object.keys(departments)}
         />
       </div>
 
