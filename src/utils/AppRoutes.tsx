@@ -17,6 +17,7 @@ import Users from "../pages/admin/Users"
 import SportsAdmin from "../pages/admin/Sports"
 import News from "../pages/user/News"
 import EventsAdmin from "../pages/admin/Events"
+import Contact from "../pages/user/Contact"
 
 const pageUserRoutes = createRoutesFromElements(
   <Route path="/" errorElement={<Error/>}>
@@ -32,6 +33,9 @@ const pageUserRoutes = createRoutesFromElements(
     <Route path="info/:city/:sport" element={<Sport/>} loader={sportLoader}/>
     <Route path="faq" element={<Faq/>}/>
 
+ 
+
+
     <Route path="auth">
       <Route path="registro" element={<Register/>}/>
       <Route path="login" element={<Login/>}/>
@@ -40,6 +44,7 @@ const pageUserRoutes = createRoutesFromElements(
 
     <Route path="acerca">
       <Route path="misionvision" element={<MissionVission/>}/>
+       <Route path="contacto" element={<Contact/>}/>
     </Route>
 
     <Route path="/admin" errorElement={<Error/>}>

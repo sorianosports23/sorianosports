@@ -38,7 +38,7 @@ const SocialAside = () => {
   // }, [pos, onTransition])
 
   useEffect(() => {
-    const colors = ["#00a", "#c0c", "#0cc", "#a00", "#00a"]
+    const colors = ["#00a", "linear-gradient(180deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)", "#0cc", "#a00", "#00a"]
     buttonmedia.current.style.background = colors[pos]
   }, [pos, buttonmedia])
 

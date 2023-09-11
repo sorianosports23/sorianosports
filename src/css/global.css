@@ -57,3 +57,11 @@ button {
 .admin-title > h1 {
   font-weight: 300;
 }
+
+h1, h2, h3, h4, h5, h6, label, button{
+  font-family: "Metropolis", sans-serif;
+}
+
+p{
+  font-family: "Raleway";
+}

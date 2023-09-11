@@ -192,6 +192,15 @@ const Header = () => {
                   Misión y Visión
                 </Link>
               </li>
+
+              
+              <li>
+                <Link to="/acerca/contacto">Dirección</Link>
+              </li>
+
+              <li>
+                <Link to="/acerca/contacto">Contacto</Link>
+              </li>
             </ul>
           </button>
         </nav>
