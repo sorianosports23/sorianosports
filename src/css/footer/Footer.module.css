@@ -133,7 +133,7 @@
   text-align: center;
   font-size: .9em;
   padding: .5rem;
-  height: 2rem;
+  height: max-content;
   font-family: 'Metropolis', sans-serif;
 }
 

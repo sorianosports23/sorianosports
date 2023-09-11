@@ -30,7 +30,7 @@ const Footer = () => {
             <div className={styles.icon}>
               <BsFillHouseFill/>
             </div>
-            <a href="https://goo.gl/maps/NaShZAzvMVaJ51ue7" target="_blank" style={{textDecoration: "none"}}>Mercedes - Estadio Luis Köster</a>
+            <a href="https://goo.gl/maps/NaShZAzvMVaJ51ue7" target="_blank" style={{textDecoration: "none"}} rel="noreferrer">Mercedes - Estadio Luis Köster</a>
           </li>
           <li>
             <div className={styles.icon}>
@@ -69,7 +69,7 @@ const Footer = () => {
       <div className={styles.copyright}>
         Copyright © {new Date().getFullYear()} <a href="https://soriano.gub.uy" style={{textDecoration: "none", color: "#222"}}>Intendencia de Soriano</a>
         <br />
-        by SorianoSports - UTU
+        by SorianoSports - UTU 2023
       </div>
     </footer>
   )

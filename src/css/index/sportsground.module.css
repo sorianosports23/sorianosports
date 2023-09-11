@@ -91,12 +91,12 @@
   top: 0;
   height: 100%;
   width: 40%;
-  border-radius: 13rem 0 0 0;
+  border-radius: 13rem 0 13rem .5rem;
   background-color: var(--circle-ground-bg);
   z-index: 1;
 }
 
-.circle[data-ground-open="true"]::before {
+/* .circle[data-ground-open="true"]::before {
   background: var(--index-ground-bg);
   transition: background .01s;
 }
@@ -115,13 +115,18 @@
   border-radius: 100%;
   bottom: 0;
   left: 0;
-}
+} */
 
 .list {
   width: 100%;
   height: 15rem;
   display: flex;
-  place-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: .5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  justify-content: center;
 }
 
 .list > ul {
@@ -143,6 +148,44 @@
   border-radius: 1rem;
 }
 
+.sport_card {
+  min-width: 9rem;
+  height: 13rem;
+  border: 1px solid #eee;
+  box-shadow: 0 0 10px #222;
+  border-radius: .5rem;
+  padding: .5rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  gap: 1rem;
+  text-overflow: clip;
+}
+
+.sport_card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #66666699 60%, #232323 100%);
+}
+
+.sport_card > button, .sport_card > p {
+  position: relative;
+}
+
+.sport_card > p {
+  font-size: 1.3em;
+  color: #eee;
+}
+
 .icon {
   width: 100%;
   height: 60%;
@@ -159,4 +202,64 @@
   height: 40%;
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: 992px) {
+  .circle {
+    width: 30rem;
+  }
+
+  .img {
+    position: absolute;
+    z-index: 2;
+    transform: translateX(-5rem);
+  }
+
+  .img::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #2323239f;
+  }
+
+  .textDiv > div:first-of-type {
+    z-index: 5;
+    color: #eee;
+  }
+
+  .textDiv h2 {
+    height: 70%;
+  }
+}
+
+@media (max-width: 576px) {
+  .textDiv {
+    width: 100%;
+    position: relative;
+  }
+
+  .img {
+    transform: none;
+    width: 100%;
+    height: 100%; 
+  }
+
+  .img > img {
+    object-fit: cover;
+  }
+
+  .textDiv > div:first-of-type {
+    padding: .5rem;
+  }
+
+  .textDiv > div:first-of-type {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .circle {
+    border-radius: 20rem 0 20rem 0;
+  }
 }

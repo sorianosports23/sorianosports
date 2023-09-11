@@ -1,11 +1,46 @@
 import { FaBasketballBall, FaVolleyballBall } from "react-icons/fa"
 import styles from "../../css/index/sportsground.module.css"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import assetsFolder from "../../utils/publicfolder"
+
+type TSportCardProps = {
+  sport: string
+  img: string
+}
+
+const SportCard = ({ sport, img }: TSportCardProps) => {
+  return (
+    <div className={styles.sport_card}
+      style={{
+        backgroundImage: `url(${assetsFolder}/img/cards/${img})`
+      }}
+    >
+      <button>Inscribirme</button>
+      <p>{sport}</p>
+    </div>
+  )
+}
 
 const SportsGround = () => {
 
   const [listOpen, setListOpen] = useState(false)
+  const sportsList = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    console.log(sportsList.current?.children.length)
+    if (sportsList.current) {
+      console.log(sportsList.current.getBoundingClientRect().width)
+      console.log(sportsList.current.children.length * 144)
+      const cardsWidth = sportsList.current.children.length * 144
+      const cardsRect = sportsList.current.getBoundingClientRect()
+
+      if (cardsWidth > cardsRect.width) {
+        sportsList.current.style.justifyContent = "flex-start"
+      } else {
+        sportsList.current.style.justifyContent = "center"
+      }
+    }
+  }, [])
 
   return (
     <div 
@@ -41,25 +76,19 @@ const SportsGround = () => {
         <div className={styles.circle} data-ground-open={listOpen}></div>
       </div>
       
-      <div className={styles.list}>
-        <ul>
-          <li>
-            <div className={styles.icon}>
-              <FaVolleyballBall/>
-            </div>
-            <div className={styles.title}>
-              Voley
-            </div>
-          </li>
-          <li>
-            <div className={styles.icon}>
-              <FaBasketballBall/>
-            </div>
-            <div className={styles.title}>
-              Basquetbol
-            </div>
-          </li>
-        </ul>
+      <div className={styles.list} ref={sportsList}>
+        <SportCard
+          sport="Basquetbol"
+          img="basketball.jfif"
+        />
+        <SportCard
+          sport="Boxeo"
+          img="box.jfif"
+        />
+        <SportCard
+          sport="Remo"
+          img="remo.png"
+        />
       </div>
     </div>
   )
