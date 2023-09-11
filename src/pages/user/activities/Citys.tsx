@@ -1,7 +1,7 @@
 import { BsList, BsSearch } from "react-icons/bs"
 import User from "../User"
 import styles from "../../../css/activities/departments/Departments.module.css"
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, useCallback, useEffect, useState } from "react"
 import CityMap from "../../../components/activities/departments/CityMap"
 import { Link } from "react-router-dom"
 import useSearchParams from "../../../utils/useSearchParams"
@@ -102,10 +102,10 @@ const Departments = () => {
     }
   }, [searchParams])
   
-  const handleSelectCity = (cityName: string) => {
+  const handleSelectCity = useCallback((cityName: string) => {
     setSelectedDepartment(cityName)
     setSearchParams(cityName)
-  }
+  }, [])
 
   return (
     <User>
