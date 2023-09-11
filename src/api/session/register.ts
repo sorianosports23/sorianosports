@@ -18,7 +18,7 @@ const apiRegister = async ({ username, password, email, phone, ci }: TApiRegiste
       ci
     }
 
-    const req = await fetch(`${api}/usuario/registrar.php`, {
+    const req = await fetch(`${api}/usuario/register.php`, {
       method: "POST",
       body: JSON.stringify(userData)
     })

@@ -2,6 +2,7 @@ import Container from "../../components/templates/Container"
 import User from "./User"
 import styles from "../../css/faq/Faq.module.css"
 import { BsChevronRight, BsPlusCircle } from "react-icons/bs"
+import Question from "../../components/faq/Question"
 
 const Faq = () => {
   return (
@@ -12,23 +13,10 @@ const Faq = () => {
 
       <Container>
         <div className={styles.questions}>
-          <div className={styles.question}>
-            <div>
-              <button>Categoria</button>
-              <BsPlusCircle/>
-            </div>
-
-            <div>
-              <p>¿Pregunta?</p>
-
-              <div>
-                <p>
-                  <BsChevronRight/>
-                  Respuesta
-                </p>
-              </div>
-            </div>
-          </div>
+          <Question
+            category="Categoria"
+            question={[{question: "Pregunta 1", response: "Respuesta 1"}, {question: "Pregunta 2", response: "Respuesta 2"}]}
+          />
         </div>
       </Container>
     </User>

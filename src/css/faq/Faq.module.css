@@ -30,14 +30,18 @@
   justify-content: space-between;
 }
 
-.question button {
+.category_btn {
   background: none;
   border: none;
   font-size: 1.5em;
   font-weight: bold;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.question > div:last-of-type {
+.question_response {
   margin-top: 1rem;
   font-size: 1.25em;
   gap: 1rem;
@@ -46,11 +50,19 @@
   padding: 0 1rem;
 }
 
-.question > div:last-of-type p {
+.question_response button {
   display: flex;
   align-items: center;
+  border: none;
+  background: none;
+  font-size: 1.1em;
 }
 
-.question > div:last-of-type svg {
+.question_response svg {
   font-size: 1.2em;
+  transition: transform .3s;
+}
+
+.response_cont {
+  transition: max-height .3s, height .3s;
 }
