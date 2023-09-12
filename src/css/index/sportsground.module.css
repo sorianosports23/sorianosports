@@ -37,6 +37,8 @@
   flex-direction: column;
   justify-content: center;
   font-family: "Releway", sans-serif;
+  text-shadow: 1px 0px #000;
+  color: #222;
 }
 
 .textDiv h2 > span {
@@ -235,6 +237,7 @@
 
   .textDiv h2 {
     height: 70%;
+    color: #eee;
   }
 }
 

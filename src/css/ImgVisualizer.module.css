@@ -49,3 +49,13 @@
   height: 100%;
   border-radius: 1rem;
 }
+
+@media (max-width: 572px) {
+  .visualizer {
+    padding: 5%;
+  }
+
+  .img {
+    height: auto;
+  }
+}

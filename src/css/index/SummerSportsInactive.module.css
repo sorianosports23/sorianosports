@@ -13,7 +13,7 @@
   width: 90%;
   height: 90%;
   background: #eee;
-  border-radius: .5rem 13rem .5rem 13rem;
+  border-radius: .5rem 8rem .5rem 8rem;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -27,6 +27,7 @@
   inset: 0;
   /* width: 100%;
   height: 100%; */
+  align-self: center;
 }
 
 .title > h2 {
@@ -47,23 +48,23 @@
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
   /* padding: 1rem; */
-  border-radius: .5rem 8rem .5rem 8rem;
+  border-radius: .5rem 5rem .5rem 5rem;
   gap: 1rem;
 }
 
 .carrousel {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
-  align-items: center;
+  /* gap: 1rem; */
+  /* align-items: center; */
   z-index: 4;
   position: relative;
-  animation: moveCarr linear alternate 25s infinite;
+  /* animation: moveCarr linear alternate 25s infinite; */
 }
 
 .carrousel > button {
@@ -71,13 +72,22 @@
   z-index: 5;
   width: 18rem;
   height: 14rem;
-  border-radius: 1rem;
+  border: none;
+  /* border-radius: 1rem; */
   padding: .5rem;
   background: #222;
   position: relative;
   overflow: hidden;
   transition: transform .3s;
   cursor: pointer;
+}
+
+.carrousel > button:first-of-type {
+  border-radius: 1rem 0 0 1rem;
+}
+
+.carrouseL > button:last-of-type {
+  border-radius: 0 1rem 1rem 0;
 }
 
 .carrousel > button:hover {
@@ -100,6 +110,10 @@
   background: #23232399;
 }
 
+.carrousel > button:hover::before {
+  background: none;
+}
+
 @keyframes moveCarr {
   0% {
     transform: translateX(0);
@@ -108,6 +122,38 @@
   100% {
     transform: translateX(-65%);
   }
+}
+
+.carrousel_btns {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid #f00; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
+.carrousel_btns > button {
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  font-size: 2em;
+  background: #0fc;
+  color: #eee;
+  border-radius: 100%;
+  display: grid;
+  place-content: center;
+  transition: transform .3s;
+  pointer-events: all;
+}
+
+.carrousel_btns > button:hover {
+  transform: scale(1.2);
 }
 
 @media (max-width: 768px) {
