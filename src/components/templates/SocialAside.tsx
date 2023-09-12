@@ -2,6 +2,7 @@ import { BsFacebook, BsInstagram, BsTwitter, BsYoutube } from "react-icons/bs"
 
 import styles from "../../css/aside/SocialAside.module.css"
 import { MutableRefObject, useEffect, useRef, useState } from "react"
+import { FaXTwitter } from "react-icons/fa6"
 
 const SocialAside = () => {
 
@@ -38,7 +39,12 @@ const SocialAside = () => {
   // }, [pos, onTransition])
 
   useEffect(() => {
-    const colors = ["#00a", "linear-gradient(180deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)", "#0cc", "#a00", "#00a"]
+    const colors = [
+      "#00a", 
+      "linear-gradient(180deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)", 
+      "#222", 
+      "#a00", 
+      "#00a"]
     buttonmedia.current.style.background = colors[pos]
   }, [pos, buttonmedia])
 
@@ -69,7 +75,7 @@ const SocialAside = () => {
             <BsInstagram/>
           </div>
           <div>
-            <BsTwitter/>
+            <FaXTwitter/>
           </div>
           <div>
             <BsYoutube/>
@@ -85,10 +91,10 @@ const SocialAside = () => {
           transform: `translate(-4rem, -4rem) scale(${mediaOpen ? 1 : 0})`
         }}
       >
-        <a href="##" className={styles.fb_btn}><BsFacebook/></a>
-        <a href="##" className={styles.ig_btn}><BsInstagram/></a>
-        <a href="##" className={styles.tw_btn} ><BsTwitter/></a>
-        <a href="##" className={styles.yt_btn}><BsYoutube/></a>
+        <a href="##" className={styles.fb_btn} title="Facebook"><BsFacebook/></a>
+        <a href="##" className={styles.ig_btn} title="Instagram"><BsInstagram/></a>
+        <a href="##" className={styles.tw_btn} title="X (Twitter)"><FaXTwitter/></a>
+        <a href="##" className={styles.yt_btn} title="Youtube"><BsYoutube/></a>
       </div>
     </div>
     </>

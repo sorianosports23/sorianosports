@@ -26,4 +26,12 @@ const sportIcon: { [x: string]: string } = {
   "Básquetbol": "basketball.png"
 }
 
-export { sportList, sportIcon }
+const sportImg: { [x: string]: string } = {
+  Futbol: "football.jpg",
+  Boxeo: "box.jpg",
+  Remo: "remo.jpg",
+  Voleibol: "voley.jpg",
+  "Básquetbol": "basket.jpg"
+}
+
+export { sportList, sportIcon, sportImg }

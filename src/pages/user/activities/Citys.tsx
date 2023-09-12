@@ -3,49 +3,41 @@ import User from "../User"
 import styles from "../../../css/activities/departments/Departments.module.css"
 import { ChangeEvent, useCallback, useEffect, useState } from "react"
 import CityMap from "../../../components/activities/departments/CityMap"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import useSearchParams from "../../../utils/useSearchParams"
+import assetsFolder from "../../../utils/publicfolder"
+import { sportImg } from "../../../utils/sportList"
 
 const departments = {
   Dolores: {
-    ground: ["Gimnasia correctiva", "Voleibol", "Futsal", "Gimnasia aerobica", "Gimnasia artistica", "Yoga", "Gimnasia adulto mayor", "Gimnasia hombre y futsal", "Gimnasia funcional", "Karate", "Rugby", "Chiquillada"],
-    water: ["Canotaje"]
+    ground: ["Voleibol", "Remo"],
   },
   Cardona: {
     ground: ["Atletismo", "Karate", "Básquetbol", "Gimnadia 3ra Edad", "Hockey", "Zumba"],
-    water: []
   },
   Mercedes: {
     ground: [],
-    water: []
   },
   VillaSoriano: {
     ground: [],
-    water: []
   },
   Palmar: {
     ground: [],
-    water: []
   },
   Palmitas: {
     ground: [],
-    water: []
   },
   Egana: {
     ground: [],
-    water: []
   },
   Risso: {
     ground: [],
-    water: []
   },
   STACatalina: {
     ground: [],
-    water: []
   },
   JERodo: {
     ground: [],
-    water: []
   },
 }
 
@@ -81,6 +73,8 @@ const Departments = () => {
 
   const searchParams = useSearchParams()
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     if (!searchInput.value) {
       setSearchDepartments(Object.keys(departments))
@@ -112,22 +106,6 @@ const Departments = () => {
       {/* FILTROS */}
       <div className={styles.filters}>
         <div className={styles.filters_content}>
-          <button
-            className={styles.sports_dropdown}
-            data-open={true}
-          >
-            <p>
-              <BsList/> Todos
-            </p>
-
-            <ul>
-              <li>Futbol</li>
-              <li>Basquetbol</li>
-              <li>Boleibol</li>
-              <li>Remo</li>
-            </ul>
-          </button>
-
           <div className={styles.input}>
             <input {...searchInput} />
             <div>
@@ -153,38 +131,18 @@ const Departments = () => {
           <h3>{selectedDepartment}</h3>
 
           <div className={styles.selected_sports}>
-            <h3>Deportes</h3>
+            {/* <h3>Deportes</h3> */}
             <div className={styles.selected_ground}>
-              <h4>Terrestres</h4>
               <ul>
                 {
-                  selectedDepartment 
-                    !== NoSelected
-                    && departments[selectedDepartment as keyof typeof departments].ground.map((sport, i) => (
-                        <li key={i}>
-                          <Link to={`/info/${selectedDepartment}/${sport}`}>{sport}</Link>
-                        </li>
-                       ))
-                }
-              </ul>
-            </div>
-
-            <div className={styles.selected_divisor}>
-              <span></span>
-            </div>
-
-            <div className={styles.selected_water}>
-              <h4>Acuaticos</h4>
-              <ul>
-                {
-                  selectedDepartment === NoSelected
-                    ? <></>
-                    : 
-                      departments[selectedDepartment as keyof typeof departments].water.map((sport, i) => (
-                          <li key={i}>
-                            <Link to={`/info/${selectedDepartment}/${sport}`}>{sport}</Link>
-                          </li>
-                      ))
+                  departments[selectedDepartment as keyof typeof departments].ground.map((sport, i) => (
+                    <li key={i} style={{
+                      backgroundImage: `url(${assetsFolder}/img/cards/${sportImg[sport]})`
+                    }}
+                    >
+                      <Link to={`/info/${selectedDepartment}/${sport}`}>{sport}</Link>
+                    </li>
+                    ))
                 }
               </ul>
             </div>

@@ -49,7 +49,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles["header-top"]}>
-        <Link to="/" className={styles.logo}>
+        <Link to="/" className={styles.logo} title="Página de inicio">
           <img src={assetsFolder + "/img/deportesyrecreaciones.png"} alt="page-logo" />
         </Link>
 

@@ -48,7 +48,7 @@
 }
 
 .twitter {
-  color: #0cc;
+  color: #eee;
 }
 
 .youtube {
@@ -142,7 +142,7 @@
 .tw_btn {
   left: 40%;
   transform: translateX(-40%);
-  background: #0ee;
+  background: #222;
 }
 
 .yt_btn {

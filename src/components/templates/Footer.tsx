@@ -1,4 +1,5 @@
 import { BsFillHouseFill, BsEnvelopeAtFill, BsTelephoneFill, BsClockFill, BsFacebook, BsInstagram, BsTwitter, BsYoutube } from "react-icons/bs"
+import { FaXTwitter } from "react-icons/fa6"
 import styles from "../../css/footer/Footer.module.css"
 import assetsFolder from "../../utils/publicfolder"
 
@@ -11,16 +12,16 @@ const Footer = () => {
           <div>
             <ul>
               <li>
-                <a href="##"><BsFacebook className={styles.facebook}/></a>
+                <a href="##" title="Facebook"><BsFacebook className={styles.facebook}/></a>
               </li>
               <li>
-                <a href="##"><BsInstagram className={styles.instagram}/></a>
+                <a href="##" title="Instagram"><BsInstagram className={styles.instagram}/></a>
               </li>
               <li>
-                <a href="##"><BsTwitter className={styles.twitter}/></a>
+                <a href="##" title="X (Twitter)"><FaXTwitter className={styles.twitter}/></a>
               </li>
               <li>
-                <a href="##"><BsYoutube className={styles.youtube}/></a>
+                <a href="##" title="Youtube"><BsYoutube className={styles.youtube}/></a>
               </li>
             </ul>
           </div>
@@ -30,13 +31,13 @@ const Footer = () => {
             <div className={styles.icon}>
               <BsFillHouseFill/>
             </div>
-            <a href="https://goo.gl/maps/NaShZAzvMVaJ51ue7" target="_blank" style={{textDecoration: "none"}} rel="noreferrer">Mercedes - Estadio Luis Köster</a>
+            <a href="https://goo.gl/maps/NaShZAzvMVaJ51ue7" target="_blank" style={{textDecoration: "none"}} rel="noreferrer" title="Ubicación de la Secretaria de Deportes">Mercedes - Estadio Luis Köster</a>
           </li>
           <li>
             <div className={styles.icon}>
               <BsEnvelopeAtFill/>
             </div>
-            <a href="mailto:deportes@soriano.gub.uy">
+            <a href="mailto:deportes@soriano.gub.uy" title="Correo de la Secretaria de Deportes">
               deportes@soriano.gub.uy
             </a>
           </li>
@@ -44,11 +45,11 @@ const Footer = () => {
             <div className={styles.icon}>
               <BsTelephoneFill/>
             </div>
-            <a href="tel:45322201">
+            <a href="tel:45322201" title="Teléfono de la Secretaria de Deportes">
               4532 2201
             </a>
           </li>
-          <li>
+          <li title="Horario abierto de la Secretaria de Deportes">
             <div className={styles.icon}>
               <BsClockFill/>
             </div>

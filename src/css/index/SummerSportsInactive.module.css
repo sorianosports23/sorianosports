@@ -3,7 +3,7 @@
 }
 
 .summer_main {
-  height: 25rem;
+  height: 28rem;
   padding: 2rem 10%;
   position: relative;
 }
@@ -21,13 +21,12 @@
 }
 
 .title {
-  position: absolute;
   z-index: 5;
   display: grid;
   place-content: center;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
 }
 
 .title > h2 {
@@ -35,9 +34,9 @@
   flex-direction: column;
   text-align: center;
   font-size: 3em;
-  color: #eee;
+  color: #222;
   text-shadow: 1px 0px #000;
-  background: #222a;
+  /* background: #222a; */
   padding: .5rem;
   border-radius: 1rem;
 }
@@ -49,8 +48,12 @@
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
   overflow: hidden;
+  /* padding: 1rem; */
   border-radius: .5rem 8rem .5rem 8rem;
+  gap: 1rem;
 }
 
 .carrousel {
@@ -63,7 +66,7 @@
   animation: moveCarr linear alternate 25s infinite;
 }
 
-.carrousel > div {
+.carrousel > button {
   position: relative;
   z-index: 5;
   width: 18rem;
@@ -73,16 +76,22 @@
   background: #222;
   position: relative;
   overflow: hidden;
+  transition: transform .3s;
+  cursor: pointer;
 }
 
-.carrousel > div > img {
+.carrousel > button:hover {
+  transform: scale(1.2);
+}
+
+.carrousel > button > img {
   border-radius: .3rem;
   width: 100%;
   height: 100%;
   object-fit: cover;
 } 
 
-.carrousel > div::before {
+.carrousel > button::before {
   content: "";
   position: absolute;
   inset: 0;
