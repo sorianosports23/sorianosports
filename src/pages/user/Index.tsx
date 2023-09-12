@@ -1,8 +1,9 @@
 import styles from "../../css/index/index.module.css"
 import NewsCarrousel from "../../components/index/NewsCarrousel"
-import SportsGround from "../../components/index/SportsGround"
+import YearSports from "../../components/index/YearSports"
 import SportsWater from "../../components/index/SportsWater"
 import User from "./User"
+import SummerSportsInactive from "../../components/index/SummerSportsInactive"
 
 const Index = () => {
   return (    
@@ -12,12 +13,13 @@ const Index = () => {
       </div>
 
       <div className={`${styles.sport} ${styles.ground}`}>
-        <SportsGround/>
+        <YearSports/>
       </div>
 
-      {/* <div className={`${styles.sport} ${styles.water}`}>
-        <SportsWater/>
-      </div> */}
+      <div className={`${styles.sport} ${styles.water}`}>
+        {/* <SportsWater/> */}
+        <SummerSportsInactive/>
+      </div>
     </User>
   )
 }

@@ -1,11 +1,27 @@
 .title {
-  margin-top: 1rem;
+  margin: 1rem 0;
   height: 10rem;
   border-top: 1px solid #2222;
   border-bottom: 1px solid #2222;
   padding: 0 10%;
   display: flex;
   align-items: center;
+  background-position: 50% 35%;
+  position: relative;
+  color: #eee;
+}
+
+.title > h1 {
+  position: relative;
+}
+
+.title::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #2229;
 }
 
 .question svg {

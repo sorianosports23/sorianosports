@@ -33,6 +33,7 @@
 
 .water {
   background-color: var(--index-water-bg);
+  margin-top: .5rem;
 }
 
 .ground > div[data-ground-open="true"] > .circle::before {

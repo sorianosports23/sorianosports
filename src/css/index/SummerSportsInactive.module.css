@@ -1,0 +1,116 @@
+.summer {
+  width: 100%;
+}
+
+.summer_main {
+  height: 25rem;
+  padding: 2rem 10%;
+  position: relative;
+}
+
+.circle {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  background: #eee;
+  border-radius: .5rem 13rem .5rem 13rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.title {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  place-content: center;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.title > h2 {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 3em;
+  color: #eee;
+  text-shadow: 1px 0px #000;
+  background: #222a;
+  padding: .5rem;
+  border-radius: 1rem;
+}
+
+.content {
+  z-index: 4;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: .5rem 8rem .5rem 8rem;
+}
+
+.carrousel {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  z-index: 4;
+  position: relative;
+  animation: moveCarr linear alternate 25s infinite;
+}
+
+.carrousel > div {
+  position: relative;
+  z-index: 5;
+  width: 18rem;
+  height: 14rem;
+  border-radius: 1rem;
+  padding: .5rem;
+  background: #222;
+  position: relative;
+  overflow: hidden;
+}
+
+.carrousel > div > img {
+  border-radius: .3rem;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} 
+
+.carrousel > div::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #23232399;
+}
+
+@keyframes moveCarr {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-65%);
+  }
+}
+
+@media (max-width: 768px) {
+  .circle {
+    border-radius: .5rem 9rem .5rem 9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .title > h2 {
+    background: none;
+    padding: 0;
+    font-size: 2em;
+  }
+}

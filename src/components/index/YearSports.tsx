@@ -21,7 +21,7 @@ const SportCard = ({ sport, img }: TSportCardProps) => {
   )
 }
 
-const SportsGround = () => {
+const YearSports = () => {
 
   const [listOpen, setListOpen] = useState(false)
   const sportsList = useRef<HTMLDivElement>(null)
@@ -79,11 +79,11 @@ const SportsGround = () => {
       <div className={styles.list} ref={sportsList}>
         <SportCard
           sport="Basquetbol"
-          img="basketball.jfif"
+          img="basketball.jpg"
         />
         <SportCard
           sport="Boxeo"
-          img="box.jfif"
+          img="box.jpg"
         />
         <SportCard
           sport="Remo"
@@ -94,4 +94,4 @@ const SportsGround = () => {
   )
 }
 
-export default SportsGround
+export default YearSports

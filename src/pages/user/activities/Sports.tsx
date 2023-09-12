@@ -4,6 +4,7 @@ import Container from "../../../components/templates/Container"
 import SportCard from "../../../components/activities/sports/SportCard"
 import { useState } from "react"
 import assetsFolder from "../../../utils/publicfolder"
+import { FaMousePointer } from "react-icons/fa"
 
 const sports = {
   ground: [
@@ -35,6 +36,10 @@ const Sports = () => {
             <p>
               Deportes terrestres
             </p>
+
+            <div className={styles.click}>
+              <FaMousePointer/>
+            </div>
           </button>
           <div className={styles.separator}>
             <img src={assetsFolder + "/img/secretaria_deportes.svg"} alt="deportes" />
@@ -49,6 +54,10 @@ const Sports = () => {
             <p>
               Deportes acuaticos
             </p>
+
+            <div className={styles.click}>
+              <FaMousePointer/>
+            </div>
           </button>
         </div>
 
