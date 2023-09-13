@@ -19,7 +19,7 @@
 }
 
 .social h3 {
-  font-size: 1.4em;
+  font-size: 2.4em;
   font-family: 'Raleway', sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -35,21 +35,23 @@
 
 .social-header > div {
   margin-top: .5rem;
+  width: max-content;
 }
 
 .social-header > div ul {
   list-style-type: none;
   display: flex;
-  width: 10rem;
-  justify-content: space-between;
+  width: 100%;
 }
 
 .social-header > div ul li {
   font-size: 1.5em;
+  padding: 0 .5rem;
 }
 
 .social-header a {
   position: relative;
+  font-size: 1.5em;
 }
 
 .social-header a::before {
@@ -96,21 +98,18 @@
   width: 100%;
   flex-wrap: wrap;
   margin-top: 1rem;
+  font-size: 1.8em;
 }
 
 .social > ul li {
   display: flex;
   align-items: center;
-  font-size: 1.2em;
   font-family: 'Raleway', sans-serif;
   text-decoration: none;
   color: #222;  
-  height: 4rem;
-}
-
-.social > ul li:first-of-type {
-  width: 9rem;
-  font-size: 1em;
+  height: max-content;
+  width: max-content;
+  padding: .5rem 0;
 }
 
 .social > ul li:first-of-type svg {
