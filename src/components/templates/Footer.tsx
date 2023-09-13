@@ -12,16 +12,16 @@ const Footer = () => {
           <div>
             <ul>
               <li>
-                <a href="##" title="Facebook"><BsFacebook className={styles.facebook}/></a>
+                <a href="https://www.facebook.com/intendenciasoriano" title="Facebook"><BsFacebook className={styles.facebook}/></a>
               </li>
               <li>
-                <a href="##" title="Instagram"><BsInstagram className={styles.instagram}/></a>
+                <a href="https://www.instagram.com/deportes.soriano" title="Instagram"><BsInstagram className={styles.instagram}/></a>
               </li>
               <li>
-                <a href="##" title="X (Twitter)"><FaXTwitter className={styles.twitter}/></a>
+                <a href="https://twitter.com/Sorianofertil" title="X (Twitter)"><FaXTwitter className={styles.twitter}/></a>
               </li>
               <li>
-                <a href="##" title="Youtube"><BsYoutube className={styles.youtube}/></a>
+                <a href="https://www.youtube.com/@sorianotv3939" title="Youtube"><BsYoutube className={styles.youtube}/></a>
               </li>
             </ul>
           </div>

@@ -220,14 +220,14 @@ const Events = () => {
                 handleSelectEvent: setSelectedEvent
               }
 
-              return <EventCard {...props} key={i}/>
+              return <EventCard {...props} key={i} />
             })
           }
         </div>
         
       </div>
 
-      <div className={styles.divider}></div>
+      {/* <div className={styles.divider}></div>
 
       <div className={styles.info}>
         {
@@ -235,7 +235,7 @@ const Events = () => {
             ? <SelectedEvent {...selectedEvent as TEvent}/>
             : <div>Nada seleccionado</div>
         }
-      </div>
+      </div> */}
     </User>
   )
 }

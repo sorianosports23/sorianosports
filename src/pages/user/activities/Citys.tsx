@@ -139,6 +139,7 @@ const Departments = () => {
                     <li key={i} style={{
                       backgroundImage: `url(${assetsFolder}/img/cards/${sportImg[sport]})`
                     }}
+                    title={sport}
                     >
                       <Link to={`/info/${selectedDepartment}/${sport}`}>{sport}</Link>
                     </li>

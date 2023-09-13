@@ -18,6 +18,7 @@ import SportsAdmin from "../pages/admin/Sports"
 import News from "../pages/user/News"
 import EventsAdmin from "../pages/admin/Events"
 import Contact from "../pages/user/Contact"
+import Directive from "../pages/user/institution/Directive"
 
 const pageUserRoutes = createRoutesFromElements(
   <Route path="/" errorElement={<Error/>}>
@@ -44,7 +45,8 @@ const pageUserRoutes = createRoutesFromElements(
 
     <Route path="acerca">
       <Route path="misionvision" element={<MissionVission/>}/>
-       <Route path="contacto" element={<Contact/>}/>
+      <Route path="contacto" element={<Contact/>}/>
+      <Route path="directiva" element={<Directive/>}/>
     </Route>
 
     <Route path="/admin" errorElement={<Error/>}>

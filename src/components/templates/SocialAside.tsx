@@ -91,10 +91,10 @@ const SocialAside = () => {
           transform: `translate(-4rem, -4rem) scale(${mediaOpen ? 1 : 0})`
         }}
       >
-        <a href="##" className={styles.fb_btn} title="Facebook"><BsFacebook/></a>
-        <a href="##" className={styles.ig_btn} title="Instagram"><BsInstagram/></a>
-        <a href="##" className={styles.tw_btn} title="X (Twitter)"><FaXTwitter/></a>
-        <a href="##" className={styles.yt_btn} title="Youtube"><BsYoutube/></a>
+        <a href="https://www.facebook.com/intendenciasoriano" className={styles.fb_btn} title="Facebook"><BsFacebook/></a>
+        <a href="https://www.instagram.com/deportes.soriano" className={styles.ig_btn} title="Instagram"><BsInstagram/></a>
+        <a href="https://twitter.com/Sorianofertil" className={styles.tw_btn} title="X (Twitter)"><FaXTwitter/></a>
+        <a href="https://www.youtube.com/@sorianotv3939" className={styles.yt_btn} title="Youtube"><BsYoutube/></a>
       </div>
     </div>
     </>

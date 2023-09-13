@@ -51,7 +51,7 @@ const QResponse = ({question, response}: {question: string, response: string}) =
 
 const Question = ({ category, question }: TQuestionProps) => {
 
-  const [questionOpen, setQuestionOpen] = useState(false)
+  const [questionOpen, setQuestionOpen] = useState(true)
 
   return (
     <div className={styles.question}
@@ -60,8 +60,8 @@ const Question = ({ category, question }: TQuestionProps) => {
       }}
     >
       <div>
-        <button className={styles.category_btn}
-          onClick={() => setQuestionOpen(!questionOpen)}
+        {/* <button className={styles.category_btn}
+          onClick={() => setQuestionOpen(true)}
         >
           { category }
           {
@@ -69,7 +69,7 @@ const Question = ({ category, question }: TQuestionProps) => {
               ? <BsDashCircle/>
               : <BsPlusCircle/>
           }
-        </button>
+        </button> */}
       </div>
 
       {/* <div>
@@ -87,6 +87,7 @@ const Question = ({ category, question }: TQuestionProps) => {
           <QResponse
             question={q.question}
             response={q.response}
+            key={i}
           />
         ))
       }

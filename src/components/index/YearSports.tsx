@@ -2,20 +2,22 @@ import { FaBasketballBall, FaVolleyballBall } from "react-icons/fa"
 import styles from "../../css/index/sportsground.module.css"
 import { useEffect, useRef, useState } from "react"
 import assetsFolder from "../../utils/publicfolder"
+import SportInscription from "./SportInscription"
 
 type TSportCardProps = {
   sport: string
   img: string
+  open: () => void
 }
 
-const SportCard = ({ sport, img }: TSportCardProps) => {
+const SportCard = ({ sport, img, open }: TSportCardProps) => {
   return (
     <div className={styles.sport_card}
       style={{
         backgroundImage: `url(${assetsFolder}/img/cards/${img})`
       }}
     >
-      <button>Inscribirme</button>
+      <button onClick={open}>Inscribirme</button>
       <p>{sport}</p>
     </div>
   )
@@ -25,6 +27,14 @@ const YearSports = () => {
 
   const [listOpen, setListOpen] = useState(false)
   const sportsList = useRef<HTMLDivElement>(null)
+
+  const [modalSport, setModalSport] = useState("")
+  const [modalSportOpen, setModalSportOpen] = useState(false)
+
+  const handleSelectSport = (sport: string) => {
+    setModalSport(sport)
+    setModalSportOpen(true)
+  }
 
   useEffect(() => {
     console.log(sportsList.current?.children.length)
@@ -43,6 +53,8 @@ const YearSports = () => {
   }, [])
 
   return (
+    <>
+
     <div 
       className={styles.sportsmain}
       style={{
@@ -80,17 +92,28 @@ const YearSports = () => {
         <SportCard
           sport="Basquetbol"
           img="basketball.jpg"
+          open={() => handleSelectSport("Basquetbol")}
         />
         <SportCard
           sport="Boxeo"
           img="box.jpg"
+          open={() => handleSelectSport("Boxeo")}
         />
         <SportCard
           sport="Remo"
           img="remo.png"
+          open={() => handleSelectSport("Remo")}
         />
       </div>
     </div>
+
+    <SportInscription
+      sport={modalSport}
+      open={modalSportOpen}
+      close={() => setModalSportOpen(false)}
+    />
+
+    </>
   )
 }
 

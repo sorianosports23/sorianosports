@@ -1,0 +1,35 @@
+.title{
+  margin-top: 1.5rem;
+}
+.card{
+  
+  width: 20rem;
+  height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 1.5rem;
+}
+
+.image{
+  height: 15rem;
+  width: 15rem;
+  border-radius: 100%;
+  object-fit: cover;
+}
+h1, h2{
+  font-family: "Metropolis";
+  text-align: center;
+}
+p{
+  font-family: "Raleway";
+}
+.info{
+  text-align: center;
+}
+.general{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
