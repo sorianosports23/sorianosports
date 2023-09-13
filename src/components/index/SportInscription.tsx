@@ -24,14 +24,16 @@ const SportInscription = ({ open, sport, close }: TSportInscriptionProps) => {
         <div className={styles.body}>
           <p>Busca lugar donde inscribirse para <span>{sport}</span> en:</p>
           <div>
-            <select onChange={(ev) => setSelectValue(ev.target.value)}>
-              <option value="#">Seleccionar</option>
-              {
-                cityList.map((city, i) => (
-                  <option value={city} key={i}>{city}</option>
-                ))
-              }
-            </select>
+            <div className={styles.custom_select}>
+              <select onChange={(ev) => setSelectValue(ev.target.value)}>
+                <option value="#">Seleccionar</option>
+                {
+                  cityList.map((city, i) => (
+                    <option value={city} key={i}>{city}</option>
+                  ))
+                }
+              </select>
+            </div>
 
             <button 
               disabled={selectValue === "#" || selectValue === ""}
