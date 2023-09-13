@@ -2,6 +2,21 @@ import { useState, useRef, useEffect, MutableRefObject } from "react"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 import styles from "../../css/index/newscarrousel.module.css"
 import assetsFolder from "../../utils/publicfolder"
+import newsDemo from "../../utils/demo/news.json"
+import { TNewsCardProps } from "../news/NewsCard"
+import { Link } from "react-router-dom"
+
+const NewsSlide = ({id, title, description, img}: TNewsCardProps) => {
+  return (
+    <div style={{backgroundImage: `url(${img})`}}>
+      <h2>{title}</h2>
+      <p>
+        {description}
+      </p>
+      <Link to={`/noticia/leer/${id}`}>Leer mas</Link>
+    </div>
+  )
+}
 
 const NewsCarrousel = () => {
 
@@ -12,9 +27,12 @@ const NewsCarrousel = () => {
   const [numberOfSlides, setNumberOfSlides] = useState(0)
   const [onTransition, setOnTransition] = useState(false)
 
+  const [recentNews, setRecentsNews] = useState<Array<TNewsCardProps>>([])
+
   useEffect(() => {
-    carrousel.current.style.backgroundImage = `url(${assetsFolder + "/img/news/n1.jpg"})`
-  }, [])
+    if (recentNews.length === 0) return
+    // carrousel.current.style.backgroundImage = `url(${recentNews[actualSlide-1].img})`
+  }, [recentNews, actualSlide])
 
   const handleTransitionEnd = () => {
     setOnTransition(false)
@@ -51,22 +69,31 @@ const NewsCarrousel = () => {
   }
 
   useEffect(() => {   
-    const firstChild = news.current.firstChild as HTMLDivElement
-    const lastChild = news.current.lastChild as HTMLDivElement
-    const clonLastChild = document.createElement("div")
-    clonLastChild.innerHTML = lastChild.innerHTML
-    news.current.insertBefore(clonLastChild, firstChild)
-    const clonFirstChild = document.createElement("div")
-    clonFirstChild.innerHTML = firstChild.innerHTML
-    news.current.appendChild(clonFirstChild)
+    if (recentNews.length === 0) return
+    // const firstChild = news.current.firstChild as HTMLDivElement
+    // const lastChild = news.current.lastChild as HTMLDivElement
+    // const clonLastChild = document.createElement("div")
+    // clonLastChild.innerHTML = lastChild.innerHTML
+    // news.current.insertBefore(clonLastChild, firstChild)
+    // const clonFirstChild = document.createElement("div")
+    // clonFirstChild.innerHTML = firstChild.innerHTML
+    // news.current.appendChild(clonFirstChild)
 
     setNumberOfSlides(news.current.children.length)
-    const currentNews = news.current
+    // const currentNews = news.current
     
     return () => {
-      currentNews.removeChild(clonFirstChild)
-      currentNews.removeChild(clonLastChild)
+      // currentNews.removeChild(clonFirstChild)
+      // currentNews.removeChild(clonLastChild)
     }
+  }, [recentNews])
+
+  useEffect(() => {
+    setRecentsNews([
+      {...newsDemo[9]},
+      {...newsDemo[8]},
+      {...newsDemo[7]}
+    ])
   }, [])
 
   return (
@@ -85,27 +112,17 @@ const NewsCarrousel = () => {
         }}
         onTransitionEnd={handleTransitionEnd}
       >
-        <div>
-          <h2>Noticia 1</h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum et quos itaque quis harum est vitae expedita nostrum, sint facilis dolorem ullam officia, maxime quas. Explicabo impedit voluptatem perferendis dolorem.
-          </p>
-          <button>Leer mas</button>
-        </div>
-        <div>
-          <h2>Noticia 2</h2>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque incidunt aut corrupti quibusdam quam eveniet enim culpa, ratione, cumque soluta voluptatum perspiciatis minima nesciunt corporis fugit consectetur ad rerum iure.
-          </p>
-          <button>Leer mas</button>
-        </div>
-        <div>
-          <h2>Noticia 3</h2>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet tenetur laudantium voluptas ex quae sunt, dolore temporibus unde rerum! Sequi qui nobis voluptatibus deserunt, quidem corrupti molestias deleniti sapiente nulla!
-          </p>
-          <button>Leer mas</button>
-        </div>
+        {
+          recentNews.length !== 0 && <NewsSlide {...recentNews[2]}/>
+        }
+        {
+          recentNews.map((news, i) => (
+            <NewsSlide {...news} key={i}/>
+          ))
+        }
+        {
+          recentNews.length !== 0 && <NewsSlide {...recentNews[0]}/>
+        }   
       </div>
       <div className={styles["arrow-right"]}>
         <button onClick={() => handleChangeSlide("next")} disabled={onTransition}>

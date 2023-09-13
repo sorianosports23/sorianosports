@@ -72,11 +72,25 @@
 
 .news > div {
   width: 100%;
-  height: 80%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  padding: 1rem 0;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.news > div::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #2227;
 }
 
 .news > div h2 {
@@ -85,6 +99,7 @@
   text-decoration: underline;
   text-transform: uppercase;
   font-family: 'Metropolis', sans-serif;
+  position: relative;
 }
 
 .news > div p {
@@ -95,27 +110,32 @@
   padding: 0 3rem;
   font-size: 1.1em;
   font-family: 'Raleway', sans-serif;
+  position: relative;
 }
 
-.news > div button {
+.news > div a {
   width: 8rem;
   height: 2.2rem;
   border: none;
   border-radius: .7rem;
-  background-color: var(--index-btn);
-  color: #222;
+  background-color: var(--news-btn);
+  color: #eee;
   text-transform: uppercase;
   font-size: 1.1em;
   font-weight: bold;
   text-shadow: 1px 1px #222;
   transition: border .1s, background .3s, color .3s, transform .3s;
+  text-decoration: none;
+  display: grid;
+  place-content: center;
+  font-family: 'Raleway';
+  position: relative;
 }
 
-.news > div button:hover {
-  border: 2px solid var(--index-btn);
+.news > div a:hover {
+  border: 2px solid var(--news-btn);
   background: none;
   transform: scale(1.1);
-  color: #eee;
 }
 
 @media (max-width: 768px) {
