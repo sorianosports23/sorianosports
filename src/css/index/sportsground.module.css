@@ -79,8 +79,7 @@
   width: 6rem;
   height: 2.2rem;
   border: none;
-  background-color: #0f0a;
-  /* background-color: #8C30F5; */
+  background-color: var(--index-btn);
   color: #232323;
   border-radius: .3rem;
   font-size: 1em;

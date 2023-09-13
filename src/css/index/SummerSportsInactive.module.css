@@ -10,9 +10,9 @@
 
 .circle {
   position: absolute;
-  width: 90%;
+  width: 95%;
   height: 90%;
-  background: #eee;
+  background: var(--circle-ground-bg);
   border-radius: .5rem 8rem .5rem 8rem;
   left: 50%;
   top: 50%;
@@ -91,7 +91,7 @@
 }
 
 .carrousel > button:hover {
-  transform: scale(1.2);
+  /* transform: scale(1.2); */
 }
 
 .carrousel > button > img {
@@ -143,8 +143,8 @@
   height: 3rem;
   border: none;
   font-size: 2em;
-  background: #0fc;
-  color: #eee;
+  background: var(--index-btn);
+  color: #222;
   border-radius: 100%;
   display: grid;
   place-content: center;

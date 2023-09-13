@@ -39,11 +39,11 @@
   height: 3.5rem;
   border-radius: 100%;
   border: none;
-  background-color: #0acbe8;
+  background-color: var(--index-btn);
   display: grid;
   place-content: center;
   font-size: 1.8em;
-  color: #eee;
+  color: #222;
   transition: border .1s, background .3s, color .3s, transform .3s;
 }
 
@@ -54,9 +54,10 @@
 
 .arrow-left > button:hover, .arrow-right > button:hover, .arrows_mobile > button:hover {
   background: none;
-  border: 2px solid #0acbe8;
+  border: 2px solid var(--index-btn);
   transform: scale(1.1);
   font-size: 2em;
+  color: #eee;
 }
 
 .news {
@@ -101,8 +102,8 @@
   height: 2.2rem;
   border: none;
   border-radius: .7rem;
-  background-color: #0acbe8;
-  color: #eee;
+  background-color: var(--index-btn);
+  color: #222;
   text-transform: uppercase;
   font-size: 1.1em;
   font-weight: bold;
@@ -111,9 +112,10 @@
 }
 
 .news > div button:hover {
-  border: 2px solid #0acbe8;
+  border: 2px solid var(--index-btn);
   background: none;
   transform: scale(1.1);
+  color: #eee;
 }
 
 @media (max-width: 768px) {

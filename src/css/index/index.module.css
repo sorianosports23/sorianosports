@@ -29,11 +29,12 @@
 
 .ground {
   background-color: var(--index-ground-bg);
+  margin-top: 1rem;
 }
 
 .water {
-  background-color: var(--index-water-bg);
-  margin-top: .5rem;
+  background-color: var(--index-ground-bg);
+
 }
 
 .ground > div[data-ground-open="true"] > .circle::before {

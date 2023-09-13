@@ -1,11 +1,13 @@
 :root {
-  --header-bg: #fff;
+  --header-bg: rgb(173, 254, 238);
   /* --header-bg-10: #F9F37F10;
   --header-bg-90: #F9F37F90; */
-  --header-bg-10: #fff;
+  --header-bg-10: rgb(173, 254, 238);
   --header-bg-90: #fff;
-  --header-bg-2: #F9F37F;
+  --header-bg-2: rgb(173, 254, 238);
   --footer-bg: #F9F37F;
+
+  --index-btn: #abc;
 
   --bg-color: #f6fafb;
   --bg-color-op: #f6fafbc0;
@@ -15,7 +17,7 @@
   /* colores de la pagina de inicio */
   --index-ground-bg: #eee;
   --index-water-bg: #0acbe8;
-  --circle-ground-bg: #0acbe8;
+  --circle-ground-bg: #94c5cc;
   --circle-water-bg: #eee;
 
 
