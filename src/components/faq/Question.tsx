@@ -13,11 +13,20 @@ const QResponse = ({question, response}: {question: string, response: string}) =
   const [openHeight, setOpenHeight] = useState(0)
   const pText = useRef<HTMLParagraphElement>(null) as MutableRefObject<HTMLParagraphElement>
   
+  const handleChangeHeight = () => {
+    const cont = pText.current.getBoundingClientRect()
+    setOpenHeight(cont.height)
+    console.log(cont)
+  }
+
   useEffect(() => {
-    if (pText) {
-      const cont = pText.current.getBoundingClientRect()
-      setOpenHeight(cont.height)
-      console.log(cont)
+    const observer = new ResizeObserver(handleChangeHeight)
+    if (pText.current) {
+      observer.observe(pText.current)
+    }
+
+    return () => {
+      observer.disconnect()
     }
   }, [])
 
