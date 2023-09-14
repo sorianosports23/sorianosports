@@ -19,6 +19,8 @@ import News from "../pages/user/News"
 import EventsAdmin from "../pages/admin/Events"
 import Contact from "../pages/user/Contact"
 import Directive from "../pages/user/institution/Directive"
+import ReadNews from "../pages/user/ReadNews"
+import readNewsLoader from "./routes/readNewsLoader"
 
 const pageUserRoutes = createRoutesFromElements(
   <Route path="/" errorElement={<Error/>}>
@@ -29,7 +31,10 @@ const pageUserRoutes = createRoutesFromElements(
       <Route path="deportes" element={<Sports/>}/>
       <Route path="escuelas" element={<Schools/>}/>
     </Route>
-    <Route path="noticias" element={<News/>}/>
+    <Route path="noticias">
+      <Route index element={<News/>}/>
+      <Route path="leer/:id" element={<ReadNews/>} loader={readNewsLoader}/>
+    </Route>
 
     <Route path="info/:city/:sport" element={<Sport/>} loader={sportLoader}/>
     <Route path="faq" element={<Faq/>}/>

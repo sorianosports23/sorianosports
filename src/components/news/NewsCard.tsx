@@ -19,7 +19,7 @@ const NewsCard = ({ title, description, date, img, author, id }: TNewsCardProps)
                   : `${assetsFolder}/img/${img}`
 
   return (
-    <Link to={`/noticias/${id}`} className={styles.card}>
+    <Link to={`/noticias/leer/${id}`} className={styles.card}>
       <div className={styles.img}>
         <img src={imgSrc} alt="news" />
       </div>

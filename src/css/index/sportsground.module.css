@@ -89,8 +89,9 @@
 .circle {
   position: absolute;
   right: 0;
-  top: 0;
-  height: 100%;
+  top: 50%;
+  transform: translate(-1rem, -50%);
+  height: 95%;
   width: 40%;
   border-radius: 13rem 0 13rem .5rem;
   background-color: var(--circle-ground-bg);
