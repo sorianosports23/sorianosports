@@ -21,32 +21,37 @@ import Contact from "../pages/user/Contact"
 import Directive from "../pages/user/institution/Directive"
 import ReadNews from "../pages/user/ReadNews"
 import readNewsLoader from "./routes/readNewsLoader"
+import Inscription from "../pages/user/Inscription"
 
 const pageUserRoutes = createRoutesFromElements(
   <Route path="/" errorElement={<Error/>}>
     <Route index element={<Index/>}/>
+    
     <Route path="eventos" element={<Events/>}/>
+    
     <Route path="actividades">
       <Route path="ciudades" element={<Departments/>}/>
       <Route path="deportes" element={<Sports/>}/>
       <Route path="escuelas" element={<Schools/>}/>
     </Route>
+    
     <Route path="noticias">
       <Route index element={<News/>}/>
       <Route path="leer/:id" element={<ReadNews/>} loader={readNewsLoader}/>
     </Route>
 
+
     <Route path="info/:city/:sport" element={<Sport/>} loader={sportLoader}/>
     <Route path="faq" element={<Faq/>}/>
 
- 
+    <Route path="inscripcion" element={<Inscription/>}/>
 
 
     <Route path="auth">
       <Route path="registro" element={<Register/>}/>
       <Route path="login" element={<Login/>}/>
       <Route path="perfil" element={<Account/>}/>
-    </Route>
+    R</Route>
 
     <Route path="acerca">
       <Route path="misionvision" element={<MissionVission/>}/>

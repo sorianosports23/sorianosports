@@ -10,14 +10,15 @@
 }
 
 .news_img {
-  width: max-content;
-  height: 40rem;
+  width: 100%;
+  height: max-content;
 }
 
 .news_img > img {
-  width: auto;
+  width: 100%;
   height: 100%;
   border-radius: .5rem;
+  object-fit: contain;
 }
 
 .info {
