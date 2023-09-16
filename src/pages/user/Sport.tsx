@@ -9,6 +9,36 @@ import { BsChevronUp } from "react-icons/bs"
 
 type TInfoOnScreen = "Lugares" | "Eventos"
 
+type TSportPlace = {
+  place: string
+  teacher: string
+  time: string
+}
+
+const SportPlace = ({ place, teacher, time }: TSportPlace) => {
+  return (
+    <li>
+      <div>
+        <div>
+          <p>Lugar</p>
+          <span>{place}</span>
+        </div>
+        <div>
+          <p>Profesor</p>
+          <span>{teacher}</span>
+        </div>
+        <div>
+          <p>Horario</p>
+          <span>{time}</span>
+        </div>
+        <div>
+          <Link to="/inscripcion">Inscribirse</Link>
+        </div>
+      </div>
+    </li>
+  )
+}
+
 const Sport = () => {
 
   const { city, sport } = useParams()
@@ -34,7 +64,7 @@ const Sport = () => {
             <img src={urlIcon} alt="" />
           </div>
         </div>
-
+{/* 
         <div className={styles.infoSelector}>
           <button
             className={infoOnScreen === "Lugares" ? styles.on_screen : undefined}
@@ -59,7 +89,7 @@ const Sport = () => {
           >
             Eventos
           </button>
-        </div>
+        </div> */}
         
         <div className={styles.info}>
           <div className={styles.info_cont}>
@@ -72,19 +102,18 @@ const Sport = () => {
             >
               <h4>Lugares</h4>
               <ul>
-                <li>
-                  <Link to="/">Lugar 1</Link>
-                </li>
-                <li>
-                  <Link to="/">Lugar 2</Link>
-                </li>
-                <li>
-                  <Link to="/">Lugar 3</Link>
-                </li>
+                <SportPlace place="Club Remeros Mercedes" teacher="Profesor X" time="16:00 - 20:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
               </ul>
             </div>
 
-            <div
+            {/* <div
               style={{
                 transform: `
                   ${infoOnScreen === "Eventos" ? "translateY(-100%)" : "translateY(0)"}
@@ -103,7 +132,7 @@ const Sport = () => {
                   <Link to="/">Evento 3</Link>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </Container>
