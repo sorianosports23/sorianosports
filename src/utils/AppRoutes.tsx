@@ -22,6 +22,7 @@ import Directive from "../pages/user/institution/Directive"
 import ReadNews from "../pages/user/ReadNews"
 import readNewsLoader from "./routes/readNewsLoader"
 import Inscription from "../pages/user/Inscription"
+import Err404 from "../pages/404"
 
 const pageUserRoutes = createRoutesFromElements(
   <Route path="/" errorElement={<Error/>}>
@@ -74,7 +75,7 @@ const pageRoutes = createBrowserRouter(
   ...pageUserRoutes,
   {
     path: "*",
-    element: <div>Not found... (<Link to="/">Go to /</Link>)</div>
+    element: <Err404/>
   },
   {
     path: "/error",
