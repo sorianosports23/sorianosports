@@ -5,19 +5,21 @@ type TCardProps = {
   name: string
   iconUrlName: string
   backgroundUrlName: string
+  select: () => void
 }
 
-const SportCard = ({ name, iconUrlName, backgroundUrlName }: TCardProps) => {
+const SportCard = ({ name, iconUrlName, backgroundUrlName, select }: TCardProps) => {
 
   const iconImage = assetsFolder + `/img/icons/${iconUrlName}`
   const backgroundImage = assetsFolder + `/img/cards/${backgroundUrlName}`
 
   return (
-    <div 
+    <button 
       className={styles.sportCard}  
       style={{
         backgroundImage: `url(${backgroundImage})`
       }}
+      onClick={select}
     >
       <div>
         <p>{name}</p>
@@ -26,7 +28,7 @@ const SportCard = ({ name, iconUrlName, backgroundUrlName }: TCardProps) => {
           <img src={iconImage} alt={name} />
         </div>
       </div>
-    </div>
+    </button>
   )
 }
 

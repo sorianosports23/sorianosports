@@ -5,6 +5,7 @@ import SportCard from "../../../components/activities/sports/SportCard"
 import { useState } from "react"
 import assetsFolder from "../../../utils/publicfolder"
 import { FaMousePointer } from "react-icons/fa"
+import SportSearch from "../../../components/activities/sports/SportSearch"
 
 const sports = {
   ground: [
@@ -21,6 +22,8 @@ type TEventType = "ground" | "water" | undefined
 const Sports = () => {
 
   const [eventTypeSelected, setEventTypeSelected] = useState<TEventType>(undefined)
+  const [sportSelected, setSportSelect] = useState("")
+  const [modalOpen, setModalOpen] = useState(false)
 
   return (
     <User>
@@ -29,6 +32,7 @@ const Sports = () => {
           <button 
             className={styles.ground}
             onClick={() => setEventTypeSelected("ground")}
+            data-clicked={eventTypeSelected === "ground"}
           >
             <div className={styles.icon}>
               <img src={assetsFolder + "/img/icons/running.png"} alt="person-running" />
@@ -47,6 +51,7 @@ const Sports = () => {
           <button 
             className={styles.water}
             onClick={() => setEventTypeSelected("water")}
+            data-clicked={eventTypeSelected === "water"}
           >
             <div className={styles.icon}>
               <img src={assetsFolder + "/img/icons/swimming.png"} alt="person-swimming" />
@@ -70,11 +75,21 @@ const Sports = () => {
                   iconUrlName={sport.icon}
                   backgroundUrlName={sport.background}
                   key={i}
+                  select={() => {
+                    setSportSelect(sport.name)
+                    setModalOpen(true)
+                  }}
                 />
               ))
           }
         </div>
       </Container>
+
+      <SportSearch
+        open={modalOpen}
+        sport={sportSelected}
+        close={() => setModalOpen(false)}
+      />
     </User>
   )
 }
