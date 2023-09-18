@@ -41,16 +41,18 @@
   color: #222;
 }
 
-.textDiv h2 > span {
+.textDiv h2 > span:first-of-type {
   width: 100%;
 }
 
 .textDiv h2 > span:nth-child(2) {
   margin-left: 1rem;
+  text-align: start;
 }
 
 .textDiv h2 > span:last-of-type {
   margin-left: 3rem;
+  text-align: start;
 }
 
 .textDiv p {

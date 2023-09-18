@@ -23,7 +23,7 @@ const SportCard = ({ sport, img, open }: TSportCardProps) => {
   )
 }
 
-const YearSports = () => {
+const SummerSports = () => {
 
   const [listOpen, setListOpen] = useState(false)
   const sportsList = useRef<HTMLDivElement>(null)
@@ -66,8 +66,8 @@ const YearSports = () => {
           <div>
             <h2>
               <span>Actividades</span>
-              <span>Deportivas</span>
-              <span>Anuales</span>
+              <span>De</span>
+              <span>Verano</span>
             </h2>
               <p>¡El deporte es vida... Vivi el deporte!</p>
               <button
@@ -81,7 +81,7 @@ const YearSports = () => {
            
           </div>
           <div className={styles.img}>
-            <img src={assetsFolder + "/img/yearsports.jpg"} alt="sports-ground" />
+            <img src={assetsFolder + "/img/summersports.jpg"} alt="sports-summer" />
           </div>
         </div>
         
@@ -117,4 +117,4 @@ const YearSports = () => {
   )
 }
 
-export default YearSports
+export default SummerSports
