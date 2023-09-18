@@ -6,7 +6,7 @@ import CityMap from "../../../components/activities/departments/CityMap"
 import { Link, useNavigate } from "react-router-dom"
 import useSearchParams from "../../../utils/useSearchParams"
 import assetsFolder from "../../../utils/publicfolder"
-import { sportImg } from "../../../utils/sportList"
+import { citySports, sportImg } from "../../../utils/sportList"
 
 const departments = {
   Dolores: {
@@ -135,7 +135,7 @@ const Departments = () => {
             <div className={styles.selected_ground}>
               <ul>
                 {
-                  departments[selectedDepartment as keyof typeof departments].ground.map((sport, i) => (
+                  citySports[selectedDepartment as keyof typeof citySports].map((sport, i) => (
                     <li key={i} style={{
                       backgroundImage: `url(${assetsFolder}/img/cards/${sportImg[sport]})`
                     }}

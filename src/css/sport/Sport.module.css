@@ -16,6 +16,26 @@
   align-items: center;
   flex-direction: column;
   border-radius: 1rem;
+  background-position: center;
+  background-size: cover;
+  color: #eee;
+  position: relative;
+  overflow: hidden;
+}
+
+.title h1,
+.title h2 {
+  position: relative;
+  padding: .5rem;
+}
+
+.title::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  background: #2229;
 }
 
 .title_img {
@@ -156,7 +176,7 @@
 
 @media (min-width: 992px) {
   .info_cont > div > ul {
-    padding: 0 20%;
+    /* padding: 0 20%; */
   }
 }
 
