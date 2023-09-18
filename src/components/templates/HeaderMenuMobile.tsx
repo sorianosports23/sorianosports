@@ -73,18 +73,18 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
           <ul>
             <li>
               <Link to="/">
-                <BsFillHouseFill/>
+                {/* <BsFillHouseFill/> */}
                 Inicio
               </Link>
             </li>
             <li className={styles.link_dropdown}
               style={{
-                height: activitiesOpen ? "5rem" : "2rem"
+                height: activitiesOpen ? "8rem" : "3rem"
               }}
             >
               <button
                 style={{
-                  height: activitiesOpen ? "5rem" : "2rem"
+                  height: activitiesOpen ? "8rem" : "3rem"
                 }}
                 onClick={() => setActivitiesOpen(!activitiesOpen)}
               >
@@ -113,24 +113,24 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
             </li>
             <li>
               <Link to="/eventos">
-                <BsCalendarDateFill/>
+                {/* <BsCalendarDateFill/> */}
                 Eventos
               </Link>
             </li>
             <li>
               <Link to="/noticias">
-                <BsNewspaper/>
+                {/* <BsNewspaper/> */}
                 Noticias
               </Link>
             </li>
             <li className={styles.link_dropdown}
               style={{
-                height: institutionOpen ? "8rem" : "2rem"
+                height: institutionOpen ? "10rem" : "3rem"
               }}
             >
               <button
                 style={{
-                  height: institutionOpen ? "8rem" : "2rem"
+                  height: institutionOpen ? "10rem" : "3rem"
                 }}
                 onClick={() => setInstitutionOpen(!institutionOpen)}
               >
@@ -158,7 +158,7 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
             </li>
             <li>
               <Link to="/faq">
-                <BsChatSquareDotsFill/>
+                {/* <BsChatSquareDotsFill/> */}
                 Ayuda
               </Link>
             </li>
