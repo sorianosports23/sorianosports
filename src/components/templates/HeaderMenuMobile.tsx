@@ -125,12 +125,12 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
             </li>
             <li className={styles.link_dropdown}
               style={{
-                height: institutionOpen ? "4rem" : "2rem"
+                height: institutionOpen ? "8rem" : "2rem"
               }}
             >
               <button
                 style={{
-                  height: institutionOpen ? "4rem" : "2rem"
+                  height: institutionOpen ? "8rem" : "2rem"
                 }}
                 onClick={() => setInstitutionOpen(!institutionOpen)}
               >
@@ -146,6 +146,12 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
                 <ul>
                   <li>
                     <Link to="/acerca/misionvision">Misión y Visión</Link>
+                  </li>
+                  <li>
+                    <Link to="/acerca/directiva">Directiva</Link>
+                  </li>
+                  <li>
+                    <Link to="/acerca/contacto">Contacto</Link>
                   </li>
                 </ul>
               </button>
