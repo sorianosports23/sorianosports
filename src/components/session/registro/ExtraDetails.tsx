@@ -4,17 +4,19 @@ import Loader from "../../Loader"
 
 type TExtraDetailsProps = {
   ciInput: TInputProps
+  ageInput: TInputProps
   loading: boolean
   buttonClick: () => void
   prevButtonClick: () => void
   errorInputs: {
-    ci: boolean
+    ci: "false" | "true"
+    age: "false" | "true"
   }
   buttonDisabled: boolean
 }
 
-const ExtraDetails = ({ ciInput, loading, buttonClick, prevButtonClick, errorInputs, buttonDisabled }: TExtraDetailsProps) => {
-  
+const ExtraDetails = ({ ciInput, ageInput, loading, buttonClick, prevButtonClick, errorInputs, buttonDisabled }: TExtraDetailsProps) => {
+
   const handleFinish = () => {
     if (loading) return
     buttonClick()
@@ -36,11 +38,21 @@ const ExtraDetails = ({ ciInput, loading, buttonClick, prevButtonClick, errorInp
       </div>
 
       <div>
+        <label htmlFor="#">Edad:</label>
+        <div>
+          <input type="number" min={5} max={100}
+            {...ageInput}
+            data-error={errorInputs.age}
+          />
+        </div>
+      </div>
+
+      <div>
         <button type="button" onClick={() => prevButtonClick()} disabled={loading}>
           Anterior
         </button>
 
-        <button type="button" onClick={() => handleFinish()} disabled={buttonDisabled}>
+        <button type="button" onClick={() => handleFinish()} disabled={false}>
           {
             loading 
               ? <Loader/>

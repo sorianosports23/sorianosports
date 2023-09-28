@@ -7,8 +7,8 @@ type TUserContactProps = {
   buttonClick: () => void
   buttonPrevClick: () => void
   errorInputs: {
-    email: boolean
-    phone: boolean
+    email: "false" | "true"
+    phone: "false" | "true"
   }
 }
 

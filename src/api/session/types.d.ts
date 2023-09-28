@@ -2,6 +2,7 @@ type TApiRegisterRequest = {
   username: string
   password: string
   email: string
+  age: number
   phone: number
   ci: string
 }
@@ -24,4 +25,19 @@ type TApiChangePasswordRequest = {
 
 interface IApiChangePasswordResponse extends TApiResponse {
   err?: string
+}
+
+type TApiGetUserInfoRequest = {
+  token: string
+}
+
+type TApiGetUserInfoResponse = {
+  authorization: boolean
+  data?: {
+    username: string
+    email: string
+    age: number
+    ci: number
+    phone: number
+  }
 }

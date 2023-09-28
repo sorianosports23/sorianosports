@@ -6,8 +6,8 @@ type TAccountDetailsProps = {
   passwordInput: TInputProps
   buttonClick: () => void
   errorInputs: {
-    username: boolean
-    password: boolean
+    username: "false" | "true"
+    password: "false" | "true"
   }
 }
 
@@ -19,7 +19,7 @@ const AccountDetails = ({ userInput, passwordInput, buttonClick, errorInputs }: 
         <div>
           <input type="text" 
             {...userInput}
-            data-error={errorInputs.username}
+            // data-error={errorInputs.username}
           />
           <div>
             <BsFillPersonFill/>
@@ -32,7 +32,7 @@ const AccountDetails = ({ userInput, passwordInput, buttonClick, errorInputs }: 
         <div>
           <input type="password" 
             {...passwordInput}
-            data-error={errorInputs.password}
+            // data-error={errorInputs.password}
           />
           <div>
             <BsKeyFill/>

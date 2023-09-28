@@ -69,6 +69,11 @@ const Inscription = () => {
           </div>
 
           <div>
+            <label htmlFor="i_citysport">Ciudad</label>
+            <input type="text" id="i_citysport"/>
+          </div>
+
+          <div>
             <label htmlFor="i_direction">
               Domicilio:
             </label>
@@ -119,6 +124,11 @@ const Inscription = () => {
               a
               <input type="time" />
             </div>
+          </div>
+
+          <div>
+            <label htmlFor="i_sportplace">Lugar donde se desarrollara el deporte:</label>
+            <input type="text" id="i_sportplace"/>
           </div>
 
           <div>

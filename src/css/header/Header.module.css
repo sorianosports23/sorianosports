@@ -5,7 +5,7 @@
   display: flex;
   flex-wrap: wrap;
   height: max-content;
-  background: linear-gradient(to right, var(--header-bg-10), var(--header-bg-90),var(--header-bg-90), var(--header-bg-90), var(--header-bg-10));
+  background: var(--header-bg);
 }
 
 .header-top {
@@ -112,11 +112,13 @@
   /* margin-bottom: 1rem; */
   border-radius: 1rem;
   background: none;
-  border: 1px solid #222;
+  /* border: 1px solid #222; */
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: .2rem;
+  text-decoration: underline;
   /* transition: border-radius .3s; */
 }
 
@@ -139,14 +141,15 @@
 
 .user > ul {
   width: 100%;
-  background: #eee;
+  background: #fff;
   height: max-content;
-  border: 1px solid #222;
+  /* border: 1px solid #222; */
   border-top: none;
+  border-radius: 0 0 .5rem .5rem;
 }
 
 .user > ul li {
-  height: 2.5rem;
+  height: max-content;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -164,6 +167,9 @@
   color: #222;
   font-size: 1.05em;
   font-family: arial;
+  width: 100%;
+  height: 100%;
+  text-align: end;
 }
 
 .link-header {

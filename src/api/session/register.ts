@@ -1,7 +1,7 @@
 import apiLoaded from "../../utils/apiLoaded"
 import api from "../../utils/apiRoute"
 
-const apiRegister = async ({ username, password, email, phone, ci }: TApiRegisterRequest): Promise<TApiResponse> => {
+const apiRegister = async ({ username, password, email, age, phone, ci }: TApiRegisterRequest): Promise<TApiResponse> => {
   if (!apiLoaded) {
     return {
       status: true,
@@ -14,16 +14,23 @@ const apiRegister = async ({ username, password, email, phone, ci }: TApiRegiste
       username,
       password,
       email,
+      age,
       phone,
       ci
     }
 
-    const req = await fetch(`${api}/usuario/register.php`, {
+    console.log("MANDANDO PETICION")
+
+    const req = await fetch(`${api}/users/addUser.php`, {
       method: "POST",
       body: JSON.stringify(userData)
     })
 
+    console.log("PETICION RECIBIDA")
+
     const res = await req.json() as TApiResponse
+
+    console.log("PETICION PARSEADA A JSON")
 
     if (!res.status) {
       throw new Error()

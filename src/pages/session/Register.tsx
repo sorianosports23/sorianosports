@@ -36,6 +36,7 @@ const Register = () => {
   const userEmail = useForm("")
   const userPhone = useForm(0)
   const userCI = useForm(0)
+  const userAge = useForm(0)
 
   const errorInputName = "data_error"
 
@@ -80,6 +81,7 @@ const Register = () => {
       username: user.value,
       password: userPassword.value,
       email: userEmail.value,
+      age: userAge.value,
       phone: userPhone.value,
       ci: userCI.value
     }
@@ -139,11 +141,13 @@ const Register = () => {
 
             <ExtraDetails
               ciInput={userCI}
+              ageInput={userAge}
               prevButtonClick={() => setRegisterSlide(1)}
               buttonClick={() => handleRegister()}
               loading={loadingRegister}
               errorInputs={{
-                ci: userCI[errorInputName]
+                ci: userCI[errorInputName],
+                age: "false"
               }}
               buttonDisabled={submitDisabled}
             />

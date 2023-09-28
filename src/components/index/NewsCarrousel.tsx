@@ -26,6 +26,7 @@ const NewsCarrousel = () => {
   const [newsTransition, setNewsTransition] = useState(true)
   const [numberOfSlides, setNumberOfSlides] = useState(0)
   const [onTransition, setOnTransition] = useState(false)
+  const [mouseOnNews, setMouseOnNews] = useState(false)
 
   const [recentNews, setRecentsNews] = useState<Array<TNewsCardProps>>([])
 
@@ -96,8 +97,22 @@ const NewsCarrousel = () => {
     ])
   }, [])
 
+  useEffect(() => {
+    const intervalSlide = setInterval(() => {
+      if (mouseOnNews) return
+      handleChangeSlide("next")
+    }, 3000)
+
+    return () => {
+      clearInterval(intervalSlide)
+    }
+  }, [handleChangeSlide, mouseOnNews])
+
   return (
-    <div className={styles.carrousel} ref={carrousel}>
+    <div className={styles.carrousel} ref={carrousel}
+      onPointerEnter={() => setMouseOnNews(true)}
+      onPointerLeave={() => setMouseOnNews(false)}
+    >
       <div className={styles["arrow-left"]}>
         <button onClick={() => handleChangeSlide("prev")} disabled={onTransition}>
           <BsChevronLeft/>

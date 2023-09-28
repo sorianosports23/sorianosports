@@ -1,6 +1,6 @@
 import { LoaderFunction, LoaderFunctionArgs } from "react-router-dom";
 import cityList from "../cityList";
-import { sportList } from "../sportList";
+import { citySports, sportList } from "../sportList";
 
 const sportLoader: LoaderFunction = ({ params }: LoaderFunctionArgs) => {
   const city = params.city
@@ -14,7 +14,7 @@ const sportLoader: LoaderFunction = ({ params }: LoaderFunctionArgs) => {
     throw new Response("La ciudad indicada no existe o no tenemos información de la misma")
   }
 
-  if (!sportList.includes(sport)) {
+  if (!citySports[city].includes(sport)) {
     throw new Response("El deporte indicado no existe o no tenemos información del mismo")
   }
   

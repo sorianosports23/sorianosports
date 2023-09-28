@@ -35,7 +35,7 @@
   position: relative;
 }
 
-.ground:hover, .water:hover {
+.ground:hover, .water:hover, .ground[data-clicked='true'], .water[data-clicked='true'] {
   width: 20rem;
   height: 12rem;
   justify-content: center;
@@ -62,7 +62,7 @@
   top: 0;
 }
 
-.water:hover::before, .ground:hover::before {
+.water:hover::before, .ground:hover::before, .ground[data-clicked='true']::before, .water[data-clicked='true']::before {
   width: 100%;
 }
 

@@ -3,11 +3,41 @@ import User from "./User"
 import { Link, useParams } from "react-router-dom"
 import styles from "../../css/sport/Sport.module.css"
 import assetsFolder from "../../utils/publicfolder"
-import { sportIcon } from "../../utils/sportList"
-import { useState } from "react"
+import { TSportPlaceInfo, sportIcon, sportImg, sportPlaces } from "../../utils/sportList"
+import { useEffect, useState } from "react"
 import { BsChevronUp } from "react-icons/bs"
 
 type TInfoOnScreen = "Lugares" | "Eventos"
+
+type TSportPlace = {
+  place: string
+  teacher: string
+  time: string
+}
+
+const SportPlace = ({ place, teacher, time }: TSportPlace) => {
+  return (
+    <li>
+      <div>
+        <div>
+          <p>Lugar</p>
+          <span>{place}</span>
+        </div>
+        <div>
+          <p>Profesor</p>
+          <span>{teacher}</span>
+        </div>
+        <div>
+          <p>Horario</p>
+          <span>{time}</span>
+        </div>
+        <div>
+          <Link to="/inscripcion">Inscribirse</Link>
+        </div>
+      </div>
+    </li>
+  )
+}
 
 const Sport = () => {
 
@@ -20,21 +50,34 @@ const Sport = () => {
 
   const [infoOnScreen, setInfoOnScreen] = useState<TInfoOnScreen>("Lugares")
 
+  const [sportList, setSportList] = useState<TSportPlaceInfo>()
+
+  useEffect(() => {
+    const sportInfo = sportPlaces[city as string].find(sportInfo => sportInfo.sport === sport)
+    if (sportInfo) {
+      setSportList(sportInfo)
+    }
+  }, [city, sport])
+
 
   return (
     <User>
       <Container>
         <div className={styles.title_cont}>
-          <div className={styles.title}>
+          <div className={styles.title}
+            style={{
+              backgroundImage: `url(${assetsFolder}/img/cards/${sportImg[sport as string]})`
+            }}
+          >
             <h1>{sport}</h1>
             <h2>{city}</h2>
           </div>
 
-          <div className={styles.title_img}>
+          {/* <div className={styles.title_img}>
             <img src={urlIcon} alt="" />
-          </div>
+          </div> */}
         </div>
-
+{/* 
         <div className={styles.infoSelector}>
           <button
             className={infoOnScreen === "Lugares" ? styles.on_screen : undefined}
@@ -59,7 +102,7 @@ const Sport = () => {
           >
             Eventos
           </button>
-        </div>
+        </div> */}
         
         <div className={styles.info}>
           <div className={styles.info_cont}>
@@ -72,19 +115,28 @@ const Sport = () => {
             >
               <h4>Lugares</h4>
               <ul>
-                <li>
-                  <Link to="/">Lugar 1</Link>
-                </li>
-                <li>
-                  <Link to="/">Lugar 2</Link>
-                </li>
-                <li>
-                  <Link to="/">Lugar 3</Link>
-                </li>
+                {/* <SportPlace place="Club Remeros Mercedes" teacher="Profesor X" time="16:00 - 20:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
+                <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/> */}
+                {
+                  sportList && sportList.places.map((place, i) => (
+                    <SportPlace
+                      place={place.name}
+                      teacher={place.teacher}
+                      time={place.time}
+                      key={i}
+                    />
+                  ))
+                }
               </ul>
             </div>
 
-            <div
+            {/* <div
               style={{
                 transform: `
                   ${infoOnScreen === "Eventos" ? "translateY(-100%)" : "translateY(0)"}
@@ -103,7 +155,7 @@ const Sport = () => {
                   <Link to="/">Evento 3</Link>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </Container>
