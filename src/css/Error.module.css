@@ -17,7 +17,14 @@
   font-size: 1.4em;
 }
 
-.btn button {
+.btn {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.btn button,
+.btn a {
   width: 8rem;
   height: 2.5rem;
   border-radius: .3rem;
@@ -26,6 +33,9 @@
   font-size: 1.2em;
   display: grid;
   place-content: center;
+  color: #222;
+  text-decoration: none;
+  font-family: 'Raleway', sans-serif;
 }
 
 .text p {

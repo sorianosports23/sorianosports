@@ -1,9 +1,10 @@
 import { TInputProps } from "../../../pages/session/types/Register"
-import { BsEnvelopeAtFill, BsTelephoneFill } from "react-icons/bs"
+import { BsEnvelopeAtFill, BsTelephoneFill, BsFillPersonFill } from "react-icons/bs"
 
 type TUserContactProps = {
   emailInput: TInputProps
   phoneInput: TInputProps
+  fullnameInput: TInputProps
   buttonClick: () => void
   buttonPrevClick: () => void
   errorInputs: {
@@ -12,7 +13,7 @@ type TUserContactProps = {
   }
 }
 
-const UserContact = ({ emailInput, phoneInput, buttonClick, buttonPrevClick, errorInputs }: TUserContactProps) => {
+const UserContact = ({ emailInput, phoneInput, fullnameInput, buttonClick, buttonPrevClick, errorInputs }: TUserContactProps) => {
   return (
     <form>
       <div>
@@ -24,6 +25,17 @@ const UserContact = ({ emailInput, phoneInput, buttonClick, buttonPrevClick, err
           />
           <div>
             <BsEnvelopeAtFill/>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="#">Nombre completo</label>
+        <div>
+          <input type="text" {...fullnameInput}/>
+
+          <div>
+            <BsFillPersonFill/>
           </div>
         </div>
       </div>

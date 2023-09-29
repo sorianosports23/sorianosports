@@ -1,7 +1,7 @@
 import apiLoaded from "../../utils/apiLoaded";
 import api from "../../utils/apiRoute";
 
-const apiChangePassword = async ({ username, password, newPassword }: TApiChangePasswordRequest): Promise<IApiChangePasswordResponse> => {
+const apiChangePassword = async ({ username, password, newPassword, token }: TApiChangePasswordRequest): Promise<IApiChangePasswordResponse> => {
   if (!apiLoaded) {
     return {
       status: true,
@@ -16,9 +16,12 @@ const apiChangePassword = async ({ username, password, newPassword }: TApiChange
       newPassword
     }
 
-    const req = await fetch(`${api}/usuario/cambiarcontraseña.php`, {
+    const req = await fetch(`${api}/users/modifyPass.php`, {
       method: "PUT",
-      body: JSON.stringify(userData)
+      body: JSON.stringify(userData),
+      headers: {
+        "Authorization": `SPToken ${token}`
+      }
     })
 
     const res = await req.json() as IApiChangePasswordResponse

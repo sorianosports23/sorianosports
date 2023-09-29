@@ -1,7 +1,7 @@
 import apiLoaded from "../../utils/apiLoaded"
 import api from "../../utils/apiRoute"
 
-const apiRegister = async ({ username, password, email, age, phone, ci }: TApiRegisterRequest): Promise<TApiResponse> => {
+const apiRegister = async ({ username, fullname, password, email, age, phone, ci }: TApiRegisterRequest): Promise<TApiResponse> => {
   if (!apiLoaded) {
     return {
       status: true,
@@ -12,6 +12,7 @@ const apiRegister = async ({ username, password, email, age, phone, ci }: TApiRe
   try {
     const userData = {
       username,
+      fullname,
       password,
       email,
       age,

@@ -9,7 +9,7 @@ const Security = () => {
 
   const navigate = useNavigate()
 
-  const { username, logout } = useContext(userSessionContext)
+  const { username, logout, token } = useContext(userSessionContext)
 
   const [actualPassword, setActualPassword] = useState("")
   const [newPassword, setNewPassword] = useState("")
@@ -39,10 +39,10 @@ const Security = () => {
       return
     }
     
-    const changedPassword = await apiChangePassword({ username, password: actualPassword, newPassword })
+    const changedPassword = await apiChangePassword({ username, password: actualPassword, newPassword, token })
 
     if (!changedPassword.status) {
-      if (changedPassword.err === "password") {
+      if (changedPassword.err === "actualpassword") {
         setActualPasswordError(true)
         return
       }

@@ -1,5 +1,5 @@
 .toast {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 6rem);
@@ -11,12 +11,12 @@
   gap: 1rem;
   align-items: center;
   justify-content: center;
-  /* z-index: 666; */
+  z-index: 666;
   transition: transform .3s;
 }
 
 .toast[data-open='true'] {
-  transform: translate(-50%, -5rem);
+  transform: translate(-50%, -2rem);
 }
 
 .icon {

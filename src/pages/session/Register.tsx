@@ -32,6 +32,7 @@ const Register = () => {
   ///
 
   const user = useForm("")
+  const userFullname = useForm("")
   const userPassword = useForm("")
   const userEmail = useForm("")
   const userPhone = useForm(0)
@@ -79,6 +80,7 @@ const Register = () => {
     // }, 3000);
     const userData: TApiRegisterRequest = {
       username: user.value,
+      fullname: userFullname.value,
       password: userPassword.value,
       email: userEmail.value,
       age: userAge.value,
@@ -131,6 +133,7 @@ const Register = () => {
             <UserContact
               emailInput={userEmail}
               phoneInput={userPhone}
+              fullnameInput={userFullname}
               buttonPrevClick={() => setRegisterSlide(0)}
               buttonClick={() => setRegisterSlide(2)}
               errorInputs={{

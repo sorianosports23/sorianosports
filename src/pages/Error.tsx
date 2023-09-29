@@ -24,6 +24,7 @@ const Error = () => {
       </p>
       <div className={styles.btn}>
         <button onClick={() => navigate(-1)}>Volver</button>
+        <Link to="/">Inicio</Link>
       </div>
 
       <div className={styles.text}>
