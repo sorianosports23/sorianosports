@@ -1,9 +1,108 @@
-import { FormEvent, useContext, useState } from "react"
+import { FormEvent, useContext, useEffect, useState } from "react"
 import styles from "../../../css/session/account/Security.module.css"
+import modalStyles from "../../../css/session/account/Modal.module.css"
 import apiChangePassword from "../../../api/session/changePassword"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import { useNavigate } from "react-router-dom"
 import Toast from "../../toast/Toast"
+import apiDeleteAccount from "../../../api/session/deleteAccount"
+
+type TModalProps = {
+  open: boolean
+  handleClose: () => void
+}
+
+const ModalDeleteAccount = ({ open, handleClose }: TModalProps) => {
+
+  const { token, logout } = useContext(userSessionContext)
+
+  const [canSubmit, setCanSubmit] = useState(false)
+  const [inputError, setInputError] = useState({
+    error: 'false',
+    message: ""
+  })
+  const [inputPassword, setInputPassword] = useState("")
+
+  const toastMessage = "Cuenta borrada"
+  const [toastOpen, setToastOpen] = useState(false)
+
+  useEffect(() => {
+    if (!inputPassword) setCanSubmit(false)
+  }, [inputPassword])
+
+  const handleDeleteBtn = () => {
+    if (!inputPassword) return
+    setCanSubmit(true)
+  }
+
+  const handleSubmit = async (ev: FormEvent) => {
+    ev.preventDefault()
+    if (!canSubmit) return
+
+    const deletedAccount = await apiDeleteAccount({ token, password: inputPassword })
+
+    if (!deletedAccount.status) {
+      setInputError({
+        error: 'true',
+        message: deletedAccount.message
+      })
+      return
+    }
+
+    setToastOpen(true)
+    logout()
+    setTimeout(() => {
+      window.location.href = `${window.location.origin}/deportes`
+    }, 3000);
+  } 
+
+  return (
+    <>
+    <div className={modalStyles.modal} data-open={open}>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="##">Contraseña</label>
+            <input type="text"
+              value={inputPassword}
+              onChange={(e) => {
+                setInputPassword(e.target.value)
+                setInputError({
+                  error: 'false',
+                  message: ""
+                })
+              }}
+              data-error={inputError.error}
+            />
+            <span>{inputError.message}</span>
+          </div>
+
+          <div>
+            <p>¿Estas seguro? <br /> No hay vuelta atras</p>
+            <button type="submit" disabled={!canSubmit}>Borrar</button>
+          </div>
+        </form>
+
+        <div className={modalStyles.footer}>
+          <button type="button" onClick={handleClose}>
+            Cancelar
+          </button>
+          <button type="button" onClick={handleDeleteBtn}>Borrar</button>
+        </div>
+      </div>
+
+    </div>
+
+    <Toast
+      message={toastMessage}
+      open={toastOpen}
+      icon="ok"
+      closeIn={3}
+    />
+
+    </>
+  )
+}
 
 const Security = () => {
 
@@ -22,6 +121,8 @@ const Security = () => {
   const [toastMessage] = useState("Contraseña cambiada")
   const [toastSecondMessage] = useState("Redirigiendo...")
   const [toastOpen, setToastOpen] = useState(false)
+
+  const [modalDeleteOpen, setModalDeleteOpen] = useState(false)
 
   //
 
@@ -59,6 +160,7 @@ const Security = () => {
   }
 
   return (
+    <>
     <div>
       <div className={styles.change_password}>
         <h2>Cambiar contraseña</h2>
@@ -111,7 +213,7 @@ const Security = () => {
       </div>
 
       <div className={styles.delete_account}>
-        <button>Borrar cuenta</button>
+        <button onClick={() => setModalDeleteOpen(true)}>Borrar cuenta</button>
       </div>
 
       <Toast
@@ -122,6 +224,13 @@ const Security = () => {
         open={toastOpen}
       />
     </div>
+
+    <ModalDeleteAccount
+      open={modalDeleteOpen}
+      handleClose={() => setModalDeleteOpen(false)}
+    />
+    
+    </>
   )
 }
 

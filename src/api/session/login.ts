@@ -22,13 +22,22 @@ const apiLogin = async ({ username, password }: TApiLoginRequest): Promise<IApiL
 
     const res = await req.json() as IApiLoginResponse
 
-    if (!res.status) throw new Error()
+    if (!res.status) throw new Error(JSON.stringify({ message: res.message, err: res.err }), {cause: "php"})
 
     return res
-  } catch (error) {
+  } catch (error: any) {
+    if (error.cause === "php") {
+      const err = JSON.parse(error.message)
+      return {
+        status: false,
+        message: err.message,
+        err: err.err
+      }
+    }
     return {
       status: false,
-      message: "Ocurrio un error al intentar iniciar sesión"
+      message: "Ocurrio un error inesperado",
+      err: "unknown"
     }
   }
 }

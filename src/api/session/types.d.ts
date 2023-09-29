@@ -15,7 +15,7 @@ type TApiLoginRequest = {
 
 interface IApiLoginResponse extends TApiResponse {
   token?: string
-  messageError?: string
+  err?: string
 }
 
 type TApiChangePasswordRequest = {
@@ -54,4 +54,14 @@ type TApiChangeInfoRequest = {
 
 interface IApiChangeInfoResponse extends TApiResponse {
   err?: "fullname" | "email" | "phone"
+}
+
+type TApiDeleteAccountRequest = {
+  token: string,
+  password: string
+}
+
+interface IApiDeleteAccountResponse extends TApiResponse {
+  err?: string
+  authorization?: boolean
 }

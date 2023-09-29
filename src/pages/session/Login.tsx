@@ -60,7 +60,7 @@ const Login = () => {
     console.log(loginRes)
 
     if (!loginRes.status) {
-      if (loginRes.message !== "Ocurrio un error al intentar iniciar sesión") {
+      if (loginRes.err === "php") {
         setModalBody(loginRes.message)
         setModalError(false)
         setModalOpen(true)

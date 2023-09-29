@@ -7,16 +7,32 @@ import ApiError from "../../ApiError"
 import apiChangeInfo from "../../../api/session/changeInfo"
 import Toast from "../../toast/Toast"
 
+type TUserInfoInputError = {
+  [key in "fullname" | "phone" | "email"]: "false" | "true"
+}
+
+type TUserInfoInput = {
+  [key in "name" | "email" | "ci" | "phone"]: string | number
+}
+
+const USER_INFO_ERROR_DEFAULT: TUserInfoInputError = {
+  fullname: "false",
+  phone: "false",
+  email: "false"
+}
+
 const General = () => {
   
   const { username, token } = useContext(userSessionContext)
   const [userInfo, setUserInfo] = useState<TApiGetUserInfoResponse["data"]>(undefined)
-  const [userInfoInput, setUserInfoInput] = useState({
+  const [userInfoInput, setUserInfoInput] = useState<TUserInfoInput>({
     name: "",
     email: "",
     ci: 0,
     phone: 0
   })
+
+  const [userInfoInputError, setUserInfoInputError] = useState<TUserInfoInputError>(USER_INFO_ERROR_DEFAULT)
 
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -52,21 +68,75 @@ const General = () => {
     }
   }, [userInfo])
 
+  const [canSubmit, setCanSubmit] = useState(false)
+
+  // useEffect(() => {
+  //   Object.keys(userInfoInput).map((key) => {
+  //     if (!userInfoInput[key as keyof TUserInfoInput]) {
+  //       setUserInfoInputError({
+  //       ...userInfoInputError,
+  //         [key]: "true"
+  //       })
+  //     }
+
+  //     return null
+  //   })
+  // }, [userInfoInput, userInfoInputError])
+
   const handleSubmit = async (ev: FormEvent) => {
     ev.preventDefault()
+    // if (!canSubmit) return
     setLoading(true)
+
+    let err = false
+
+    Object.keys(userInfoInput).map((key) => {
+      const value = userInfoInput[key as keyof TUserInfoInput]
+
+      const updateErrors = () => {
+        setUserInfoInputError(prev => {
+          const newInputError = prev
+          if (key === "name") {
+            newInputError.fullname = "true"
+            return newInputError
+          }
+          newInputError[key as keyof TUserInfoInputError] = "true"
+          return newInputError
+        })
+        err = true
+      } 
+
+      if (!value) updateErrors()
+      if (typeof value === "number" && isNaN(value)) updateErrors()
+      
+      return null
+    })
+
+    if (err) {
+      setLoading(false)
+      console.log(userInfoInputError)
+      return
+    }
     
     const changeInfo = await apiChangeInfo({
-      fullname: userInfoInput.name,
-      email: userInfoInput.email,
-      phone: userInfoInput.phone,
+      fullname: userInfoInput.name as string,
+      email: userInfoInput.email as string,
+      phone: userInfoInput.phone as number,
       token
     })
 
     if (!changeInfo.status) {
       setLoading(false)
-      setError(true)
+      // setError(true)
       console.log(changeInfo.err)
+      setUserInfoInputError(prev => {
+        const key = changeInfo.err as keyof TUserInfoInputError
+        return {
+        ...prev,
+          [key]: "true"
+        }
+      })
+      return
     }
 
     setLoading(false)
@@ -105,21 +175,39 @@ const General = () => {
                 prev => {
                   const { name, ...other } = prev
 
+                  setUserInfoInputError(prev => {
+                    const {fullname, ...other} = prev
+                    return {
+                    ...other,
+                      fullname: "false"
+                    }
+                  })
+
                   return {
                     name: ev.target.value,
                     ...other
                   }
                 }
               )}
+              data-error={userInfoInputError.fullname}
             />
+            <span>El valor no es valido</span>
           </div>
 
           <div className={styles.input_block}>
             <label htmlFor="#">Correo</label>
             <input type="email" value={userInfoInput.email}
-              onChange={(ev) => setUserInfoInput(
-                prev => {
+              onChange={(ev) => setUserInfoInput(prev => {
                   const {email, ...other} = prev
+
+                  setUserInfoInputError(prev => {
+                    const {email,...other} = prev
+                    return {
+                      ...other,
+                      email: "false"
+                    }
+                  })
+                  
 
                   return {
                     email: ev.target.value,
@@ -127,7 +215,9 @@ const General = () => {
                   }
                 }
               )}
+              data-error={userInfoInputError.email}
             />
+            <span>El valor no es valido</span>
           </div>
 
           <div>
@@ -154,13 +244,23 @@ const General = () => {
                 prev => {
                   const {phone, ...other} = prev
 
+                  setUserInfoInputError(prev => {
+                    const {phone,...other} = prev
+                    return {
+                     ...other,
+                     phone: "false"
+                    }
+                  })
+
                   return {
                     phone: ev.target.valueAsNumber,
                     ...other
                   }
                 }
               )}
+              data-error={userInfoInputError.phone}
             />
+            <span>El valor no es valido</span>
           </div>
 
 

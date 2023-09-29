@@ -41,6 +41,22 @@
   text-align: center;
 }
 
+.user_info input[data-error='true'] {
+  animation: shake .2s linear;
+  border: 1px solid #f00a;
+}
+
+.user_info > div:has(input[data-error='true']) > span {
+  display: inline-block;
+}
+
+.user_info span {
+  display: none;
+  font-size: .8em;
+  color: #f00a;
+  font-family: 'Raleway', sans-serif;
+}
+
 .user_info input:hover, .user_info input:focus {
   background: #fff;
 }
@@ -89,5 +105,23 @@
 
   .input_block label {
     width: 15rem;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  40% {
+    transform: translateX(1rem);
+  }
+
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    transform: translateX(0);
   }
 }
