@@ -1,4 +1,4 @@
-import { TUser } from "./UsersSearch"
+// import { TUser } from "./UsersSearch"
 import styles from "../../../css/admin/users/UserCard.module.css"
 import { BsList } from "react-icons/bs"
 
@@ -17,9 +17,9 @@ const UserCard = ({ username, ci, permissions }: TUser) => {
       </div>
 
       <div className={styles.footer}>
-        <span>{permissions.admin && "Administrador"}</span>
-        <span>{permissions.news && "Editor de noticias"}</span>
-        <span>{permissions.users && "Editor de usuarios"}</span>
+        {/* <span>{permissions["admin"] && "Administrador"}</span> */}
+        <span>{permissions.includes("news") && "Editor de noticias"}</span>
+        <span>{permissions.includes("users") && "Editor de usuarios"}</span>
       </div>
     </div>
   )

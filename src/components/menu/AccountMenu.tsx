@@ -11,12 +11,11 @@ type TAccountMenuProps = {
 
 const AccountMenu = ({ menuSelected, selectMenu }: TAccountMenuProps) => {
 
-  const navigate = useNavigate()
   const { logout } = useContext(userSessionContext)
 
   const handleLogout = () => {
     logout()
-    navigate("/")
+    window.location.href = `${window.location.origin}/deportes`
   }
 
   return (

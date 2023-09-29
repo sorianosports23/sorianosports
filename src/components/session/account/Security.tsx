@@ -31,7 +31,13 @@ const ModalDeleteAccount = ({ open, handleClose }: TModalProps) => {
   }, [inputPassword])
 
   const handleDeleteBtn = () => {
-    if (!inputPassword) return
+    if (!inputPassword) {
+      setInputError({
+        error: 'true',
+        message: "Ingresa la contraseña"
+      })
+      return
+    }
     setCanSubmit(true)
   }
 
