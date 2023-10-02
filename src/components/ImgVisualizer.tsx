@@ -1,6 +1,7 @@
 import { BsXLg } from "react-icons/bs"
 import styles from "../css/ImgVisualizer.module.css"
 import assetsFolder from "../utils/publicfolder"
+import { KeyboardEvent } from "react"
 
 type TImgVisualizerProps = {
   img: string
@@ -9,8 +10,15 @@ type TImgVisualizerProps = {
 }
 
 const ImgVisualizer = ({ img, open, close }: TImgVisualizerProps) => {
+
+  const handleKey = (ev: KeyboardEvent<HTMLDivElement>) => {
+    if (open && ev.key === "Escape") {
+      close()
+    }
+  }
+
   return (
-    <div className={styles.visualizer} data-open={open}>
+    <div className={styles.visualizer} data-open={open} onKeyDown={handleKey} role="button" tabIndex={open ? 10 : -1}>
       <div className={styles.header}>
         <button onClick={close}><BsXLg/></button>
       </div>

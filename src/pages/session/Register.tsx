@@ -186,11 +186,14 @@ const Register = () => {
           >
             <div>
               <h1>Registro completo</h1>
-              <Link to="/auth/login">Iniciar sesión</Link>
             </div>
 
             <div>
               <BsCheckAll/>
+            </div>
+
+            <div>
+              <Link to="/auth/login">Iniciar sesión</Link>
             </div>
           </div>
         </div>
