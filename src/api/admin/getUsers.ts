@@ -9,7 +9,8 @@ const apiAdminGetUsers = async ({token, pag}: TApiGetUsersRequest): Promise<IApi
       data: [],
       pagination: {
         totalPages: 0,
-        currentPage: 0
+        currentPage: 0,
+        maxUsers: 0
       }
     }
   }
@@ -31,7 +32,8 @@ const apiAdminGetUsers = async ({token, pag}: TApiGetUsersRequest): Promise<IApi
       data: [],
       pagination: {
         totalPages: 0,
-        currentPage: 0
+        currentPage: 0,
+        maxUsers: 0
       },
     }
   }

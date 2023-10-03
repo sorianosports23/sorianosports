@@ -20,5 +20,6 @@ interface IApiGetUsersResponse extends TApiResponseAdmin {
   pagination: {
     totalPages: number
     currentPage: number
+    maxUsers: number
   }
 }
