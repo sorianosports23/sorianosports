@@ -60,12 +60,14 @@ const Events = () => {
         return
       }
 
-      try {
-        const res = await fetch(`http://${window.location.hostname}/api/test.php`)
-        setData(await res.json())
-      } catch (error) {
-        navigate("/error")
-      }
+      setLoading(false)
+
+      // try {
+      //   const res = await fetch(`http://${window.location.hostname}/api/test.php`)
+      //   setData(await res.json())
+      // } catch (error) {
+      //   navigate("/error")
+      // }
     })()
   })
 

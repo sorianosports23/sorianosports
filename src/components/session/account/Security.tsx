@@ -69,7 +69,7 @@ const ModalDeleteAccount = ({ open, handleClose }: TModalProps) => {
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="##">Contraseña</label>
-            <input type="text"
+            <input type="password"
               value={inputPassword}
               onChange={(e) => {
                 setInputPassword(e.target.value)
