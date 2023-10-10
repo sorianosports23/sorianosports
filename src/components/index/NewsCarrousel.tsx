@@ -13,7 +13,7 @@ const NewsSlide = ({id, title, description, img}: TNewsCardProps) => {
       <p>
         {description}
       </p>
-      <Link to={`/noticias/leer/${id}`}>Leer mas</Link>
+      <Link to={`/noticias/leer/${id}`}>Leer más</Link>
     </div>
   )
 }
