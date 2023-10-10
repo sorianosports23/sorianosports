@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { KeyboardEvent, useEffect, useState } from "react"
 import { BsXLg } from "react-icons/bs"
 import styles from "../../css/admin/news/addNews.module.css"
 
@@ -60,8 +60,20 @@ const PrevNews = ({ text, open, close }: TPrevNewsProps) => {
       }
     }, [text])
 
+  const handleKeyboard = (ev: KeyboardEvent) => {
+    if (open && ev.key === "Escape") {
+      close()
+    }
+  }
+
   return (
-    <div className={styles.modal} style={{transform: `translateY(${open ? "0" : "-150%"})`}}>
+    <div 
+      className={styles.modal} 
+      style={{transform: `translateY(${open ? "0" : "-150%"})`}}
+      onKeyDown={handleKeyboard}
+      role="button"
+      tabIndex={open ? 10 : -1}
+    >
       <div>
         <div className={styles.modal_header}>
           Visualizador
