@@ -25,6 +25,7 @@ import Inscription from "../pages/user/Inscription"
 import Err404 from "../pages/404"
 import NewsAdmin from "../pages/admin/News"
 import AddNews from "../pages/admin/AddNews"
+import PrevNews from "../pages/admin/PrevNews"
 
 const pageUserRoutes = createRoutesFromElements(
   <Route path="/" errorElement={<Error/>}>

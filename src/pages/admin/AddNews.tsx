@@ -1,9 +1,34 @@
 import Admin from "./Admin"
 import styles from "../../css/admin/news/addNews.module.css"
 import { BsFillCloudUploadFill, BsListUl, BsTypeBold, BsTypeItalic, BsTypeUnderline } from "react-icons/bs"
+import { useState } from "react"
+import PrevNews from "./PrevNews"
 
 const AddNews = () => {
+
+  const [newsContent, setNewsContent] = useState("")
+  const [modalPrev, setModalPrev] = useState(true)
+
+  const addTextBold = () => {
+    setNewsContent(prev => {
+      return prev + '{bold=""}'
+    })
+  }
+
+  const addTextItalic = () => {
+    setNewsContent(prev => {
+      return prev + '{italic=""}'
+    })
+  }
+
+  const addTextUnderline = () => {
+    setNewsContent(prev => {
+      return prev + '{underline=""}'
+    })
+  }
+
   return (
+    <>
     <Admin route_title="Agregar noticia">
       <div className={styles.news_info}>
         <h2>Información de la noticia</h2>
@@ -32,13 +57,22 @@ const AddNews = () => {
       <div className={styles.news_note}>
         <h2>Contenido</h2>
         <div className={styles.news_note_btns}>
-          <button title="Negrita">
+          <button 
+            title="Negrita"
+            onClick={() => addTextBold()}
+          >
             <BsTypeBold/>
           </button>
-          <button title="Italica">
+          <button 
+            title="Italica"
+            onClick={() => addTextItalic()}
+          >
             <BsTypeItalic/>
           </button>
-          <button title="Subrayado">
+          <button 
+            title="Subrayado"
+            onClick={() => addTextUnderline()}
+          >
             <BsTypeUnderline/>
           </button>
           <button title="Lista">
@@ -47,14 +81,21 @@ const AddNews = () => {
         </div>
 
         <div className={styles.news_note_cont}>
-          <textarea></textarea>
+          <textarea value={newsContent} onChange={(ev) => setNewsContent(ev.target.value)}></textarea>
         </div>
       </div>
 
       <div className={styles.news_send}>
-        <button>Subir noticia</button>
+        <button onClick={() => setModalPrev(true)}>Subir noticia</button>
       </div>
     </Admin>
+
+    <PrevNews
+      text={newsContent}
+      open={modalPrev}
+      close={() => setModalPrev(false)}
+    />
+    </>
   )
 }
 

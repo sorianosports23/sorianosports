@@ -70,3 +70,15 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   display: none;
 }
+
+.news_bold {
+  font-weight: bold;
+}
+
+.news_italic {
+  font-style: italic;
+}
+
+.news_underline {
+  text-decoration: underline;
+}
