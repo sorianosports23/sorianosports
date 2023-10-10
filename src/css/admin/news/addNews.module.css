@@ -1,0 +1,114 @@
+.news_info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.news_info_inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+}
+
+.news_info_inputs > div {
+  display: flex;
+  gap: .5rem;
+  /* align-items: center; */
+  width: 60%;
+}
+
+.news_info_inputs input, 
+.news_info_inputs textarea {
+  background: none;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #222;
+  flex: 1;
+  height: 2rem;
+  padding: 0 .5rem;
+}
+
+.news_info_inputs textarea {
+  height: 5rem;
+}
+
+.news_info_inputs input[type="file"] { display: none; }
+
+.news_info_inputs div:has(input[type="file"]) > label:last-of-type {
+  width: 10rem;
+  height: 2rem;
+  /* border: 1px solid #232323; */
+  border-radius: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  background: #0a09;
+  cursor: pointer;
+}
+
+.news_info_inputs div:has(input[type="file"]) > label:last-of-type:hover {
+  background: #0f0;
+}
+
+.news_note {
+  margin-top: 1rem;
+  border-top: 1px solid #232323;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.news_note_btns {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.news_note_btns button {
+  width: 2rem;
+  height: 1.5rem;
+  background: none;
+  border: 1px solid #232323;
+  border-radius: .5rem;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.news_note_btns button:hover {
+  background: #0a09;
+}
+
+.news_note_cont {
+  width: 100%;
+  height: 40rem;
+  padding: .5rem;
+}
+
+.news_note_cont textarea {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  font-size: 1.2em;
+  border-radius: .5rem;
+}
+
+.news_send button {
+  width: 10rem;
+  height: 2rem;
+  border-radius: .5rem;
+  border: none;
+  background: #0a09;
+  font-size: 1em;
+}
+
+.news_send button:hover {
+  background: #0f0;
+}

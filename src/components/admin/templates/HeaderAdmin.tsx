@@ -46,7 +46,7 @@ const HeaderAdmin = () => {
             <BsFillDatabaseFill/>
             Base de datos
           </Link>
-          <Link to="/admin/">
+          <Link to="/admin/news">
             <BsNewspaper/>
             Noticias
           </Link>

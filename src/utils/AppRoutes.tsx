@@ -23,6 +23,8 @@ import ReadNews from "../pages/user/ReadNews"
 import readNewsLoader from "./routes/readNewsLoader"
 import Inscription from "../pages/user/Inscription"
 import Err404 from "../pages/404"
+import NewsAdmin from "../pages/admin/News"
+import AddNews from "../pages/admin/AddNews"
 
 const pageUserRoutes = createRoutesFromElements(
   <Route path="/" errorElement={<Error/>}>
@@ -65,6 +67,10 @@ const pageUserRoutes = createRoutesFromElements(
       <Route path="users" element={<Users/>} />
       <Route path="sports" element={<SportsAdmin/>}/>
       <Route path="events" element={<EventsAdmin/>}/>
+      <Route path="news">
+        <Route index element={<NewsAdmin/>}/>
+        <Route path="add" element={<AddNews/>}/>
+      </Route>
     </Route>
   </Route>
 )
