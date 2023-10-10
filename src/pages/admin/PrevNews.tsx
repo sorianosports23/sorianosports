@@ -11,44 +11,54 @@ type TPrevNewsProps = {
 const PrevNews = ({ text, open, close }: TPrevNewsProps) => {
   const [newsText, setNewsText] = useState(<></>)
 
-  useEffect(() => {
-    if (text) handleText(text)
-  }, [text])
-
-  const handleText = (newsText: string) => {
-
-    const prevTextArr = newsText.split(/\{([^}]+)\}/)
-    const textToShow = prevTextArr as string[] | JSX.Element[]
-    console.log(textToShow)
-
-    prevTextArr.map((text, i) => {
-      if (text.includes("\n")) {
-        textToShow[i] = <p>{text}</p>
+    const processText = (textToProcess: string) => textToProcess.split(/\{([^}]+)\}/).map((subText, i) => {
+      console.log(`PROCESANDO ${textToProcess} SUB TXT ${subText}`)
+      if (subText.includes("bold")) {
+        const textInBold = subText.split('"')
+        console.log(`BOLD ${textInBold}`)
+        return <span className="news_bold">{textInBold[1]}</span>
       }
 
-      if (text.includes("bold")) {
-        let textBold = text.split('"')
-        console.log(text)
-        console.log(textBold)
-        textToShow[i] = <span className="news_bold">{textBold[1]}</span>
+      if (subText.includes("italic")) {
+        const textInBold = subText.split('"')
+        console.log(`ITALIC ${textInBold}`)
+        return <span className="news_italic">{textInBold[1]}</span>
       }
-      if (text.includes("italic")) {
-        let textItalic = text.split('"')
-        textToShow[i] = <span className="news_italic">{textItalic[1]}</span>
+
+      if (subText.includes("underline")) {
+        const textInBold = subText.split('"')
+        console.log(`UNDERLINE ${textInBold}`)
+        return <span className="news_underline">{textInBold[1]}</span>
       }
-      if (text.includes("underline")) {
-        let textUnderline = text.split('"')
-        textToShow[i] = <span className="news_underline">{textUnderline[1]}</span>
-      }
-      return null
+      
+      return subText
     })
 
-    setNewsText(
-      <p>
-        {textToShow}
-      </p>
-    )
-  }
+    const splitTextWithBr = (text: string) => {
+      return text.split("\n").map((line) => processText(line))
+    }
+
+    const setTextOrLineBreak = (line: (string | JSX.Element)[], i: number) => {
+      if (line[0] === '' && line.length === 1) {
+        return <br key={i}/>
+      }
+      else {
+        return <p key={i}>{line}</p>
+      }
+    }
+
+    useEffect(() => {
+      if (text) {
+        const textToShow = splitTextWithBr(text)
+        console.log("show")
+        console.log(textToShow)
+        setNewsText(<>
+          {
+            textToShow.map((line, i) => setTextOrLineBreak(line, i))
+          }
+        </>)
+      }
+    }, [text])
 
   return (
     <div className={styles.modal} style={{transform: `translateY(${open ? "0" : "-150%"})`}}>

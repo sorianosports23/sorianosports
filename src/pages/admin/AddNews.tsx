@@ -7,7 +7,7 @@ import PrevNews from "./PrevNews"
 const AddNews = () => {
 
   const [newsContent, setNewsContent] = useState("")
-  const [modalPrev, setModalPrev] = useState(true)
+  const [modalPrev, setModalPrev] = useState(false)
 
   const addTextBold = () => {
     setNewsContent(prev => {
