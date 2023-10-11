@@ -1,10 +1,15 @@
 import apiLoaded from "../../utils/apiLoaded";
 import api from "../../utils/apiRoute";
+import { getUserInfo } from "../useDemo";
 
 const apiGetUserInfo = async ({ token }: TApiGetUserInfoRequest): Promise<TApiGetUserInfoResponse>  => {
   if (!apiLoaded) {
+    const userInfo = getUserInfo()
     return {
-      authorization: false
+      authorization: true,
+      data: {
+        ...userInfo
+      }
     }
   }
 

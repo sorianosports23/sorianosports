@@ -1,5 +1,5 @@
 import { LoaderFunction } from "react-router-dom";
-import newsDemo from "../demo/news.json"
+import newsDemo from "../demo/news"
 
 const readNewsLoader: LoaderFunction = ({ params }) => {
   if (!params.id) {

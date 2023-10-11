@@ -1,4 +1,4 @@
-import { KeyboardEvent, useEffect, useState } from "react"
+import { KeyboardEvent, useCallback, useEffect, useState } from "react"
 import { BsXLg } from "react-icons/bs"
 import styles from "../../css/admin/news/addNews.module.css"
 
@@ -34,9 +34,9 @@ const PrevNews = ({ text, open, close }: TPrevNewsProps) => {
       return subText
     })
 
-    const splitTextWithBr = (text: string) => {
+    const splitTextWithBr = useCallback((text: string) => {
       return text.split("\n").map((line) => processText(line))
-    }
+    }, [])
 
     const setTextOrLineBreak = (line: (string | JSX.Element)[], i: number) => {
       if (line[0] === '' && line.length === 1) {
@@ -58,7 +58,7 @@ const PrevNews = ({ text, open, close }: TPrevNewsProps) => {
           }
         </>)
       }
-    }, [text])
+    }, [text, splitTextWithBr])
 
   const handleKeyboard = (ev: KeyboardEvent) => {
     if (open && ev.key === "Escape") {

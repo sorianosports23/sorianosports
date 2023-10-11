@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, MutableRefObject } from "react"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 import styles from "../../css/index/newscarrousel.module.css"
 import assetsFolder from "../../utils/publicfolder"
-import newsDemo from "../../utils/demo/news.json"
+import newsDemo from "../../utils/demo/news"
 import { TNewsCardProps } from "../news/NewsCard"
 import { Link } from "react-router-dom"
 

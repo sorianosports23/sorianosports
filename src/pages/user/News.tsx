@@ -5,7 +5,7 @@ import styles from "../../css/news/News.module.css"
 import { FormEvent, useEffect, useState } from "react"
 import NewsRecents from "../../components/news/NewsRecents"
 import { BsList, BsSearch } from "react-icons/bs"
-import newsDemo from "../../utils/demo/news.json"
+import newsDemo from "../../utils/demo/news"
 import { FaRegFaceFrown } from "react-icons/fa6"
 
 const IMG_PLACEHOLDER = "img_placeholder.png"
