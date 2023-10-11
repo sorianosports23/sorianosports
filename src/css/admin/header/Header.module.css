@@ -13,7 +13,6 @@
   padding: .5rem 1rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .title_icon {
@@ -44,7 +43,7 @@
   font-size: 1.3em;
 }
 
-.user button {
+.user > button {
   width: 8rem;
   height: 2rem;
   background: none;
@@ -59,7 +58,7 @@
   gap: .5rem;
 }
 
-.user button:hover {
+.user > button:hover {
   color: #eee;
 }
 
@@ -86,6 +85,58 @@
 .nav a:hover {
   color: #fff;
   background: #4e4e4e;
+}
+
+.user {
+  z-index: 10;
+  height: 2rem;
+  overflow: hidden;
+  transition: height .3s;
+  margin-top: 1rem;
+}
+
+.user[data-open="true"] {
+  height: 10rem;
+}
+
+.user_dropdown {
+  background: #323232;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  list-style: none;
+  align-items: flex-end;
+  margin-top: .5rem;
+  border-radius: .5rem;
+  z-index: 10;
+}
+
+.user_dropdown > li {
+  width: 100%;
+  height: 100%;
+  height: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 .2rem;
+}
+
+.user_dropdown > li:hover {
+  background: #4e4e4e;
+}
+
+.user_dropdown > li > button { 
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  letter-spacing:.1em;
+  color: #eee;
 }
 
 @media (max-width: 576px) {

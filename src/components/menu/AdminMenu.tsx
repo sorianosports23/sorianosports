@@ -1,14 +1,27 @@
-import { useContext } from "react"
+import { useContext, useState, KeyboardEvent } from "react"
 import { BsBoxArrowRight, BsChevronDown } from "react-icons/bs"
 import { RxSlash } from "react-icons/rx"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { userSessionContext } from "../../context/session/UserSessionContext"
 import assetsFolder from "../../utils/publicfolder"
 import styles from "../../css/admin/header/Header.module.css"
 
 const AdminMenu = () => {
 
-  const { username } = useContext(userSessionContext)
+  const { username, logout } = useContext(userSessionContext)
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false)
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout()
+    window.location.href = "/"
+  }
+
+  const handleCloseProfileMenu = (ev: KeyboardEvent) => {
+    if (profileMenuOpen && ev.key === "Escape") {
+      setProfileMenuOpen(false)
+    }
+  }
 
   return (
     <header className={styles.header}>
@@ -21,8 +34,21 @@ const AdminMenu = () => {
           <h1>Admin</h1>
         </div>
 
-        <div className={styles.user}>
+        <div 
+          className={styles.user} 
+          data-open={profileMenuOpen}
+          onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+          onPointerLeave={() => setProfileMenuOpen(false)}
+          role="button"
+          onKeyDown={handleCloseProfileMenu}
+          tabIndex={0}
+        >
           <button>{username} <BsChevronDown/></button>
+
+          <ul className={styles.user_dropdown}>
+            <li><button onClick={() => navigate("/")}>Volver a /</button></li>
+            <li><button onClick={() => handleLogout()}>Cerrar sesión</button></li>
+          </ul>
         </div>
       </div>
 
