@@ -5,6 +5,8 @@ import { useContext, useEffect, useState, useCallback, FormEvent } from "react"
 import { userSessionContext } from "../../context/session/UserSessionContext"
 import apiGetUserInfo from "../../api/session/info"
 import apiSendContact from "../../api/page/contact/sendContact"
+import SendModal from "../../components/modal/SendModal"
+import { EApiContactInputsErr } from "../../api/page/contact/types"
 
 const Contact = () => {
 
@@ -24,11 +26,12 @@ const Contact = () => {
     message: ""
   })
 
-  useEffect(() => {
-    if (token) {
-      getUserInfo()      
-    }
-  }, [token])
+  const [userErrors, setUserErrors] = useState({
+    name: false,
+    email: false,
+    subject: false,
+    message: false
+  })
 
   const getUserInfo = useCallback(async () => {
     const userInfo = await apiGetUserInfo({ token })
@@ -47,13 +50,47 @@ const Contact = () => {
     }
   }, [token])
 
+  useEffect(() => {
+    if (token) {
+      getUserInfo()      
+    }
+  }, [token, getUserInfo])
+
+
   const handleSendForm = async (ev: FormEvent) => {
     ev.preventDefault()
     const contactData = await apiSendContact(userInput)
     console.log(contactData)
+    if (contactData.status) {
+      setModalMessage("Se envio correctamente el mensaje")
+      setModalOpen(true)
+      setUserInput(prev => {
+        const { subject, message, ...rest } = prev
+        return {
+          ...rest,
+          subject: "",
+          message: ""
+        }
+      })
+    } else {
+      const errName = contactData.err
+      setUserErrors(prev => {
+        const { [EApiContactInputsErr[errName as keyof typeof EApiContactInputsErr]]: inputV, ...rest } = prev
+        return {
+          [EApiContactInputsErr[errName as keyof typeof EApiContactInputsErr]]: true,
+          ...rest
+        }
+      })
+    }
   }
 
+  //modal
+  const [modalMessage, setModalMessage] = useState("")
+  const [modalSMessage, setModalSMessage] = useState("")
+  const [modalOpen, setModalOpen] = useState(false)
+
   return (
+    <>
     <User>
       <Container>
         <div className={styles.contact}>
@@ -70,7 +107,15 @@ const Contact = () => {
                     name: ev.target.value,
                     ...rest
                   })
+                  setUserErrors(prev => {
+                    const { name, ...rest } = prev
+                    return {
+                      name: false,
+                      ...rest
+                    }
+                  })
                 }}
+                data-invalid={userErrors.name}
               />
             </div>
 
@@ -86,7 +131,15 @@ const Contact = () => {
                     email: ev.target.value,
                     ...rest
                   })
+                  setUserErrors(prev => {
+                    const { email, ...rest } = prev
+                    return {
+                      email: false,
+                      ...rest
+                    }
+                  })
                 }}
+                data-invalid={userErrors.email}
               />
             </div>
 
@@ -100,8 +153,16 @@ const Contact = () => {
                     subject: ev.target.value,
                     ...rest
                   })
-                }
-              }/>
+                  setUserErrors(prev => {
+                    const { subject, ...rest } = prev
+                    return {
+                      subject: false,
+                      ...rest
+                    }
+                  })
+                }}
+                data-invalid={userErrors.subject}
+            />
             </div>
 
             <div>
@@ -114,7 +175,18 @@ const Contact = () => {
                     message: ev.target.value,
                     ...rest
                   })
-                }}></textarea>
+                  setUserErrors(prev => {
+                    const { message, ...rest } = prev
+                    return {
+                      message: false,
+                      ...rest
+                    }
+                  })
+                }}
+                data-invalid={userErrors.message}
+              >
+
+                </textarea>
             </div>
             
             <div><button type="submit">Enviar</button></div>
@@ -122,7 +194,17 @@ const Contact = () => {
           </form>
         </div>
       </Container>
+
     </User>
+    
+    <SendModal
+      message={modalMessage}
+      otherMessage={modalSMessage}
+      open={modalOpen}
+      close={() => setModalOpen(false)}
+    />
+
+    </>
   )
 }
 

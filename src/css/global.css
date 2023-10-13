@@ -66,10 +66,38 @@ p {
   font-family: "Raleway";
 }
 
+input, textarea {
+  padding: 0 1rem !important;
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   display: none;
 }
+
+input[data-invalid='true'], textarea[data-invalid='true'] {
+  border: 1px solid #a009 !important;
+  animation: shake_inp .2s linear !important;
+}
+
+@keyframes shake_inp {
+  0% {
+    transform: translateX(0);
+  }
+
+  40% {
+    transform: translateX(1rem);
+  }
+
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
 
 .news_bold {
   font-weight: bold;
