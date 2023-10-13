@@ -66,8 +66,12 @@ p {
   font-family: "Raleway";
 }
 
-input, textarea {
+input {
   padding: 0 1rem !important;
+}
+
+textarea {
+  padding: 1rem !important;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

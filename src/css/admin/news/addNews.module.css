@@ -88,13 +88,17 @@
 
 .news_note_cont {
   width: 100%;
-  height: 40rem;
-  padding: .5rem;
+  height: max-content;
+}
+
+.imgname {
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  align-items: center;
 }
 
 .news_note_cont textarea {
   width: 100%;
-  height: 100%;
   padding: 1rem;
   font-size: 1.2em;
   border-radius: .5rem;
@@ -156,4 +160,21 @@
   border: 1px solid #232323;
   border-radius: .5rem;
   padding: .5rem;
+  height: inherit;
+  overflow-y: auto;
+}
+
+.modal_footer > button {
+  width: 20rem;
+  height: 2rem;
+  margin-top: 1rem;
+  border-radius: .3rem;
+  border: 1px solid #232323;
+  font-size: 1.2em;
+  transition: background .3s, letter-spacing .3s;
+}
+
+.modal_footer > button:hover {
+  background: #0a09;
+  letter-spacing: 1px;
 }

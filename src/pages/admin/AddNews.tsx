@@ -1,14 +1,15 @@
 import Admin from "./Admin"
 import styles from "../../css/admin/news/addNews.module.css"
 import { BsFillCloudUploadFill, BsListUl, BsTypeBold, BsTypeItalic, BsTypeUnderline } from "react-icons/bs"
-import { useContext, useState } from "react"
+import { MutableRefObject, useContext, useEffect, useRef, useState } from "react"
 import PrevNews from "./PrevNews"
 import { userSessionContext } from "../../context/session/UserSessionContext"
 import apiAdminAddNews from "../../api/admin/addNews"
+import SendModal from "../../components/modal/SendModal"
 
 const AddNews = () => {
 
-  const { token } = useContext(userSessionContext)
+  const { token, username } = useContext(userSessionContext)
 
   const [modalPrev, setModalPrev] = useState(false)
 
@@ -16,6 +17,8 @@ const AddNews = () => {
   const [newsDescription, setNewsDescription] = useState("")
   const [newsImage, setNewsImage] = useState<any>(null)
   const [newsContent, setNewsContent] = useState("")
+
+  const editorText = useRef<HTMLTextAreaElement>(null) as MutableRefObject<HTMLTextAreaElement>
 
   const addTextBold = () => {
     setNewsContent(prev => {
@@ -35,6 +38,12 @@ const AddNews = () => {
     })
   }
 
+  //!modal
+  const [modalMessage, setModalMessage] = useState("")
+  const [modalSMessage, setModalSMessage] = useState("")
+  const [modalOpen, setModalOpen] = useState(false)
+  //!
+
   const handleSubmitNews = async () => {
     if (!newsTitle ||!newsDescription ||!newsImage ||!newsContent) {
       alert("Preencha todos os campos")
@@ -44,12 +53,34 @@ const AddNews = () => {
         description: newsDescription,
         image: newsImage,
         content: newsContent,
-        token
+        token,
+        author: username
       }
 
-      await apiAdminAddNews(data)
+      const newsRes = await apiAdminAddNews(data)
+      setModalPrev(false)
+
+      if (newsRes.status) {
+        setModalMessage("Se añadio la noticia")
+        setModalOpen(true)
+      } else {
+        setModalMessage("No se pudo añadir la noticia")
+        setModalOpen(true)
+      }
     }
   }
+
+  useEffect(() => {
+    console.log(newsImage)
+  }, [newsImage])
+
+  useEffect(() => {
+    const linesOfText = newsContent.split("\n").length
+
+    if (editorText) {
+      editorText.current.style.height = `${linesOfText > 3 ? linesOfText+4 : 6}rem`
+    }
+  }, [newsContent])
 
   return (
     <>
@@ -74,17 +105,21 @@ const AddNews = () => {
           </div>
 
           <div>
-            <label htmlFor="news_img">Imagen destacada:</label>
+            <label htmlFor="news_img">Portada:</label>
             <label htmlFor="news_image">
               <BsFillCloudUploadFill/>
               Subir
             </label>
+            {
+              newsImage?.name && <span className={styles.imgname}>{newsImage.name}</span>
+            }
             <input type="file" id="news_image" 
               onChange={ev => {
                 if (ev.target.files) {
                   setNewsImage(ev.target.files[0])
                 }
               }}
+              accept="image/png, image/jpeg, image/svg+xml, image/webp"
             />
           </div>
         </div>
@@ -117,14 +152,14 @@ const AddNews = () => {
         </div>
 
         <div className={styles.news_note_cont}>
-          <textarea value={newsContent} onChange={(ev) => setNewsContent(ev.target.value)}></textarea>
+          <textarea ref={editorText} value={newsContent} onChange={(ev) => setNewsContent(ev.target.value)}></textarea>
         </div>
       </div>
 
       <div className={styles.news_send}>
         <button onClick={() => {
-            //setModalPrev(true)
-            handleSubmitNews()
+            setModalPrev(true)
+            // handleSubmitNews()
           }}>Subir noticia</button>
       </div>
     </Admin>
@@ -133,6 +168,14 @@ const AddNews = () => {
       text={newsContent}
       open={modalPrev}
       close={() => setModalPrev(false)}
+      send={() => handleSubmitNews()}
+    />
+
+    <SendModal
+      message={modalMessage}
+      otherMessage={modalSMessage}
+      open={modalOpen}
+      close={() => setModalOpen(false)}
     />
     </>
   )

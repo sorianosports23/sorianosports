@@ -30,4 +30,10 @@ type TApiAddNewsRequest = {
   description: string
   image: string
   content: string
+  author: string
+}
+
+type TApiAddNewsResponse = {
+  status: boolean
+  message: string
 }

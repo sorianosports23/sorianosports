@@ -6,9 +6,10 @@ type TPrevNewsProps = {
   text: string
   open: boolean
   close: () => void
+  send: () => void
 }
 
-const PrevNews = ({ text, open, close }: TPrevNewsProps) => {
+const PrevNews = ({ text, open, close, send }: TPrevNewsProps) => {
   const [newsText, setNewsText] = useState(<></>)
 
     const processText = (textToProcess: string) => textToProcess.split(/\{([^}]+)\}/).map((subText, i) => {
@@ -69,7 +70,7 @@ const PrevNews = ({ text, open, close }: TPrevNewsProps) => {
   return (
     <div 
       className={styles.modal} 
-      style={{transform: `translateY(${open ? "0" : "-150%"})`}}
+      style={{transform: `translateY(${open ? "0" : "-200%"})`}}
       onKeyDown={handleKeyboard}
       role="button"
       tabIndex={open ? 10 : -1}
@@ -84,6 +85,10 @@ const PrevNews = ({ text, open, close }: TPrevNewsProps) => {
           {
             newsText
           }
+        </div>
+
+        <div className={styles.modal_footer}>
+          <button onClick={() => send()}>Subir noticia</button>
         </div>
       </div>
     </div>
