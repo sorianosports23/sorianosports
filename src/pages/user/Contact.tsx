@@ -42,7 +42,7 @@ const Contact = () => {
       setUserInput(prev => {
         const { name, email, ...rest } = prev
         return {
-          name: userInfo.data?.username as string,
+          name: userInfo.data?.fullname as string,
           email: userInfo.data?.email as string,
           ...rest
         }
@@ -84,6 +84,10 @@ const Contact = () => {
     }
   }
 
+  useEffect(() => {
+    console.log(userInput)
+  }, [userInput])
+
   //modal
   const [modalMessage, setModalMessage] = useState("")
   const [modalSMessage, setModalSMessage] = useState("")
@@ -99,8 +103,8 @@ const Contact = () => {
               <label htmlFor="#">Nombre Completo:</label>
               <input 
                 type="text" 
-                disabled={userInfo?.username ? true : false}
-                value={userInfo?.username ? userInfo.fullname : userInput.name}
+                disabled={userInfo?.fullname ? true : false}
+                value={userInfo?.fullname ? userInfo.fullname : userInput.name}
                 onChange={(ev) => {
                   const { name, ...rest } = userInput
                   setUserInput({
