@@ -2,7 +2,7 @@ import NewsCard, { TNewsCardProps } from "./NewsCard"
 import styles from "../../css/news/NewsRecents.module.css"
 
 type TNewsRecentsProps = {
-  news: Array<TNewsCardProps>
+  news: Array<TNews>
 }
 
 const NewsRecents = ({ news }: TNewsRecentsProps) => {

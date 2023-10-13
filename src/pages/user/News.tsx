@@ -7,6 +7,9 @@ import NewsRecents from "../../components/news/NewsRecents"
 import { BsList, BsSearch } from "react-icons/bs"
 import newsDemo from "../../utils/demo/news"
 import { FaRegFaceFrown } from "react-icons/fa6"
+import Loading from "../Loading"
+import apiGetNews from "../../api/page/getNews"
+import apiGetRecentNews from "../../api/page/getRecentNews"
 
 const IMG_PLACEHOLDER = "img_placeholder.png"
 
@@ -35,10 +38,12 @@ enum EFiltersBy {
 
 const News = () => {
 
-  const [ recentsNews ] = useState<Array<TNewsCardProps>>(NEWS_RECENTS_INITALSTATE)
+  const [loading, setLoading] = useState(true)
+
+  const [ recentsNews, setRecentsNews ] = useState<Array<TNews>>([])
 
   const [searchValue, setSearchValue] = useState("")
-  const [newsResult, setNewsResult] = useState<Array<TNewsCardProps>>([])
+  const [newsResult, setNewsResult] = useState<Array<TNews>>([])
   const [newsSearched, setNewsSearched] = useState(false)
 
   const [ filtersOpen, setFiltersOpen ] = useState(false)
@@ -49,30 +54,52 @@ const News = () => {
     setFiltersAvailable(FILTERSBY_INITIALSTATE.filter(filter => filter !== filterSelected))
   }, [filterSelected])
 
-  const handleSearch = () => {
-    setNewsSearched(true)
-    if (!filterSelected || !searchValue) {
-      setNewsResult([])
-      return
-    }
-    const results: Array<TNewsCardProps> = []
-    newsDemo.map((news) => {
-      if (news[EFiltersBy[filterSelected as keyof typeof EFiltersBy]]
-          .toLowerCase()
-          .includes(searchValue.toLowerCase())) {
-        results.push(news)
-      }
-      return null
-    })
+  // const handleSearch = () => {
+  //   setNewsSearched(true)
+  //   if (!filterSelected || !searchValue) {
+  //     setNewsResult([])
+  //     return
+  //   }
+  //   const results: Array<TNewsCardProps> = []
+  //   newsDemo.map((news) => {
+  //     if (news[EFiltersBy[filterSelected as keyof typeof EFiltersBy]]
+  //         .toLowerCase()
+  //         .includes(searchValue.toLowerCase())) {
+  //       results.push(news)
+  //     }
+  //     return null
+  //   })
 
-    console.log(newsDemo[0][EFiltersBy[filterSelected as keyof typeof EFiltersBy]])
+  //   console.log(newsDemo[0][EFiltersBy[filterSelected as keyof typeof EFiltersBy]])
 
-    setNewsResult(results)
-  }
+  //   setNewsResult(results)
+  // }
 
   const handleSubmit = (ev: FormEvent) => {
     ev.preventDefault()
-    handleSearch()
+    // handleSearch()
+  }
+
+  const getNewsFromApi = async () => {
+    const news = await apiGetRecentNews()
+
+    if (news.status) {
+      console.log(news)
+      setRecentsNews(news.data)
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    getNewsFromApi()
+  }, [])
+
+  useEffect(() => {
+    console.log(recentsNews)
+  }, [recentsNews])
+
+  if (loading) {
+    return <Loading/>
   }
 
   return (

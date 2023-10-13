@@ -6,10 +6,10 @@ import newsDemo from "../../utils/demo/news"
 import { TNewsCardProps } from "../news/NewsCard"
 import { Link } from "react-router-dom"
 
-const NewsSlide = ({id, title, description, img}: TNewsCardProps) => {
+const NewsSlide = ({id, name, description, img}: TNewsCardProps) => {
   return (
     <div style={{backgroundImage: `url(${img})`}}>
-      <h2>{title}</h2>
+      <h2>{name}</h2>
       <p>
         {description}
       </p>

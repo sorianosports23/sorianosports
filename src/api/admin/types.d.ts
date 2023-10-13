@@ -23,3 +23,11 @@ interface IApiGetUsersResponse extends TApiResponseAdmin {
     maxUsers: number
   }
 }
+
+type TApiAddNewsRequest = {
+  token: string
+  title: string
+  description: string
+  image: string
+  content: string
+}
