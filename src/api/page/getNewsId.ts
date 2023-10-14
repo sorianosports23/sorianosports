@@ -12,7 +12,9 @@ const apiGetNewsId = async (id: number): Promise<TApiGetNewsIdResponse> => {
         description: "",
         note: "",
         image: "",
-        id: 0
+        id: 0,
+        author: "",
+        date: "",
       }
     }
   }

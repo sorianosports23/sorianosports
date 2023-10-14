@@ -3,7 +3,12 @@ import api from "../../utils/apiRoute"
 const apiAdminAddNews = async ({ token, title, description, image, content, author }: TApiAddNewsRequest): Promise<TApiAddNewsResponse> => {
   try {
     const todayDate = new Date()
-    const dateOfNews = `${todayDate.getFullYear()}-${todayDate.getMonth()+1}-${todayDate.getDay()}`
+    const year = todayDate.getFullYear().toString()
+    let month = (todayDate.getMonth()+1).toString()
+    if (month.length < 2) month = `0${month}`
+    let day = todayDate.getDate().toString()
+    if (day.length < 2) day = `0${day}`
+    const dateOfNews = `${year}${month}${day}`
 
     const newsData = new FormData()
     newsData.set("title", title)

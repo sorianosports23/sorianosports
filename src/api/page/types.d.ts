@@ -3,6 +3,8 @@ type TNews = {
   name: string
   description: string
   image: string
+  author?: string
+  date: string
 }
 
 interface INews extends TNews {

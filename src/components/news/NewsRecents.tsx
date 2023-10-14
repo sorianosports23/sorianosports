@@ -1,4 +1,4 @@
-import NewsCard, { TNewsCardProps } from "./NewsCard"
+import NewsCard from "./NewsCard"
 import styles from "../../css/news/NewsRecents.module.css"
 
 type TNewsRecentsProps = {

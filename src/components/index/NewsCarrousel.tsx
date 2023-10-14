@@ -3,12 +3,11 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 import styles from "../../css/index/newscarrousel.module.css"
 import assetsFolder from "../../utils/publicfolder"
 import newsDemo from "../../utils/demo/news"
-import { TNewsCardProps } from "../news/NewsCard"
 import { Link } from "react-router-dom"
 
-const NewsSlide = ({id, name, description, img}: TNewsCardProps) => {
+const NewsSlide = ({id, name, description, image}: TNews) => {
   return (
-    <div style={{backgroundImage: `url(${img})`}}>
+    <div style={{backgroundImage: `url(${image})`}}>
       <h2>{name}</h2>
       <p>
         {description}
@@ -28,7 +27,7 @@ const NewsCarrousel = () => {
   const [onTransition, setOnTransition] = useState(false)
   const [mouseOnNews, setMouseOnNews] = useState(false)
 
-  const [recentNews, setRecentsNews] = useState<Array<TNewsCardProps>>([])
+  const [recentNews, setRecentsNews] = useState<Array<TNews>>([])
 
   useEffect(() => {
     if (recentNews.length === 0) return
@@ -90,11 +89,11 @@ const NewsCarrousel = () => {
   }, [recentNews])
 
   useEffect(() => {
-    setRecentsNews([
-      {...newsDemo[9]},
-      {...newsDemo[8]},
-      {...newsDemo[7]}
-    ])
+    // setRecentsNews([
+    //   {...newsDemo[9]},
+    //   {...newsDemo[8]},
+    //   {...newsDemo[7]}
+    // ])
   }, [])
 
   useEffect(() => {

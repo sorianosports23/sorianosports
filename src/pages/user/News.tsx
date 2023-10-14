@@ -1,4 +1,4 @@
-import NewsCard, { TNewsCardProps } from "../../components/news/NewsCard"
+import NewsCard from "../../components/news/NewsCard"
 import Container from "../../components/templates/Container"
 import User from "./User"
 import styles from "../../css/news/News.module.css"
@@ -21,12 +21,6 @@ const getNews = (id: number, author: boolean) => {
     return restOfProps
   }
 }
-
-const NEWS_RECENTS_INITALSTATE: TNewsCardProps[] = [
-  getNews(0, false),
-  getNews(1, false),
-  getNews(2, false)
-]
 
 type TFiltersBy = "Titulo" | "Autor" | "Fecha" | undefined
 const FILTERSBY_INITIALSTATE: TFiltersBy[] = ["Titulo", "Autor", "Fecha"]
