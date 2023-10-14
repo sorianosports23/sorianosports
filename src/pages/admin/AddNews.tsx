@@ -146,9 +146,6 @@ const AddNews = () => {
           >
             <BsTypeUnderline/>
           </button>
-          <button title="Lista">
-            <BsListUl/>
-          </button>
         </div>
 
         <div className={styles.news_note_cont}>

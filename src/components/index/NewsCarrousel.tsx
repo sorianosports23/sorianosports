@@ -4,10 +4,13 @@ import styles from "../../css/index/newscarrousel.module.css"
 import assetsFolder from "../../utils/publicfolder"
 import newsDemo from "../../utils/demo/news"
 import { Link } from "react-router-dom"
+import Loading from "../../pages/Loading"
+import apiGetRecentNews from "../../api/page/getRecentNews"
+import api from "../../utils/apiRoute"
 
 const NewsSlide = ({id, name, description, image}: TNews) => {
   return (
-    <div style={{backgroundImage: `url(${image})`}}>
+    <div style={{backgroundImage: `url(${api}${image})`}}>
       <h2>{name}</h2>
       <p>
         {description}
@@ -28,6 +31,8 @@ const NewsCarrousel = () => {
   const [mouseOnNews, setMouseOnNews] = useState(false)
 
   const [recentNews, setRecentsNews] = useState<Array<TNews>>([])
+
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (recentNews.length === 0) return
@@ -88,12 +93,17 @@ const NewsCarrousel = () => {
     }
   }, [recentNews])
 
+  const getRecentNews = async () => {
+    const recentNewsApi = await apiGetRecentNews()
+    console.log(recentNewsApi)
+    if (recentNewsApi.status) {
+      setRecentsNews(recentNewsApi.data)
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
-    // setRecentsNews([
-    //   {...newsDemo[9]},
-    //   {...newsDemo[8]},
-    //   {...newsDemo[7]}
-    // ])
+    getRecentNews()
   }, [])
 
   useEffect(() => {
@@ -106,6 +116,10 @@ const NewsCarrousel = () => {
       clearInterval(intervalSlide)
     }
   }, [handleChangeSlide, mouseOnNews])
+
+  if (loading) {
+    return <Loading/>
+  }
 
   return (
     <div className={styles.carrousel} ref={carrousel}
@@ -127,7 +141,10 @@ const NewsCarrousel = () => {
         onTransitionEnd={handleTransitionEnd}
       >
         {
-          recentNews.length !== 0 && <NewsSlide {...recentNews[2]}/>
+          recentNews.length === 3 && <NewsSlide {...recentNews[2]}/>
+        }
+        {
+          recentNews.length === 2 && <NewsSlide {...recentNews[1]}/>
         }
         {
           recentNews.map((news, i) => (

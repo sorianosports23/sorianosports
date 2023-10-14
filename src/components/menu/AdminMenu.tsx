@@ -31,7 +31,7 @@ const AdminMenu = () => {
             <img src={assetsFolder + "/img/secretaria_deportes.svg"} alt="logo" />
           </div>
           <span><RxSlash/></span>
-          <h1>Admin</h1>
+          <h1>Administración</h1>
         </div>
 
         <div 
