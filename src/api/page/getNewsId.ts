@@ -1,4 +1,4 @@
-import api from "../../utils/apiRoute"
+import api from "../apiRoute"
 
 const apiGetNewsId = async (id: number): Promise<TApiGetNewsIdResponse> => {
   try {

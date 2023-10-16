@@ -1,14 +1,6 @@
-import api from "../../utils/apiRoute";
-import apiLoaded from "../../utils/apiLoaded";
+import api from "../apiRoute";
 
 const apiChangeInfo = async ({ fullname, email, phone, token }: TApiChangeInfoRequest): Promise<IApiChangeInfoResponse> => {
-  if (!apiLoaded) {
-    return {
-      status: false,
-      message: ""
-    }
-  }
-  
   try {
 
     const userData = {

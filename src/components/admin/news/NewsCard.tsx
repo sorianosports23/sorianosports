@@ -1,5 +1,5 @@
-import { BsCalendar, BsCalendarDate, BsList, BsPenFill, BsPersonFill, BsThreeDots, BsTrashFill } from "react-icons/bs"
-import api from "../../../utils/apiRoute"
+import { BsCalendarDate, BsPenFill, BsPersonFill, BsThreeDots, BsTrashFill } from "react-icons/bs"
+import api from "../../../api/apiRoute"
 import styles from "../../../css/admin/news/NewsCard.module.css"
 import { useState } from "react"
 

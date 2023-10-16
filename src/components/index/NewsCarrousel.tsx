@@ -1,12 +1,10 @@
-import { useState, useRef, useEffect, MutableRefObject } from "react"
+import { useState, useRef, useEffect, MutableRefObject, useCallback } from "react"
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs"
 import styles from "../../css/index/newscarrousel.module.css"
-import assetsFolder from "../../utils/publicfolder"
-import newsDemo from "../../utils/demo/news"
 import { Link } from "react-router-dom"
 import Loading from "../../pages/Loading"
 import apiGetRecentNews from "../../api/page/getRecentNews"
-import api from "../../utils/apiRoute"
+import api from "../../api/apiRoute"
 
 const NewsSlide = ({id, name, description, image}: TNews) => {
   return (
@@ -36,7 +34,6 @@ const NewsCarrousel = () => {
 
   useEffect(() => {
     if (recentNews.length === 0) return
-    // carrousel.current.style.backgroundImage = `url(${recentNews[actualSlide-1].img})`
   }, [recentNews, actualSlide])
 
   const handleTransitionEnd = () => {
@@ -50,7 +47,7 @@ const NewsCarrousel = () => {
     }
   }, [actualSlide, newsTransition, onTransition])
 
-  const handleChangeSlide = (page: "prev" | "next") => {
+  const handleChangeSlide = useCallback((page: "prev" | "next") => {
     if (page === "next") {
       setOnTransition(true)
       setActualSlide(prev => {
@@ -71,7 +68,7 @@ const NewsCarrousel = () => {
         return prev-1
       })
     }
-  }
+  }, [numberOfSlides])
 
   useEffect(() => {   
     if (recentNews.length === 0) return

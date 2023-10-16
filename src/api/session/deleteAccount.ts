@@ -1,15 +1,6 @@
-import apiLoaded from "../../utils/apiLoaded";
-import api from "../../utils/apiRoute";
+import api from "../apiRoute";
 
 const apiDeleteAccount = async ({ token, password }: TApiDeleteAccountRequest): Promise<IApiDeleteAccountResponse>  => {
-  if (!apiLoaded) {
-    return {
-      authorization: false,
-      message: "",
-      status: false
-    }
-  }
-
   try {
     const SPToken = `SPToken ${token}`
 

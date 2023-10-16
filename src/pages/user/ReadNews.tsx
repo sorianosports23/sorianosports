@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react"
 import { BsPersonFill } from "react-icons/bs"
 import styles from "../../css/news/ReadNews.module.css"
 import Container from "../../components/templates/Container"
-import api from "../../utils/apiRoute"
+import api from "../../api/apiRoute"
 
 const ReadNews = () => {
   

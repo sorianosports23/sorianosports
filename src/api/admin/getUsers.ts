@@ -1,20 +1,6 @@
-import api from "../../utils/apiRoute";
-import apiLoaded from "../../utils/apiLoaded";
+import api from "../apiRoute";
 
 const apiAdminGetUsers = async ({token, pag}: TApiGetUsersRequest): Promise<IApiGetUsersResponse> => {
-  if (!apiLoaded) {
-    return {
-      status: false,
-      err: "La api no esta cargada",
-      data: [],
-      pagination: {
-        totalPages: 0,
-        currentPage: 0,
-        maxUsers: 0
-      }
-    }
-  }
-
   try {
     const req = await fetch(`${api}/users/getUsers.php?pag=${pag}`, {
       headers: {

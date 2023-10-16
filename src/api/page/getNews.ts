@@ -1,20 +1,6 @@
-import apiLoaded from "../../utils/apiLoaded"
-import api from "../../utils/apiRoute"
-import newsDemo from "../../utils/demo/news"
+import api from "../apiRoute"
 
 const apiGetNews = async (pag: number = 1): Promise<TApiGetNewsResponse> => {
-
-  if (!apiLoaded) {
-    return {
-      status: true,
-      data: [],
-      pagination: {
-        totalPages: 1,
-        currentPage: 1
-      }
-    }
-  }
-
   try {
     const res = await fetch(`${api}/news/getNews.php?pag=${pag}`)
     return await res.json() as TApiGetNewsResponse

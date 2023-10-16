@@ -1,14 +1,6 @@
-import apiLoaded from "../../utils/apiLoaded";
-import api from "../../utils/apiRoute";
+import api from "../apiRoute";
 
 const apiChangePassword = async ({ username, password, newPassword, token }: TApiChangePasswordRequest): Promise<IApiChangePasswordResponse> => {
-  if (!apiLoaded) {
-    return {
-      status: true,
-      message: ""
-    }
-  }
-
   try {
     const userData = {
       username,

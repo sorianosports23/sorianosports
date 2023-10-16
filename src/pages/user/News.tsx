@@ -5,22 +5,12 @@ import styles from "../../css/news/News.module.css"
 import { FormEvent, useEffect, useState } from "react"
 import NewsRecents from "../../components/news/NewsRecents"
 import { BsList, BsSearch } from "react-icons/bs"
-import newsDemo from "../../utils/demo/news"
 import { FaRegFaceFrown } from "react-icons/fa6"
 import Loading from "../Loading"
 import apiGetNews from "../../api/page/getNews"
 import apiGetRecentNews from "../../api/page/getRecentNews"
 
 const IMG_PLACEHOLDER = "img_placeholder.png"
-
-const getNews = (id: number, author: boolean) => {
-  if (author) {
-    return newsDemo[id]
-  } else {
-    const { author, ...restOfProps } = newsDemo[id]
-    return restOfProps
-  }
-}
 
 type TFiltersBy = "Titulo" | "Autor" | "Fecha" | undefined
 const FILTERSBY_INITIALSTATE: TFiltersBy[] = ["Titulo", "Autor", "Fecha"]
@@ -48,30 +38,8 @@ const News = () => {
     setFiltersAvailable(FILTERSBY_INITIALSTATE.filter(filter => filter !== filterSelected))
   }, [filterSelected])
 
-  // const handleSearch = () => {
-  //   setNewsSearched(true)
-  //   if (!filterSelected || !searchValue) {
-  //     setNewsResult([])
-  //     return
-  //   }
-  //   const results: Array<TNewsCardProps> = []
-  //   newsDemo.map((news) => {
-  //     if (news[EFiltersBy[filterSelected as keyof typeof EFiltersBy]]
-  //         .toLowerCase()
-  //         .includes(searchValue.toLowerCase())) {
-  //       results.push(news)
-  //     }
-  //     return null
-  //   })
-
-  //   console.log(newsDemo[0][EFiltersBy[filterSelected as keyof typeof EFiltersBy]])
-
-  //   setNewsResult(results)
-  // }
-
   const handleSubmit = (ev: FormEvent) => {
     ev.preventDefault()
-    // handleSearch()
   }
 
   const getNewsFromApi = async () => {
@@ -120,7 +88,6 @@ const News = () => {
                 <form className={styles.filter_by} onSubmit={handleSubmit}>
                   <div className={styles.filters_by}
                     data-open={filtersOpen}
-                    // onPointerLeave={() => setFiltersOpen(false)}
                   >
                     <button type="button"
                       onClick={() => setFiltersOpen(!filtersOpen)}

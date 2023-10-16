@@ -1,5 +1,4 @@
 import { LoaderFunction } from "react-router-dom";
-import newsDemo from "../demo/news"
 import apiGetNewsId from "../../api/page/getNewsId";
 
 const readNewsLoader: LoaderFunction = async ({ params }) => {

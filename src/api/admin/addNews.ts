@@ -1,4 +1,4 @@
-import api from "../../utils/apiRoute"
+import api from "../apiRoute"
 
 const apiAdminAddNews = async ({ token, title, description, image, content, author }: TApiAddNewsRequest): Promise<TApiAddNewsResponse> => {
   try {

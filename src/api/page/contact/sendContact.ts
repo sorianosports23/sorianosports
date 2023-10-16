@@ -1,4 +1,4 @@
-import api from "../../../utils/apiRoute"
+import api from "../../apiRoute"
 import { TApiSendContactRequest, TApiSendContactResponse } from "./types"
 
 const apiSendContact = async ({ name, email, subject, message }: TApiSendContactRequest): Promise<TApiSendContactResponse> => {

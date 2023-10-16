@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import assetsFolder from "../../utils/publicfolder"
 import styles from "../../css/news/NewsCard.module.css"
 import { BsPerson } from "react-icons/bs"
-import api from "../../utils/apiRoute"
+import api from "../../api/apiRoute"
 
 const NewsCard = ({ name, description, image, id, author, date }: TNews) => {
 
