@@ -1,6 +1,6 @@
 import api from "../../apiRoute"
 
-const apiAdminAddDirective = async ({ token, name, rank, image }: TApiAdminAddDirectiveRequest): Promise<TApiResponse> => {
+const apiAdminAddDirective = async ({ token, name, rank, image }: TApiAdminAddDirectiveRequest): Promise<IApiAdminAddDirectiveResponse> => {
   try {
     const bodyData = new FormData()
     bodyData.set("name", name)

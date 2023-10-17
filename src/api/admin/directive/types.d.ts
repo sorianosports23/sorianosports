@@ -4,3 +4,9 @@ type TApiAdminAddDirectiveRequest = {
   rank: string
   image: string
 }
+
+type TInputsOnDirective = "image" | "name" | "rank"
+
+interface IApiAdminAddDirectiveResponse extends TApiResponse {
+  input?: TInputsOnDirective
+}

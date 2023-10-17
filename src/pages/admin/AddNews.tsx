@@ -1,6 +1,6 @@
 import Admin from "./Admin"
 import styles from "../../css/admin/news/addNews.module.css"
-import { BsFillCloudUploadFill, BsListUl, BsTypeBold, BsTypeItalic, BsTypeUnderline } from "react-icons/bs"
+import { BsCloudUploadFill, BsFillCloudUploadFill, BsListUl, BsTypeBold, BsTypeItalic, BsTypeUnderline, BsUpload } from "react-icons/bs"
 import { MutableRefObject, useContext, useEffect, useRef, useState } from "react"
 import PrevNews from "./PrevNews"
 import { userSessionContext } from "../../context/session/UserSessionContext"
@@ -107,8 +107,8 @@ const AddNews = () => {
           <div>
             <label htmlFor="news_img">Portada:</label>
             <label htmlFor="news_image">
-              <BsFillCloudUploadFill/>
-              Subir
+              <BsUpload/>
+              Subir imagen
             </label>
             {
               newsImage?.name && <span className={styles.imgname}>{newsImage.name}</span>
@@ -154,10 +154,14 @@ const AddNews = () => {
       </div>
 
       <div className={styles.news_send}>
-        <button onClick={() => {
+        <button 
+          onClick={() => {
             setModalPrev(true)
             // handleSubmitNews()
-          }}>Subir noticia</button>
+          }}
+        >
+          <BsCloudUploadFill/> Publicar
+        </button>
       </div>
     </Admin>
 

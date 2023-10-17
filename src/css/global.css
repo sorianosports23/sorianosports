@@ -83,7 +83,9 @@ input[type="number"]::-webkit-outer-spin-button {
   display: none;
 }
 
-input[data-invalid='true'], textarea[data-invalid='true'] {
+input[data-invalid='true'], 
+textarea[data-invalid='true'],
+div[data-invalid='true'] {
   border: 1px solid #a009 !important;
   animation: shake_inp .2s linear !important;
 }

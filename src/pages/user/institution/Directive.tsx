@@ -1,34 +1,49 @@
 import User from "../User"
 import styles from "../../../css/directive/Directive.module.css"
-import assetsFolder from "../../../utils/publicfolder"
 import Container from "../../../components/templates/Container"
+import { useEffect, useState } from "react"
+import api from "../../../api/apiRoute"
+import Loading from "../../Loading"
+import apiGetDirective from "../../../api/page/directive/getDirective"
 
-type DirectiveCardProps = {
-  name: string
-  img: string
-  rol: string
-}
-
-const directivos: DirectiveCardProps[] = [
-  { name: "Noemi Viera", img: "director.jpg", rol: "Director" },
-  { name: "Pablo Caceres", img: "avatar-male.jpg", rol: "Sub-Director" },
-  { name: "Juan Castillo", img: "avatar-male.jpg", rol: "Secretario" },
-]
-const DirectiveCard = ({name, img, rol}:DirectiveCardProps) =>{
+const DirectiveCard = ({ name, rank, image }: TDirective) =>{
   return (
     <div className= {styles.card}>
       <div className={styles.image_gen}>
-        <img className={styles.image} src={assetsFolder + "/img/" + img} alt="Director"/>
+        <img className={styles.image} src={api+image} alt={name} />
     </div>
 
     <div className={styles.info}>
       <h2>{name}</h2>
-      < p>{rol}</p>
+      <p>{rank}</p>
     </div>
   </div>
   )
 }
-const Directive = () =>{
+const Directive = () => {
+
+  const [directivePeople, setDirectivePeople] = useState<TDirective[]>([])
+
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    handleGetDirective()
+  }, [])
+
+  const handleGetDirective = async () => {
+    const data = await apiGetDirective()
+    console.log(data)
+    if (data.status) {
+      setDirectivePeople(data.data)
+    }
+    setLoading(false)
+  }
+
+  if (loading) {
+    return (
+      <Loading/>
+    )
+  }
 
   return (
     <User>
@@ -36,13 +51,16 @@ const Directive = () =>{
         <h1 className={styles.title}>DIRECTIVA</h1>
 
       <div className={styles.general}>
-        
         {
-          directivos.map((directivo, i) => (
-            <DirectiveCard name={directivo.name} img={directivo.img} rol={directivo.rol} key={i}/>
+          directivePeople.map((person, i) => (
+            <DirectiveCard
+              {
+                ...person
+              }
+              key={i}
+            />
           ))
         }
-
       </div>
 
       </Container>
