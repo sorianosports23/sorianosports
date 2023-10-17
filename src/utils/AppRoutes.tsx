@@ -25,7 +25,19 @@ import Inscription from "../pages/user/Inscription"
 import Err404 from "../pages/404"
 import NewsAdmin from "../pages/admin/News"
 import AddNews from "../pages/admin/AddNews"
-import PrevNews from "../pages/admin/PrevNews"
+import Page from "../pages/admin/Page"
+
+//! Admin routes
+
+//! 
+
+//! Admin routes (Edit)
+import AdminDirective from "../pages/admin/edit/Directive"
+//!
+
+//! ADMIN routes (Add)
+import AddDirective from "../pages/admin/add/Directive"
+//!
 
 const pageUserRoutes = createRoutesFromElements(
   <Route path="/" errorElement={<Error/>}>
@@ -68,9 +80,16 @@ const pageUserRoutes = createRoutesFromElements(
       <Route path="users" element={<Users/>} />
       <Route path="sports" element={<SportsAdmin/>}/>
       <Route path="events" element={<EventsAdmin/>}/>
+      <Route path="page" element={<Page/>}/>
       <Route path="news">
         <Route index element={<NewsAdmin/>}/>
         <Route path="add" element={<AddNews/>}/>
+      </Route>
+      <Route path="edit">
+        <Route path="directive" element={<AdminDirective/>}/>
+      </Route>
+      <Route path="add">
+        <Route path="directive" element={<AddDirective/>}/>
       </Route>
     </Route>
   </Route>

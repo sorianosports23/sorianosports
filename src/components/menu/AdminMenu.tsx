@@ -59,7 +59,7 @@ const AdminMenu = () => {
           <Link to="/admin/sports">Deportes</Link>
           <Link to="/admin/events">Eventos</Link>
           <Link to="/admin/news">Noticias</Link>
-          <Link to="/admin/">Base de datos</Link>
+          <Link to="/admin/page">Página</Link>
         </nav>
       </div>
     </header>
