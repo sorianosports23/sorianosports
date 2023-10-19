@@ -4,7 +4,7 @@ import User from "./User"
 import styles from "../../css/news/News.module.css"
 import { FormEvent, useEffect, useState } from "react"
 import NewsRecents from "../../components/news/NewsRecents"
-import { BsList, BsSearch } from "react-icons/bs"
+import { BsList, BsNewspaper, BsSearch } from "react-icons/bs"
 import { FaRegFaceFrown } from "react-icons/fa6"
 import Loading from "../Loading"
 import apiGetNews from "../../api/page/getNews"
@@ -25,6 +25,7 @@ const News = () => {
   const [loading, setLoading] = useState(true)
 
   const [ recentsNews, setRecentsNews ] = useState<Array<TNews>>([])
+  const [ allNews, setAllNews ] = useState<Array<TNews>>([])
 
   const [searchValue, setSearchValue] = useState("")
   const [newsResult, setNewsResult] = useState<Array<TNews>>([])
@@ -42,18 +43,34 @@ const News = () => {
     ev.preventDefault()
   }
 
-  const getNewsFromApi = async () => {
+  const getRecentsNewsFromApi = async () => {
     const news = await apiGetRecentNews()
 
     if (news.status) {
       console.log(news)
       setRecentsNews(news.data)
     }
-    setLoading(false)
+  }
+
+  const [responseData, setResponseData] = useState({
+    totalPages: 0,
+    currentPage: 0
+  })
+
+  const getNewsFromApi = async (pag: number = 1) => {
+    const news = await apiGetNews(pag)
+    if (news.status) {
+      setAllNews(prev => [...prev, ...news.data])
+      setResponseData(news.pagination)
+    }
   }
 
   useEffect(() => {
-    getNewsFromApi()
+    (async () => {
+      await getRecentsNewsFromApi()
+      await getNewsFromApi()
+      setLoading(false)
+    })()
   }, [])
 
   useEffect(() => {
@@ -79,12 +96,39 @@ const News = () => {
         <div className={styles.news_cont}>
           <div className={styles.news_filter}>
             <div>
-              <h2>Buscador</h2>
+              <h2>Noticias</h2>
               <div className={styles.separator}></div>
             </div>
 
             <div className={styles.filters_cont}>
-              <div className={styles.filters}>
+              <div className={styles.news_results}>
+                {
+                  allNews.map((news, i) => (
+                    <NewsCard 
+                      {...news} 
+                      key={i}
+                    />
+                  ))
+                }
+              </div>
+              <div className={styles.res_info}>
+                {
+                  responseData.currentPage === responseData.totalPages
+                  ?
+                  <div className={styles.no_more}>
+                    <BsNewspaper/>
+                    No hay mas noticias que cargar
+                  </div>
+                  :
+                  <button 
+                    className={styles.load_more}
+                    onClick={() => getNewsFromApi(responseData.currentPage+1)}
+                  >
+                    CARGAR MAS
+                  </button>
+                }
+              </div>
+              {/* <div className={styles.filters}>
                 <form className={styles.filter_by} onSubmit={handleSubmit}>
                   <div className={styles.filters_by}
                     data-open={filtersOpen}
@@ -145,7 +189,7 @@ const News = () => {
                       </div>
                     : <></>
                 }
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

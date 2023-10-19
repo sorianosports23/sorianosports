@@ -184,6 +184,42 @@
   font-size: 1.5em;
 }
 
+.res_info {
+  height: max-content;
+  width: 100%;
+  padding: .5rem;
+  display: grid;
+  place-content: center;
+}
+
+.load_more {
+  width: 10rem;
+  height: 2.5rem;
+  background: #11babb;
+  border: none;
+  border-radius: .5rem;
+  margin: auto;
+}
+
+.load_more:hover {
+  background: #0a9497;
+}
+
+.no_more {
+  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+  justify-content: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 2em;
+}
+
+.no_more > svg {
+  font-size: 2em;
+}
+
 @media (max-width: 772px) {
   .filters_cont > div, .filter_by {
     width: 100%;
