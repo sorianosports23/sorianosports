@@ -1,9 +1,30 @@
 import { BsCalendarDate, BsPenFill, BsPersonFill, BsThreeDots, BsTrashFill } from "react-icons/bs"
 import api from "../../../api/apiRoute"
 import styles from "../../../css/admin/news/NewsCard.module.css"
-import { useState } from "react"
+import { useCallback, useContext, useEffect, useState } from "react"
+import { userSessionContext } from "../../../context/session/UserSessionContext"
+import apiGetNewsId from "../../../api/page/getNewsId"
 
-const NewsCard = ({ id, name, image, author, date }: TNews) => {
+type TNewsCardProps = {
+  data: TNews
+  handleDelete: ({id, name}: {id:number, name:string}) => void
+  handleOpenEdit: (id: number, name: string, description: string, note: string) => void
+}
+
+const NewsCard = ({ data, handleDelete, handleOpenEdit }: TNewsCardProps) => {
+
+  const [note, setNote] = useState("")
+
+  const { id, name, description, image, author, date } = data
+
+  const getNewsID = useCallback(async () => {
+    const news = await apiGetNewsId(id)
+    setNote(news.data.note)
+  }, [id])
+
+  useEffect(() => {
+    getNewsID()
+  }, [getNewsID])
 
   const [showDropdown, setShowDropdown] = useState(false)
 
@@ -38,8 +59,22 @@ const NewsCard = ({ id, name, image, author, date }: TNews) => {
           <button onClick={() => setShowDropdown(!showDropdown)}><BsThreeDots/></button>
 
           <ul style={{display: showDropdown ? "flex" : "none"}}>
-            <li><button><BsPenFill/> Editar</button></li>
-            <li><button><BsTrashFill/> Borrar</button></li>
+            <li>
+              <button
+                onClick={() => {
+                  handleOpenEdit(id, name, description, note)
+                }}
+              >
+                <BsPenFill/> Editar
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => handleDelete({id, name})}
+              >
+                <BsTrashFill/> Borrar
+              </button>
+            </li>
           </ul>
         </div>
       </div>

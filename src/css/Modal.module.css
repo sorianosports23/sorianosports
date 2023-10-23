@@ -9,6 +9,7 @@
   transition: opacity .5s;
   z-index: -1;
   opacity: 0;
+  padding: 1rem;
 }
 
 .cont[data-open='true'] {
@@ -26,6 +27,7 @@
   transform: translateY(-100%);
   transition: transform .3s, opacity .5s;
   opacity: 0;
+  overflow-y: auto;
 }
 
 .cont[data-open='true'] > .modal {

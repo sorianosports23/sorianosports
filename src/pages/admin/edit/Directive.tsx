@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import Admin from "../Admin"
 import { BsPenFill, BsPlusLg, BsTrashFill, BsXLg } from "react-icons/bs"
 import stylesPage from "../../../css/admin/page/Page.module.css"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Loading from "../../Loading"
 import apiGetDirective from "../../../api/page/directive/getDirective"
 import api from "../../../api/apiRoute"
@@ -10,16 +10,22 @@ import styles from "../../../css/admin/directive/PageDirective.module.css"
 import OptionModal from "../../../components/modal/OptionModal"
 import SendModal from "../../../components/modal/SendModal"
 import DirectiveProfile from "../../../components/admin/edit/DirectiveProfile"
+import apiAdminDeleteDirective from "../../../api/admin/directive/deleteDirective"
+import { userSessionContext } from "../../../context/session/UserSessionContext"
+import Loader from "../../../components/Loader"
 
 const Directive = () => {
 
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<TDirective[]>([])
 
+  const { token } = useContext(userSessionContext)
+
   //!modal
 
   const [modalOpen, setModalOpen] = useState(false)
   const [modalTitle, setModalTitle] = useState("")
+  const [profileToDelete, setProfileToDelete] = useState(0)
 
   const [deletedModal, setDeletedModal] = useState(false)
   const [deletedModalMsg, setDeletedModalMsg] = useState("")
@@ -28,22 +34,59 @@ const Directive = () => {
   const [editName, setEditName] = useState("")
   const [editRank, setEditRank] = useState("")
   const [editImg, setEditImg] = useState("")
+  const [editId, setEditId] = useState(0)
 
-  const handleDeleteProfile = () => {
-    console.log(modalTitle)
+  const [buttonLoading, setButtonLoading] = useState(false)
+
+  const handleDeleteProfile = async () => {
+    
+    const profileToDeleteData = {
+      token,
+      id: profileToDelete
+    }
+    
+    setButtonLoading(true)
+    const res = await apiAdminDeleteDirective(profileToDeleteData)
     setModalOpen(false)
-    setDeletedModal(true)
-    setDeletedModalMsg(`Se elimino a ${modalTitle}`)
+
+    if (res.status) {
+      setDeletedModal(true)
+      setDeletedModalMsg(`Se elimino a ${modalTitle}`)
+      handleUpdateProfiles()
+    } else {
+      setDeletedModal(true)
+      setDeletedModalMsg(`No se pudo eliminar a ${modalTitle}`)
+    }
+
+    setButtonLoading(false)
+
+  }
+
+  const handleEditProfile = (status: boolean) => {
+    if (status) {
+      setDeletedModalMsg("Se edito correctamente")
+      setDeletedModal(true)
+      handleUpdateProfiles()
+      setEditOpen(false)
+    } else {
+      setDeletedModalMsg("No se pudo editar")
+      setDeletedModal(true)
+    }
   }
 
   //!
 
+  const handleUpdateProfiles = async () => {
+    setLoading(true)
+    const res = await apiGetDirective()
+    if (res.status) {
+      setData(res.data)
+    }
+    setLoading(false)
+  }
+
   useEffect(() => {
-    (async () => {
-      const directiveApi = await apiGetDirective()
-      if (directiveApi.status) setData(directiveApi.data)
-      setLoading(false)      
-    })()
+    handleUpdateProfiles()
   }, [])
 
   if (loading) {
@@ -74,20 +117,30 @@ const Directive = () => {
                     setEditName(profile.name)
                     setEditRank(profile.rank)
                     setEditImg(api+profile.image)
+                    setEditId(profile.id)
                     setEditOpen(true)
                   }}
+                  disabled={buttonLoading}
                 >
-                  <BsPenFill/>
-                  Editar
+                  {
+                    buttonLoading
+                      ? <Loader/>
+                      : <><BsPenFill/> Editar</>
+                  }
                 </button>
                 <button
                   onClick={() => {
-                    setModalTitle(profile.name)
+                    setProfileToDelete(profile.id)
+                    setModalTitle(profile.name + ` (${profile.id})`)
                     setModalOpen(true)
                   }}
+                  disabled={buttonLoading}
                 >
-                  <BsTrashFill/>
-                  Borrar
+                  {
+                    buttonLoading
+                      ? <Loader/>
+                      : <><BsTrashFill/> Borrar</>
+                  }
                 </button>
               </div>
             </div>
@@ -115,6 +168,8 @@ const Directive = () => {
         name={editName}
         rank={editRank}
         img={editImg}
+        id={editId}
+        handleEdit={handleEditProfile}
       />
     </Admin>
   )

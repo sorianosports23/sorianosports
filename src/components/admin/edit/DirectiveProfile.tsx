@@ -1,7 +1,10 @@
 import { BsImageFill, BsUpload, BsXLg } from "react-icons/bs"
 import modalStyles from "../../../css/Modal.module.css"
 import formStyles from "../../../css/admin/directive/Directive.module.css"
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react"
+import apiAdminModifyDirective from "../../../api/admin/directive/modifyDirective"
+import { userSessionContext } from "../../../context/session/UserSessionContext"
+import Loader from "../../Loader"
 
 type TDirectiveProfileProps = {
   open: boolean
@@ -9,14 +12,20 @@ type TDirectiveProfileProps = {
   name: string
   rank: string
   img: string
+  id: number
+  handleEdit: (status: boolean) => void
 }
 
-const DirectiveProfile = ({ open, close, name, rank, img }: TDirectiveProfileProps) => {
+const DirectiveProfile = ({ open, close, id, name, rank, img, handleEdit }: TDirectiveProfileProps) => {
+
+  const { token } = useContext(userSessionContext)
 
   const [directiveName, setDirectiveName] = useState(name)
   const [directiveRank, setDirectiveRank] = useState(rank)
   const [directiveImg, setDirectiveImg] = useState<any>(null)
   const [directiveImgUrl, setDirectiveImgUrl] = useState(img)
+
+  const [btnLoading, setBtnLoading] = useState(false)
 
   useEffect(() => {
     if (open) {
@@ -47,9 +56,35 @@ const DirectiveProfile = ({ open, close, name, rank, img }: TDirectiveProfilePro
     }
   }
 
+  const handleSubmit = async (ev: FormEvent) => {
+    ev.preventDefault()
+
+    setBtnLoading(true)
+
+    const data: TApiAdminModifyDirectiveParams = {
+      token,
+      id,
+      name: directiveName,
+      rank: directiveRank
+    }
+
+    if (directiveImg) {
+      data.img = directiveImg
+    }
+
+    const req = await apiAdminModifyDirective(data)
+    if (req.status) {
+      handleEdit(true)
+    } else {
+      handleEdit(false)
+    }
+
+    setBtnLoading(false)
+  }
+
   return (
     <div className={modalStyles.cont} data-open={open}>
-      <form className={modalStyles.modal}>
+      <form className={modalStyles.modal} onSubmit={handleSubmit}>
         <div className={modalStyles.header}>
           <h2>Editar perfil</h2>
           <button>
@@ -127,8 +162,13 @@ const DirectiveProfile = ({ open, close, name, rank, img }: TDirectiveProfilePro
           <button
             className={modalStyles.btn_accept}
             type="submit"
+            disabled={btnLoading}
           >
-            Aceptar
+            {
+              btnLoading
+                ? <Loader/>
+                : "Aceptar"
+            }
           </button>
         </div>
       </form>
