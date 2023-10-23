@@ -46,7 +46,7 @@ const AdminMenu = () => {
           <button>{username} <BsChevronDown/></button>
 
           <ul className={styles.user_dropdown}>
-            <li><button onClick={() => navigate("/")}>Volver a /</button></li>
+            <li><button onClick={() => navigate("/")}>Volver al Inicio</button></li>
             <li><button onClick={() => handleLogout()}>Cerrar sesión</button></li>
           </ul>
         </div>
