@@ -6,7 +6,10 @@
 
 .links > a {
   width: fit-content;
+<<<<<<< HEAD
   font-family: "raleway";
+=======
+>>>>>>> 03a658944beda1d764bfe0ce95c19287d6f55b81
   padding: .7rem;
   border: none;
   border-radius: .5rem;
