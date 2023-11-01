@@ -1,11 +1,11 @@
-.news_info {
+.event {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
 }
 
-.news_info_inputs {
+.event_info_inputs {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -13,15 +13,15 @@
   width: 100%;
 }
 
-.news_info_inputs > div {
+.event_info_inputs > div {
   display: flex;
   gap: .5rem;
   /* align-items: center; */
   width: 60%;
 }
 
-.news_info_inputs input, 
-.news_info_inputs textarea {
+.event_info_inputs input, 
+.event_info_inputs textarea {
   background: none;
   border: none;
   outline: none;
@@ -31,13 +31,13 @@
   padding: 0 .5rem;
 }
 
-.news_info_inputs textarea {
+.event_info_inputs textarea {
   height: 5rem;
 }
 
-.news_info_inputs input[type="file"] { display: none; }
+.event_info_inputs input[type="file"] { display: none; }
 
-.news_info_inputs div:has(input[type="file"]) > label:last-of-type {
+.event_info_inputs div:has(input[type="file"]) > label:last-of-type {
   width: 10rem;
   height: 2rem;
   /* border: 1px solid #232323; */
@@ -50,11 +50,11 @@
   cursor: pointer;
 }
 
-.news_info_inputs div:has(input[type="file"]) > label:last-of-type:hover {
+.event_info_inputs div:has(input[type="file"]) > label:last-of-type:hover {
   background: #0f0;
 }
 
-.news_note {
+.event_note {
   margin-top: 1rem;
   border-top: 1px solid #232323;
   padding-top: 1rem;
@@ -64,13 +64,13 @@
   gap: 1rem;
 }
 
-.news_note_btns {
+.event_note_btns {
   display: flex;
   gap: .5rem;
   flex-wrap: wrap;
 }
 
-.news_note_btns button {
+.event_btns button {
   width: 2rem;
   height: 1.5rem;
   background: none;
@@ -82,7 +82,7 @@
   font-size: 1.2em;
 }
 
-.news_note_btns button:hover {
+.event_note_btns button:hover {
   background: #0a09;
 }
 
@@ -104,7 +104,7 @@
   border-radius: .5rem;
 }
 
-.news_send button {
+.event_send button {
   width: 10rem;
   height: 2rem;
   border-radius: .5rem;
@@ -182,5 +182,3 @@
   background: #0a09;
   letter-spacing: 1px;
 }
-
-

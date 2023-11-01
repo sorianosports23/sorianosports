@@ -90,7 +90,7 @@ const Login = () => {
 
         <form className={styles.form} onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="#">Usuario</label>
+            <label htmlFor="#">Usuario:</label>
             <div>
               <input type="text" 
                 {...user}
@@ -103,7 +103,7 @@ const Login = () => {
           </div>
 
           <div>
-            <label htmlFor="#">Contraseña</label>
+            <label htmlFor="#">Contraseña:</label>
             <div>
               <input type="password" 
                 {...userPassword}

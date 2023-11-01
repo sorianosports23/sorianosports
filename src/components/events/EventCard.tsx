@@ -8,7 +8,6 @@ const EventCard = ({ name, place, sport, description, date_ev }: TEvent) => {
   
   const [open, setOpen] = useState(false)
   const date = new Date(`${date_ev}GMT-3`)
-  Date()
 
   const day = days[date.getDay()]
   const dayNumber = date.getDay() + 1

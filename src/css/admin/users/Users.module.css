@@ -1,5 +1,12 @@
 .res {
   display: flex;
+  font-family: 'Raleway';
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.resList{
+  display: flex;
   flex-direction: column;
   gap: 1rem;
 }

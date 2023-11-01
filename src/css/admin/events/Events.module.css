@@ -1,0 +1,25 @@
+.management > button, 
+.management > a {
+  width: max-content;
+  padding: .4rem;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  border-radius: .5rem;
+  border: 1px solid #222;
+  background: none;
+  transition: box-shadow .3s;
+  text-decoration: none;
+  font-family: 'Raleway', sans-serif;
+  color: #222;
+}
+
+.management > button:hover,
+.management > a:hover {
+  box-shadow: 1px 1px 1px #222;
+}
+
+.btn_add {
+  background: #4fea4f !important;
+}

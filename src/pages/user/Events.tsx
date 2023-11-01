@@ -1,19 +1,15 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import EventCard from "../../components/events/EventCard"
 import styles from "../../css/events/Events.module.css"
 import { BsFillCaretDownFill, BsFillCalendarDateFill , BsFillCaretUpFill, BsCalendarCheckFill} from "react-icons/bs"
-import listEvents from "../../utils/events/events.json"
 import User from "./User"
 import Loading from "../Loading"
-import assetsFolder from "../../utils/publicfolder"
 import { useNavigate } from "react-router-dom"
 import apiGetEvents from "../../api/page/events/getEvents"
 import Container from "../../components/templates/Container"
-import classNames from "classnames"
 
 const Events = () => {
 
-  const navigate = useNavigate()
 
   //!
   const [loading, setLoading] = useState(true)
@@ -21,7 +17,7 @@ const Events = () => {
 
   useEffect(() => {
     (async () => {
-      await getEvents()
+      await getEvents(1, true)
       setLoading(false)
     })()
   }, [])
@@ -33,12 +29,14 @@ const Events = () => {
     currentPage: 0
   })
 
-  const getEvents = async (pos: number = 1) => {
+  const getEvents = async (pos: number = 1, firstLoad: boolean = false) => {
     const eventRes = await apiGetEvents(pos)
     console.log(eventRes)
     if (eventRes.status) {
       setEvents(prev => [...prev, ...eventRes.data])
       setResponseData(eventRes.pagination)
+
+      if (firstLoad) setEventsToShow(eventRes.data)
     }
   }
 
@@ -52,19 +50,62 @@ const Events = () => {
   const [showPlaces, setShowPlaces] = useState(false)
   const [showSports, setShowSports] = useState(false)
   const [events, setEvents] = useState<Array<TEvent>>([])
-  const [eventsCity, setEventsCity] = useState("Mercedes")
+  const [eventsCity, setEventsCity] = useState("Todos")
   const [sportSelected, setSportSelected] = useState("Todos")
   const [sportsName, setSportsName] = useState<Array<string>>([])
   const [eventsToShow, setEventsToShow] = useState<Array<TEvent>>([])
   const [selectedEvent, setSelectedEvent] = useState<TEvent | null>(null)
+  const [cityNames, setCityNames] = useState<Array<string>>(["Todos"])
+  const [sportNames, setSportNames] = useState<Array<string>>(["Todos"])
 
   const handleChangeEventsCity = (city: string) => {
-
+    setEventsCity(city)
+    setShowPlaces(false)
   }
 
   const handleChangeSportSelected = (sport: string) => {
-
+    setSportSelected(sport)
+    setShowSports(false)
   }
+
+  const handleSetEventsInfo = useCallback(() => {
+    for (let i in events) {
+      setCityNames(prev => {
+        if (prev.includes(events[i].place)) return prev
+        return [...prev, events[i].place]
+      })
+      setSportNames(prev => {
+        if (prev.includes(events[i].sport)) return prev
+        return [...prev, events[i].sport]
+      })
+    }
+  }, [events])
+
+  const handleSetEventsToShow = useCallback(() => {
+    const eventsFilters: TEvent[] = [] 
+    events.map((event) => {
+      let eventIsOnCity = true
+      let eventIsSport = true
+
+      if (event.place !== eventsCity && eventsCity !== "Todos") {
+        eventIsOnCity = false
+      }
+      if (event.sport !== sportSelected && sportSelected !== "Todos") {
+        eventIsSport = false
+      }
+
+      if (eventIsOnCity && eventIsSport) {
+        eventsFilters.push(event)
+      }
+      return null
+    })
+    setEventsToShow(eventsFilters)
+  }, [events, eventsCity, sportSelected])
+
+  useEffect(() => {
+    handleSetEventsInfo()
+    handleSetEventsToShow()
+  }, [events, handleSetEventsInfo, handleSetEventsToShow])
 
   if (loading) return <Loading/>
 
@@ -78,7 +119,10 @@ const Events = () => {
             <div className={styles.btn_cont}>
               <div>
                 <button
-                  onClick={() => setShowPlaces(!showPlaces)}
+                  onClick={() => {
+                    setShowPlaces(!showPlaces)
+                    if (showSports) setShowSports(false)
+                  }}
                 >
                   Localidades
                   {
@@ -97,11 +141,12 @@ const Events = () => {
 
                 <ul className={styles.btn_cont_list}
                   style={{
-                    display: showPlaces ? "block" : "none"
+                    display: showPlaces ? "block" : "none",
+                    zIndex: showPlaces ? 666 : 0
                   }}
                 >
                   {
-                    Object.keys(events).map((city, i) => {
+                    cityNames.map((city, i) => {
                       if (city !== eventsCity) {
                         return  <li key={i}>
                                   <button onClick={() => handleChangeEventsCity(city)}>{city}</button>
@@ -114,7 +159,10 @@ const Events = () => {
 
               <div>
                 <button
-                  onClick={() => setShowSports(!showSports)}
+                  onClick={() => {
+                    setShowSports(!showSports)
+                    if (showPlaces) setShowPlaces(false)
+                  }}
                 >
                   Deportes
                   {
@@ -133,11 +181,12 @@ const Events = () => {
 
                 <ul className={styles.btn_cont_list}
                   style={{
-                    display: showSports ? "block" : "none"
+                    display: showSports ? "block" : "none",
+                    zIndex: showSports ? 666 : 0
                   }}
                 >
                   {
-                    sportsName.map((sport, i) => {
+                    sportNames.map((sport, i) => {
                       if (sport === sportSelected) return null
                       return <li key={i}>
                               <button onClick={() => handleChangeSportSelected(sport)}>
@@ -157,7 +206,7 @@ const Events = () => {
 
           <div className={styles.events}>
             {
-              events.map((event, i) => (
+              eventsToShow.map((event, i) => (
                 <EventCard {...event} key={i} />
               ))
             }

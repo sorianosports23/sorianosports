@@ -26,7 +26,6 @@ import Err404 from "../pages/404"
 import NewsAdmin from "../pages/admin/News"
 import AddNews from "../pages/admin/AddNews"
 import Page from "../pages/admin/Page"
-
 //! Admin routes
 
 //! 
@@ -37,6 +36,7 @@ import AdminDirective from "../pages/admin/edit/Directive"
 
 //! ADMIN routes (Add)
 import AddDirective from "../pages/admin/add/Directive"
+import AddEvent from "../pages/admin/add/Event"
 //!
 
 const pageUserRoutes = createRoutesFromElements(
@@ -90,6 +90,7 @@ const pageUserRoutes = createRoutesFromElements(
       </Route>
       <Route path="add">
         <Route path="directive" element={<AddDirective/>}/>
+        <Route path="event" element={<AddEvent/>}/>
       </Route>
     </Route>
   </Route>

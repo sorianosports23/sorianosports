@@ -3,7 +3,7 @@ import Admin from "./Admin"
 
 const IndexAdmin = () => {
   return (
-    <Admin route_title="Incio">
+    <Admin route_title="Inicio">
       <Dashboard/>
     </Admin>
   )

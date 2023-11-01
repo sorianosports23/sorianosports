@@ -78,7 +78,7 @@ const Users = () => {
           ))
         } */}
         <div>Mostrando {totalUsers} usuarios</div>
-        <div>
+        <div className={styles.resList}>
           {
             users.map((user, i) => (
               <UserCard

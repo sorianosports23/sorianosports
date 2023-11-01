@@ -70,7 +70,7 @@ const Footer = () => {
       <div className={styles.copyright}>
         Copyright © {new Date().getFullYear()} <a href="https://soriano.gub.uy" style={{textDecoration: "none", color: "#222"}}>Intendencia de Soriano</a>
         <br />
-        by SorianoSports - UTU 2023
+        by <a href="https://www.instagram.com/soriano_sports_/" style={{textDecoration: "none", color: "#222"}}>Soriano Sports</a>  - UTU 2023
       </div>
     </footer>
   )

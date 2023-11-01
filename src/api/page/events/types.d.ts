@@ -2,6 +2,7 @@ type TEvent = {
   id: number
   name: string
   place: string
+  time: string
   sport: string
   description: string
   date_ev: string
