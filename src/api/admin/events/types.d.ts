@@ -3,6 +3,12 @@ type TApiDeleteEventRequest = {
   id: number
 }
 
-type IApiDeleteEventResponse = {
-  
+type TApiAdminAddEventRequest = {
+  token: string
+  name: string
+  description: string
+  sport: string
+  place: string
+  time: string
+  date: string
 }

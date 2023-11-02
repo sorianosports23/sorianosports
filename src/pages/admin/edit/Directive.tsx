@@ -95,11 +95,7 @@ const Directive = () => {
 
 
   return (
-<<<<<<< HEAD
     <Admin route_title="Editar directiva">
-=======
-    <Admin route_title="/institucion/directiva">
->>>>>>> 03a658944beda1d764bfe0ce95c19287d6f55b81
       <div className={stylesPage.management}>
         <Link to="/admin/add/directive" className={stylesPage.btn_add}><BsPlusLg/> Agregar</Link>
       </div>
