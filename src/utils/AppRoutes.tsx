@@ -1,4 +1,4 @@
-import { Link, Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom"
+import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom"
 import Error from "../pages/Error"
 import Index from "../pages/user/Index"
 import Events from "../pages/user/Events"
@@ -26,8 +26,9 @@ import Err404 from "../pages/404"
 import NewsAdmin from "../pages/admin/News"
 import AddNews from "../pages/admin/AddNews"
 import Page from "../pages/admin/Page"
-//! Admin routes
 
+//! Admin routes
+import AdminContact from "../pages/admin/Contact"
 //! 
 
 //! Admin routes (Edit)
@@ -92,6 +93,7 @@ const pageUserRoutes = createRoutesFromElements(
         <Route path="directive" element={<AddDirective/>}/>
         <Route path="event" element={<AddEvent/>}/>
       </Route>
+      <Route path="contact" element={<AdminContact/>}/>
     </Route>
   </Route>
 )

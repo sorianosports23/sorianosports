@@ -79,6 +79,14 @@ input[type="number"]::-webkit-outer-spin-button {
   display: none;
 }
 
+input[type="number"] {
+  appearance: textfield;
+}
+
+input:read-only {
+  cursor: default;
+}
+
 .hidden {
   display: none;
 }
