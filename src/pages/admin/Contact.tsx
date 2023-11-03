@@ -5,6 +5,7 @@ import { userSessionContext } from "../../context/session/UserSessionContext"
 import apiAdminGetContact from "../../api/admin/contact/getContact"
 import Pagination from "../../components/admin/templates/Pagination"
 import tableStyles from "../../css/admin/table.module.css"
+import ContactModal from "../../components/admin/modal/ContactModal"
 
 const Contact = () => {
 
@@ -51,6 +52,18 @@ const Contact = () => {
     handleGetContact(page)
   }
 
+  //! MODAL
+  const [modal, setModal] = useState(false)
+  const [modalID, setModalID] = useState(0)
+  const [modalForm, setModalForm] = useState<TContact>({id: 0, name: "", email: "", subject: "", messageContact: ""})
+  //!
+
+  const handleOpenModal = (id: number, form: TContact) => {
+    setModalID(id)
+    setModalForm(form)
+    setModal(true)
+  }
+
   if (loading) {
     return <Loading/>
   }
@@ -70,7 +83,12 @@ const Contact = () => {
               </div>
 
               <div className={tableStyles.btns}>
-                <button className={tableStyles.show}>Ver mas</button>
+                <button 
+                  className={tableStyles.show}
+                  onClick={() => handleOpenModal(contact.id, contact)}
+                >
+                  Ver mas
+                </button>
               </div>
             </div>
           ))
@@ -85,6 +103,13 @@ const Contact = () => {
           changePage={handleChangePage}
         />
       </div>
+
+      <ContactModal
+        open={modal}
+        close={() => setModal(false)}
+        id={modalID}
+        form={modalForm}
+      />
     </Admin>
   )
 }

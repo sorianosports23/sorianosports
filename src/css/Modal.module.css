@@ -89,3 +89,39 @@
 .btn_accept:focus {
   background: #1f7c19;
 }
+
+.c_form {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.c_form > div {
+  display: flex;
+  gap: .5rem;
+}
+
+.c_form label {
+  width: 7rem;
+}
+
+.c_form input {
+  height: 1.5rem;
+}
+
+.c_form input,
+.c_form textarea {
+  background: none;
+  border: 1px solid #2229;
+  border-radius: .2rem;
+}
+
+.c_form textarea {
+  resize: both;
+  min-width: 20rem;
+  min-height: 10rem;
+}
+
+.c_msg {
+  flex-direction: column;
+}
