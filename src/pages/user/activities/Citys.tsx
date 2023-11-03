@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom"
 import useSearchParams from "../../../utils/useSearchParams"
 import assetsFolder from "../../../utils/publicfolder"
 import { citySports, sportImg } from "../../../utils/sportList"
+import apiGetCitySports from "../../../api/page/sports/getCitySports"
 
 const departments = {
   Dolores: {
@@ -41,22 +42,6 @@ const departments = {
   },
 }
 
-const useSearch = () => {
-
-  const [value, setValue] = useState("")
-
-  const onChange = (ev: ChangeEvent<HTMLInputElement>) => {
-    setValue(ev.target.value)
-  }
-
-  return {
-    type: "text",
-    placeholder: "Ingresar localidad",
-    value,
-    onChange
-  }
-}
-
 const NoSelected = "Ninguno seleccionado"
 
 const setSearchParams = (cityName: string) => {
@@ -65,25 +50,10 @@ const setSearchParams = (cityName: string) => {
 
 const Departments = () => {
 
-  const searchInput = useSearch()
-
   const [selectedDepartment, setSelectedDepartment] = useState<string | typeof NoSelected>(NoSelected)
-
-  const [searchDepartments, setSearchDepartments] = useState(Object.keys(departments))
+  const [sportsFromCity, setSportsFromCity] = useState<string[]>([])
 
   const searchParams = useSearchParams()
-
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (!searchInput.value) {
-      setSearchDepartments(Object.keys(departments))
-    } else {
-      setSearchDepartments(
-        Object.keys(departments).filter(name => name.toLowerCase().includes(searchInput.value.toLowerCase())) as typeof searchDepartments
-      )
-    }
-  }, [searchInput.value])
 
   useEffect(() => {
     if (searchParams.searchParams && searchParams.params?.selected) {
@@ -95,26 +65,29 @@ const Departments = () => {
 
     }
   }, [searchParams])
+
+  const getSportFromCity = useCallback(async () => {
+    if (selectedDepartment === NoSelected) return
+
+    const data = await apiGetCitySports(selectedDepartment)
+    if (data.status) {
+      setSportsFromCity(data.data)
+    } else {
+      setSportsFromCity([])
+    }
+  }, [selectedDepartment])
   
   const handleSelectCity = useCallback((cityName: string) => {
     setSelectedDepartment(cityName)
     setSearchParams(cityName)
   }, [])
 
+  useEffect(() => {
+    getSportFromCity()
+  }, [getSportFromCity])
+
   return (
     <User>
-      {/* FILTROS */}
-      <div className={styles.filters}>
-        <div className={styles.filters_content}>
-          <div className={styles.input}>
-            <input {...searchInput} />
-            <div>
-              <BsSearch/>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* MAPA DEL DEPARTAMENTO */}
       <div className={styles.content} id="test">
         <CityMap
@@ -135,9 +108,9 @@ const Departments = () => {
             <div className={styles.selected_ground}>
               <ul>
                 {
-                  citySports[selectedDepartment as keyof typeof citySports].map((sport, i) => (
+                  sportsFromCity.map((sport, i) => (
                     <li key={i} style={{
-                      backgroundImage: `url(${assetsFolder}/img/cards/${sportImg[sport]})`
+                      // backgroundImage: `url(${assetsFolder}/img/cards/${sportImg[sport]})`
                     }}
                     title={sport}
                     >
