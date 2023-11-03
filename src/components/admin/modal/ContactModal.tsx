@@ -117,6 +117,7 @@ const ContactModal = ({ id, open, close, form }: TContactModalProps) => {
                   <label htmlFor="mc_id">Mensaje</label>
                   <textarea 
                     readOnly
+                    value={info.form.messageContact}
                   >
                     {info.form.messageContact}
                   </textarea>
