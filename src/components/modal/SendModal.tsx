@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styles from "../../css/modal/SendModal.module.css"
 
 type TSendModalProps = {
@@ -5,9 +6,10 @@ type TSendModalProps = {
   close: () => void
   message: string
   otherMessage?: string
+  otherMsgLink?: string
 }
 
-const SendModal = ({ open, close, message, otherMessage }: TSendModalProps) => {
+const SendModal = ({ open, close, message, otherMessage, otherMsgLink }: TSendModalProps) => {
   return (
     <div 
       data-open={open}
@@ -19,7 +21,13 @@ const SendModal = ({ open, close, message, otherMessage }: TSendModalProps) => {
             {message}
           </div>
           {
-            otherMessage && <div className={styles.sMsg}>{otherMessage}</div>
+            otherMessage && <div>
+              {
+                otherMsgLink
+                  ? <Link to={otherMsgLink}>{otherMessage}</Link>
+                  : otherMessage
+              }    
+            </div>
           }
         </div>
         <div className={styles.btn}>

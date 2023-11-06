@@ -33,11 +33,13 @@ import AdminContact from "../pages/admin/Contact"
 
 //! Admin routes (Edit)
 import AdminDirective from "../pages/admin/edit/Directive"
+import AdminKeywords from "../pages/admin/edit/Keywords"
 //!
 
 //! ADMIN routes (Add)
 import AddDirective from "../pages/admin/add/Directive"
 import AddEvent from "../pages/admin/add/Event"
+import AddSearch from "../pages/admin/add/Search"
 //!
 
 const pageUserRoutes = createRoutesFromElements(
@@ -88,10 +90,12 @@ const pageUserRoutes = createRoutesFromElements(
       </Route>
       <Route path="edit">
         <Route path="directive" element={<AdminDirective/>}/>
+        <Route path="keywords" element={<AdminKeywords/>}/>
       </Route>
       <Route path="add">
         <Route path="directive" element={<AddDirective/>}/>
         <Route path="event" element={<AddEvent/>}/>
+        <Route path="search" element={<AddSearch/>}/>
       </Route>
       <Route path="contact" element={<AdminContact/>}/>
     </Route>

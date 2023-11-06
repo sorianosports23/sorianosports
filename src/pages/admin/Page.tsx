@@ -7,6 +7,7 @@ const Page = () => {
     <Admin route_title="Página">
       <div className={styles.links}>
         <Link to="/admin/edit/directive">Editar directiva</Link>
+        <Link to="/admin/edit/keywords">Editar busqueda</Link>
       </div>
     </Admin>
   )
