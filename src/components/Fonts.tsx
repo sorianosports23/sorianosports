@@ -27,6 +27,13 @@ const cssFonts = `
     font-weight: normal;
     font-style: normal;
   }
+
+  @font-face {
+    font-family: 'Facon';
+    src: url(${assetsFolder}/fonts/Facon/Facon.ttf);
+    font-weight: normal;
+    font-style: normal;
+  }
 `
 
 const Fonts = () => {

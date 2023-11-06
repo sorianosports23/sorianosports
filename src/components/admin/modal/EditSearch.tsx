@@ -94,8 +94,8 @@ const EditSearch = ({ open, close, info }: ISearchModalProps) => {
             />
           </div>
 
-          <div>
-            <div>
+          <div className={styles.kw_cont}>
+            <div className={styles.newkw}>
               <label htmlFor="sm_newkw">Agregar keyword:</label>
               <div>
                 <input 
@@ -112,7 +112,7 @@ const EditSearch = ({ open, close, info }: ISearchModalProps) => {
               </div>
             </div>
 
-            <div>
+            <div className={styles.keywords_list}>
               {
                 searchKeywords.map((keyword, i) => (
                   <div key={i}>
