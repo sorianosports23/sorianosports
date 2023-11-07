@@ -7,6 +7,7 @@ import assetsFolder from "./utils/publicfolder";
 import { UserSessionProvider } from "./context/session/UserSessionContext";
 import pageRoutes from "./utils/AppRoutes";
 import Fonts from "./components/Fonts";
+import { SocialMediaProvider } from "./context/social/SocialMediaContext"
 
 
 const App = () => {
@@ -19,12 +20,13 @@ const App = () => {
   }, [])
 
   return (
-    <UserSessionProvider>
+    <SocialMediaProvider>
+      <UserSessionProvider>
+        <Fonts/>
 
-      <Fonts/>
-
-      <RouterProvider router={pageRoutes} fallbackElement={<PageLoading/>}/>
-    </UserSessionProvider>
+        <RouterProvider router={pageRoutes} fallbackElement={<PageLoading/>}/>
+      </UserSessionProvider>
+    </SocialMediaProvider>
   )
 }
 

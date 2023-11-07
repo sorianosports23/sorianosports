@@ -14,6 +14,9 @@ const SendModal = ({ open, close, message, otherMessage, otherMsgLink }: TSendMo
     <div 
       data-open={open}
       className={styles.cont}
+      style={{
+        zIndex: 66666
+      }}
     >
       <div className={styles.modal}>
         <div className={styles.msg}>

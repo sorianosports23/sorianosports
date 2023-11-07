@@ -68,27 +68,31 @@ const PrevNews = ({ text, open, close, send }: TPrevNewsProps) => {
   }
 
   return (
-    <div 
-      className={styles.modal} 
-      style={{transform: `translateY(${open ? "0" : "-200%"})`}}
+    <div
+      className={styles.modal_cont}
+      data-open={open}
       onKeyDown={handleKeyboard}
       role="button"
       tabIndex={open ? 10 : -1}
     >
-      <div>
-        <div className={styles.modal_header}>
-          Visualizador
-          <button onClick={close}><BsXLg/></button>
-        </div>
+      <div 
+        className={styles.modal} 
+      >
+        <div>
+          <div className={styles.modal_header}>
+            Visualizador
+            <button onClick={close}><BsXLg/></button>
+          </div>
 
-        <div className={styles.modal_body}>
-          {
-            newsText
-          }
-        </div>
+          <div className={styles.modal_body}>
+            {
+              newsText
+            }
+          </div>
 
-        <div className={styles.modal_footer}>
-          <button onClick={() => send()}>Subir noticia</button>
+          <div className={styles.modal_footer}>
+            <button onClick={() => send()}>Subir noticia</button>
+          </div>
         </div>
       </div>
     </div>

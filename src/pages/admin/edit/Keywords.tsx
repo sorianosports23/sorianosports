@@ -2,11 +2,16 @@ import Admin from "../Admin"
 import PageStyles from "../../../css/admin/page/Page.module.css"
 import { Link } from "react-router-dom"
 import { BsPlusLg, BsThreeDots } from "react-icons/bs"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import apiGetSearch from "../../../api/admin/search/getSearch"
 import entryStyles from "../../../css/admin/page/Entry.module.css"
 import KWEntry from "../../../components/admin/entry/KWEntry"
 import EditSearch from "../../../components/admin/modal/EditSearch"
+import { userSessionContext } from "../../../context/session/UserSessionContext"
+import apiAdminModifySearch from "../../../api/admin/search/modifySearch"
+import SendModal from "../../../components/modal/SendModal"
+import apiAdminDeleteSearch from "../../../api/admin/search/deleteSearch"
+import OptionModal from "../../../components/modal/OptionModal"
 
 const DEFAULT_SEARCH: Omit<TSearch, "keywords"> = {
   id: 0,
@@ -17,7 +22,10 @@ const DEFAULT_SEARCH: Omit<TSearch, "keywords"> = {
 
 const Keywords = () => {
 
+  const { token } = useContext(userSessionContext)
+
   const [searchList, setSearchList] = useState<TSearch[]>([])
+  const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
     handleGetSearch()
@@ -39,6 +47,64 @@ const Keywords = () => {
   }
   //!
 
+  //! modal send
+  const [modalSOpen, setModalSOpen] = useState(false)
+  const [modalSMsg, setModalSMsg] = useState("")
+  const [modalSOtherMsg, setModalSOtherMsg] = useState("")
+  //!
+
+  //! modal option
+  const [modalOptOpen, setModalOptOpen] = useState(false)
+  const [modalOptName, setModalOptName] = useState("")
+  const [modalOptId, setModalOptId] = useState(0)
+  //!
+
+  const handleEditSearch = async ({ id, description, url }: Omit<TApiAdminModifySearchRequest, "token">) => {
+    setSubmitting(true)
+    
+    const data = {
+      token,
+      id,
+      description,
+      url
+    }
+
+    const res = await apiAdminModifySearch(data)
+
+    if (res.status) {
+      setModalSMsg("Se edito correctamente")
+      setModalSOtherMsg("")
+      setModalEditOpen(false)
+      handleGetSearch()
+    } else {
+      setModalSMsg("No se pudo editar")
+      setModalSOtherMsg(res.message)
+    }
+
+    setModalSOpen(true)
+    setSubmitting(false)
+  }
+
+  const handleDeleteSearch = async () => {
+    const res = await apiAdminDeleteSearch({token,id: modalOptId})
+
+    if (res.status) {
+      setModalSMsg("Se elimino correctamente")
+      setModalSOtherMsg("")      
+    } else {
+      setModalSMsg("No se pudo eliminar")
+      setModalSOtherMsg(res.message)
+    }
+
+    setModalSOpen(true)
+  }
+
+  const handleOpenDelete = (id: number, name: string) => {
+    setModalOptName(`${name} (${id})`)
+    setModalOptId(id)
+    setModalOptOpen(true)
+  }
+
   return (
     <Admin route_title="Editar busqueda">
       <div className={PageStyles.management}>
@@ -56,6 +122,7 @@ const Keywords = () => {
                 }
                 key={i}
                 openEdit={openEdit}
+                openDelete={handleOpenDelete}
               />
             ))
           }
@@ -66,6 +133,23 @@ const Keywords = () => {
         open={modalEditOpen}
         close={() => setModalEditOpen(false)}
         info={modalEditSearch as TSearch}
+        submitting={submitting}
+        handleSubmit={handleEditSearch}
+      />
+
+      <SendModal
+        open={modalSOpen}
+        close={() => setModalSOpen(false)}
+        message={modalSMsg}
+        otherMessage={modalSOtherMsg}
+      />
+
+      <OptionModal
+        open={modalOptOpen}
+        close={() => setModalOptOpen(false)}
+        option="Eliminar"
+        optionName={modalOptName}
+        acceptFunction={handleDeleteSearch}
       />
     </Admin>
   )

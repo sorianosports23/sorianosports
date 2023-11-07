@@ -2,8 +2,13 @@ import { BsFillHouseFill, BsEnvelopeAtFill, BsTelephoneFill, BsClockFill, BsFace
 import { FaXTwitter } from "react-icons/fa6"
 import styles from "../../css/footer/Footer.module.css"
 import assetsFolder from "../../utils/publicfolder"
+import { useContext } from "react"
+import { socialMediaContext } from "../../context/social/SocialMediaContext"
 
 const Footer = () => {
+
+  const { socialMedia } = useContext(socialMediaContext)
+
   return (
     <footer className={styles.footer}>
       <div className={styles.social}>
@@ -12,16 +17,16 @@ const Footer = () => {
           <div>
             <ul>
               <li>
-                <a href="https://www.facebook.com/intendenciasoriano" title="Facebook"><BsFacebook className={styles.facebook}/></a>
+                <a href={socialMedia.Facebook} title="Facebook"><BsFacebook className={styles.facebook}/></a>
               </li>
               <li>
-                <a href="https://www.instagram.com/deportes.soriano" title="Instagram"><BsInstagram className={styles.instagram}/></a>
+                <a href={socialMedia.Instagram} title="Instagram"><BsInstagram className={styles.instagram}/></a>
               </li>
               <li>
-                <a href="https://twitter.com/Sorianofertil" title="X (Twitter)"><FaXTwitter className={styles.twitter}/></a>
+                <a href={socialMedia.Twitter} title="X (Twitter)"><FaXTwitter className={styles.twitter}/></a>
               </li>
               <li>
-                <a href="https://www.youtube.com/@sorianotv3939" title="Youtube"><BsYoutube className={styles.youtube}/></a>
+                <a href={socialMedia.Youtube} title="Youtube"><BsYoutube className={styles.youtube}/></a>
               </li>
             </ul>
           </div>
@@ -31,29 +36,29 @@ const Footer = () => {
             <div className={styles.icon}>
               <BsFillHouseFill/>
             </div>
-            <a href="https://goo.gl/maps/NaShZAzvMVaJ51ue7" target="_blank" style={{textDecoration: "none"}} rel="noreferrer" title="Ubicación de la Secretaria de Deportes">Mercedes - Estadio Luis Köster</a>
+            <a href="https://goo.gl/maps/NaShZAzvMVaJ51ue7" target="_blank" style={{textDecoration: "none"}} rel="noreferrer" title="Ubicación de la Secretaria de Deportes">{socialMedia.Direccion}</a>
           </li>
           <li>
             <div className={styles.icon}>
               <BsEnvelopeAtFill/>
             </div>
-            <a href="mailto:deportes@soriano.gub.uy" title="Correo de la Secretaria de Deportes">
-              deportes@soriano.gub.uy
+            <a href={`mailto:${socialMedia.Correo}`} title="Correo de la Secretaria de Deportes">
+              {socialMedia.Correo}
             </a>
           </li>
           <li>
             <div className={styles.icon}>
               <BsTelephoneFill/>
             </div>
-            <a href="tel:45322201" title="Teléfono de la Secretaria de Deportes">
-              4532 2201
+            <a href={`tel:${socialMedia.Telefono}`} title="Teléfono de la Secretaria de Deportes">
+              {socialMedia.Telefono}
             </a>
           </li>
           <li title="Horario abierto de la Secretaria de Deportes">
             <div className={styles.icon}>
               <BsClockFill/>
             </div>
-            8:00 a 14:00
+            {socialMedia.Horario}
           </li>
         </ul>
       </div>

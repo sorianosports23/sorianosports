@@ -30,3 +30,23 @@ type TApiAddKeywordRequest = {
   name: string
   idSearch: number
 }
+
+type TApiAdminDeleteKWRequest = {
+  token: string
+  id: number
+  name: string
+}
+
+type TApiAdminModifySearchRequest = {
+  token: string
+  id: number
+  description: string
+  url: string
+}
+
+type TApiAdminModifySearchParams = {
+  token: string
+  id: number
+  attr: "description" | "url"
+  newValue: string
+}

@@ -34,6 +34,7 @@ import AdminContact from "../pages/admin/Contact"
 //! Admin routes (Edit)
 import AdminDirective from "../pages/admin/edit/Directive"
 import AdminKeywords from "../pages/admin/edit/Keywords"
+import AdminSocial from "../pages/admin/edit/Social"
 //!
 
 //! ADMIN routes (Add)
@@ -91,6 +92,7 @@ const pageUserRoutes = createRoutesFromElements(
       <Route path="edit">
         <Route path="directive" element={<AdminDirective/>}/>
         <Route path="keywords" element={<AdminKeywords/>}/>
+        <Route path="social" element={<AdminSocial/>}/>
       </Route>
       <Route path="add">
         <Route path="directive" element={<AddDirective/>}/>

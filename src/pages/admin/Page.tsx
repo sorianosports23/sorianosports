@@ -8,6 +8,7 @@ const Page = () => {
       <div className={styles.links}>
         <Link to="/admin/edit/directive">Editar directiva</Link>
         <Link to="/admin/edit/keywords">Editar busqueda</Link>
+        <Link to="/admin/edit/social">Editar redes sociales</Link>
       </div>
     </Admin>
   )

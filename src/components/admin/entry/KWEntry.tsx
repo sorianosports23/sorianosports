@@ -4,9 +4,10 @@ import { useState } from "react"
 
 interface IKWEntryProps extends TSearch {
   openEdit: (info: TSearch) => void
+  openDelete: (id: number, name: string) => void
 }
 
-const KWEntry = ({ id, name, description, url, keywords, openEdit }: IKWEntryProps) => {
+const KWEntry = ({ id, name, description, url, keywords, openEdit, openDelete }: IKWEntryProps) => {
 
   const [showDropdown, setShowDropdown] = useState(false)
 
@@ -41,7 +42,7 @@ const KWEntry = ({ id, name, description, url, keywords, openEdit }: IKWEntryPro
             </li>
             <li>
               <button
-                onClick={() => {}}
+                onClick={() => openDelete(id, name)}
               >
                 <BsTrashFill/> Borrar
               </button>

@@ -1,24 +1,27 @@
 import { BsPlusLg, BsTrash, BsXLg } from "react-icons/bs"
 import modalStyles from "../../../css/Modal.module.css"
-import { useCallback, useContext, useEffect, useState } from "react"
+import { FormEvent, useCallback, useContext, useEffect, useState } from "react"
 import apiGetKeywords from "../../../api/admin/search/getKeywords"
 import apiAddKeyword from "../../../api/admin/search/addKeyword"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import styles from "../../../css/modal/EditSearch.module.css"
+import apiAdminDeleteKW from "../../../api/admin/search/deleteKW"
 
 interface ISearchModalProps {
   open: boolean
   close: () => void
   info: Omit<TSearch, "keywords">
+  submitting: boolean
+  handleSubmit: ({ id, description, url }: Omit<TApiAdminModifySearchRequest, "token">) => void
 }
 
-const EditSearch = ({ open, close, info }: ISearchModalProps) => {
+const EditSearch = ({ open, close, info, submitting, handleSubmit }: ISearchModalProps) => {
 
   const { token } = useContext(userSessionContext)
 
   const { name, description, id, url } = info
 
-  const [searchName, setSearchName] = useState(name)
+  const [_searchName, setSearchName] = useState(name)
   const [searchDesc, setSearchDesc] = useState(description)
   const [searchUrl, setSearchUrl] = useState(url)
   const [searchKeywords, setSearchKeywords] = useState<string[]>([])
@@ -57,12 +60,33 @@ const EditSearch = ({ open, close, info }: ISearchModalProps) => {
     }
   }
 
+  const handleDeleteKeyword = async (id: number, name: string) => {
+    const data = {
+      token,
+      id,
+      name
+    }
+
+    const res = await apiAdminDeleteKW(data)
+    if (res.status) {
+      handleGetKeywords()
+    }
+  }
+
+  const handleSendSubmit = (ev: FormEvent) => {
+    ev.preventDefault()
+    handleSubmit({ id, description: searchDesc, url: searchUrl })
+  }
+
   return (
     <div 
       className={modalStyles.cont}
       data-open={open}
     >
-      <form className={modalStyles.modal}>
+      <form 
+        className={modalStyles.modal}
+        onSubmit={handleSendSubmit}
+      >
         <div className={modalStyles.header}>
           <h2>Editar busqueda</h2>
           <button 
@@ -75,7 +99,7 @@ const EditSearch = ({ open, close, info }: ISearchModalProps) => {
         
         <div className={styles.body}>
           <h3>{name}</h3>
-          <div className={styles.input}>
+          <div className={`${styles.input} ${styles.textarea}`}>
             <label htmlFor="sm_desc">Descripcion:</label>
             <textarea
               id="sm_desc"
@@ -117,7 +141,12 @@ const EditSearch = ({ open, close, info }: ISearchModalProps) => {
                 searchKeywords.map((keyword, i) => (
                   <div key={i}>
                     <p>{keyword}</p>
-                    <button type="button"><BsTrash/></button>
+                    <button 
+                      type="button"
+                      onClick={() => handleDeleteKeyword(id, keyword)}
+                    >
+                      <BsTrash/>
+                    </button>
                   </div>
                 ))
               }
@@ -132,7 +161,10 @@ const EditSearch = ({ open, close, info }: ISearchModalProps) => {
           >
             Cancelar
           </button>
-          <button type="submit">
+          <button 
+            type="submit"
+            disabled={submitting}
+          >
             Editar
           </button>
         </div>
