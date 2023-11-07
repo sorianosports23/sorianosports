@@ -21,7 +21,8 @@
   align-content: center;
   justify-content: center;
   flex-wrap: wrap;
-  font-size: .9em;
+  font-size: .899em;
+  font-family: "raleway";
   min-width: 5rem;
 }
 

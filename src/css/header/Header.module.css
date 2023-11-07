@@ -46,6 +46,7 @@
   z-index: 9;
   transition: transform .3s;
   background-color: #eee;
+  
 }
 
 .search-bar input, .header_searchbar_tablet input {
@@ -53,6 +54,7 @@
   background: none;
   border: none;
   outline: none;
+  font-family: "Raleway";
 }
 
 .header_searchbar_tablet {

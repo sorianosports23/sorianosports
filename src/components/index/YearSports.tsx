@@ -64,12 +64,14 @@ const YearSports = () => {
       <div className={styles["sportsmain_main"]}>
         <div className={styles.textDiv}>
           <div>
+           
             <h2>
               <span style={{fontFamily:"Facon"}}>Actividades</span>
               <span style={{fontFamily:"Facon"}}>Deportivas</span>
               <span style={{fontFamily:"Facon"}}>Anuales</span>
             </h2>
               <h3 style={{fontSize:"medium"}}>¡El deporte es vida... Vivi el deporte!</h3>
+          
               <button
                 onClick={() => setListOpen(!listOpen)}
               >
