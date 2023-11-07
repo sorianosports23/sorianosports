@@ -4,10 +4,10 @@ import styles from "../../css/events/EventCard.module.css"
 const days = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
 const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
 
-const EventCard = ({ name, place, sport, description, date_ev }: TEvent) => {
+const EventCard = ({ name, place, sport, description, date_ev, time }: TEvent) => {
   
   const [open, setOpen] = useState(false)
-  const date = new Date(`${date_ev}GMT-3`)
+  const date = new Date(`${date_ev} 00:00:00`)
 
   const day = days[date.getDay()]
   const dayNumber = date.getDay() + 1
@@ -21,6 +21,7 @@ const EventCard = ({ name, place, sport, description, date_ev }: TEvent) => {
           <span>{day}</span>
           <span>{dayNumber}</span>
           <span>{month}</span>
+          <span>{time}</span>
           <span>{date.getFullYear()}</span>
         </div>
 
