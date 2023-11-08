@@ -9,6 +9,9 @@ import EventCard from "../../components/admin/events/EventCard"
 import OptionModal from "../../components/modal/OptionModal"
 import SendModal from "../../components/modal/SendModal"
 import apiDeleteEvent from "../../api/admin/events/deleteEvent"
+import PageStyles from "../../css/admin/page/Page.module.css"
+import TableStyles from "../../css/admin/table.module.css"
+import Pagination from "../../components/admin/templates/Pagination"
 
 const Events = () => {
 
@@ -18,6 +21,11 @@ const Events = () => {
   useEffect(() => {
     handleGetEvents()
   }, [])
+
+  //! PAGINATION
+  const [actualPage, setActualPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
+  //!
 
   const handleGetEvents = async (pag: number = 1) => {
     const req = await apiGetEvents(pag)
@@ -61,23 +69,49 @@ const Events = () => {
   if (loading) {
     return <Loading/>
   }
+  
+  //! pagination
+  const handlePrevPage = () => {
+
+  }
+
+  const handleNextPage = () => {
+
+  }
+
+  const handleChangePage = (pag: number) => {
+
+  }
+  //!
 
   return (
     <Admin route_title="Eventos">
       <div className={styles.management}>
         <Link to="/admin/add/event" className={styles.btn_add}><BsPlusLg/> Añadir evento</Link>
       </div>
-      {
+      
+      <div className={PageStyles.tableList} style={{marginTop: "1rem"}}>
+        {
+          events.map((event, i) => (
+            <EventCard
+              data={event}
+              key={i}
+              handleDeleteButton={() => handleOpenModalDelete(event.id)}
+              handleEditButton={() => {}}
+            />
+          ))
+        }
+      </div>
 
-        events.map((event, i) => (
-          <EventCard
-            data={event}
-            key={i}
-            handleDeleteButton={() => handleOpenModalDelete(event.id)}
-            handleEditButton={() => {}}
-          />
-        ))
-      }
+      <div className={TableStyles.pagination}>
+        <Pagination
+          actualPage={actualPage}
+          totalPages={totalPages}
+          prevBtn={handlePrevPage}
+          nextBtn={handleNextPage}
+          changePage={handleChangePage}
+        />
+      </div>
 
       <OptionModal
         open={modalDeleteOpen}

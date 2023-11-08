@@ -113,7 +113,7 @@ const Keywords = () => {
       <div>
         <h2>Busquedas:</h2>
 
-        <div>
+        <div className={PageStyles.tableList}>
           {
             searchList.map((search, i) => (
               <KWEntry
