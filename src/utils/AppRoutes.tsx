@@ -35,6 +35,7 @@ import AdminContact from "../pages/admin/Contact"
 import AdminDirective from "../pages/admin/edit/Directive"
 import AdminKeywords from "../pages/admin/edit/Keywords"
 import AdminSocial from "../pages/admin/edit/Social"
+import AdminCity from "../pages/admin/edit/EditCity"
 //!
 
 //! ADMIN routes (Add)
@@ -82,7 +83,10 @@ const pageUserRoutes = createRoutesFromElements(
     <Route path="/admin" errorElement={<Error/>}>
       <Route index element={<IndexAdmin/>} />
       <Route path="users" element={<Users/>} />
-      <Route path="sports" element={<SportsAdmin/>}/>
+      <Route path="sports">
+        <Route element={<SportsAdmin/>} index/>
+        <Route path=":city" element={<AdminCity/>}/>
+      </Route>
       <Route path="events" element={<EventsAdmin/>}/>
       <Route path="page" element={<Page/>}/>
       <Route path="news">

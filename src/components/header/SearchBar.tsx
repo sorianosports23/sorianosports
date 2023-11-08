@@ -36,7 +36,7 @@ const SearchBar = ({ search, searchHover }: TSearchBarProps) => {
 
     const results = [] as typeof searchData
     searchData.map(value => {
-      const keys = value.keywords.filter(key => key.includes(search.toLowerCase()))
+      const keys = value.keywords.filter(key => key.toLowerCase().includes(search.toLowerCase()))
       if (keys.length > 0) results.push(value)
 
       return null

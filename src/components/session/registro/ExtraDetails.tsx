@@ -25,11 +25,12 @@ const ExtraDetails = ({ ciInput, ageInput, loading, buttonClick, prevButtonClick
   return (
     <form>
       <div>
-        <label htmlFor="#">Cedula</label>
+        <label htmlFor="#">Cédula</label>
         <div>
           <input type="number" maxLength={8} 
             {...ciInput}
             data-error={errorInputs.ci}
+            
           />
           <div>
             <BsFillPersonVcardFill/>

@@ -5,6 +5,19 @@ import Admin from "./Admin"
 import { sportList } from "../../utils/sportList"
 import { useCallback, useState } from "react"
 
+const cities = [
+  "Mercedes",
+  "Dolores",
+  "Risso",
+  "VillaSoriano",
+  "Palmitas",
+  "Palmar",
+  "JERodo",
+  "Egaña",
+  "Cardona",
+  "STACatalina"
+]
+
 const Sports = () => {
 
   const [sportsArr, setSportsArr] = useState<string[]>([])
@@ -17,11 +30,9 @@ const Sports = () => {
 
       <div className={styles.sports}>
         {
-          sportsArr.length > 0
-            ? sportsArr.map((sport, i) => (
-              <SportCard name={sport} key={i}/>
-              ))
-            : <p>Deporte no encontrado</p>
+          cities.map((sport, i) => (
+            <SportCard name={sport} key={i}/>
+            ))
         }
       </div>
     </Admin>
