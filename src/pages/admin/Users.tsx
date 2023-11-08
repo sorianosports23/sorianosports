@@ -5,54 +5,45 @@ import UserCard from "../../components/admin/users/UserCard"
 import styles from "../../css/admin/users/Users.module.css"
 import { userSessionContext } from "../../context/session/UserSessionContext"
 import apiAdminGetUsers from "../../api/admin/getUsers"
-
-type TPaginationProps = {
-  maxPages: number
-  selectPage: (page: number) => void
-}
-
-const Pagination = ({ maxPages, selectPage }: TPaginationProps) => {
-  return (
-    <div className={styles.pagination}>
-      {
-        new Array(maxPages).fill("").map((_, i) => (
-          <button 
-            className={styles.pagination_btn}
-            onClick={() => selectPage(i+1)}
-          >
-            {i+1}
-          </button>
-        ))
-      }
-    </div>
-  )
-}
+import TableStyles from "../../css/admin/table.module.css"
+import Pagination from "../../components/admin/templates/Pagination"
 
 const Users = () => {
 
   const { token } = useContext(userSessionContext)
 
   const [users, setUsers] = useState<Array<TUser>>([])
-  const [maxPages, setMaxPages] = useState(0)
   const [actualPage, setActualPage] = useState(1)
-  const [totalUsers, setTotalUsers] = useState(0)
+  const [totalPages, setTotalPages] = useState(0)
 
-  useEffect(() => {
-    console.log(users)
-  }, [users])
-
-  const handleGetUsers = useCallback(async (page: number) => {
-    const usersFromApi = await apiAdminGetUsers({token, pag: page})
-    setUsers(usersFromApi.data)
-    setMaxPages(usersFromApi.pagination.totalPages)
-    setTotalUsers(usersFromApi.pagination.maxUsers)
-    console.log("API Ready")
-    console.log(usersFromApi)
+  const handleGetUsers = useCallback(async (page: number = 1) => {
+    if (!token) return
+    const data = await apiAdminGetUsers({token, pag: page})
+    setUsers(data.data)
+    setTotalPages(data.pagination.totalPages)
   }, [token])
 
   useEffect(() => {
-    if (token) handleGetUsers(1)
-  }, [token, handleGetUsers])
+    handleGetUsers()
+  }, [handleGetUsers])
+
+  const handlePrevPage = () => {
+    if (actualPage - 1 === 0) return
+    handleGetUsers(actualPage - 1)
+    setActualPage(prev => prev-1)
+  }
+  
+  const handleNextPage = () => {
+    if (actualPage + 1 > totalPages) return
+    handleGetUsers(actualPage + 1)
+    setActualPage(prev => prev+1)
+  }
+
+  const handleChangePage = (page: number) => {
+    if (page <= 0 || page > totalPages) return
+    handleGetUsers(page)
+    setActualPage(page)
+  }
 
   return (
     <Admin route_title="Usuarios">
@@ -60,24 +51,6 @@ const Users = () => {
       <UsersSearch setUsers={setUsers} type="ci"/>
 
       <div className={styles.res}>
-        {/* <UserCard
-          username="efr"
-          ci={55599655}
-          permissions={{
-            admin: true,
-            news: true,
-            users: true
-          }}
-        /> */}
-        {/* {
-          users.map((user, i) => (
-            <UserCard
-              key={i}
-              {...user}
-            />
-          ))
-        } */}
-        <div>Mostrando {totalUsers} usuarios</div>
         <div className={styles.resList}>
           {
             users.map((user, i) => (
@@ -88,7 +61,15 @@ const Users = () => {
             ))
           }
         </div>
-        <Pagination maxPages={maxPages} selectPage={handleGetUsers}/>
+        <div className={TableStyles.pagination}>
+          <Pagination
+            actualPage={actualPage}
+            totalPages={totalPages}
+            prevBtn={handlePrevPage}
+            nextBtn={handleNextPage}
+            changePage={handleChangePage}
+          />
+        </div>
       </div>
     </Admin>
   )

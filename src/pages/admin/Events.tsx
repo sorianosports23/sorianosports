@@ -1,5 +1,5 @@
 import Admin from "./Admin"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
 import { BsPlusLg } from "react-icons/bs"
 import styles from "../../css/admin/events/Events.module.css"
@@ -12,8 +12,13 @@ import apiDeleteEvent from "../../api/admin/events/deleteEvent"
 import PageStyles from "../../css/admin/page/Page.module.css"
 import TableStyles from "../../css/admin/table.module.css"
 import Pagination from "../../components/admin/templates/Pagination"
+import { userSessionContext } from "../../context/session/UserSessionContext"
+import apiAdminModifyEvent from "../../api/admin/events/editEvent"
+import EditEvent from "../../components/admin/modal/EditEvent"
 
 const Events = () => {
+
+  const {token} = useContext(userSessionContext)
 
   const [loading, setLoading] = useState(true)
   const [events, setEvents] = useState<TEvent[]>([])
@@ -31,6 +36,7 @@ const Events = () => {
     const req = await apiGetEvents(pag)
     if (req.status) {
       setEvents(req.data)
+      setTotalPages(req.pagination.totalPages)
     }
     setLoading(false)
   }
@@ -46,6 +52,41 @@ const Events = () => {
   const [modalDeleteOpen, setModalDeleteOpen] = useState(false)
   const [modalDeleteName, setModalDeleteName] = useState("")
   const [modalDeleteID, setModalDeleteID] = useState(0)
+
+  //!EDIT 
+  const [editOpen, setEditOpen] = useState(false)
+  const [editEvent, setEditEvent] = useState<TEvent>({id: 0, date_ev: "", description: "", name: "", place: "", sport: "", time: ""})
+  const [submitting, setSubmitting] = useState(false)
+  //!
+
+  //!EDIT EVENT
+  const handleEditEvent = (info: TEvent) => {
+    setEditEvent(info)
+    setEditOpen(true)
+  }
+
+  const handleSubmitEditEvent = async (data: Omit<TApiAdminModifyEventRequest, "token">) => {
+    const dataEdit = {
+      token,
+      ...data
+    }
+
+    setSubmitting(true)
+    const res = await apiAdminModifyEvent(dataEdit)
+    setSubmitting(false)
+
+    if (res.status) {
+      setModalSendMsg("Se edito correctamente")
+      setModalSendOMsg("")
+    } else {
+      setModalSendMsg("No se pudo editar")
+      setModalSendOMsg(res.message)
+    }
+
+    setModalSendOpen(true)
+
+  }
+  //!
 
   const handleOpenModalDelete = (id: number) => {
     setModalDeleteID(id)
@@ -72,15 +113,21 @@ const Events = () => {
   
   //! pagination
   const handlePrevPage = () => {
-
+    if (actualPage - 1 === 0) return
+    handleGetEvents(actualPage - 1)
+    setActualPage(prev => prev-1)
   }
 
   const handleNextPage = () => {
-
+    if (actualPage + 1 === totalPages + 1) return
+    handleGetEvents(actualPage + 1)
+    setActualPage(prev => prev+1)
   }
 
   const handleChangePage = (pag: number) => {
-
+    if (pag <= 0 || pag > totalPages) return
+    setActualPage(pag)
+    handleGetEvents(pag)
   }
   //!
 
@@ -97,7 +144,7 @@ const Events = () => {
               data={event}
               key={i}
               handleDeleteButton={() => handleOpenModalDelete(event.id)}
-              handleEditButton={() => {}}
+              handleEditButton={() => handleEditEvent(event)}
             />
           ))
         }
@@ -126,6 +173,14 @@ const Events = () => {
         close={() => setModalSendOpen(false)}
         message={modalSendMsg}
         otherMessage={modalSendOMsg}
+      />
+
+      <EditEvent
+        open={editOpen}
+        close={() => setEditOpen(false)}
+        info={editEvent}
+        submitting={submitting}
+        handleSubmit={handleSubmitEditEvent}
       />
     </Admin>
   )

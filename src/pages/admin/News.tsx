@@ -10,6 +10,8 @@ import apiAdminDeleteNews from "../../api/admin/news/deleteNews"
 import OptionModal from "../../components/modal/OptionModal"
 import SendModal from "../../components/modal/SendModal"
 import EditNews from "../../components/admin/news/EditNews"
+import TableStyles from "../../css/admin/table.module.css"
+import Pagination from "../../components/admin/templates/Pagination"
 
 const News = () => {
 
@@ -17,17 +19,43 @@ const News = () => {
 
   const [news, setNews] = useState<TNews[]>([])
 
+  //!pag
+  const [actualPage, setActualPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
+  //!
+
   const getNews = async (pag: number = 1) => {
     const allNews = await apiGetNews(pag)
     console.log(allNews)
     if (allNews.status) {
       setNews(allNews.data)
+      setTotalPages(allNews.pagination.totalPages)
     }
   }
 
   useEffect(() => {
     getNews()
   }, [])
+
+  //!
+  const handlePrevPage = () => {
+    if (actualPage - 1 === 0) return
+    getNews(actualPage - 1)
+    setActualPage(prev => prev-1)
+  }
+
+  const handleNextPage = () => {
+    if (actualPage + 1 > totalPages) return
+    getNews(actualPage + 1)
+    setActualPage(prev => prev+1)
+  }
+
+  const handleChangePage = (pag: number) => {
+    if (pag <= 0 || pag > totalPages) return
+    getNews(pag)
+    setActualPage(pag)
+  }
+  //!
 
   //! modal
   const [modalOpen, setModalOpen] = useState(false)
@@ -110,6 +138,16 @@ const News = () => {
             />
           ))
         }
+      </div>
+
+      <div className={TableStyles.pagination}>
+        <Pagination
+          actualPage={actualPage}
+          totalPages={totalPages}
+          prevBtn={handlePrevPage}
+          nextBtn={handleNextPage}
+          changePage={handleChangePage}
+        />
       </div>
 
       <OptionModal
