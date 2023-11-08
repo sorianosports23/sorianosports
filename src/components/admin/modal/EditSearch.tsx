@@ -154,16 +154,18 @@ const EditSearch = ({ open, close, info, submitting, handleSubmit }: ISearchModa
           </div>
         </div>
 
-        <div className={modalStyles.footer}>
+        <div className={`${modalStyles.footer} ${modalStyles.btns}`}>
           <button 
             type="button"
             onClick={close}
+            className={modalStyles.btn_cancel}
           >
             Cancelar
           </button>
           <button 
             type="submit"
             disabled={submitting}
+            className={modalStyles.btn_accept}
           >
             Editar
           </button>

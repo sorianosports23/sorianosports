@@ -8,6 +8,7 @@ import { UserSessionProvider } from "./context/session/UserSessionContext";
 import pageRoutes from "./utils/AppRoutes";
 import Fonts from "./components/Fonts";
 import { SocialMediaProvider } from "./context/social/SocialMediaContext"
+import { SearchContextProvider } from "./context/search/SearchContext"
 
 
 const App = () => {
@@ -21,11 +22,13 @@ const App = () => {
 
   return (
     <SocialMediaProvider>
-      <UserSessionProvider>
-        <Fonts/>
+      <SearchContextProvider>
+        <UserSessionProvider>
+          <Fonts/>
 
-        <RouterProvider router={pageRoutes} fallbackElement={<PageLoading/>}/>
-      </UserSessionProvider>
+          <RouterProvider router={pageRoutes} fallbackElement={<PageLoading/>}/>
+        </UserSessionProvider>
+      </SearchContextProvider>
     </SocialMediaProvider>
   )
 }
