@@ -1,8 +1,18 @@
 // import { TUser } from "./UsersSearch"
+import { useState } from "react"
 import styles from "../../../css/admin/users/UserCard.module.css"
-import { BsList } from "react-icons/bs"
+import { BsPenFill, BsThreeDots, BsTrashFill } from "react-icons/bs"
+import entryStyles from "../../../css/admin/page/Entry.module.css"
 
-const UserCard = ({ username, ci, permissions }: TUser) => {
+interface IUserCardProps extends TUser {
+  handleEditUser: () => void
+  handleDeleteUser: () => void
+}
+
+const UserCard = ({ username, ci, permissions, handleDeleteUser, handleEditUser }: IUserCardProps) => {
+
+  const [showDropdown, setShowDropdown] = useState(false)
+
   return (
     <div className={styles.card}>
       <div className={styles.body}>
@@ -11,13 +21,31 @@ const UserCard = ({ username, ci, permissions }: TUser) => {
           <span>{ci}</span>
         </div>
 
-        <div>
-          <button><BsList/></button>
-        </div>
+        <div className={entryStyles.dropdown}>
+          <button onClick={() => setShowDropdown(!showDropdown)}><BsThreeDots/></button>
+
+          <ul style={{display: showDropdown ? "flex" : "none"}}
+            onPointerLeave={() => setShowDropdown(false)}
+          >
+            <li>
+              <button
+                onClick={handleEditUser}
+              >
+                <BsPenFill/> Editar
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={handleDeleteUser}
+              >
+                <BsTrashFill/> Borrar
+              </button>
+            </li>
+          </ul>
+        </div>       
       </div>
 
       <div className={styles.footer}>
-        {/* <span>{permissions["admin"] && "Administrador"}</span> */}
         <span>{permissions.includes("news") && "Editor de noticias"}</span>
         <span>{permissions.includes("users") && "Editor de usuarios"}</span>
       </div>

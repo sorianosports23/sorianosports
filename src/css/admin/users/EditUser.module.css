@@ -1,0 +1,28 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.body > h3:last-of-type {
+  margin: .7rem 0;
+}
+
+.btns {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin: .5rem 0;
+}
+
+.btns > button {
+  padding: .25rem .5rem;
+  border-radius: .25rem;
+  border: 1px solid #232323;
+  background: none;
+}
+
+.btns > button:hover {
+  background: #232323;
+  color: #eee;
+}

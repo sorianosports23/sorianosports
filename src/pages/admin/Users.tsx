@@ -7,6 +7,10 @@ import { userSessionContext } from "../../context/session/UserSessionContext"
 import apiAdminGetUsers from "../../api/admin/getUsers"
 import TableStyles from "../../css/admin/table.module.css"
 import Pagination from "../../components/admin/templates/Pagination"
+import EditUser from "../../components/admin/modal/EditUser"
+import apiAdminDeleteUser from "../../api/admin/users/deleteUser"
+import OptionModal from "../../components/modal/OptionModal"
+import SendModal from "../../components/modal/SendModal"
 
 const Users = () => {
 
@@ -45,6 +49,53 @@ const Users = () => {
     setActualPage(page)
   }
 
+  //!MODAL
+  const [editOpen, setEditOpen] = useState(false)
+  const [userEdit, setUserEdit] = useState<TUser>({username: "", email: "", fullname: "", permissions: [], phone: 0, age: 0, ci: 0})
+  //!
+
+  //!Opt Modal
+  const [optModal, setOptModal] = useState(false)
+  const [userToDelete, setUserToDelete] = useState("")
+  //!
+
+  //! SEND MODAL
+  const [sendModal, setSendModal] = useState(false)
+  const [sendModalMsg, setSendModalMsg] = useState("")
+  const [sendModalOtherMsg, setSendModalOtherMsg] = useState("")
+  //!
+
+  const handleEditUser = (user: TUser) => {
+    setUserEdit(user)
+    setEditOpen(true)
+  }
+
+  const handleAskDeleteUser = (username: string) => {
+    setUserToDelete(username)
+    setOptModal(true)
+  }
+
+  const handleDeleteUser = async () => {
+    const data = {
+      token,
+      username: userToDelete
+    }
+
+    const res = await apiAdminDeleteUser(data)
+
+    if (res.status) {
+      setSendModalMsg("Se elimino el usuario")
+      setSendModalOtherMsg("")
+      handleGetUsers(actualPage)
+    } else {
+      setSendModalMsg("No se pudo eliminar el usuario")
+      setSendModalOtherMsg(res.message)
+    }
+
+    setOptModal(false)
+    setSendModal(true)
+  }
+
   return (
     <Admin route_title="Usuarios">
       <UsersSearch setUsers={setUsers} type="users"/>
@@ -57,6 +108,8 @@ const Users = () => {
               <UserCard
                 key={i}
                 {...user}
+                handleDeleteUser={() => handleAskDeleteUser(user.username)}
+                handleEditUser={() => handleEditUser(user)}
               />
             ))
           }
@@ -71,6 +124,27 @@ const Users = () => {
           />
         </div>
       </div>
+
+      <EditUser
+        open={editOpen}
+        close={() => setEditOpen(false)}
+        info={userEdit}
+      />
+
+      <OptionModal
+        open={optModal}
+        close={() => setOptModal(false)}
+        option="Eliminar"
+        optionName={userToDelete}
+        acceptFunction={handleDeleteUser}
+      />
+
+      <SendModal
+        open={sendModal}
+        close={() => setSendModal(false)}
+        message={sendModalMsg}
+        otherMessage={sendModalOtherMsg}
+      />
     </Admin>
   )
 }
