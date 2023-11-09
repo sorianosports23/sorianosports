@@ -1,7 +1,11 @@
 import { BsXLg } from "react-icons/bs"
 import modalStyles from "../../../css/Modal.module.css"
 import styles from "../../../css/admin/users/EditUser.module.css"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { userSessionContext } from "../../../context/session/UserSessionContext"
+import apiAdminGenPass from "../../../api/admin/users/generatePass"
+import LoaderComp from "../../LoaderComp"
+import Loader from "../../Loader"
 
 type TEditUserProps = {
   open: boolean
@@ -49,13 +53,34 @@ const generateNewPassword = () => {
 
 const EditUser = ({ open, close, info }: TEditUserProps) => {
 
+  const {token} = useContext(userSessionContext)
+
   const [generatedNewPassword, setGeneratedNewPassword] = useState(false)
   const [newPasswordGen, setNewPasswordGen] = useState("")
+  const [generatingPassword, setGeneratingPassword] = useState(false)
+  const [genPassErr, setGenPassErr] = useState(false)
 
-  const handleGenerateNewPassword = () => {
+  const handleGenerateNewPassword = async () => {
     const newPass = generateNewPassword()
-    setNewPasswordGen(newPass)
-    setGeneratedNewPassword(true)
+    setGeneratingPassword(true)
+
+    const data = {
+      token,
+      username: info.username,
+      password: newPass
+    }
+
+    const res = await apiAdminGenPass(data)
+
+    if (res.status) {
+      setNewPasswordGen(newPass)
+      setGeneratedNewPassword(true)
+    } else {
+      setGenPassErr(true)
+    }
+    
+    setGeneratingPassword(false)
+
   }
 
   return (
@@ -96,6 +121,9 @@ const EditUser = ({ open, close, info }: TEditUserProps) => {
               Generar nueva contraseña
             </button>
             {
+              generatingPassword && <Loader/>
+            }
+            {
               generatedNewPassword &&
               (
                 <>
@@ -103,6 +131,9 @@ const EditUser = ({ open, close, info }: TEditUserProps) => {
                 <span>{newPasswordGen}</span>
                 </>
               )
+            }
+            {
+              genPassErr && <p>Ocurrio un error generando la contraseña</p>
             }
           </div>
 
