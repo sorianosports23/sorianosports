@@ -1,4 +1,4 @@
-type TPermission = "users" | "news"
+type TPermission = "admin" | "editor"
 
 type TUser = {
   username: string

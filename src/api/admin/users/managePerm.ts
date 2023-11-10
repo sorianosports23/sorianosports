@@ -21,7 +21,7 @@ const apiAdminManagePerm = async ({ token, username, grant, permission }: TApiAd
       body: JSON.stringify(data)
     })
 
-    return await res.json()
+    return await res.json() as TApiResponse
   } catch (error) {
     return {
       status: false,

@@ -46,8 +46,8 @@ const UserCard = ({ username, ci, permissions, handleDeleteUser, handleEditUser 
       </div>
 
       <div className={styles.footer}>
-        <span>{permissions.includes("news") && "Editor de noticias"}</span>
-        <span>{permissions.includes("users") && "Editor de usuarios"}</span>
+        <span>{permissions.includes("admin") && "Administrador"}</span>
+        <span>{permissions.includes("editor") && "Editor"}</span>
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import { BsXLg } from "react-icons/bs"
 import modalStyles from "../../../css/Modal.module.css"
 import styles from "../../../css/admin/users/EditUser.module.css"
-import { useContext, useState } from "react"
+import { useContext, useState, FormEvent } from "react"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import apiAdminGenPass from "../../../api/admin/users/generatePass"
 import LoaderComp from "../../LoaderComp"
@@ -100,15 +100,19 @@ const EditUser = ({ open, close, info }: TEditUserProps) => {
     setGrantingPerm(false)
   }
 
+  const handleSubmit = (ev: FormEvent) => {
+    ev.preventDefault()
+  }
+
   return (
     <div
       className={modalStyles.cont}
       data-open={open}
     >
-      <form className={modalStyles.modal}>
+      <form className={modalStyles.modal} onSubmit={handleSubmit}>
         <div className={modalStyles.header}>
           <h2>Editar usuario</h2>
-          <button onClick={close}>
+          <button onClick={close} type="button">
             <BsXLg/>
           </button>
         </div>
@@ -158,13 +162,15 @@ const EditUser = ({ open, close, info }: TEditUserProps) => {
             <button
               onClick={() => handleModifyPermission("admin", true)}
               type="button"
+              disabled={grantingPerm}
             >
               Dar permisos de administrador
             </button>
             <button
               onClick={() => handleModifyPermission("editor", true)}
               type="button"
-              >
+              disabled={grantingPerm}
+            >
               Dar permisos de editor
             </button>
           </div>
