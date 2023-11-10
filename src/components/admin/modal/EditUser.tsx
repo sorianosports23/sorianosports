@@ -6,6 +6,7 @@ import { userSessionContext } from "../../../context/session/UserSessionContext"
 import apiAdminGenPass from "../../../api/admin/users/generatePass"
 import LoaderComp from "../../LoaderComp"
 import Loader from "../../Loader"
+import apiAdminManagePerm from "../../../api/admin/users/managePerm"
 
 type TEditUserProps = {
   open: boolean
@@ -59,6 +60,7 @@ const EditUser = ({ open, close, info }: TEditUserProps) => {
   const [newPasswordGen, setNewPasswordGen] = useState("")
   const [generatingPassword, setGeneratingPassword] = useState(false)
   const [genPassErr, setGenPassErr] = useState(false)
+  const [grantingPerm, setGrantingPerm] = useState(false)
 
   const handleGenerateNewPassword = async () => {
     const newPass = generateNewPassword()
@@ -81,6 +83,21 @@ const EditUser = ({ open, close, info }: TEditUserProps) => {
     
     setGeneratingPassword(false)
 
+  }
+
+  const handleModifyPermission = async (perm: "admin" | "editor", grant: boolean) => {
+    setGrantingPerm(true)
+
+    const data = {
+      token,
+      username: info.username,
+      permission: perm,
+      grant
+    }
+
+    const res = await apiAdminManagePerm(data)
+
+    setGrantingPerm(false)
   }
 
   return (
@@ -138,8 +155,18 @@ const EditUser = ({ open, close, info }: TEditUserProps) => {
           </div>
 
           <div className={styles.btns}>
-            <button>Dar permisos de administrador</button>
-            <button>Dar permisos de editor</button>
+            <button
+              onClick={() => handleModifyPermission("admin", true)}
+              type="button"
+            >
+              Dar permisos de administrador
+            </button>
+            <button
+              onClick={() => handleModifyPermission("editor", true)}
+              type="button"
+              >
+              Dar permisos de editor
+            </button>
           </div>
         </div>
 
