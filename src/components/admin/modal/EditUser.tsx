@@ -1,7 +1,7 @@
 import { BsXLg } from "react-icons/bs"
 import modalStyles from "../../../css/Modal.module.css"
 import styles from "../../../css/admin/users/EditUser.module.css"
-import { useContext, useState, FormEvent } from "react"
+import { useContext, useState, FormEvent, useCallback, useEffect } from "react"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import apiAdminGenPass from "../../../api/admin/users/generatePass"
 import LoaderComp from "../../LoaderComp"
@@ -62,6 +62,31 @@ const EditUser = ({ open, close, info }: TEditUserProps) => {
   const [genPassErr, setGenPassErr] = useState(false)
   const [grantingPerm, setGrantingPerm] = useState(false)
 
+  const getButtonGrantPerm = useCallback((type: TPermission) => {
+    const hasPerm = info.permissions.includes(type)
+    const permLabel = type === "admin" ? "Administrador" : "Editor"
+    return (
+      <button
+        type="button"
+        onClick={() => handleModifyPermission(type, !hasPerm)}
+      >
+        {
+          hasPerm
+            ? `Revocar permisos de ${permLabel}`
+            : `Dar permisos de ${permLabel}`  
+        }
+      </button>
+      )  
+  }, [info])
+
+  const [adminBtn, setAdminBtn] = useState(getButtonGrantPerm("admin"))
+  const [editorBtn, setEditorBtn] = useState(getButtonGrantPerm("editor"))
+
+  useEffect(() => {
+    setAdminBtn(getButtonGrantPerm("admin"))
+    setEditorBtn(getButtonGrantPerm("editor"))
+  }, [getButtonGrantPerm])
+
   const handleGenerateNewPassword = async () => {
     const newPass = generateNewPassword()
     setGeneratingPassword(true)
@@ -96,6 +121,10 @@ const EditUser = ({ open, close, info }: TEditUserProps) => {
     }
 
     const res = await apiAdminManagePerm(data)
+
+    if (res.status) {
+      info.permissions.push(perm)
+    }
 
     setGrantingPerm(false)
   }
@@ -159,20 +188,26 @@ const EditUser = ({ open, close, info }: TEditUserProps) => {
           </div>
 
           <div className={styles.btns}>
-            <button
+            {/* <button
               onClick={() => handleModifyPermission("admin", true)}
               type="button"
               disabled={grantingPerm}
             >
               Dar permisos de administrador
-            </button>
-            <button
+            </button> */}
+            {
+              adminBtn
+            }
+            {/* <button
               onClick={() => handleModifyPermission("editor", true)}
               type="button"
               disabled={grantingPerm}
             >
               Dar permisos de editor
-            </button>
+            </button> */}
+            {
+              editorBtn
+            }
           </div>
         </div>
 
