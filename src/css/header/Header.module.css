@@ -12,7 +12,7 @@
   width: 100%;
   height: 6rem;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   padding: 0 2rem;
   z-index: 15;
   justify-content: space-between;
@@ -21,6 +21,7 @@
 .logo {
   width: 14rem;
   height: 5rem;
+  align-self: center;
 }
 
 .logo > img {
@@ -34,6 +35,7 @@
 
 .search-bar {
   width: 40rem;
+  align-self: center;
 }
 
 .search-bar > div, .header_searchbar_tablet > div {
@@ -63,6 +65,7 @@
   justify-content: center;
   height: 3rem;
   z-index: 13;
+  align-self: center;
 }
 
 .header_searchbar_tablet > div {
@@ -84,6 +87,8 @@
   justify-content: space-between;
   width: max-content;
   gap: .5rem;
+  /* align-self: center; */
+  margin-top: 1rem;
 }
 
 .user-info > a:last-of-type {
@@ -356,5 +361,9 @@
 
   .menu_mobile {
     display: inline-block;
+  }
+
+  .header-top {
+    align-items: center;
   }
 }
