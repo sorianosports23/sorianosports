@@ -3,6 +3,7 @@ type TContact = {
   name: string
   email: string
   subject: string
+  status: 1 | 2
   messageContact: string
 }
 

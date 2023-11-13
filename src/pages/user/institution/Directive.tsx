@@ -48,7 +48,8 @@ const Directive = () => {
   return (
     <User>
       <Container>
-        <h1 className={styles.title}>DIRECTIVA</h1>
+        <h1 className={styles.title}>EQUIPO DE DEPORTES</h1>
+        <p className={styles.description}>Nuestro equipo</p>
 
       <div className={styles.general}>
         {

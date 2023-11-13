@@ -44,6 +44,10 @@ const EditCity = () => {
     setLoading(false)
   }, [city])
 
+  const handleGetPlaces = useCallback(async () => {
+    if (!city) return
+  }, [city])
+
   useEffect(() => {
     handleGetSports()
   }, [handleGetSports])

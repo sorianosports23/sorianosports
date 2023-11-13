@@ -110,7 +110,9 @@ const Keywords = () => {
       <div className={PageStyles.management}>
         <Link to="/admin/add/search" className={PageStyles.btn_add}><BsPlusLg/> Agregar nueva busqueda</Link>
       </div>
-      <div>
+      <div style={{
+        margin: "1rem 0"
+      }}>
         <h2>Busquedas:</h2>
 
         <div className={PageStyles.tableList}>

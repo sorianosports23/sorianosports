@@ -40,6 +40,13 @@
   flex: 1;
 }
 
+.info_duo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+}
+
 .btns {
   display: flex;
   justify-content: center;

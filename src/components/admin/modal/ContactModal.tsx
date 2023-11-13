@@ -21,6 +21,7 @@ const DEFAULT_VALUE: TContactInfo = {
     name: "",
     email: "",
     subject: "",
+    status: 1,
     messageContact: ""
   },
   user: {

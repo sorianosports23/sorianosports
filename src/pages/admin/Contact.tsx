@@ -55,7 +55,7 @@ const Contact = () => {
   //! MODAL
   const [modal, setModal] = useState(false)
   const [modalID, setModalID] = useState(0)
-  const [modalForm, setModalForm] = useState<TContact>({id: 0, name: "", email: "", subject: "", messageContact: ""})
+  const [modalForm, setModalForm] = useState<TContact>({id: 0, name: "", email: "", subject: "", status: 1, messageContact: ""})
   //!
 
   const handleOpenModal = (id: number, form: TContact) => {
@@ -78,8 +78,15 @@ const Contact = () => {
                 <span>{contact.id}</span>
               </div>
 
-              <div className={tableStyles.info}>
+              <div className={tableStyles.info_duo}>
                 <p>{contact.subject}</p>
+                <p>
+                  {
+                    contact.status === 1 
+                    ? "Resuelto"
+                    : "En espera"
+                  }
+                </p>
               </div>
 
               <div className={tableStyles.btns}>

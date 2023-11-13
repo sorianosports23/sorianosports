@@ -194,7 +194,7 @@ const Header = () => {
               </li>
 
               <li>
-                <Link to="/acerca/directiva">Directiva</Link>
+                <Link to="/acerca/directiva">Equipo</Link>
               </li>
               
               <li>

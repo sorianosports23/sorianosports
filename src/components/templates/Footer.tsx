@@ -50,9 +50,7 @@ const Footer = () => {
             <div className={styles.icon}>
               <BsTelephoneFill/>
             </div>
-            <a href={`tel:${socialMedia.Telefono}`} title="Teléfono de la Secretaria de Deportes">
-              {socialMedia.Telefono}
-            </a>
+            {socialMedia.Telefono}
           </li>
           <li title="Horario abierto de la Secretaria de Deportes">
             <div className={styles.icon}>

@@ -1,10 +1,13 @@
 import { BsFacebook, BsInstagram, BsTwitter, BsYoutube } from "react-icons/bs"
 
 import styles from "../../css/aside/SocialAside.module.css"
-import { MutableRefObject, useEffect, useRef, useState } from "react"
+import { MutableRefObject, useContext, useEffect, useRef, useState } from "react"
 import { FaXTwitter } from "react-icons/fa6"
+import { socialMediaContext } from "../../context/social/SocialMediaContext"
 
 const SocialAside = () => {
+
+  const { socialMedia } = useContext(socialMediaContext)
 
   const [mediaOpen, setMediaOpen] = useState(false)
   const [pos, setPos] = useState(0)
@@ -91,10 +94,10 @@ const SocialAside = () => {
           transform: `translate(-4rem, -4rem) scale(${mediaOpen ? 1 : 0})`
         }}
       >
-        <a href="https://www.facebook.com/intendenciasoriano" className={styles.fb_btn} title="Facebook"><BsFacebook/></a>
-        <a href="https://www.instagram.com/deportes.soriano" className={styles.ig_btn} title="Instagram"><BsInstagram/></a>
-        <a href="https://twitter.com/Sorianofertil" className={styles.tw_btn} title="X (Twitter)"><FaXTwitter/></a>
-        <a href="https://www.youtube.com/@sorianotv3939" className={styles.yt_btn} title="Youtube"><BsYoutube/></a>
+        <a href={socialMedia.Facebook} className={styles.fb_btn} title="Facebook"><BsFacebook/></a>
+        <a href={socialMedia.Instagram} className={styles.ig_btn} title="Instagram"><BsInstagram/></a>
+        <a href={socialMedia.Twitter} className={styles.tw_btn} title="X (Twitter)"><FaXTwitter/></a>
+        <a href={socialMedia.Youtube} className={styles.yt_btn} title="Youtube"><BsYoutube/></a>
       </div>
     </div>
     </>

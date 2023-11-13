@@ -22,8 +22,10 @@ h1, h2{
   font-family: "Metropolis";
   text-align: center;
 }
-p{
+.description{
   font-family: "Raleway";
+  text-align: center;
+  
 }
 .info{
   text-align: center;

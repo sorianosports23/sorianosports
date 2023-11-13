@@ -18,3 +18,7 @@ type TApiAdminAddPlaceRequest = {
   token: string
   placeData: TPlace
 }
+
+interface IApiGetPlace extends TApiResponse {
+  data: TPlace[]
+}
