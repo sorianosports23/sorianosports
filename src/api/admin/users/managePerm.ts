@@ -35,7 +35,7 @@ const addPerm = () => {
 }
 
 const delPerm = () => {
-  return ``
+  return `${api}/users/deletePermission.php`
 }
 
 export default apiAdminManagePerm

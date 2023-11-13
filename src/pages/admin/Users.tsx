@@ -96,6 +96,13 @@ const Users = () => {
     setSendModal(true)
   }
 
+  const handleShowModalSend = (msg: string, otMsg: string, loadUsers: boolean) => {
+    setSendModalMsg(msg)
+    setSendModalOtherMsg(otMsg)
+    setSendModal(true)
+    if (loadUsers) handleGetUsers(actualPage)
+  }
+
   return (
     <Admin route_title="Usuarios">
       <UsersSearch setUsers={setUsers} type="users"/>
@@ -129,6 +136,7 @@ const Users = () => {
         open={editOpen}
         close={() => setEditOpen(false)}
         info={userEdit}
+        openSend={handleShowModalSend}
       />
 
       <OptionModal

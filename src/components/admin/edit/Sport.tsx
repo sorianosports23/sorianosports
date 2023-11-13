@@ -1,11 +1,20 @@
+import { BsTrashFill } from "react-icons/bs"
+import styles from "../../../css/admin/page/EditCity.module.css"
+
 type TCity = {
   sport: string
+  deleteSport: (sport: string) => void
 }
 
-const Sport = ({ sport }: TCity) => {
+const Sport = ({ sport, deleteSport }: TCity) => { 
   return (
-    <div>
-      <h2>{sport}</h2>
+    <div className={styles.sport}>
+      <p>{sport}</p>
+      <button
+        onClick={() => deleteSport(sport)}
+      >
+        <BsTrashFill/>
+      </button>
     </div>
   )
 }

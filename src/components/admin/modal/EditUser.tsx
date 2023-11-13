@@ -12,6 +12,7 @@ type TEditUserProps = {
   open: boolean
   close: () => void
   info: TUser
+  openSend: (msg: string, otMsg: string, loadUsers: boolean) => void
 }
 
 const ABC = "ABCDEFGHIJKLMNOPQRSTWXYZ"
@@ -52,7 +53,7 @@ const generateNewPassword = () => {
   return newPassword
 }
 
-const EditUser = ({ open, close, info }: TEditUserProps) => {
+const EditUser = ({ open, close, info, openSend }: TEditUserProps) => {
 
   const {token} = useContext(userSessionContext)
 
@@ -123,7 +124,16 @@ const EditUser = ({ open, close, info }: TEditUserProps) => {
     const res = await apiAdminManagePerm(data)
 
     if (res.status) {
-      info.permissions.push(perm)
+      close()
+      const msg = grant 
+        ? "Se añadio el permiso"
+        : "Se elimino el permiso"
+      openSend(msg, "", true)
+    } else {
+      const msg = grant
+        ? "No se pudo añadir el permiso"
+        : "No se pudo eliminar el permiso"
+      openSend(msg, "", false)
     }
 
     setGrantingPerm(false)

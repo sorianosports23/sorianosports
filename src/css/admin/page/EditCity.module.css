@@ -1,0 +1,64 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 100%;
+  gap: 1rem;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.inputs > div {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  min-width: 15rem;
+}
+
+.inputs input {
+  background: none;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #222;
+  flex: 1;
+  height: 2rem;
+  padding: .5rem !important;
+}
+
+.content > div {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.cities {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.sport {
+  border: 1px solid #232323;
+  border-radius: .5rem;
+  padding: .5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sport > p {
+  font-size: 2em;
+}
+
+.sport > button {
+  height: 2.5rem;
+  width: 2.5rem;
+  border: 1px solid #232323;
+  border-radius: .5rem;
+  display: grid;
+  place-content: center;
+  background: none;
+}
