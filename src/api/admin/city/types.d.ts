@@ -5,6 +5,7 @@ type TApiAdminAddSportRequest = {
 }
 
 type TPlace = {
+  id: number
   city: string
   sport: string
   age: number
@@ -16,9 +17,14 @@ type TPlace = {
 
 type TApiAdminAddPlaceRequest = {
   token: string
-  placeData: TPlace
+  placeData: Omit<TPlace, "id">
 }
 
 interface IApiGetPlace extends TApiResponse {
   data: TPlace[]
+}
+
+type TApiAdminDeletePlaceRequest = {
+  token: string
+  id: number
 }

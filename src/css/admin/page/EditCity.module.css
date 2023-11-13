@@ -35,13 +35,15 @@
   gap: .5rem;
 }
 
-.cities {
+.cities,
+.places {
   display: flex;
   flex-direction: column;
   gap: .5rem;
 }
 
-.sport {
+.sport,
+.place_cont {
   border: 1px solid #232323;
   border-radius: .5rem;
   padding: .5rem 1rem;
@@ -61,4 +63,12 @@
   display: grid;
   place-content: center;
   background: none;
+}
+
+.place_cont {
+  align-items: center;
+}
+
+.place_cont > p {
+  font-size: 1.2em;
 }

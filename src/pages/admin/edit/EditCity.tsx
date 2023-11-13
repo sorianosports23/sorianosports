@@ -12,12 +12,15 @@ import { userSessionContext } from "../../../context/session/UserSessionContext"
 import apiAdminAddSport from "../../../api/admin/city/addSport"
 import SendModal from "../../../components/modal/SendModal"
 import apiAdminDeleteSport from "../../../api/admin/city/deleteSport"
+import apiGetCityPlace from "../../../api/admin/city/getPlace"
+import Place from "../../../components/admin/edit/Place"
 
 const EditCity = () => {
 
   const { token } = useContext(userSessionContext)
   const { city } = useParams()
   const [citySports, setCitySports] = useState([])
+  const [cityPlaces, setCityPlaces] = useState([])
   const [loading, setLoading] = useState(false)
   
   //
@@ -34,9 +37,9 @@ const EditCity = () => {
   const [sendOtMsg, setSendOtMsg] = useState("")
   //!
 
-  const handleGetSports = useCallback(async () => {
+  const handleGetSports = useCallback(async (skipLoading?: boolean) => {
     if (!city) return
-    setLoading(true)
+    if (!skipLoading) setLoading(true)
     const res = await apiGetCitySports(city)
     if (res.status) {
       setCitySports(res.data as typeof citySports)
@@ -46,11 +49,16 @@ const EditCity = () => {
 
   const handleGetPlaces = useCallback(async () => {
     if (!city) return
+    const res = await apiGetCityPlace(city)
+    if (res.status) {
+      setCityPlaces(res.data as typeof cityPlaces)
+    }
   }, [city])
 
   useEffect(() => {
     handleGetSports()
-  }, [handleGetSports])
+    handleGetPlaces()
+  }, [handleGetSports, handleGetPlaces])
 
   if (loading) {
     return (
@@ -70,7 +78,7 @@ const EditCity = () => {
     const res = await apiAdminAddSport(data)
   
     if (res.status) {
-      handleGetSports()
+      handleGetSports(true)
       setSportInput("")
     } else {
       setSendMsg("No se pudo añadir el deporte")
@@ -95,7 +103,7 @@ const EditCity = () => {
     const res = await apiAdminDeleteSport(data)
 
     if (res.status) {
-      handleGetSports()
+      handleGetSports(true)
     } else {
       handleOpenSendModal("No se pudo eliminar", res.message)
     }
@@ -125,7 +133,7 @@ const EditCity = () => {
         >
           <BsPlusLg/> Añadir lugar a {city}
         </button>
-        <h2 style={{marginTop: "1rem"}}>{city}</h2>
+        <h2>{city}</h2>
       </div>
       
       <div className={styles.content}>
@@ -146,8 +154,17 @@ const EditCity = () => {
 
         <div>
           <h2>Lugares</h2>
-          <div>
-
+          <div className={styles.places}>
+            {
+              cityPlaces.map((place, i) => (
+                <Place
+                  info={place}
+                  openEdit={() => {}}
+                  deletePlace={() => {}}
+                  key={i}
+                />
+              ))
+            }
           </div>
         </div>
       </div>
