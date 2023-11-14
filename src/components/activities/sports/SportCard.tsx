@@ -10,8 +10,8 @@ type TCardProps = {
 
 const SportCard = ({ name, iconUrlName, backgroundUrlName, select }: TCardProps) => {
 
-  const iconImage = assetsFolder + `/img/icons/${iconUrlName}`
-  const backgroundImage = assetsFolder + `/img/cards/${backgroundUrlName}`
+  const iconImage = assetsFolder + `/img/icons/sports/${iconUrlName}.png`
+  const backgroundImage = assetsFolder + `/img/cards/${backgroundUrlName}.jpg`
 
   return (
     <button 
@@ -25,7 +25,7 @@ const SportCard = ({ name, iconUrlName, backgroundUrlName, select }: TCardProps)
         <p>{name}</p>
 
         <div className={styles.sportIcon}>
-          <img src={iconImage} alt={name} />
+          <img src={iconImage} alt={""} />
         </div>
       </div>
     </button>

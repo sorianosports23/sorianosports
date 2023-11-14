@@ -28,3 +28,17 @@ type TApiAdminDeletePlaceRequest = {
   token: string
   id: number
 }
+
+type TApiAdminModifyPlaceRequest = {
+  token: string
+  info: Omit<TPlace, "city">
+}
+
+type TPlaceAttr = "sport" | "age" | "place" | "teacher" | "date" | "time"
+
+type TApiAdminModifyPlaceParams = {
+  token: string
+  id: number
+  attr: TPlaceAttr
+  newValue: string
+}

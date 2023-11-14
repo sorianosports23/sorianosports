@@ -14,6 +14,8 @@ import SendModal from "../../../components/modal/SendModal"
 import apiAdminDeleteSport from "../../../api/admin/city/deleteSport"
 import apiGetCityPlace from "../../../api/admin/city/getPlace"
 import Place from "../../../components/admin/edit/Place"
+import apiAdminDeletePlace from "../../../api/admin/city/deletePlace"
+import EditPlace from "../../../components/admin/modal/EditPlace"
 
 const EditCity = () => {
 
@@ -35,6 +37,11 @@ const EditCity = () => {
   const [sendModal, setSendModal] = useState(false)
   const [sendMsg, setSendMsg] = useState("")
   const [sendOtMsg, setSendOtMsg] = useState("")
+  //!
+
+  //! MODAL EDIT
+  const [editModal, setEditModal] = useState(false)
+  const [editInfo, setEditInfo] = useState<TPlace>({id: 0, age: 0, city: "", date: "", place: "", sport: "", teacher: "", time: ""})
   //!
 
   const handleGetSports = useCallback(async (skipLoading?: boolean) => {
@@ -109,6 +116,21 @@ const EditCity = () => {
     }
   }
 
+  const handleDeletePlace = async (id: number) => {
+    const data = {
+      token,
+      id
+    }
+
+    const res = await apiAdminDeletePlace(data)
+
+    if (res.status) {
+      handleGetPlaces()
+    } else {
+      handleOpenSendModal("No se pudo eliminar", res.message)
+    }
+  }
+
   return (
     <Admin route_title="Editar ciudades">
       <div className={PageStyles.management}>
@@ -159,8 +181,11 @@ const EditCity = () => {
               cityPlaces.map((place, i) => (
                 <Place
                   info={place}
-                  openEdit={() => {}}
-                  deletePlace={() => {}}
+                  openEdit={() => {
+                    setEditInfo(place)
+                    setEditModal(true)
+                  }}
+                  deletePlace={handleDeletePlace}
                   key={i}
                 />
               ))
@@ -183,6 +208,15 @@ const EditCity = () => {
         close={() => setSendModal(false)}
         message={sendMsg}
         otherMessage={sendOtMsg}
+      />
+
+      <EditPlace
+        open={editModal}
+        close={() => setEditModal(false)}
+        sports={citySports}
+        info={editInfo}
+        openModal={handleOpenSendModal}
+        reloadPlaces={handleGetPlaces}
       />
     </Admin>
   )  

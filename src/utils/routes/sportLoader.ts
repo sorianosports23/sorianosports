@@ -1,8 +1,8 @@
 import { LoaderFunction, LoaderFunctionArgs } from "react-router-dom";
 import cityList from "../cityList";
-import { citySports, sportList } from "../sportList";
+import apiGetCitySports from "../../api/page/sports/getCitySports";
 
-const sportLoader: LoaderFunction = ({ params }: LoaderFunctionArgs) => {
+const sportLoader: LoaderFunction = async ({ params }: LoaderFunctionArgs) => {
   const city = params.city
   const sport = params.sport
 
@@ -14,7 +14,13 @@ const sportLoader: LoaderFunction = ({ params }: LoaderFunctionArgs) => {
     throw new Response("La ciudad indicada no existe o no tenemos información de la misma")
   }
 
-  if (!citySports[city].includes(sport)) {
+  const citySports = await apiGetCitySports(city)
+
+  if (!citySports.status) {
+    throw new Response("Ocurrio un error al cargar los deportes")
+  }
+
+  if (!citySports.data.includes(sport)) {
     throw new Response("El deporte indicado no existe o no tenemos información del mismo")
   }
   

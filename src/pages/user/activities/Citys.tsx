@@ -110,7 +110,7 @@ const Departments = () => {
                 {
                   sportsFromCity.map((sport, i) => (
                     <li key={i} style={{
-                      // backgroundImage: `url(${assetsFolder}/img/cards/${sportImg[sport]})`
+                      backgroundImage: `url(${assetsFolder}/img/cards/${sport}.jpg)`
                     }}
                     title={sport}
                     >

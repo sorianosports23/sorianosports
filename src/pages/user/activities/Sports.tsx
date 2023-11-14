@@ -2,10 +2,11 @@ import User from "../User"
 import styles from "../../../css/activities/sports/Sports.module.css"
 import Container from "../../../components/templates/Container"
 import SportCard from "../../../components/activities/sports/SportCard"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import assetsFolder from "../../../utils/publicfolder"
 import { FaMousePointer } from "react-icons/fa"
 import SportSearch from "../../../components/activities/sports/SportSearch"
+import apiGetSports from "../../../api/page/sports/getSports"
 
 const sports = {
   ground: [
@@ -25,11 +26,29 @@ const Sports = () => {
   const [sportSelected, setSportSelect] = useState("")
   const [modalOpen, setModalOpen] = useState(false)
 
+  const [sports, setSports] = useState<string[]>([])
+
+  useEffect(() => {
+    (async () => {
+      const res = await apiGetSports()
+
+      if (res.status) {
+        let sportsList: string[] = []
+
+        res.data.forEach(sport => {
+          if (!sportsList.includes(sport)) sportsList.push(sport)
+        })
+
+        setSports(sportsList)
+      }
+    })()
+  }, [])
+
   return (
     <User>
       <Container>
         <div className={styles.selector}>
-          <button 
+          {/* <button 
             className={styles.ground}
             onClick={() => setEventTypeSelected("ground")}
             data-clicked={eventTypeSelected === "ground"}
@@ -44,11 +63,11 @@ const Sports = () => {
             <div className={styles.click}>
               <FaMousePointer/>
             </div>
-          </button>
+          </button> */}
           <div className={styles.separator}>
             <img src={assetsFolder + "/img/secretaria_deportes.svg"} alt="deportes" />
           </div>
-          <button 
+          {/* <button 
             className={styles.water}
             onClick={() => setEventTypeSelected("water")}
             data-clicked={eventTypeSelected === "water"}
@@ -63,11 +82,11 @@ const Sports = () => {
             <div className={styles.click}>
               <FaMousePointer/>
             </div>
-          </button>
+          </button> */}
         </div>
 
         <div className={styles.sports}>
-          {
+          {/* {
             eventTypeSelected 
               && sports[eventTypeSelected as keyof typeof sports].map((sport, i) => (
                 <SportCard
@@ -81,6 +100,20 @@ const Sports = () => {
                   }}
                 />
               ))
+          } */}
+          {
+            sports.map((sport, i) => (
+              <SportCard
+                name={sport}
+                iconUrlName={sport}
+                backgroundUrlName={sport}
+                key={i}
+                select={() => {
+                  setSportSelect(sport)
+                  setModalOpen(true)
+                }}
+              />
+            ))
           }
         </div>
       </Container>

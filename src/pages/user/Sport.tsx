@@ -6,6 +6,7 @@ import assetsFolder from "../../utils/publicfolder"
 import { TSportPlaceInfo, sportIcon, sportImg, sportPlaces } from "../../utils/sportList"
 import { useEffect, useState } from "react"
 import { BsChevronUp } from "react-icons/bs"
+import apiGetCityPlace from "../../api/admin/city/getPlace"
 
 type TInfoOnScreen = "Lugares" | "Eventos"
 
@@ -50,13 +51,18 @@ const Sport = () => {
 
   const [infoOnScreen, setInfoOnScreen] = useState<TInfoOnScreen>("Lugares")
 
-  const [sportList, setSportList] = useState<TSportPlaceInfo>()
+  const [sportList, setSportList] = useState<TPlace[]>()
 
   useEffect(() => {
-    const sportInfo = sportPlaces[city as string].find(sportInfo => sportInfo.sport === sport)
-    if (sportInfo) {
-      setSportList(sportInfo)
-    }
+    if (!city || !sport) return
+    (async () => {
+      const res = await apiGetCityPlace(city as string)
+      if (res.status) {
+        const data = res.data
+
+        setSportList(data.filter(place => place.sport === sport))
+      }
+    })()
   }, [city, sport])
 
 
@@ -66,7 +72,7 @@ const Sport = () => {
         <div className={styles.title_cont}>
           <div className={styles.title}
             style={{
-              backgroundImage: `url(${assetsFolder}/img/cards/${sportImg[sport as string]})`
+              backgroundImage: `url(${assetsFolder}/img/cards/${sport}.jpg)`
             }}
           >
             <h1>{sport}</h1>
@@ -124,9 +130,9 @@ const Sport = () => {
                 <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
                 <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/> */}
                 {
-                  sportList && sportList.places.map((place, i) => (
+                  sportList && sportList.map((place, i) => (
                     <SportPlace
-                      place={place.name}
+                      place={place.place}
                       teacher={place.teacher}
                       time={place.time}
                       key={i}
