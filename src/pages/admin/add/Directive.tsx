@@ -80,7 +80,7 @@ const Directive = () => {
 
   return (
     <>
-    <Admin route_title="Agregar directiva">
+    <Admin route_title="Agregar equipo">
       <form onSubmit={handleSubmit} className={styles.form}>
         <div 
           className={styles.img_cont}
@@ -124,7 +124,7 @@ const Directive = () => {
           />
         </div>
         <div>
-          <label htmlFor="d_rank">Rango:</label>
+          <label htmlFor="d_rank">Rango/Función:</label>
           <input 
             type="text" 
             id="d_rank"

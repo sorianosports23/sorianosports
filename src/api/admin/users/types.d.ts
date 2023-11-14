@@ -15,3 +15,17 @@ type TApiAdminManagePermRequest = {
   permission: "admin" | "editor"
   grant: boolean
 }
+
+type TApiGetUserFromUsernameRequest = {
+  token: string
+  username: string
+}
+
+type TApiGetUserFromCIRequest = {
+  token: string
+  ci: number
+}
+
+interface IApiGetUserFromUsernameResponse extends TApiResponse {
+  data: TUser
+}

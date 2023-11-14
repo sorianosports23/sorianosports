@@ -134,6 +134,8 @@ const EditCity = () => {
   return (
     <Admin route_title="Editar ciudades">
       <div className={PageStyles.management}>
+        <h2 className={styles.cityTitle}>{city}</h2>
+
         <form onSubmit={handleSubmitSport} className={PageStyles.form_manage}>
           <input 
             type="text" 
@@ -155,7 +157,6 @@ const EditCity = () => {
         >
           <BsPlusLg/> Añadir lugar a {city}
         </button>
-        <h2>{city}</h2>
       </div>
       
       <div className={styles.content}>

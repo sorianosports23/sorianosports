@@ -1,6 +1,7 @@
-import { FormEvent, useState } from "react"
+// import { FormEvent, useState } from "react"
 import { BsSearch } from "react-icons/bs"
 import styles from "../../../css/admin/users/UsersSearch.module.css"
+import { useState, FormEvent } from "react"
 
 // type TUser = {
 //   username: string
@@ -13,17 +14,19 @@ import styles from "../../../css/admin/users/UsersSearch.module.css"
 // }
 
 type TUsersSearchProps = {
-  setUsers: (users: Array<TUser>) => void
+  searchUser: (user: string | number, type: "users" | "ci") => void
   type: "users" | "ci"
 }
 
-const UsersSearch = ({ setUsers, type }: TUsersSearchProps) => {
+const UsersSearch = ({ searchUser, type }: TUsersSearchProps) => {
   
-  const [user, setUser] = useState("")
+  const [user, setUser] = useState(type === "users" ? "" : 0)
 
   const handleSubmit = (ev: FormEvent) => {
     ev.preventDefault()
     console.log(user)
+
+    searchUser(user, type)
   }
 
   return (

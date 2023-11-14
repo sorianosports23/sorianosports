@@ -25,7 +25,7 @@ const Sports = () => {
   const handleChangeSports = useCallback((sports: string[]) => setSportsArr(sports), [])
 
   return (
-    <Admin route_title="Deportes">
+    <Admin route_title="Ciudades">
       <AdminSportsMenu sports={sportList} setSports={handleChangeSports}/>
 
       <div className={styles.sports}>

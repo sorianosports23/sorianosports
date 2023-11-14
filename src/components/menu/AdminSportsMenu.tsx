@@ -29,9 +29,9 @@ const AdminSportsMenu = ({ sports, setSports }: TSportsMenuProps) => {
 
   return (
     <div className={styles.menu}>
-      <div className={styles.management}>
+      {/* <div className={styles.management}>
         <button className={styles.btn_add}><BsPlusLg/> Añadir</button>
-      </div>
+      </div> */}
 
       <div className={styles.search_cont}>
         <div className={styles.search}>
@@ -40,7 +40,7 @@ const AdminSportsMenu = ({ sports, setSports }: TSportsMenuProps) => {
           </div>
 
           <div className={styles.input}>
-            <input type="text" placeholder="Buscar deporte"
+            <input type="text" placeholder="Buscar ciudad"
               value={searchValue}
               onChange={(ev) => setSearchValue(ev.target.value)}
             />

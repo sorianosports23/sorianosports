@@ -130,7 +130,7 @@ const DirectiveProfile = ({ open, close, id, name, rank, img, handleEdit }: TDir
               />
             </div>
             <div>
-              <label htmlFor="d_rank">Rango:</label>
+              <label htmlFor="d_rank">Rango/Función:</label>
               <input 
                 type="text" 
                 id="d_rank"

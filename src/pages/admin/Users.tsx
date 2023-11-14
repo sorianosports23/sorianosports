@@ -11,6 +11,8 @@ import EditUser from "../../components/admin/modal/EditUser"
 import apiAdminDeleteUser from "../../api/admin/users/deleteUser"
 import OptionModal from "../../components/modal/OptionModal"
 import SendModal from "../../components/modal/SendModal"
+import apiGetUserFromUsername from "../../api/admin/users/getUserFromUsername"
+import apiGetUserFromCI from "../../api/admin/users/getUserFromCI"
 
 const Users = () => {
 
@@ -103,10 +105,26 @@ const Users = () => {
     if (loadUsers) handleGetUsers(actualPage)
   }
 
+  const handleGetUserFromSearch = async (user: string | number, type: "users" | "ci") => {
+    const data = {
+      token
+    }
+
+    type === "users"
+      ? data["username"] = user as string
+      : data["ci"] = user as number
+
+
+
+    const res = type === "users"
+      ? await apiGetUserFromUsername(data)
+      : await apiGetUserFromCI(data)
+  }
+
   return (
     <Admin route_title="Usuarios">
-      <UsersSearch setUsers={setUsers} type="users"/>
-      <UsersSearch setUsers={setUsers} type="ci"/>
+      <UsersSearch searchUser={handleGetUserFromSearch} type="users"/>
+      <UsersSearch searchUser={handleGetUserFromSearch} type="ci"/>
 
       <div className={styles.res}>
         <div className={styles.resList}>
