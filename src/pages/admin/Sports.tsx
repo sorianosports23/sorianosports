@@ -9,13 +9,23 @@ const cities = [
   "Mercedes",
   "Dolores",
   "Risso",
-  "VillaSoriano",
+  "Villa Soriano",
   "Palmitas",
   "Palmar",
-  "JERodo",
+  "Jose.E.Rodo",
   "Egaña",
   "Cardona",
-  "STACatalina"
+  "Santa Catalina",
+  "Lares",
+  "Perseverano",
+  "Sacachispas",
+  "La Agraciada",
+  "El Tala",
+  "La Loma",
+  "Cañada de Nieto",
+  "Colonia Concordia",
+  "Castillos"
+
 ]
 
 const Sports = () => {

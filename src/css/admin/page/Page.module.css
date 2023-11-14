@@ -49,8 +49,21 @@
   box-shadow: 1px 1px 1px #222;
 }
 
-.btn_add {
-  background: #4fea4f !important;
+.btn_add{
+  width: max-content;
+    padding: 0.4rem;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #222;
+    background: none;
+    transition: box-shadow .3s;
+    text-decoration: none;
+    font-family: 'Raleway', sans-serif;
+    color: #222;
+    background: #4fea4f !important;
 }
 
 .tableList {

@@ -151,12 +151,7 @@ const EditCity = () => {
             <BsPlusLg/> Añadir deporte
           </button>
         </form>
-        <button
-          className={PageStyles.btn_add}
-          onClick={() => setModalAddPlace(true)}
-        >
-          <BsPlusLg/> Añadir Instalación en {city}
-        </button>
+        
       </div>
       
       <div className={styles.content}>
@@ -177,6 +172,16 @@ const EditCity = () => {
 
         <div>
           <h2>Instalaciones Deportivas</h2>
+
+           <div className={styles.btn_center}>
+             <button
+             className={PageStyles.btn_add}
+             onClick={() => setModalAddPlace(true)}
+             >
+            <BsPlusLg/> Añadir Instalación en {city}
+            </button>
+           </div>
+
           <div className={styles.places}>
             {
               cityPlaces.map((place, i) => (

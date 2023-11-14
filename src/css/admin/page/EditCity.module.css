@@ -75,3 +75,7 @@
 .cityTitle{
   font-size: 3em;
 }
+.btn_center{
+  display:flex ;
+  justify-content: center;
+}
