@@ -119,12 +119,12 @@ const NewsCarrousel = () => {
   }
 
   return (
-    <div className={styles.carrousel} ref={carrousel}
+    <div className={styles.carrousel} ref={carrousel } tabIndex={-1}
       onPointerEnter={() => setMouseOnNews(true)}
       onPointerLeave={() => setMouseOnNews(false)}
     >
       <div className={styles["arrow-left"]}>
-        <button onClick={() => handleChangeSlide("prev")} disabled={onTransition}>
+        <button onClick={() => handleChangeSlide("prev")} disabled={onTransition} tabIndex={-1}> 
           <BsChevronLeft/>
         </button>
       </div>
@@ -153,16 +153,16 @@ const NewsCarrousel = () => {
         }   
       </div>
       <div className={styles["arrow-right"]}>
-        <button onClick={() => handleChangeSlide("next")} disabled={onTransition}>
+        <button onClick={() => handleChangeSlide("next")} disabled={onTransition} tabIndex={-1}> 
           <BsChevronRight/>
         </button>
       </div>
 
       <div className={styles.arrows_mobile}>
-        <button onClick={() => handleChangeSlide("prev")}>
+        <button onClick={() => handleChangeSlide("prev")} tabIndex={-1}>
           <BsChevronLeft/>
         </button>
-        <button onClick={() => handleChangeSlide("next")}>
+        <button onClick={() => handleChangeSlide("next")} tabIndex={-1}>
           <BsChevronRight/>
         </button>
       </div>

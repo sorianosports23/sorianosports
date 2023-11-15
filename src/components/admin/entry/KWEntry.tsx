@@ -12,7 +12,9 @@ const KWEntry = ({ id, name, description, url, keywords, openEdit, openDelete }:
   const [showDropdown, setShowDropdown] = useState(false)
 
   return (
-    <div className={styles.entry}>
+    <div className={styles.entry}
+      onPointerLeave={() => setShowDropdown(false)}
+    >
       <div className={styles.info}>
         <h3>{name}</h3>
         <p>URL: <span>"{url}"</span></p>

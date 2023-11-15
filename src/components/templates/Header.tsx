@@ -84,10 +84,10 @@ const Header = () => {
                   <button><p>{username}</p> <BsChevronDown/></button>
 
                   <ul>
-                    <li><Link to="/auth/perfil">Perfil</Link></li>
+                    <li><Link to="/auth/perfil" tabIndex={aboutDropdown ? 0 : -1}>Perfil</Link></li>
                     <li>
                       <button
-                        onClick={handleLogout}
+                        onClick={handleLogout} tabIndex={aboutDropdown ? 0 : -1}
                       >Cerrar sesión</button>
                     </li>
                   </ul>
@@ -194,11 +194,11 @@ const Header = () => {
               </li>
 
               <li>
-                <Link to="/acerca/directiva">Equipo</Link>
+                <Link to="/acerca/directiva" tabIndex={aboutDropdown ? 0 : -1}>Equipo</Link>
               </li>
               
               <li>
-                <Link to="/acerca/contacto">Contacto</Link>
+                <Link to="/acerca/contacto" tabIndex={aboutDropdown ? 0 : -1}>Contacto</Link>
               </li>
             </ul>
           </button>

@@ -19,3 +19,9 @@ interface IApiAdminGetContactResponse extends TApiResponse {
     currentPage: number
   }
 }
+
+type TApiAdminEditStatusRequest = {
+  token: string
+  id: number
+  status: 1 | 2
+}

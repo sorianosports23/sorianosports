@@ -1,13 +1,16 @@
 import { BsXLg } from "react-icons/bs"
 import modalStyles from "../../../css/Modal.module.css"
-import { useEffect, useId, useState } from "react"
+import { useContext, useEffect, useId, useState } from "react"
 import LoaderComp from "../../LoaderComp"
+import apiAdminEditStatus from "../../../api/admin/contact/editStatus"
+import { userSessionContext } from "../../../context/session/UserSessionContext"
 
 type TContactModalProps = {
   id: number
   open: boolean
   close: () => void
   form: TContact
+  openModal: (msg: string, otMsg: string, reload: boolean) => void
 }
 
 type TContactInfo = {
@@ -35,7 +38,9 @@ const DEFAULT_VALUE: TContactInfo = {
   }
 }
 
-const ContactModal = ({ id, open, close, form }: TContactModalProps) => {
+const ContactModal = ({ id, open, close, form, openModal }: TContactModalProps) => {
+
+  const { token } = useContext(userSessionContext)
 
   const [info, setInfo] = useState<TContactInfo>(DEFAULT_VALUE)
   const [loading, setLoading] = useState(true)
@@ -52,13 +57,32 @@ const ContactModal = ({ id, open, close, form }: TContactModalProps) => {
     }))
   }
 
+  const handleUpdateStatus = async (status: 1|2) => {
+    const data = {
+      token,
+      id,
+      status
+    }
+
+    const res = await apiAdminEditStatus(data)
+
+    if (res.status) {
+      openModal("Se actualizo el estado", "", true)
+      close()
+    } else {
+      openModal("No se pudo editar el estado", res.message, false)
+    }
+  }
+
   const handleGetInfo = async (id: number) => {
     setLoading(true)
 
-
-
     setLoading(false)
   } 
+
+  useEffect(() => {
+    console.log("FORM", form)
+  }, [form])
 
   return (
     <div
@@ -129,7 +153,11 @@ const ContactModal = ({ id, open, close, form }: TContactModalProps) => {
       </div>
 
       <div className={`${modalStyles.footer} ${modalStyles.btns}`}>
-        <button>Marcar como resuelto</button>
+        <button
+          onClick={() => handleUpdateStatus(Number(form.status) === 1 ? 2 : 1)}
+        >
+          Marcar como {Number(form.status) === 1 ? "resuelto" : "en espera"}
+        </button>
         <button onClick={close}>Cerrar</button>
       </div>
       </div>

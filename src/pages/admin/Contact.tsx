@@ -6,6 +6,7 @@ import apiAdminGetContact from "../../api/admin/contact/getContact"
 import Pagination from "../../components/admin/templates/Pagination"
 import tableStyles from "../../css/admin/table.module.css"
 import ContactModal from "../../components/admin/modal/ContactModal"
+import SendModal from "../../components/modal/SendModal"
 
 const Contact = () => {
 
@@ -58,10 +59,23 @@ const Contact = () => {
   const [modalForm, setModalForm] = useState<TContact>({id: 0, name: "", email: "", subject: "", status: 1, messageContact: ""})
   //!
 
+  //! SEND MODAL
+  const [sendModal, setSendModal] = useState(false)
+  const [sendModalMsg, setSendModalMsg] = useState("")
+  const [sendModalOtMsg, setSendModalOtMsg] = useState("")
+  //!
+
   const handleOpenModal = (id: number, form: TContact) => {
     setModalID(id)
     setModalForm(form)
     setModal(true)
+  }
+
+  const handleOpenSendModal = (msg: string, otMsg: string, reload: boolean) => {
+    setSendModalMsg(msg)
+    setSendModalOtMsg(otMsg)
+    setSendModal(true)
+    if (reload) handleGetContact(actualPage)
   }
 
   if (loading) {
@@ -82,7 +96,7 @@ const Contact = () => {
                 <p>{contact.subject}</p>
                 <p>
                   {
-                    contact.status === 1 
+                    Number(contact.status) === 2 
                     ? "Resuelto"
                     : "En espera"
                   }
@@ -116,6 +130,14 @@ const Contact = () => {
         close={() => setModal(false)}
         id={modalID}
         form={modalForm}
+        openModal={handleOpenSendModal}
+      />
+
+      <SendModal
+        open={sendModal}
+        close={() => setSendModal(false)}
+        message={sendModalMsg}
+        otherMessage={sendModalOtMsg}
       />
     </Admin>
   )

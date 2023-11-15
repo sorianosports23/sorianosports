@@ -290,7 +290,7 @@
   background-color: var(--header-bg-2);
   border: 1px solid #222;
   border-top: none;
-  border-radius: .5rem;
+  border-radius: 0 0 .5rem .5rem;
   transform: translateY(2rem);
 }
 
