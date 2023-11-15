@@ -88,3 +88,10 @@
   height: 2rem;
   padding: .5rem !important;
 }
+
+.form_radio {
+  display: flex;
+  gap: .5rem;
+  justify-content: flex-start;
+  min-width: 12rem;
+}

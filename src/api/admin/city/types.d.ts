@@ -2,6 +2,7 @@ type TApiAdminAddSportRequest = {
   token: string
   city: string
   sport: string
+  typeSport: "summer" | "year"
 }
 
 type TPlace = {

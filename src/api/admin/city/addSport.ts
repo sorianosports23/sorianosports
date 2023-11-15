@@ -1,10 +1,11 @@
 import api from "../../apiRoute"
 
-const apiAdminAddSport = async ({ token, city, sport }: TApiAdminAddSportRequest): Promise<TApiResponse> => {
+const apiAdminAddSport = async ({ token, city, sport, typeSport }: TApiAdminAddSportRequest): Promise<TApiResponse> => {
   try {
     const data = {
       nameCity: city,
-      nameSport: sport
+      nameSport: sport,
+      typeSport
     }
 
     const res = await fetch(`${api}/cities/addCity.php`, {

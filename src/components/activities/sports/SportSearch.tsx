@@ -2,16 +2,16 @@ import { Link } from "react-router-dom"
 import styles from "../../../css/index/SportInscription.module.css"
 import { BsSearch, BsXLg } from "react-icons/bs"
 import { useState } from "react"
-import cityList from "../../../utils/cityList"
 
 type TSportSearchProps = {
   open: boolean
   sport: string
   close: () => void
+  cityList: string[]
 }
 
 
-const SportSearch = ({ open, sport, close }: TSportSearchProps) => {
+const SportSearch = ({ open, sport, close, cityList }: TSportSearchProps) => {
 
   const [selectValue, setSelectValue] = useState("")
 

@@ -10,7 +10,7 @@ type TEditPlaceProps = {
   close: () => void
   info: TPlace
   openModal: (msg: string, otMsg?: string) => void
-  sports: string[]
+  sports: TCityRes[]
   reloadPlaces: () => void
 }
 
@@ -100,7 +100,7 @@ const EditPlace = ({ open, close, sports, info, openModal, reloadPlaces }: TEdit
               <option value="#">-</option>
               {
                 sports.map((sport, i) => (
-                  <option value={sport} key={i}>{sport}</option>
+                  <option value={sport.name} key={i}>{sport.name} - {sport.type === "summer" ? "Verano" : "Anual"}</option>
                 ))
               }
             </select>

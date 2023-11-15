@@ -71,7 +71,7 @@ const Departments = () => {
 
     const data = await apiGetCitySports(selectedDepartment)
     if (data.status) {
-      setSportsFromCity(data.data)
+      setSportsFromCity(data.data.map(value => value.name))
     } else {
       setSportsFromCity([])
     }

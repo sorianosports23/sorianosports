@@ -9,7 +9,7 @@ type TAddPlaceProps = {
   open: boolean
   close: () => void
   city: string
-  sports: string[]
+  sports: TCityRes[]
   showModal: (msg: string, otMsg?: string) => void
 }
 
@@ -89,7 +89,7 @@ const AddPlace = ({ open, close, city, sports, showModal }: TAddPlaceProps) => {
               <option value="#">-</option>
               {
                 sports.map((sport, i) => (
-                  <option value={sport} key={i}>{sport}</option>
+                  <option value={sport.name} key={i}>{sport.name} - {sport.type === "summer" ? "Verano" : "Anual"}</option>
                 ))
               }
             </select>

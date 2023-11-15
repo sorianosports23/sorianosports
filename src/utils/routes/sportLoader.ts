@@ -20,7 +20,7 @@ const sportLoader: LoaderFunction = async ({ params }: LoaderFunctionArgs) => {
     throw new Response("Ocurrio un error al cargar los deportes")
   }
 
-  if (!citySports.data.includes(sport)) {
+  if (!citySports.data.find(value => value.name === sport)) {
     throw new Response("El deporte indicado no existe o no tenemos información del mismo")
   }
   

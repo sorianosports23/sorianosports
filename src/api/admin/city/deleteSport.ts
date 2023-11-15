@@ -1,6 +1,6 @@
 import api from "../../apiRoute"
 
-const apiAdminDeleteSport = async ({ token, city, sport }: TApiAdminAddSportRequest): Promise<TApiResponse> => {
+const apiAdminDeleteSport = async ({ token, city, sport }: Omit<TApiAdminAddSportRequest, "typeSport">): Promise<TApiResponse> => {
   try {
     const data = {
       nameCity: city,

@@ -19,7 +19,7 @@ const SportCard = ({ name }: TSportCardProps) => {
     <div onPointerLeave={handleMouseLeave} className={styles.card} style={{zIndex: dropdownShown ? 10 : "unset"}}>
       <p>{name}</p>
 
-      <div>
+      <div className={styles.btn}>
         <Link to={`/admin/sports/${name}`}>Editar</Link>
       </div>
     </div>

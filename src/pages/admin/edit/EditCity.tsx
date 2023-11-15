@@ -21,13 +21,14 @@ const EditCity = () => {
 
   const { token } = useContext(userSessionContext)
   const { city } = useParams()
-  const [citySports, setCitySports] = useState([])
+  const [citySports, setCitySports] = useState<TCityRes[]>([])
   const [cityPlaces, setCityPlaces] = useState([])
   const [loading, setLoading] = useState(false)
   
   //
 
   const [sportInput, setSportInput] = useState("")
+  const [sportTypeInput, setSportTypeInput] = useState<"summer" | "year">("summer")
 
   //! MODAL SUBMIT PLACE
   const [modalAddPlace, setModalAddPlace] = useState(false)
@@ -79,7 +80,8 @@ const EditCity = () => {
     const data = {
       token,
       city: city as string,
-      sport: sportInput
+      sport: sportInput,
+      typeSport: sportTypeInput
     }
 
     const res = await apiAdminAddSport(data)
@@ -131,6 +133,7 @@ const EditCity = () => {
     }
   }
 
+
   return (
     <Admin route_title="Editar ciudades">
       <div className={PageStyles.management}>
@@ -144,6 +147,30 @@ const EditCity = () => {
             onChange={(ev) => setSportInput(ev.target.value)}
             className={PageStyles.input}
           />
+
+          <div className={PageStyles.form_radio}>
+            <input 
+              type="radio" 
+              name="sport_type"
+              id="sport_type_year"
+              onClick={() => setSportTypeInput("year")}
+              checked={sportTypeInput === "year"}
+            />
+            <label htmlFor="sport_type_year">Deporte anual</label>
+          </div>
+
+          <div className={PageStyles.form_radio}>
+            <input 
+              type="radio" 
+              name="sport_type"
+              id="sport_type_summer"
+              onClick={() => setSportTypeInput("summer")}
+              checked={sportTypeInput === "summer"}
+            />
+            <label htmlFor="sport_type_summer">Deporte de verano</label>
+          </div>
+
+          
           <button 
             type="submit" 
             className={PageStyles.btn_add}
@@ -162,7 +189,8 @@ const EditCity = () => {
               citySports.map((city, i) => (
                 <Sport
                   key={i}
-                  sport={city}
+                  sport={city.name}
+                  type={city.type}
                   deleteSport={handleDeleteSport}
                 />
               ))

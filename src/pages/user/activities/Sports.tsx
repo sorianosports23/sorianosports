@@ -7,6 +7,8 @@ import assetsFolder from "../../../utils/publicfolder"
 import { FaMousePointer } from "react-icons/fa"
 import SportSearch from "../../../components/activities/sports/SportSearch"
 import apiGetSports from "../../../api/page/sports/getSports"
+import apiGetCityFromSport from "../../../api/page/sports/getCityFromSport"
+import SendModal from "../../../components/modal/SendModal"
 
 const sports = {
   ground: [
@@ -26,7 +28,13 @@ const Sports = () => {
   const [sportSelected, setSportSelect] = useState("")
   const [modalOpen, setModalOpen] = useState(false)
 
+  const [cityList, setCityList] = useState<string[]>([])
   const [sports, setSports] = useState<string[]>([])
+
+  //! MODAL SEND
+  const [modalSend, setModalSend] = useState(false)
+  const [modalMsg, setModalMsg] = useState("")
+  //!
 
   useEffect(() => {
     (async () => {
@@ -43,6 +51,23 @@ const Sports = () => {
       }
     })()
   }, [])
+
+  const handleOpenModalCity = async (sport: string) => {
+    const res = await apiGetCityFromSport(sport)
+
+    if (res.status) {
+      if (res.data) {
+        setCityList(res.data)
+        setModalOpen(true)
+      } else {
+        setModalMsg("El deporte no esta registrado en ninguna ciudad")
+        setModalSend(true)
+      }
+    } else {
+      setModalMsg("Ocurrio un error cargando las ciudades")
+      setModalSend(true)
+    }
+  }
 
   return (
     <User>
@@ -110,7 +135,7 @@ const Sports = () => {
                 key={i}
                 select={() => {
                   setSportSelect(sport)
-                  setModalOpen(true)
+                  handleOpenModalCity(sport)
                 }}
               />
             ))
@@ -122,6 +147,13 @@ const Sports = () => {
         open={modalOpen}
         sport={sportSelected}
         close={() => setModalOpen(false)}
+        cityList={cityList}
+      />
+
+      <SendModal
+        open={modalSend}
+        close={() => setModalSend(false)}
+        message={modalMsg}
       />
     </User>
   )

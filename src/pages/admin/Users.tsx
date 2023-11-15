@@ -106,25 +106,39 @@ const Users = () => {
   }
 
   const handleGetUserFromSearch = async (user: string | number, type: "users" | "ci") => {
-    const data = {
+    const data: { token: string, username?: string, ci?: number } = {
       token
     }
 
     type === "users"
-      ? data["username"] = user as string
-      : data["ci"] = user as number
+      ? data.username = user as string
+      : data.ci = user as number
 
 
 
     const res = type === "users"
-      ? await apiGetUserFromUsername(data)
-      : await apiGetUserFromCI(data)
+      ? await apiGetUserFromUsername(data as TApiGetUserFromUsernameRequest)
+      : await apiGetUserFromCI(data as TApiGetUserFromCIRequest)
+
+    if (res.status) {
+      if (res.data) {
+        setUserEdit(res.data)
+        setEditOpen(true)
+      } else {
+        handleShowModalSend("No se encontro el usuario", "", false)
+      }
+    } else {
+      handleShowModalSend("Ocurrio un problema", res.message, false)
+    }
   }
 
   return (
     <Admin route_title="Usuarios">
       <UsersSearch searchUser={handleGetUserFromSearch} type="users"/>
       <UsersSearch searchUser={handleGetUserFromSearch} type="ci"/>
+
+      {/* <UsersSearch searchUser={() => {}} type="users"/> */}
+      {/* <UsersSearch searchUser={() => {}} type="ci"/> */}
 
       <div className={styles.res}>
         <div className={styles.resList}>
