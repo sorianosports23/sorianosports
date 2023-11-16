@@ -28,6 +28,16 @@ const Account = () => {
       navigate("/auth/login")
     }
   }, [username, navigate])
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params) {
+      const menu = params.get("location") as TMenu
+      if (accountMenus[menu]) {
+        setMenuSelected(menu)
+      }
+    }
+  }, [])
   
   return (
     <User>

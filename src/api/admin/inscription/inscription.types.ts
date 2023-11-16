@@ -7,15 +7,16 @@ const InscriptionStatusLabel = {
 type TinyInt = 1 | 0
 
 type TInscription = {
+  id: number
   name: string
   lastname: string
   birthday: string
   ci: number
-  imageCI?: string //img
+  imageCI?: File //img
   gender: TinyInt
   medicalRecord: TinyInt
   expiration?: string
-  imageMedicalRecord: string //img
+  imageMedicalRecord?: File //img
   city: string
   residence: string
   phone: number

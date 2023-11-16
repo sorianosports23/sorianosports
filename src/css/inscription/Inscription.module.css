@@ -45,21 +45,38 @@
   margin: 0 !important;
 }
 
-.form div:has(input[type='radio']) {
+.div_radio {
   display: flex;
   align-items: center;
   gap: .5rem;
   flex-wrap: wrap;
 }
 
-.form div:has(.checkbox_healty) {
+.checkbox_cont {
   gap: 1rem !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start !important;
+  width: 100%;
 }
 
 .checkbox_healty {
   display: flex;
   flex-direction: column;
   gap: 0 !important;
+}
+
+.checkbox_inputs_cont{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.input_rad {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
 }
 
 .form input::-webkit-inner-spin-button,
@@ -82,5 +99,38 @@
   background: #0a09;
 }
 
-.form button:last-of-type {
+.required_text {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.required_text > span {
+  font-size: 2em;
+}
+
+.upload_cont {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: flex-start !important;
+}
+
+.upload_img {
+  padding: .5rem;
+  border: 1px solid #232323;
+  border-radius: .5rem;
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  background: #0a09;
+  cursor: pointer;
+}
+
+.upload_img:hover {
+  background: #0a0;
+}
+
+.cont_img > .upload_cont {
+  width: 100%;
 }

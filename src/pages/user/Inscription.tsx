@@ -5,19 +5,20 @@ import { FormEvent, useContext, useState } from "react"
 import { TInscription } from "../../api/admin/inscription/inscription.types"
 import { userSessionContext } from "../../context/session/UserSessionContext"
 import apiSendInscription from "../../api/admin/inscription/sendInscription"
+import { BsUpload } from "react-icons/bs"
+import SendModal from "../../components/modal/SendModal"
 
 const Inscription = () => {
 
   const { token } = useContext(userSessionContext)
 
-  const [inscriptionData, setInscriptionData] = useState<Omit<TInscription, "state">>({
+  const [inscriptionData, setInscriptionData] = useState<Omit<TInscription, "state" | "id">>({
     name: "",
     lastname: "",
     birthday: "",
     ci: 0,
     gender: 0,
     medicalRecord: 0,
-    imageMedicalRecord: "",
     city: "",
     residence: "",
     phone: 0,
@@ -41,6 +42,21 @@ const Inscription = () => {
     }))
   }
 
+  //! MODAL
+  const [modalSend, setModalSend] = useState(false)
+  const [modalSendMsg, setModalSendMsg] = useState("")
+  const [modalSendOtMsg, setModalSendOtMsg] = useState("")
+  const [modalSendRedirect, setModalSendRedirect] = useState<string | undefined>(undefined)
+  
+  const handleShowModal = (msg: string, otMsg: string = "", redirect?: boolean) => {
+    setModalSendMsg(msg)
+    setModalSendOtMsg(otMsg)
+    if (redirect) setModalSendRedirect("/auth/profile?location=inscripciones")
+    setModalSend(true)
+  }
+  
+  //!
+
   const handleSubmit = async (ev: FormEvent) => {
     ev.preventDefault()
     const data = {
@@ -50,7 +66,11 @@ const Inscription = () => {
 
     const res = await apiSendInscription(data)
 
-    console.log(res)
+    if (res.status) {
+      handleShowModal("Se envio el formulario", "", true)
+    } else {
+      handleShowModal("No se pudo enviar el formulario", res.message)
+    }
   }
 
   return (
@@ -58,44 +78,50 @@ const Inscription = () => {
       <Container>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div>
+            <p className={styles.required_text}>Los campos con un <span>*</span> son requeridos</p>
+          </div>
+          <div>
             <label htmlFor="i_name">
-              Nombres:
+              Nombres: *
             </label>
             <input 
               type="text" 
               id="i_name"
               value={inscriptionData.name}
               onChange={(ev) => handleUpdateInscriptionData("name", ev.target.value)}
+              required
             />
           </div>
 
           <div>
             <label htmlFor="i_lastname">
-              Apellidos:
+              Apellidos: *
             </label>
             <input 
               type="text" 
               id="i_lastname"
               value={inscriptionData.lastname}
               onChange={(ev) => handleUpdateInscriptionData("lastname", ev.target.value)}
+              required
             />
           </div>
 
           <div>
             <label htmlFor="i_birthday">
-              Fecha de Nacimiento:
+              Fecha de Nacimiento: *
             </label>
             <input 
               type="date" 
               id="i_birthday"
               value={inscriptionData.birthday}
               onChange={(ev) => handleUpdateInscriptionData("birthday", ev.target.value)} 
+              required
             />
           </div>
 
           <div>
             <label htmlFor="i_ci">
-              Cedula:
+              Cedula: *
             </label>
             <input 
               type="number" 
@@ -105,14 +131,38 @@ const Inscription = () => {
               minLength={8}
               value={inscriptionData.ci}
               onChange={(ev) => handleUpdateInscriptionData("ci", ev.target.value)}
+              required
             />
+          </div>
+
+          <div className={styles.upload_cont}>
+            <label 
+              htmlFor="i_ci_img"
+              className={styles.upload_img}
+            >
+              <BsUpload/> Cargar imagen de cedula *
+            </label>
+            <input 
+              type="file"
+              className="hidden" 
+              accept="image/png, image/jpeg, image/webp"
+              id="i_ci_img"
+              onChange={(ev) => {
+                if (ev.target.files) handleUpdateInscriptionData("imageCI", ev.target.files[0])
+              }}
+            />
+            <p className={styles.upload_img_label}>
+              {
+                inscriptionData.imageCI && inscriptionData.imageCI.name
+              }
+            </p>
           </div>
 
           <div>
             <label htmlFor="i_gender">
-              Sexo:
+              Sexo: *
             </label>
-            <div>
+            <div className={styles.input_rad}>
               <label htmlFor="i_gender_m">M</label>
               <input 
                 type="radio" 
@@ -121,9 +171,9 @@ const Inscription = () => {
                 value="M"
                 checked={inscriptionData.gender === 0}              
                 onClick={() => handleUpdateInscriptionData("gender", 0)}
-                />
+              />
             </div>
-            <div>
+            <div className={styles.input_rad}>
               <label htmlFor="i_gender_f">F</label>
               <input 
                 type="radio" 
@@ -136,11 +186,11 @@ const Inscription = () => {
             </div>
           </div>
 
-          <div>
+          <div className={styles.cont_img}>
             <label htmlFor="#">
-              Ficha Medica:
+              Ficha Medica: *
             </label>
-            <div>
+            <div className={styles.input_rad}>
               <label htmlFor="i_fm_yes">Si</label>
               <input 
                 type="radio" 
@@ -151,7 +201,7 @@ const Inscription = () => {
                 onClick={() => handleUpdateInscriptionData("medicalRecord", 1)}
               />
             </div>
-            <div>
+            <div className={styles.input_rad}>
               <label htmlFor="i_fm_no">No</label>
               <input 
                 type="radio" 
@@ -162,43 +212,77 @@ const Inscription = () => {
                 onClick={() => handleUpdateInscriptionData("medicalRecord", 0)}
               />
             </div>
+            
+            {
+              inscriptionData.medicalRecord === 1 
+              && 
+              <>
+              <div>
+                <label htmlFor="i_fm_ex">Vence: *</label>
+                <input 
+                  type="date" 
+                  id="i_fm_ex"
+                  value={inscriptionData.expiration}
+                  onChange={(ev) => handleUpdateInscriptionData("expiration", ev.target.value)}
+                  required
+                />
+              </div>
 
-            <div>
-              <label htmlFor="i_fm_ex">Vence:</label>
-              <input 
-                type="date" 
-                id="i_fm_ex"
-                value={inscriptionData.expiration}
-                onChange={(ev) => handleUpdateInscriptionData("expiration", ev.target.value)}
-              />
-            </div>
+              <div className={styles.upload_cont}>
+                <label 
+                  htmlFor="i_fm_img"
+                  className={styles.upload_img}
+                >
+                  <BsUpload/> Cargar imagen de ficha medica *
+                </label>
+
+                <input 
+                  type="file"
+                  id="i_fm_img" 
+                  className="hidden"
+                  accept="image/png, image/jpeg, image/webp"  
+                  onChange={(ev) => {
+                    if (ev.target.files) handleUpdateInscriptionData("imageMedicalRecord", ev.target.files[0])
+                  }}
+                />
+
+                <p className={styles.upload_img_label}>
+                  { 
+                    inscriptionData.imageMedicalRecord && inscriptionData.imageMedicalRecord.name
+                  }
+                </p>
+              </div>
+              </>
+            }
           </div>
 
           <div>
-            <label htmlFor="i_citysport">Ciudad</label>
+            <label htmlFor="i_citysport">Ciudad: *</label>
             <input 
               type="text" 
               id="i_citysport"
               value={inscriptionData.city}
               onChange={(ev) => handleUpdateInscriptionData("city", ev.target.value)}
+              required
             />
           </div>
 
           <div>
             <label htmlFor="i_direction">
-              Domicilio:
+              Domicilio: *
             </label>
             <input 
               type="text" 
               id="i_direction"
               value={inscriptionData.residence}
               onChange={(ev) => handleUpdateInscriptionData("residence", ev.target.value)}
+              required
             />
           </div>
 
           <div>
             <label htmlFor="i_phone">
-              Tel/Cel:
+              Tel/Cel: *
             </label>
             <input 
               type="number" 
@@ -207,6 +291,7 @@ const Inscription = () => {
               minLength={8}
               value={inscriptionData.phone}
               onChange={(ev) => handleUpdateInscriptionData("phone", ev.target.valueAsNumber)}
+              required
             />
           </div>
 
@@ -251,41 +336,48 @@ const Inscription = () => {
           <div>
             <div>
               <label htmlFor="i_activity">
-                Actividad que va a Desarrollar:
+                Actividad que va a Desarrollar: *
               </label>
               <input 
                 type="text" 
                 id="i_activity" 
                 value={inscriptionData.activity}
                 onChange={(ev) => handleUpdateInscriptionData("activity", ev.target.value)}
+                required
               />
             </div>
 
             <div>
               <label htmlFor="#">
-                Horario de:
+                Horario de: *
               </label>
               <input 
                 type="time"
                 value={inscriptionData.sportTimeStart}
                 onChange={(ev) => handleUpdateInscriptionData("sportTimeStart", ev.target.value)} 
+                required
               />
               a
               <input 
                 type="time" 
                 value={inscriptionData.sportTimeEnd}
                 onChange={(ev) => handleUpdateInscriptionData("sportTimeEnd", ev.target.value)}
+                required
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="i_sportplace">Lugar donde se desarrollara el deporte:</label>
+            <label htmlFor="i_sportplace">
+              Lugar donde se desarrollara el deporte: *
+            </label>
             <input 
               type="text" 
               id="i_sportplace"
               value={inscriptionData.activityPlace}
-              onChange={(ev) => handleUpdateInscriptionData("activityPlace", ev.target.value)}/>
+              onChange={(ev) => handleUpdateInscriptionData("activityPlace", ev.target.value)}
+              required
+            />
           </div>
 
           <div>
@@ -330,9 +422,9 @@ const Inscription = () => {
           <div>
             <div>
               <label htmlFor="#">
-                Asistencia Médica:
+                Asistencia Médica: *
               </label>
-              <div>
+              <div className={styles.input_rad}>
                 <label htmlFor="i_medical_yes">Si</label>
                 <input 
                   type="radio" 
@@ -342,7 +434,7 @@ const Inscription = () => {
                   checked={inscriptionData.medicalAssistence === 1}
                   onClick={() => handleUpdateInscriptionData("medicalAssistence", 1)}/>
               </div>
-              <div>
+              <div className={styles.input_rad}>
                 <label htmlFor="i_medical_no">No</label>
                 <input 
                   type="radio" 
@@ -355,31 +447,41 @@ const Inscription = () => {
               </div>
             </div>
 
-            <div>
-              <label htmlFor="i_medical_name">¿Cuál?:</label>
-              <input 
-                type="text" 
-                id="i_medical_name"
-                value={inscriptionData.whatMedicalCare}
-                onChange={(ev) => handleUpdateInscriptionData("whatMedicalCare", ev.target.value)}
-              />
-            </div>
+            {
+              inscriptionData.medicalAssistence === 1
+              && <>
+                <div>
+                  <label htmlFor="i_medical_name">
+                    ¿Cuál?: *
+                  </label>
+                  <input 
+                    type="text" 
+                    id="i_medical_name"
+                    value={inscriptionData.whatMedicalCare}
+                    onChange={(ev) => handleUpdateInscriptionData("whatMedicalCare", ev.target.value)}
+                    required
+                  />
+                </div>
 
-            <div>
-              <label htmlFor="i_medical_phone">Teléfono:</label>
-              <input 
-                type="number" 
-                id="i_medical_phone" 
-                min={0} 
-                minLength={8}
-                value={inscriptionData.medicalAssistencePhone}
-                onChange={(ev) => handleUpdateInscriptionData("medicalAssistencePhone", ev.target.valueAsNumber)}
-              />
-            </div>
+                <div>
+                  <label htmlFor="i_medical_phone">Teléfono:</label>
+                  <input 
+                    type="number" 
+                    id="i_medical_phone" 
+                    min={0} 
+                    minLength={8}
+                    value={inscriptionData.medicalAssistencePhone}
+                    onChange={(ev) => handleUpdateInscriptionData("medicalAssistencePhone", ev.target.valueAsNumber)}
+                  />
+                </div>
+              </>
+            }
           </div>
 
           <div>
-            <label htmlFor="i_medical_blood">Grupo de Sangre</label>
+            <label htmlFor="i_medical_blood">
+              Grupo de Sangre:
+            </label>
             <input 
               type="text" 
               id="i_medical_blood"
@@ -388,13 +490,13 @@ const Inscription = () => {
             />
           </div>
 
-          <div>
-            <h4>Enfermedades que tiene o ha tenido:</h4>
-            <div>
+          <div className={styles.checkbox_cont}>
+            <h4>Enfermedades que tiene o ha tenido: *</h4>
+            <div className={styles.checkbox_inputs_cont}>
             <div className={styles.checkbox_healty}>
               <label htmlFor="#">Diabetes:</label>
               <div>
-                <div>
+                <div className={styles.div_radio}>
                   <label htmlFor="i_healty_d_yes">Si</label>
                   <input 
                     type="radio" 
@@ -405,7 +507,7 @@ const Inscription = () => {
                     onClick={() => handleUpdateInscriptionData("diabetes", 1)}
                   />
                 </div>
-                <div>
+                <div className={styles.div_radio}>
                   <label htmlFor="i_healty_d_no">No</label>
                   <input 
                     type="radio" 
@@ -422,7 +524,7 @@ const Inscription = () => {
             <div className={styles.checkbox_healty}>
               <label htmlFor="#">Hipertensión:</label>
               <div>
-                <div>
+                <div className={styles.div_radio}>
                   <label htmlFor="i_healty_h_yes">Si</label>
                   <input 
                     type="radio" 
@@ -433,7 +535,7 @@ const Inscription = () => {
                     onClick={() => handleUpdateInscriptionData("hypertension", 1)}
                   />
                 </div>
-                <div>
+                <div className={styles.div_radio}>
                   <label htmlFor="i_healty_h_no">No</label>
                   <input 
                     type="radio" 
@@ -450,7 +552,7 @@ const Inscription = () => {
             <div className={styles.checkbox_healty}>
               <label htmlFor="#">Fracturas:</label>
               <div>
-                <div>
+                <div className={styles.div_radio}>
                   <label htmlFor="i_healty_fr_yes">Si</label>
                   <input 
                     type="radio" 
@@ -461,7 +563,7 @@ const Inscription = () => {
                     onClick={() => handleUpdateInscriptionData("fractures", 1)}
                   />
                 </div>
-                <div>
+                <div className={styles.div_radio}>
                   <label htmlFor="i_healty_fr_no">No</label>
                   <input 
                     type="radio" 
@@ -478,7 +580,7 @@ const Inscription = () => {
             <div className={styles.checkbox_healty}>
               <label htmlFor="#">Alergias:</label>
               <div>
-                <div>
+                <div className={styles.div_radio}>
                   <label htmlFor="i_healty_al_yes">Si</label>
                   <input 
                     type="radio" 
@@ -489,7 +591,7 @@ const Inscription = () => {
                     onClick={() => handleUpdateInscriptionData("allergy", 1)}
                   />
                 </div>
-                <div>
+                <div className={styles.div_radio}>
                   <label htmlFor="i_healty_al_no">No</label>
                   <input 
                     type="radio" 
@@ -506,7 +608,7 @@ const Inscription = () => {
             <div className={styles.checkbox_healty}>
               <label htmlFor="#">Asma:</label>
               <div>
-                <div>
+                <div className={styles.div_radio}>
                   <label htmlFor="i_healty_asm_yes">Si</label>
                   <input 
                     type="radio" 
@@ -516,7 +618,7 @@ const Inscription = () => {
                     checked={inscriptionData.asthma === 1}
                     onClick={() => handleUpdateInscriptionData("asthma", 1)}/>
                 </div>
-                <div>
+                <div className={styles.div_radio}>
                   <label htmlFor="i_healty_asm_no">No</label>
                   <input 
                     type="radio" 
@@ -530,7 +632,7 @@ const Inscription = () => {
               </div>
             </div>
 
-            <div>
+            <div className={styles.div_radio}>
               <label htmlFor="i_healty_others">Otros:</label>
               <input 
                 type="text" 
@@ -542,7 +644,7 @@ const Inscription = () => {
 
             <div>
               <label htmlFor="#">Usa lentes:</label>
-              <div>
+              <div className={styles.div_radio}>
                 <label htmlFor="i_healty_g_yes">Si</label>
                 <input 
                   type="radio" 
@@ -553,7 +655,7 @@ const Inscription = () => {
                   onClick={() => handleUpdateInscriptionData("wearGlasses", 1)}
                 />
               </div>
-              <div>
+              <div className={styles.div_radio}>
                 <label htmlFor="i_healty_g_no">No</label>
                 <input 
                   type="radio" 
@@ -565,15 +667,22 @@ const Inscription = () => {
                 />
               </div>
 
-              <div>
-                <label htmlFor="i_healty_g_type">de que tipo?</label>
-                <input 
-                  type="text" 
-                  id="i_healty_g_type"
-                  value={inscriptionData.whatTypeGlasses}
-                  onChange={(ev) => handleUpdateInscriptionData("whatTypeGlasses", ev.target.value)}
-                />
-              </div>
+              {
+                inscriptionData.wearGlasses === 1
+                &&               
+                <div className={styles.div_radio}>
+                  <label htmlFor="i_healty_g_type">de que tipo?</label>
+                  <input 
+                    type="text" 
+                    id="i_healty_g_type"
+                    value={inscriptionData.whatTypeGlasses}
+                    onChange={(ev) => handleUpdateInscriptionData("whatTypeGlasses", ev.target.value)}
+                    required
+                  />
+                </div>
+              }
+
+
             </div>
             </div>
           </div>
@@ -584,6 +693,14 @@ const Inscription = () => {
           </div>
         </form>
       </Container>
+
+      <SendModal
+        open={modalSend}
+        close={() => setModalSend(false)}
+        message={modalSendMsg}
+        otherMessage={modalSendOtMsg}
+        redirect={modalSendRedirect}
+      />
     </User>
   )
 }

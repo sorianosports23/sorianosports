@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styles from "../../css/modal/SendModal.module.css"
 
 type TSendModalProps = {
@@ -7,9 +7,13 @@ type TSendModalProps = {
   message: string
   otherMessage?: string
   otherMsgLink?: string
+  redirect?: string
 }
 
-const SendModal = ({ open, close, message, otherMessage, otherMsgLink }: TSendModalProps) => {
+const SendModal = ({ open, close, message, otherMessage, otherMsgLink, redirect }: TSendModalProps) => {
+
+  const navigate = useNavigate()
+
   return (
     <div 
       data-open={open}
@@ -34,7 +38,11 @@ const SendModal = ({ open, close, message, otherMessage, otherMsgLink }: TSendMo
           }
         </div>
         <div className={styles.btn}>
-          <button onClick={() => close()}>Cerrar</button>
+          {
+            redirect 
+              ? <button onClick={() => navigate("/auth/perfil?location=inscripciones")}>Cerrar</button>
+              : <button onClick={close}>Cerrar</button>
+          }
         </div>
       </div>
     </div>

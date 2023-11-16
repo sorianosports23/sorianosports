@@ -29,6 +29,7 @@ import Page from "../pages/admin/Page"
 
 //! Admin routes
 import AdminContact from "../pages/admin/Contact"
+import AdminInscriptions from "../pages/admin/Inscription"
 //! 
 
 //! Admin routes (Edit)
@@ -104,6 +105,7 @@ const pageUserRoutes = createRoutesFromElements(
         <Route path="search" element={<AddSearch/>}/>
       </Route>
       <Route path="contact" element={<AdminContact/>}/>
+      <Route path="inscriptions" element={<AdminInscriptions/>}/>
     </Route>
   </Route>
 )
