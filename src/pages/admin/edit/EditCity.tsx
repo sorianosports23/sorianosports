@@ -148,7 +148,9 @@ const EditCity = () => {
             className={PageStyles.input}
           />
 
-          <div className={PageStyles.form_radio}>
+            <div className={styles.radio_select}>
+
+            <div className={PageStyles.form_radio}>
             <input 
               type="radio" 
               name="sport_type"
@@ -169,6 +171,9 @@ const EditCity = () => {
             />
             <label htmlFor="sport_type_summer">Deporte de verano</label>
           </div>
+
+            </div>
+          
 
           
           <button 

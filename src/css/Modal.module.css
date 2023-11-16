@@ -102,6 +102,8 @@
 }
 
 .c_form label {
+  display: flex;
+  flex-direction: column;
   width: 7rem;
 }
 

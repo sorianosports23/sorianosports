@@ -18,6 +18,8 @@ type TContactInfo = {
   user: TUser
 }
 
+
+
 const DEFAULT_VALUE: TContactInfo = {
   form: {
     id: 0,
@@ -44,6 +46,7 @@ const ContactModal = ({ id, open, close, form, openModal }: TContactModalProps) 
 
   const [info, setInfo] = useState<TContactInfo>(DEFAULT_VALUE)
   const [loading, setLoading] = useState(true)
+  const [response, setResponse] = useState("")
 
   useEffect(() => {
     handleGetInfo(id)
@@ -139,13 +142,24 @@ const ContactModal = ({ id, open, close, form, openModal }: TContactModalProps) 
                 </div>
                 
                 <div className={modalStyles.c_msg}>
-                  <label htmlFor="mc_id">Mensaje</label>
+                  <label htmlFor="mc_id">Mensaje:</label>
                   <textarea 
                     readOnly
                     value={info.form.messageContact}
                   >
                     {info.form.messageContact}
                   </textarea>
+
+                <div className={modalStyles.c_msg_resp}>
+                  <label htmlFor="mc_id">Respuesta:</label>
+                  <textarea 
+                  placeholder="Escribe la respuesta."
+                  >
+                    
+                    
+                  </textarea>
+                </div>
+
                 </div>
               </div>
             )
