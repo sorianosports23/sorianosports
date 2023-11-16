@@ -117,7 +117,7 @@ const News = () => {
                   ?
                   <div className={styles.no_more}>
                     <BsNewspaper/>
-                    No hay mas noticias que cargar
+                    No hay más noticias que cargar
                   </div>
                   :
                   <button 

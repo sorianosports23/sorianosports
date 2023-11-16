@@ -61,14 +61,14 @@ const Footer = () => {
         </ul>
       </div>
 
-      <div className={styles.share}>
+      {/* <div className={styles.share}>
         <div>
           <h4>Comparte la pagina</h4>
           <div>
             <img src={assetsFolder + "/img/qr.png"} alt="qr" id="qr-photo"/>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className={styles.copyright}>
         Copyright © {new Date().getFullYear()} <a href="https://soriano.gub.uy" style={{textDecoration: "none", color: "#222"}}>Intendencia de Soriano</a>
