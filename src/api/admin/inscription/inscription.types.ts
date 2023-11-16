@@ -28,7 +28,7 @@ type TInscription = {
   activityPlace: string
   anotherSports?: string
   oldPractisedSport?: string
-  medicalAssitence: TinyInt
+  medicalAssistence: TinyInt
   whatMedicalCare?: string
   medicalAssistencePhone?: number
   bloodGroup?: string

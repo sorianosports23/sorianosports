@@ -14,7 +14,7 @@ const apiSendInscription = async ({ token, data }: { token: string, data: Omit<T
       }
     })
 
-    const res = await fetch(`${api}/test.php`, {
+    const res = await fetch(`${api}/inscription/addInscriptionForm.php`, {
       method: "POST",
       headers: {
         Authorization: `SPToken ${token}`

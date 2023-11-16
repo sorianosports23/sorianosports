@@ -101,6 +101,14 @@ const News = () => {
   const [newsEditNote, setNewsEditNote] = useState("")
   const [newsEditId, setNewsEditId] = useState(0)
 
+  const handleOpenEditNews = (id: number, name: string, description: string, note: string) => {
+    setNewsEditId(id)
+    setNewsEditName(name)
+    setNewsEditDescription(description)
+    setNewsEditNote(note)
+    setNewsEdit(true)
+  }
+
   const handleEditNews = (status: boolean) => {
     if (status) {
       setModalMsg("Se edito la noticia")
@@ -109,14 +117,6 @@ const News = () => {
     } else {
       setModalMsg("No se pudo editar la noticia")
     }
-  }
-
-  const handleOpenEditNews = (id: number, name: string, description: string, note: string) => {
-    setNewsEditId(id)
-    setNewsEditName(name)
-    setNewsEditDescription(description)
-    setNewsEditNote(note)
-    setNewsEdit(true)
   }
 
   //!

@@ -25,7 +25,7 @@ const Inscription = () => {
     sportTimeEnd: "",
     activity: "",
     activityPlace: "",
-    medicalAssitence: 0,
+    medicalAssistence: 0,
     diabetes: 0,
     hypertension: 0,
     fractures: 0,
@@ -339,8 +339,8 @@ const Inscription = () => {
                   name="fm" 
                   id="i_medical_yes" 
                   value="Y"
-                  checked={inscriptionData.medicalAssitence === 1}
-                  onClick={() => handleUpdateInscriptionData("medicalAssitence", 1)}/>
+                  checked={inscriptionData.medicalAssistence === 1}
+                  onClick={() => handleUpdateInscriptionData("medicalAssistence", 1)}/>
               </div>
               <div>
                 <label htmlFor="i_medical_no">No</label>
@@ -349,8 +349,8 @@ const Inscription = () => {
                   name="fm" 
                   id="i_medical_no" 
                   value="N"
-                  checked={inscriptionData.medicalAssitence === 0}
-                  onClick={() => handleUpdateInscriptionData("medicalAssitence", 0)}
+                  checked={inscriptionData.medicalAssistence === 0}
+                  onClick={() => handleUpdateInscriptionData("medicalAssistence", 0)}
                 />
               </div>
             </div>
