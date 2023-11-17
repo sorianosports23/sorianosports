@@ -22,4 +22,19 @@ interface IApiGetInscriptionResponse extends TApiResponse {
   data?: TInscription
 }
 
-export type { TApiSendInscriptionRequest, IApiAdminGetInscriptions, TApiGetInscriptionRequest, IApiGetInscriptionResponse }
+type TApiGetInscriptionFromUsernameRequest = {
+  token: string
+  username: string
+}
+
+interface IApiGetInscriptionFromUsernameResponse extends TApiResponse {
+  data: TInscription[]
+}
+
+type TApiAdminEditStatusInsc = {
+  token: string
+  id: number
+  state: 2|3
+}
+
+export type { TApiSendInscriptionRequest, IApiAdminGetInscriptions, TApiGetInscriptionRequest, IApiGetInscriptionResponse, TApiGetInscriptionFromUsernameRequest, IApiGetInscriptionFromUsernameResponse, TApiAdminEditStatusInsc }

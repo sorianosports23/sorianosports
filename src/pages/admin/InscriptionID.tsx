@@ -8,6 +8,9 @@ import { TInscription } from "../../api/admin/inscription/inscription.types"
 import SendModal from "../../components/modal/SendModal"
 import api from "../../api/apiRoute"
 import styles from "../../css/admin/page/Inscription.module.css"
+import apiAdminEditStatus from "../../api/admin/contact/editStatus"
+import { TApiAdminEditStatusInsc } from "../../api/admin/inscription/types"
+import apiAdminEditStatusInsc from "../../api/admin/inscription/editInscription"
 
 const ShowInfo = ({title, content}: {title: string, content: string | number}) => {
   
@@ -26,6 +29,7 @@ const ShowInfo = ({title, content}: {title: string, content: string | number}) =
   )
 }
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 const InscriptionID = () => {
   
   const params = useParams()
@@ -108,6 +112,39 @@ const InscriptionID = () => {
     return message
   }
 
+  type state = "waiting" | "accepted" | "exited"
+
+  const handleCheckState = (): state => {
+    const num = Number(inscriptionData.state)
+    const stateLabel: Record<number, state> = {
+      1: "waiting",
+      2: "accepted",
+      3: "exited"
+    }
+    return stateLabel[num as keyof typeof stateLabel] as state || "waiting"
+  }
+
+  const isAccepted = handleCheckState() === "accepted"
+  const isExit = handleCheckState() === "exited"
+  const isWaiting = handleCheckState() === "waiting"
+
+  const handleEditStatus = async (state: 2|3) => {
+    const data: TApiAdminEditStatusInsc = {
+      token,
+      id: inscriptionData.id,
+      state
+    }
+
+    const res = await apiAdminEditStatusInsc(data)
+
+    if (res.status) {
+      handleShowModal("Se edito correctamente", "")
+    } else {
+      handleShowModal("No se pudo editar", res.message)
+    }
+  }
+
+
   if (loading) {
     return <Loading/>
   }
@@ -118,6 +155,43 @@ const InscriptionID = () => {
         inscriptionData
         && (
           <div className={styles.cont}>
+            {
+              !isExit
+              && (
+                <div className={styles.info}>
+                  <h2>Acciones</h2>
+                  {
+                    isWaiting
+                    && (
+                      <>
+                        <button
+                          onClick={() => handleEditStatus(2)}
+                        >
+                          Aceptar inscripcion
+                        </button>
+
+                        <button
+                          onClick={() => handleEditStatus(3)}
+                        >
+                          Denegar inscripcion
+                        </button>
+                      </>
+                    )
+                  }
+                  {
+                    isAccepted
+                    && (
+                      <button
+                        onClick={() => handleEditStatus(3)}
+                      >
+                        Dar de baja
+                      </button>
+                    )
+                  }
+                </div>
+              )
+            }
+
             <div className={styles.info}>
               <h2>Información personal</h2>
               <ShowInfo
@@ -293,6 +367,25 @@ const InscriptionID = () => {
                 />
               }
             </div>
+
+            {
+              isAccepted || isExit
+              && (
+                <div className={styles.info}>
+                  <h2>Inscripcion</h2>
+                  <ShowInfo
+                    title="Fecha de inscripcion"
+                    content={inscriptionData.startInscription as string}
+                  />
+
+                  {
+                    inscriptionData.endInscription
+                    && <ShowInfo title="Dado de baja" content={inscriptionData.endInscription}/>
+                  }
+                </div>
+              )
+            }
+
 
             <div className={styles.imgs}>
               <div>

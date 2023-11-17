@@ -41,6 +41,8 @@ type TInscription = {
   otherDiseases?: string
   wearGlasses: TinyInt
   whatTypeGlasses?: string
+  startInscription?: string
+  endInscription?: string
   state: 1 | 2 | 3 
 }
 
