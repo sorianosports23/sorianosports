@@ -117,7 +117,7 @@ const InscriptionID = () => {
       {
         inscriptionData
         && (
-          <div>
+          <div className={styles.cont}>
             <div className={styles.info}>
               <h2>Información personal</h2>
               <ShowInfo
@@ -153,9 +153,6 @@ const InscriptionID = () => {
                 content={inscriptionData.ci}
               />
 
-              <img 
-                src={`${api}/inscription/getCiImage.php?id=${inscriptionData.id}`} 
-                alt="ci" />
             </div>
 
             <div className={styles.info}>
@@ -172,11 +169,6 @@ const InscriptionID = () => {
                   <ShowInfo
                     title="Vencimiento"
                     content={inscriptionData.expiration as string}
-                  />
-                  
-                  <img 
-                    src={`${api}/inscription/getMRImage.php?id=${inscriptionData.id}`}
-                    alt="fm" 
                   />
                 </>
               }
@@ -248,7 +240,80 @@ const InscriptionID = () => {
                 content={handleShowBoolean(inscriptionData.wearGlasses, inscriptionData.whatTypeGlasses)}
               />
               
+            </div>
 
+            <div className={styles.info}>
+              <h2>Residencia</h2>
+
+              <ShowInfo
+                title="Ciudad"
+                content={inscriptionData.city}
+              />
+
+              <ShowInfo
+                title="Dirección"
+                content={inscriptionData.residence}
+              />
+
+            </div>
+
+            <div className={styles.info}>
+              <h2>Información deportiva</h2>
+              
+              <ShowInfo
+                title="Actividad que va a desarrollar"
+                content={inscriptionData.activity}
+              />
+
+              <ShowInfo
+                title="Horario"
+                content={`${inscriptionData.sportTimeStart} - ${inscriptionData.sportTimeEnd}`}
+              />
+
+              <ShowInfo
+                title="Lugar"
+                content={inscriptionData.activityPlace}
+              />
+
+              {
+                inscriptionData.anotherSports
+                &&
+                <ShowInfo
+                  title="Otros deportes"
+                  content={inscriptionData.anotherSports}
+                />
+              }
+              
+              {
+                inscriptionData.oldPractisedSport
+                &&
+                <ShowInfo
+                  title="Deportes anteriormente"
+                  content={inscriptionData.oldPractisedSport}
+                />
+              }
+            </div>
+
+            <div className={styles.imgs}>
+              <div>
+                <h2>Cedula</h2>
+                <img 
+                  src={`${api}/inscription/getCiImage.php?id=${inscriptionID}`} 
+                  alt="ci" 
+                />
+              </div>
+
+              {
+                Number(inscriptionData.medicalAssistence) === 1
+                &&
+                <div>
+                  <h2>Ficha medica</h2>
+                  <img 
+                    src={`${api}/inscription/getMRImage.php?id=${inscriptionID}`} 
+                    alt="fm" 
+                  />
+                </div>
+              }
             </div>
           </div>
         )

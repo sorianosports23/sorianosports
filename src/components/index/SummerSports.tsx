@@ -89,11 +89,11 @@ const SummerSports = () => {
         <div className={styles.textDiv}>
           <div>
             <h2>
-              <span>Actividades</span>
-              <span>De</span>
-              <span>Verano</span>
+              <span style={{fontFamily:"Facon"}}>Actividades</span>
+              <span style={{fontFamily:"Facon"}}>De</span>
+              <span style={{fontFamily:"Facon"}}>Verano</span>
             </h2>
-              <p>¡El deporte es vida... Vivi el deporte!</p>
+              <h3>¡El deporte es vida... Vivi el deporte!</h3>
               <button
                 onClick={() => setListOpen(!listOpen)}
               >

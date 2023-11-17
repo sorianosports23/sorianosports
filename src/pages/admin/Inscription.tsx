@@ -4,6 +4,7 @@ import { useCallback, useContext, useEffect, useState } from "react"
 import { TInscription } from "../../api/admin/inscription/inscription.types"
 import apiAdminGetInscriptions from "../../api/admin/inscription/getInscriptions"
 import { userSessionContext } from "../../context/session/UserSessionContext"
+import { Link } from "react-router-dom"
 
 const stateLabel: Readonly<{}> = {
   1: "Pendiente",
@@ -49,9 +50,9 @@ const Inscription = () => {
               </div>
 
               <div className={tableStyles.btns}>
-                <button>
+                <Link to={`/admin/inscription?id=${inscription.id}`}>
                   Ver mas
-                </button>
+                </Link>
               </div>
             </div>
           ))

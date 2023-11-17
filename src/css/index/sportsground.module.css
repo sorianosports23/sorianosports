@@ -18,7 +18,6 @@
 
 
 .textDiv {
-  width: 80%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -29,17 +28,24 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 50%;
 }
 
 .textDiv h2 {
   font-size: 3em;
   height: 90%;
+  width: 80%;
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
   font-family: "Releway", sans-serif;
   text-shadow: 1px 0px #000;
   color: #222;
+}
+
+.title_anual_sports{
+
 }
 
 .textDiv h2 > span:first-of-type {
@@ -267,7 +273,6 @@
 
   .textDiv > div:first-of-type {
     text-overflow: ellipsis;
-    overflow: hidden;
     white-space: nowrap;
   }
 

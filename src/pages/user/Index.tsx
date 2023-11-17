@@ -16,9 +16,9 @@ const Index = () => {
     const date = new Date()
     const month = date.getMonth()
     if (month >= 12 || month <= 2) {
-      setYearSports(false)
-    } else {
       setYearSports(true)
+    } else {
+      setYearSports(false)
     }
   }
 
