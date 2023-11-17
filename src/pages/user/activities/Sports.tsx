@@ -44,7 +44,7 @@ const Sports = () => {
         let sportsList: string[] = []
 
         res.data.forEach(sport => {
-          if (!sportsList.includes(sport)) sportsList.push(sport)
+          if (!sportsList.includes(sport.name)) sportsList.push(sport.name)
         })
 
         setSports(sportsList)

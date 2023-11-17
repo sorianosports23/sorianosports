@@ -8,7 +8,7 @@ interface IApiGetCitySportsResponse extends TApiResponse {
 }
 
 interface IApiGetSportsResponse extends TApiResponse {
-  data: string[]
+  data: TCityRes[]
 }
 
 interface IApiGetCityFromSportResponse extends TApiResponse {

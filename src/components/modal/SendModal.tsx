@@ -40,7 +40,7 @@ const SendModal = ({ open, close, message, otherMessage, otherMsgLink, redirect 
         <div className={styles.btn}>
           {
             redirect 
-              ? <button onClick={() => navigate("/auth/perfil?location=inscripciones")}>Cerrar</button>
+              ? <button onClick={() => navigate(redirect)}>Cerrar</button>
               : <button onClick={close}>Cerrar</button>
           }
         </div>

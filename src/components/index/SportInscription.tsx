@@ -8,9 +8,10 @@ type TSportInscriptionProps = {
   open: boolean
   sport: string
   close: () => void
+  cities: string[]
 }
 
-const SportInscription = ({ open, sport, close }: TSportInscriptionProps) => {
+const SportInscription = ({ open, sport, close, cities }: TSportInscriptionProps) => {
 
   const [selectValue, setSelectValue] = useState("")
 
@@ -28,7 +29,7 @@ const SportInscription = ({ open, sport, close }: TSportInscriptionProps) => {
               <select onChange={(ev) => setSelectValue(ev.target.value)}>
                 <option value="#">Seleccionar</option>
                 {
-                  cityList.map((city, i) => (
+                  cities.map((city, i) => (
                     <option value={city} key={i}>{city}</option>
                   ))
                 }

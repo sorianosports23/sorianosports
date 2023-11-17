@@ -13,4 +13,13 @@ interface IApiAdminGetInscriptions extends TApiResponse {
   }
 }
 
-export type { TApiSendInscriptionRequest, IApiAdminGetInscriptions }
+type TApiGetInscriptionRequest = {
+  token: string
+  id: number
+}
+
+interface IApiGetInscriptionResponse extends TApiResponse {
+  data?: TInscription
+}
+
+export type { TApiSendInscriptionRequest, IApiAdminGetInscriptions, TApiGetInscriptionRequest, IApiGetInscriptionResponse }

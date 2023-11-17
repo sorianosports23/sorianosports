@@ -3,6 +3,8 @@ import styles from "../../css/index/sportsground.module.css"
 import { useEffect, useRef, useState } from "react"
 import assetsFolder from "../../utils/publicfolder"
 import SportInscription from "./SportInscription"
+import apiGetSports from "../../api/page/sports/getSports"
+import apiGetCityFromSport from "../../api/page/sports/getCityFromSport"
 
 type TSportCardProps = {
   sport: string
@@ -28,12 +30,35 @@ const YearSports = () => {
   const [listOpen, setListOpen] = useState(false)
   const sportsList = useRef<HTMLDivElement>(null)
 
+  const [sportsYear, setSportsYear] = useState<string[]>([])
+  const [modalCities, setModalCities] = useState<string[]>([])
+
+  useEffect(() => {
+    (async () => {
+      const res = await apiGetSports()
+      if (res.status && res.data) {
+        const yearSports = res.data.filter(list => list.type === "year")
+        let sports: string[] = []
+        yearSports.forEach(sport => {
+          if (!sports.includes(sport.name)) sports.push(sport.name)
+        })
+        setSportsYear(sports)
+      }
+    })()
+  }, [])
+
   const [modalSport, setModalSport] = useState("")
   const [modalSportOpen, setModalSportOpen] = useState(false)
 
-  const handleSelectSport = (sport: string) => {
+  const handleSelectSport = async (sport: string) => {
     setModalSport(sport)
-    setModalSportOpen(true)
+
+    const res = await apiGetCityFromSport(sport)
+    if (res.data) {
+      setModalCities(res.data)
+      setModalSportOpen(true)
+    }
+
   }
 
   useEffect(() => {
@@ -91,7 +116,7 @@ const YearSports = () => {
       </div>
       
       <div className={styles.list} ref={sportsList}>
-        <SportCard
+        {/* <SportCard
           sport="Basquetbol"
           img="basketball.jpg"
           open={() => handleSelectSport("Basquetbol")}
@@ -105,7 +130,17 @@ const YearSports = () => {
           sport="Remo"
           img="remo.png"
           open={() => handleSelectSport("Remo")}
-        />
+        /> */}
+        {
+          sportsYear.map((sport, i) => (
+            <SportCard
+              sport={sport}
+              img={`${sport}.jpg`}
+              open={() => handleSelectSport(sport)}
+              key={i}
+            />
+          ))
+        }
       </div>
     </div>
 
@@ -113,6 +148,7 @@ const YearSports = () => {
       sport={modalSport}
       open={modalSportOpen}
       close={() => setModalSportOpen(false)}
+      cities={modalCities}
     />
 
     </>

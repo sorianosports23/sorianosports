@@ -43,6 +43,7 @@ import AdminCity from "../pages/admin/edit/EditCity"
 import AddDirective from "../pages/admin/add/Directive"
 import AddEvent from "../pages/admin/add/Event"
 import AddSearch from "../pages/admin/add/Search"
+import InscriptionID from "../pages/admin/InscriptionID"
 //!
 
 const pageUserRoutes = createRoutesFromElements(
@@ -106,6 +107,8 @@ const pageUserRoutes = createRoutesFromElements(
       </Route>
       <Route path="contact" element={<AdminContact/>}/>
       <Route path="inscriptions" element={<AdminInscriptions/>}/>
+
+      <Route path="inscription" element={<InscriptionID/>}/>
     </Route>
   </Route>
 )

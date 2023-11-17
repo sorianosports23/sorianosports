@@ -51,7 +51,7 @@ const Inscription = () => {
   const handleShowModal = (msg: string, otMsg: string = "", redirect?: boolean) => {
     setModalSendMsg(msg)
     setModalSendOtMsg(otMsg)
-    if (redirect) setModalSendRedirect("/auth/profile?location=inscripciones")
+    if (redirect) setModalSendRedirect("/auth/perfil?location=inscripciones")
     setModalSend(true)
   }
   
