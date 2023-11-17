@@ -153,5 +153,6 @@
   .user button {
     width: max-content;
     padding: .5rem;
+    margin-left: 2rem;
   }
 }

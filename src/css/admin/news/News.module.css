@@ -23,3 +23,10 @@
 .btn_add {
   background: #4fea4f !important;
 }
+
+.listNews{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
