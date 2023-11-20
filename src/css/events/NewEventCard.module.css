@@ -78,6 +78,7 @@
 }
 
 .date > div:first-of-type {
+  font-family: "Raleway";
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
@@ -85,8 +86,9 @@
 
 .date > div p {
   text-transform: uppercase;
-  font-family: "Roboto", serif;
+  font-family: "Metropolis";
   position: relative;
+  font-size: 0.8em;
 }
 
 .date > div p::before {
@@ -103,7 +105,9 @@
 .btn a {
   border-radius: 1rem;
   padding: .5rem 1rem;
+  margin-right: 4rem;
   background: #099;
+  font-family: "Metropolis";
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
