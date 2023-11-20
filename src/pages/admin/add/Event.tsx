@@ -1,12 +1,12 @@
 import Admin from "../Admin"
-import { FormEvent, useContext, useState } from "react"
-import { BsCloudUploadFill } from "react-icons/bs"
+import { ChangeEvent, FormEvent, useContext, useState } from "react"
+import { BsCloudUploadFill, BsUpload } from "react-icons/bs"
 import styles from "../../../css/admin/events/AddEvents.module.css"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import SendModal from "../../../components/modal/SendModal"
 import apiAdminAddEvent from "../../../api/admin/events/addEvent"
 
-type TInputError = "" | "name" | "place" | "time" | "sport" | "description" | "date_ev"
+type TInputError = "" | "name" | "place" | "time" | "sport" | "description" | "date_ev" | "image"
 
 const AddEvent = () => {
 
@@ -18,6 +18,7 @@ const AddEvent = () => {
   const [eventSport, setEventSport] = useState("")
   const [eventDate, setEventDate] = useState("")
   const [eventTime, setEventTime] = useState({ timeS: "", timeE: "" })
+  const [eventImage, setEventImage] = useState<File | null>(null)
 
   const [inputError, setInputError] = useState<TInputError>("")
   const [canSubmit, setCanSubmit] = useState(true)
@@ -31,6 +32,10 @@ const AddEvent = () => {
   const handleSubmit = async (ev: FormEvent) => {
     ev.preventDefault()
 
+    if (!eventImage) {
+      setInputError("image")
+    }
+
     const eventData: TApiAdminAddEventRequest = {
       token,
       name: eventName,
@@ -38,7 +43,8 @@ const AddEvent = () => {
       description: eventDescription,
       sport: eventSport,
       date: eventDate,
-      time: `${eventTime.timeS} - ${eventTime.timeE}`
+      time: `${eventTime.timeS} - ${eventTime.timeE}`,
+      image: eventImage as File
     }
     
     setCanSubmit(false)
@@ -49,12 +55,26 @@ const AddEvent = () => {
       setModalMsg("Se añadio el evento")
       setModalOtMsg("")
     } else {
-      setModalMsg("No se pudo añadir la noticia")
-      setModalOtMsg(res.message)
+      if (res.input) {
+        setInputError(res.input)
+      } else {
+        setModalMsg("No se pudo añadir la noticia")
+        setModalOtMsg(res.message)
+      }
     }
 
-    setModalOpen(true)
+    if (!res.input) {
+      setModalOpen(true)
+    }
+    
     setCanSubmit(true)
+  }
+
+  const handleUploadImage = (ev: ChangeEvent<HTMLInputElement>) => {
+    if (ev.target.files && ev.target.files[0]) {
+      setEventImage(ev.target.files[0])
+      setInputError("")
+    }
   }
 
   return (
@@ -66,7 +86,12 @@ const AddEvent = () => {
             type="text" 
             id="ev_name"
             value={eventName}
-            onChange={(ev) => setEventName(ev.target.value)}
+            onChange={(ev) => {
+              setEventName(ev.target.value)
+              setInputError("")
+            }}
+            required
+            data-invalid={inputError === "name"}
           />
         </div>
         <div>
@@ -75,7 +100,12 @@ const AddEvent = () => {
             type="text" 
             id="ev_place"
             value={eventPlace}
-            onChange={(ev) => setEventPlace(ev.target.value)}
+            onChange={(ev) => {
+              setEventPlace(ev.target.value)
+              setInputError("")
+            }}
+            required
+            data-invalid={inputError === "place"}
           />
         </div>
         <div>
@@ -84,7 +114,12 @@ const AddEvent = () => {
             type="date" 
             id="ev_date"
             value={eventDate}
-            onChange={(ev) => setEventDate(ev.target.value)}
+            onChange={(ev) => {
+              setEventDate(ev.target.value)
+              setInputError("")
+            }}
+            required
+            data-invalid={inputError === "date_ev"}
           />
         </div>
         <div>
@@ -93,13 +128,23 @@ const AddEvent = () => {
             type="time" 
             id="ev_time"
             value={eventTime.timeS}
-            onChange={(ev) => setEventTime(prev => ({...prev, timeS: ev.target.value}))}
+            onChange={(ev) => {
+              setEventTime(prev => ({...prev, timeS: ev.target.value}))
+              setInputError("")
+            }}
+            required
+            data-invalid={inputError === "time"}
           />
           <span>-</span>
           <input 
             type="time"
             value={eventTime.timeE}
-            onChange={(ev) => setEventTime(prev => ({...prev, timeE: ev.target.value}))}
+            onChange={(ev) => {
+              setEventTime(prev => ({...prev, timeE: ev.target.value}))
+              setInputError("")
+            }}
+            required
+            data-invalid={inputError === "time"}
           />
         </div>
         <div>
@@ -108,7 +153,12 @@ const AddEvent = () => {
             type="text" 
             id="ev_sport"
             value={eventSport}
-            onChange={(ev) => setEventSport(ev.target.value)}
+            onChange={(ev) => {
+              setEventSport(ev.target.value)
+              setInputError("")
+            }}
+            required
+            data-invalid={inputError === "sport"}
           />
         </div>
         <div>
@@ -116,8 +166,35 @@ const AddEvent = () => {
           <textarea 
             id="ev_description"
             value={eventDescription}
-            onChange={(ev) => setEventDescription(ev.target.value)}
+            onChange={(ev) => {
+              setEventDescription(ev.target.value)
+              setInputError("")
+            }}
+            required
+            data-invalid={inputError === "description"}
           ></textarea>
+        </div>
+
+        <div className={styles.upload_img}>
+          <label 
+            htmlFor="ev_image"
+            data-invalid={inputError === "image" && "true"}
+          >
+            <BsUpload/> Subir imagen
+          </label>
+
+          <p>
+            {
+              eventImage && eventImage.name
+            }
+          </p>
+
+          <input 
+            type="file" 
+            id="ev_image" 
+            className="hidden"
+            onChange={handleUploadImage}
+          />
         </div>
 
         <div className={styles.event_send}>

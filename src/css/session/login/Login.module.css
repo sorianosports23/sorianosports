@@ -48,7 +48,7 @@
   gap: .5rem;
 }
 
-.form > div:has(a) {
+.register_link {
   flex-direction: row;
   font-family: 'Raleway', sans-serif;
   font-size: 1em;
@@ -92,7 +92,7 @@
   font-size: 1.2em;
 }
 
-.form > div:has(button) {
+.login_btn {
   display: flex;
   gap: 1rem;
   flex-direction: row;
@@ -110,6 +110,23 @@
   padding: .5rem;
   display: grid;
   place-content: center;
+}
+
+.pwd {
+  position: relative;
+}
+
+.pwd input {
+  padding: 0 2rem 0 1rem !important;
+  width: 100%;
+}
+
+.show_pwd {
+  position: absolute;
+  width: 2rem !important;
+  background: none !important;
+  right: 0;
+  transform: translateX(-100%);
 }
 
 @media (max-width: 576px) {

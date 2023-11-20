@@ -1,5 +1,5 @@
 import { FormEvent, useContext, useEffect, useState } from "react"
-import { BsFillPersonFill, BsKeyFill } from "react-icons/bs"
+import { BsEyeFill, BsEyeSlashFill, BsFillPersonFill, BsKeyFill } from "react-icons/bs"
 import styles from "../../css/session/login/Login.module.css"
 import assetsFolder from "../../utils/publicfolder"
 import useForm from "../../utils/useForm"
@@ -15,6 +15,8 @@ const Login = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [modalBody, setModalBody] = useState("")
   const [modalError, setModalError] = useState(true)
+
+  const [showPwd, setShowPwd] = useState(false)
 
   const modalTitle = "Inicio de sesión"
 
@@ -102,25 +104,37 @@ const Login = () => {
             </div>
           </div>
 
-          <div>
+          <div className={styles.pwd}>
             <label htmlFor="#">Contraseña:</label>
             <div>
-              <input type="password" 
+              <input 
+                type={showPwd ? "text" : "password"} 
                 {...userPassword}
                 data-error={userPassword.data_error}
               />
+              <button
+                type="button"
+                onClick={() => setShowPwd(prev => !prev)}
+                className={styles.show_pwd}
+              >
+                {
+                  showPwd
+                  ? <BsEyeFill/>
+                  : <BsEyeSlashFill/>
+                }
+              </button>
               <div>
                 <BsKeyFill/>
               </div>
             </div>
           </div>
 
-          <div>
+          <div className={styles.register_link}>
             ¿No tienes una cuenta?
             <Link to="/auth/registro">Registrarse</Link>
           </div>
 
-          <div>
+          <div className={styles.login_btn}>
             <button disabled={false}>
               {
                 loadingLogin

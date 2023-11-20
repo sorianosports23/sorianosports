@@ -1,5 +1,6 @@
-import { BsFillPersonFill, BsKeyFill } from "react-icons/bs"
+import { BsEyeFill, BsEyeSlashFill, BsFillPersonFill, BsKeyFill } from "react-icons/bs"
 import { TInputProps } from "../../../pages/session/types/Register"
+import { useState } from "react"
 
 type TAccountDetailsProps = {
   userInput: TInputProps
@@ -11,7 +12,10 @@ type TAccountDetailsProps = {
   }
 }
 
-const AccountDetails = ({ userInput, passwordInput, buttonClick, errorInputs }: TAccountDetailsProps) => { 
+const AccountDetails = ({ userInput, passwordInput, buttonClick, errorInputs }: TAccountDetailsProps) => {
+  
+  const [showPwd, setShowPwd] = useState(false)
+
   return (
     <form>
       <div>
@@ -27,13 +31,25 @@ const AccountDetails = ({ userInput, passwordInput, buttonClick, errorInputs }: 
         </div>
       </div>
 
-      <div>
+      <div data-icon="true">
         <label htmlFor="#">Contraseña</label>
         <div>
-          <input type="password" 
+          <input 
+            type={showPwd ? "text" : "password"} 
             {...passwordInput}
             // data-error={errorInputs.password}
           />
+          <button 
+            data-btn="true"
+            type="button"
+            onClick={() => setShowPwd(prev => !prev)}
+          >
+            {
+              showPwd
+              ? <BsEyeFill/>
+              : <BsEyeSlashFill/>
+            }
+          </button>
           <div>
             <BsKeyFill/>
           </div>

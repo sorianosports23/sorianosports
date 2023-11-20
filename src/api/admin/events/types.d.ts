@@ -11,6 +11,7 @@ type TApiAdminAddEventRequest = {
   place: string
   time: string
   date: string
+  image: File
 }
 
 type TApiAdminModifyEventRequest = {
@@ -24,7 +25,11 @@ type TApiAdminModifyEventRequest = {
   date_ev: string
 }
 
-type TEventAttr = "name" | "place" | "time" | "sport" | "description" | "date_ev"
+interface IApiAdminModifyEventResponse extends TApiResponse {
+  input?: TEventAttr
+}
+
+type TEventAttr = "name" | "place" | "time" | "sport" | "description" | "date_ev" | "image"
 
 type TApiAdminModifyEventParams = {
   token: string

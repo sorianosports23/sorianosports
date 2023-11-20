@@ -68,7 +68,7 @@
 
 .date {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   border-top: 1px solid #222;
   padding: 1rem 0;
@@ -82,6 +82,7 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  flex: auto;
 }
 
 .date > div p {
@@ -102,10 +103,13 @@
   transform: translateY(.5rem);
 }
 
+.btn {
+  margin-right: 3rem;
+}
+
 .btn a {
   border-radius: 1rem;
   padding: .5rem 1rem;
-  margin-right: 4rem;
   background: #099;
   font-family: "Metropolis";
   color: #fff;
@@ -127,4 +131,39 @@
     width: 100%;
     align-items: center;
   }
+
+  .date > div p {
+    font-size: 0.7em;
+  }
+
+  .btn {
+    margin-right: 0;
+  }
+
+  .btn a {
+    margin: 0;
+  }
+
+  .date{
+    justify-content: center;
+  }
+
+  .date > div:first-of-type{
+    justify-content: center;
+  }
+}
+
+@media (max-width: 552px){
+
+  .date{
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .date > div:first-of-type{
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+  }
+
 }

@@ -98,6 +98,11 @@ div[data-invalid='true'] {
   animation: shake_inp .2s linear !important;
 }
 
+label[data-invalid='true'] {
+  outline: 2px solid #a009 !important;
+  animation: shake_inp .2s linear !important;
+}
+
 @keyframes shake_inp {
   0% {
     transform: translateX(0);

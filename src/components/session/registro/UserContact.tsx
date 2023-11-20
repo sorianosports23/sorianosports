@@ -54,7 +54,7 @@ const UserContact = ({ emailInput, phoneInput, fullnameInput, buttonClick, butto
         </div>
       </div>
 
-      <div>
+      <div data-btns="true">
         <button type="button" onClick={() => buttonPrevClick()}>Anterior</button>
         <button type="button" onClick={() => buttonClick()}>Siguiente</button>
       </div>

@@ -77,6 +77,7 @@
   border-top: 1px solid #eee9;
   padding-top: .5rem;
   justify-content: center;
+  overflow-y: auto;
 }
 
 .nav ul {

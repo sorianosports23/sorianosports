@@ -5,11 +5,15 @@ import { Link, useNavigate } from "react-router-dom"
 import { userSessionContext } from "../../context/session/UserSessionContext"
 import assetsFolder from "../../utils/publicfolder"
 import styles from "../../css/admin/header/Header.module.css"
+import AdminMenuMobile from "./AdminMenuMobile"
 
 const AdminMenu = () => {
 
   const { username, logout } = useContext(userSessionContext)
   const [profileMenuOpen, setProfileMenuOpen] = useState(false)
+
+  const [menuMobile, setMenuMobile] = useState(true)
+
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -24,6 +28,7 @@ const AdminMenu = () => {
   }
 
   return (
+    <>
     <header className={styles.header}>
       <div className={styles.div}>
         <div className={styles.title}>
@@ -65,6 +70,12 @@ const AdminMenu = () => {
         </nav>
       </div>
     </header>
+
+    <AdminMenuMobile
+      open={menuMobile}
+      close={() => setMenuMobile(false)}
+    />
+    </>
   )
 }
 

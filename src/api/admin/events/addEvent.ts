@@ -1,6 +1,6 @@
 import api from "../../apiRoute"
 
-const apiAdminAddEvent = async ({ token, name, description, date, time, place, sport }: TApiAdminAddEventRequest): Promise<TApiResponse> => {
+const apiAdminAddEvent = async ({ token, name, description, date, time, place, sport }: TApiAdminAddEventRequest): Promise<IApiAdminModifyEventResponse> => {
   try {
     const bodyData = {
       name,
