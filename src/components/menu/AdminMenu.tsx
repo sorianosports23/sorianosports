@@ -12,7 +12,7 @@ const AdminMenu = () => {
   const { username, logout } = useContext(userSessionContext)
   const [profileMenuOpen, setProfileMenuOpen] = useState(false)
 
-  const [menuMobile, setMenuMobile] = useState(true)
+  const [menuMobile, setMenuMobile] = useState(false)
 
   const navigate = useNavigate()
 
