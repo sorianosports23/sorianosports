@@ -7,6 +7,7 @@ import Loading from "../Loading"
 import { useNavigate } from "react-router-dom"
 import apiGetEvents from "../../api/page/events/getEvents"
 import Container from "../../components/templates/Container"
+import NewEventCard from "../../components/events/NewEventCard"
 
 const Events = () => {
 
@@ -198,16 +199,14 @@ const Events = () => {
                 </ul>
               </div>
 
-              
-
-              <button>Fecha <BsFillCalendarDateFill/></button>
+              {/* <button>Fecha <BsFillCalendarDateFill/></button> */}
             </div>
           </div>
 
           <div className={styles.events}>
             {
               eventsToShow.map((event, i) => (
-                <EventCard {...event} key={i} />
+                <NewEventCard {...event} key={i} />
               ))
             }
           </div>

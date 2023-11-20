@@ -50,11 +50,15 @@
   margin-right: .5rem;
 }
 
-.inscription p > div[data-signedup='true'] {
+.inscription p > div[data-signedup='1'] {
+  background: #ff0;
+}
+
+.inscription p > div[data-signedup='2'] {
   background: #0a0;
 }
 
-.inscription p > div[data-signedup='false'] {
+.inscription p > div[data-signedup='3'] {
   background: #f00;
 }
 

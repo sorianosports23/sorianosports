@@ -6,6 +6,7 @@ import { InscriptionStatusLabel, TInscription } from "../../../api/admin/inscrip
 import apiGetCityPlace from "../../../api/admin/city/getPlace"
 import SendModal from "../../modal/SendModal"
 import apiAdminEditStatusInscUser from "../../../api/admin/inscription/editInscriptionUser"
+import OptionModal from "../../modal/OptionModal"
 
 const IncriptionRecord = ({ sport, signedUp, dateStart, dateEnd, teacher, place, city, exitSport }: TInscriptionRecord) => {
   
@@ -51,24 +52,26 @@ const IncriptionRecord = ({ sport, signedUp, dateStart, dateEnd, teacher, place,
         </p>
         <span>
           {
-            signedUp && <button onClick={exitSport}>Dar de baja</button>
+            signedUp === 2 && <button onClick={exitSport}>Dar de baja</button>
           }
         </span>
       </div>
       
-      {
-        Number(signedUp) === 2
-        && (
-          <div>
-            <p>Fecha de inscripción</p>
-            <span>
-              {dateStart}
-              {Number(signedUp) === 3 && ` - ${dateEnd}`}
-            </span>
-          </div>
-        )
-      }
-
+      <div>
+        <p>Fecha de inscripción</p>
+        <span>
+          {
+            Number(signedUp) !== 1
+            ? 
+            <>
+            {dateStart}
+            {Number(signedUp) === 3 && ` - ${dateEnd}`}
+            </>
+            :
+            <>-</>
+          }
+        </span>
+      </div>
 
       <div>
         <p>Profesor</p>
@@ -100,6 +103,18 @@ const Inscriptions = () => {
   const [sendMsg, setSendMsg] = useState("")
   const [sendOtMsg, setSendOtMsg] = useState("")
   const [sendRedirect, setSendRedirect] = useState("")
+
+  const [optionModal, setOptionModal] = useState(false)
+  const optionName = "Dar de baja"
+  const [optionOpt, setOptionOpt] = useState("")
+
+  const [idToExit, setIdToExit] = useState(0)
+
+  const handleExitInscription = (id: number, sportName: string) => {
+    setOptionOpt(sportName)
+    setIdToExit(id)
+    setOptionModal(true)
+  }
   
   const handleShowModal = (msg: string, otMsg: string, redirect?: string) => {
     setSendMsg(msg)
@@ -110,8 +125,8 @@ const Inscriptions = () => {
   }
   //!
 
-  const handleExit = async (id: number) => {
-    const res = await apiAdminEditStatusInscUser({token, id, state: 3})
+  const handleExit = async () => {
+    const res = await apiAdminEditStatusInscUser({token, id: idToExit, state: 3})
     if (res.status) {
       handleShowModal("Te diste de baja", "", "/")
     } else {
@@ -145,12 +160,12 @@ const Inscriptions = () => {
             <IncriptionRecord
               sport={inscription.activity}
               signedUp={inscription.state}
-              dateStart={``}
-              dateEnd=""
+              dateStart={inscription.state === 2 ? inscription.startInscription as string : ""}
+              dateEnd={inscription.state === 3  ? inscription.endInscription as string : ""}
               place={inscription.activityPlace}
               teacher=""
               city={inscription.city}
-              exitSport={() => handleExit(inscription.id)}
+              exitSport={() => handleExitInscription(inscription.id, inscription.activity)}
               key={i}
             />
           ))
@@ -164,6 +179,14 @@ const Inscriptions = () => {
       message={sendMsg}
       otherMessage={sendOtMsg}
       redirect={sendRedirect}
+    />
+
+    <OptionModal
+      open={optionModal}
+      close={() => setOptionModal(false)}
+      option={optionName}
+      optionName={optionOpt}
+      acceptFunction={handleExit}
     />
     </>
   )
