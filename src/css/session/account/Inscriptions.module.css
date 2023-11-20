@@ -21,6 +21,7 @@
   width: 15rem;
   display: flex;
   flex-direction: column;
+  font-family: "Raleway";
   align-items: center;
   /* border: 1px solid #f00; */
 }
@@ -72,6 +73,7 @@
 
   .inscription > div {
     border-bottom: 1px solid #2222;
+
     padding: .5rem;
   }
 }
