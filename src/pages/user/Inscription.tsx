@@ -1,12 +1,16 @@
 import Container from "../../components/templates/Container"
 import User from "./User"
 import styles from "../../css/inscription/Inscription.module.css"
-import { FormEvent, useContext, useState } from "react"
+import { FormEvent, useCallback, useContext, useEffect, useState } from "react"
 import { TInscription } from "../../api/admin/inscription/inscription.types"
 import { userSessionContext } from "../../context/session/UserSessionContext"
 import apiSendInscription from "../../api/admin/inscription/sendInscription"
-import { BsUpload } from "react-icons/bs"
+import { BsChevronDown, BsUpload } from "react-icons/bs"
 import SendModal from "../../components/modal/SendModal"
+import apiGetUserInfo from "../../api/session/info"
+import cityList from "../../utils/cityList"
+import apiGetCitySports from "../../api/page/sports/getCitySports"
+import apiGetCityPlace from "../../api/admin/city/getPlace"
 
 const Inscription = () => {
 
@@ -35,12 +39,21 @@ const Inscription = () => {
     wearGlasses: 0
   })
 
-  const handleUpdateInscriptionData = (attribute: keyof typeof inscriptionData, value: any) => {
+  const handleUpdateInscriptionData = useCallback((attribute: keyof typeof inscriptionData, value: any) => {
+    if (attribute === "city") {
+      handleUpdateInscriptionData("activity", "")
+      handleUpdateInscriptionData("activityPlace", "")
+    }
+
+    if (attribute === "activity") {
+      setPlaces([])
+    }
+    
     setInscriptionData(prev => ({
       ...prev,
       [attribute]: value
     }))
-  }
+  }, [])
 
   //! MODAL
   const [modalSend, setModalSend] = useState(false)
@@ -72,6 +85,83 @@ const Inscription = () => {
       handleShowModal("No se pudo enviar el formulario", res.message)
     }
   }
+
+  //! LOAD DATA FROM USER
+  useEffect(() => {
+    if (token) {
+      (async () => {
+        const userData = await apiGetUserInfo({token})
+        if (userData.data) {
+          const data = userData.data
+          setInscriptionData(prev => ({
+            ...prev,
+            email: data.email,
+            phone: data.phone,
+            ci: data.ci
+          }))
+        }
+      })()
+    }
+  }, [token])
+  //!
+
+  //! LOAD SPORTS DATA FROM API
+  const [sports, setSports] = useState<string[]>([])
+
+  const handleGetSportsFromCity = useCallback(async () => {
+    if (!inscriptionData.city) {
+      setSports([])
+      return
+    }
+
+    const data = await apiGetCitySports(inscriptionData.city)
+
+    if (data.data) {
+      setSports(data.data.map(city => city.name))
+    }
+  }, [inscriptionData])
+
+  useEffect(() => {
+    handleGetSportsFromCity()
+  }, [handleGetSportsFromCity])
+
+  const [places, setPlaces] = useState<TPlace[]>([])
+  
+  const handleGetPlacesFromSport = useCallback(async () => {
+    if (!inscriptionData.activity) {
+      setPlaces([])
+      return
+    }
+    
+
+    const data = await apiGetCityPlace(inscriptionData.city)
+
+    if (data.data) {
+      setPlaces(data.data.filter(place => place.sport === inscriptionData.activity))
+    }
+  }, [inscriptionData])
+
+  useEffect(() => {
+    handleGetPlacesFromSport()
+  }, [handleGetPlacesFromSport])
+
+  //!
+
+  //! SELECT OPTION IN PLACE
+  const handleSelectPlace = useCallback(() => {
+    if (inscriptionData.activityPlace) {
+      const place = places.find(placeInfo => placeInfo.place === inscriptionData.activityPlace)
+      if (!place) return
+      const timePlace = place.time.replaceAll(" ", "").split("-")
+      handleUpdateInscriptionData("sportTimeStart", timePlace[0])
+      handleUpdateInscriptionData("sportTimeEnd", timePlace[1])
+    }
+  }, [inscriptionData, handleUpdateInscriptionData, places])
+
+  useEffect(() => {
+    handleSelectPlace()
+  }, [handleSelectPlace])
+  //!
 
   return (
     <User>
@@ -258,13 +348,29 @@ const Inscription = () => {
 
           <div>
             <label htmlFor="i_citysport">Ciudad: *</label>
-            <input 
+            {/* <input 
               type="text" 
               id="i_citysport"
               value={inscriptionData.city}
               onChange={(ev) => handleUpdateInscriptionData("city", ev.target.value)}
               required
-            />
+            /> */}
+            <div className={styles.custom_select}>
+              <select
+                value={inscriptionData.city}
+                onChange={(ev) => handleUpdateInscriptionData("city", ev.target.value)}
+              >
+                <option value="">Seleccionar</option>
+                {
+                  cityList.map((city, i) => (
+                    <option value={city} key={i}>{city}</option>
+                  ))
+                }
+              </select>
+              <div>
+                <BsChevronDown/>
+              </div>
+            </div>
           </div>
 
           <div>
@@ -338,13 +444,29 @@ const Inscription = () => {
               <label htmlFor="i_activity">
                 Actividad que va a Desarrollar: *
               </label>
-              <input 
+              {/* <input 
                 type="text" 
                 id="i_activity" 
                 value={inscriptionData.activity}
                 onChange={(ev) => handleUpdateInscriptionData("activity", ev.target.value)}
                 required
-              />
+              /> */}
+              <div className={styles.custom_select} style={{marginTop: "1rem"}}>
+                <select 
+                  value={inscriptionData.activity}
+                  onChange={(ev) => handleUpdateInscriptionData("activity", ev.target.value)}
+                >
+                  <option value="">Seleccionar</option>
+                  {
+                    sports.map((sport, i) => (
+                      <option key={i} value={sport}>{sport}</option>
+                    ))
+                  }
+                </select>
+                <div>
+                  <BsChevronDown/>
+                </div>
+              </div>
             </div>
 
             <div>
@@ -371,13 +493,29 @@ const Inscription = () => {
             <label htmlFor="i_sportplace">
               Lugar donde se desarrollara el deporte: *
             </label>
-            <input 
+            {/* <input 
               type="text" 
               id="i_sportplace"
               value={inscriptionData.activityPlace}
               onChange={(ev) => handleUpdateInscriptionData("activityPlace", ev.target.value)}
               required
-            />
+            /> */}
+            <div className={styles.custom_select}>
+              <select
+                value={inscriptionData.activityPlace}
+                onChange={(ev) => handleUpdateInscriptionData("activityPlace", ev.target.value)}
+              >
+                <option value="">Seleccionar</option>
+                {
+                  places.map((place, i) => (
+                    <option key={i} value={place.place}>{place.place}</option>
+                  ))
+                }
+              </select>
+              <div>
+                <BsChevronDown/>
+              </div>
+            </div>
           </div>
 
           <div>
