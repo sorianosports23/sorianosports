@@ -43,7 +43,8 @@
   font-size: 1.3em;
 }
 
-.user > button {
+.user > button,
+.btn_mobile {
   width: 8rem;
   height: 2rem;
   background: none;
@@ -56,6 +57,13 @@
   justify-content: center;
   align-items: center;
   gap: .5rem;
+}
+
+.btn_mobile {
+  width: max-content;
+  padding: .5rem;
+  align-self: center;
+  display: none;
 }
 
 .user > button:hover {
@@ -148,11 +156,20 @@
 
   .nav {
     height: max-content;
+    display: none;
   }
 
   .user button {
     width: max-content;
     padding: .5rem;
     margin-left: 2rem;
+  }
+
+  .btn_mobile {
+    display: inline-block;
+  }
+
+  .user {
+    display: none;
   }
 }

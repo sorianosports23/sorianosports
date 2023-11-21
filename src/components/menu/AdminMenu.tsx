@@ -1,5 +1,5 @@
 import { useContext, useState, KeyboardEvent } from "react"
-import { BsBoxArrowRight, BsChevronDown } from "react-icons/bs"
+import { BsBoxArrowRight, BsChevronDown, BsList } from "react-icons/bs"
 import { RxSlash } from "react-icons/rx"
 import { Link, useNavigate } from "react-router-dom"
 import { userSessionContext } from "../../context/session/UserSessionContext"
@@ -55,6 +55,14 @@ const AdminMenu = () => {
             <li><button onClick={() => handleLogout()}>Cerrar sesión</button></li>
           </ul>
         </div>
+
+        <button
+          className={styles.btn_mobile}
+          onClick={() => setMenuMobile(prev => !prev)}
+        >
+          <BsList/>
+        </button>
+          
       </div>
 
       <div className={styles.nav}>

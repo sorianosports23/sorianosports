@@ -58,7 +58,7 @@ const AddEvent = () => {
       if (res.input) {
         setInputError(res.input)
       } else {
-        setModalMsg("No se pudo añadir la noticia")
+        setModalMsg("No se pudo añadir el evento")
         setModalOtMsg(res.message)
       }
     }
