@@ -12,6 +12,11 @@ type TApiAdminAddEventRequest = {
   time: string
   date: string
   image: File
+  city: string
+  rules: string
+  inscriptionInfo: string
+  extraInfo: string
+  urlUbi: string
 }
 
 type TApiAdminModifyEventRequest = {

@@ -20,6 +20,11 @@
   width: 60%;
 }
 
+.event_info_inputs > div > label {
+  width: 10rem;
+  text-align: left;
+}
+
 .event_info_inputs input, 
 .event_info_inputs textarea {
   background: none;
