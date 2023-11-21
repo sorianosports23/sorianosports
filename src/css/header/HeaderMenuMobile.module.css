@@ -7,6 +7,7 @@
   transition: transform .3s;
   top: 0;
   left: 0;
+  overflow-y: auto;
 }
 
 .header {
@@ -71,17 +72,23 @@
   background: #0fc9;
 }
 
+.nav {
+  height: 100%;
+  /* overflow-y: auto; */
+}
+
 .nav > nav {
   display: flex;
   padding: 0 10%;
   border-top: 1px solid #eee9;
   padding-top: .5rem;
   justify-content: center;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
 .nav ul {
   list-style: none;
+  /* height: max-content; */
 }
 
 .nav nav > ul > li {
