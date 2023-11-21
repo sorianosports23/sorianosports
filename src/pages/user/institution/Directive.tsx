@@ -46,7 +46,7 @@ const Directive = () => {
   }
 
   return (
-    <User>
+    <User pageTitle="Equipo">
       <Container>
         <h1 className={styles.title}>EQUIPO DE DEPORTES</h1>
         <p className={styles.description}>Nuestro equipo</p>

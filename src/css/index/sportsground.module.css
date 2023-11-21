@@ -239,15 +239,21 @@
     background: #2323239f;
   }
 
+  .textDiv {
+    /* width: 100%; */
+  }
+
   .textDiv > div:first-of-type {
     z-index: 5;
     color: #eee;
+    width: 100%;
   }
 
   .textDiv h2 {
     font-size: 2.3em;
     height: 70%;
     color: #eee;
+    width: 100%;
   }
 }
 
@@ -274,9 +280,21 @@
   .textDiv > div:first-of-type {
     text-overflow: ellipsis;
     white-space: nowrap;
+    width: 100%;
+  }
+
+  .textDiv h2 {
+    width: 100%;
   }
 
   .circle {
     border-radius: 20rem 0 20rem 0;
+  }
+  .subtitle_summer{
+    font-size: smaller;
+  }
+  span{
+    
+    font-size: 0.8em;
   }
 }

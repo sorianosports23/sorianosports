@@ -87,7 +87,7 @@ const Departments = () => {
   }, [getSportFromCity])
 
   return (
-    <User>
+    <User pageTitle="Ciudades">
       {/* MAPA DEL DEPARTAMENTO */}
       <div className={styles.content} id="test">
         <CityMap

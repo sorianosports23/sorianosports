@@ -181,4 +181,8 @@
   .social > ul li:last-of-type {
     border-bottom: 1px solid #222;
   }
+
+  .copyright{
+    font-size: 0.55em;
+  }
 }

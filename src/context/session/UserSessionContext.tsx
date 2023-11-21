@@ -5,6 +5,7 @@ const userSessionContext = createContext<TUserSessionContext>({
   username: "",
   token: "",
   isAdmin: false,
+  loadingData: false,
   login: () => {},
   logout: () => {}
 })
@@ -13,6 +14,7 @@ const UserSessionProvider = ({ children }: PropsWithChildren) => {
   const [username, setUsername] = useState("")
   const [userToken, setUserToken] = useState("")
   const [userIsAdmin, setUserIsAdmin] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const userLocal = getLocalStorage("userData", true)
@@ -20,6 +22,7 @@ const UserSessionProvider = ({ children }: PropsWithChildren) => {
       setUsername(userLocal.username)
       setUserToken(userLocal.token)
     }
+    setIsLoading(false)
   }, [setUsername, setUserToken])
 
   const login = (userData: string, username: string) => {
@@ -41,6 +44,7 @@ const UserSessionProvider = ({ children }: PropsWithChildren) => {
       username,
       token: userToken,
       isAdmin: userIsAdmin,
+      loadingData: isLoading,
       login,
       logout
     }}>

@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react"
+import { PropsWithChildren, useEffect } from "react"
 import AdminMenu from "../../components/menu/AdminMenu"
 import Container from "../../components/templates/Container"
 
@@ -8,6 +8,11 @@ type TAdminProps = {
 }
 
 const Admin = ({ route_title, children }: TAdminProps) => {
+
+  useEffect(() => {
+    document.title = `Admin - ${route_title}`
+  }, [route_title])
+
   return (
     <>
     <AdminMenu/>

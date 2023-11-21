@@ -16,9 +16,9 @@ const Index = () => {
     const date = new Date()
     const month = date.getMonth()
     if (month >= 12 || month <= 2) {
-      setYearSports(true)
-    } else {
       setYearSports(false)
+    } else {
+      setYearSports(true)
     }
   }
 
@@ -27,7 +27,7 @@ const Index = () => {
   })
 
   return (    
-    <User>
+    <User pageTitle="Deportes y Recreacion">
       <div className={styles.news}>
         <NewsCarrousel/>
       </div>

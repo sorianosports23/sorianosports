@@ -70,7 +70,7 @@ const ReadNews = () => {
   }, [loaderData, splitTextWithBr])
   
   return (
-    <User>
+    <User pageTitle={loaderData.name}>
       <Container>
         <div className={styles.news_cont}>
           <div className={styles.news_img}>

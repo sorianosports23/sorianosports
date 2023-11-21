@@ -64,7 +64,7 @@ const Background = () => {
 
 const MissionVission = () => {
   return (
-    <User>
+    <User pageTitle="Mision y Vision">
       <div className={styles.mv_cont}>
         <Container>
           <div className={styles.title}>

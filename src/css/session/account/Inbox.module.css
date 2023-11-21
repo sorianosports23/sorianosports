@@ -1,0 +1,65 @@
+.inbox_table ul{
+  display: flex;
+  padding: 1rem;
+  flex-direction: row;
+  justify-content: center;
+  height: 5rem;
+  width: 100%;
+  border: 1px solid #2222;
+  border-radius: 0.5rem;
+}
+
+.inbox_table li{
+  width: 100%;
+}
+
+.card {
+  /* height: 5rem; */
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  align-items: center;
+  height: 100%;
+}
+
+.card > div{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card button{
+  height: fit-content;
+  padding: .5rem;
+}
+
+.btn_show{
+  display: flex;
+  align-items: center;
+  background-color: #0f0a;
+  border: none;
+  border-radius: 0.5rem;
+  font-family: "Raleway";
+  font-weight: bold;
+}
+
+p{
+  font-weight: bold;
+}
+
+.status_span{
+  display: flex;
+  align-items: center;
+}
+
+.color_status{
+  display: flex;
+  flex-direction: row;
+  margin-right: 0.5rem;
+  width: 11.86px;
+  height: 11.86px;
+  background: yellow;
+  border-radius: 100%;
+}
+
+

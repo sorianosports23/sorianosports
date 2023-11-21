@@ -8,6 +8,22 @@ type TEvent = {
   date_ev: string
 }
 
+interface IEventID extends TEvent {
+  inscriptionInfo: string
+  rules: string
+  urlUbi: string
+  extraInfo: string
+  city: string
+}
+
 interface IApiGetEventsResponse extends TApiDataResponse {
   data: Array<TEvent>
+}
+
+interface IApiGetEventResponse extends TApiResponse {
+  data: IEventID
+}
+
+type TApiGetEventRequest = {
+  id: number
 }

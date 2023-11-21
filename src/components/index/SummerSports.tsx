@@ -93,7 +93,7 @@ const SummerSports = () => {
               <span style={{fontFamily:"Facon"}}>De</span>
               <span style={{fontFamily:"Facon"}}>Verano</span>
             </h2>
-              <h3>¡El deporte es vida... Vivi el deporte!</h3>
+              <h3 className={styles.subtitle_summer}>¡El deporte es vida... Vivi el deporte!</h3>
               <button
                 onClick={() => setListOpen(!listOpen)}
               >

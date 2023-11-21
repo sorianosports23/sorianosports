@@ -95,7 +95,7 @@ const Contact = () => {
 
   return (
     <>
-    <User>
+    <User pageTitle="Contacto">
       <Container>
         <div className={styles.contact}>
           <form onSubmit={handleSendForm}>

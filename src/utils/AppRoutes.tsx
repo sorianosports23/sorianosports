@@ -26,6 +26,7 @@ import Err404 from "../pages/404"
 import NewsAdmin from "../pages/admin/News"
 import AddNews from "../pages/admin/AddNews"
 import Page from "../pages/admin/Page"
+import EventID from "../pages/user/EventID"
 
 //! Admin routes
 import AdminContact from "../pages/admin/Contact"
@@ -44,6 +45,7 @@ import AddDirective from "../pages/admin/add/Directive"
 import AddEvent from "../pages/admin/add/Event"
 import AddSearch from "../pages/admin/add/Search"
 import InscriptionID from "../pages/admin/InscriptionID"
+import eventLoader from "./routes/eventLoader"
 //!
 
 const pageUserRoutes = createRoutesFromElements(
@@ -51,6 +53,7 @@ const pageUserRoutes = createRoutesFromElements(
     <Route index element={<Index/>}/>
     
     <Route path="eventos" element={<Events/>}/>
+    <Route path="evento/:id" element={<EventID/>} loader={eventLoader}/>
     
     <Route path="actividades">
       <Route path="ciudades" element={<Departments/>}/>

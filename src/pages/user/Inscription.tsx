@@ -164,7 +164,7 @@ const Inscription = () => {
   //!
 
   return (
-    <User>
+    <User pageTitle="Inscripciones">
       <Container>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div>

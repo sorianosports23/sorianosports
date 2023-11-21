@@ -70,7 +70,7 @@ const Sports = () => {
   }
 
   return (
-    <User>
+    <User pageTitle="Deportes">
       <Container>
         <div className={styles.selector}>
           {/* <button 

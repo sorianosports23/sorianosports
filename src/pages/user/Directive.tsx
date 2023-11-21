@@ -31,7 +31,7 @@ const DirectiveCard = ({name, img, rol}:DirectiveCardProps) =>{
 const Directive = () =>{
 
   return (
-    <User>
+    <User pageTitle="Equipo">
       <Container>
         <h1 className={styles.title}>DIRECTIVA</h1>
 

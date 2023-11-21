@@ -82,7 +82,7 @@ const News = () => {
   }
 
   return (
-    <User>
+    <User pageTitle="Noticias">
       <Container>
 
         <div className={styles.recents}>

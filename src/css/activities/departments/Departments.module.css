@@ -113,7 +113,7 @@
   height: max-content;
   border-radius: 1rem;
   /* background: #00b5bd55; */
-  box-shadow: 0 0 5px #222;
+  /* box-shadow: 0 0 5px #222; */
   padding: 0 .5rem;
 }
 
@@ -227,8 +227,10 @@
   transition: font-size .3s;
   width: 100%;
   height: 100%;
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .selected_sports li:hover::before {

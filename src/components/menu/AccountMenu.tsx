@@ -3,6 +3,7 @@ import { BsJournalCheck, BsShieldLock, BsPerson, BsBoxArrowLeft } from "react-ic
 import { useNavigate } from "react-router-dom"
 import { userSessionContext } from "../../context/session/UserSessionContext"
 import styles from "../../css/session/account/AccountMenu.module.css"
+import { RiInboxArchiveFill } from "react-icons/ri"
 
 type TAccountMenuProps = {
   menuSelected: string
@@ -50,6 +51,16 @@ const AccountMenu = ({ menuSelected, selectMenu }: TAccountMenuProps) => {
             >
               <BsShieldLock/>
               Seguridad
+            </button>
+          </li>
+          <li
+            data-selected={menuSelected === "inbox"}
+          >
+            <button
+              onClick={() => selectMenu("inbox")}
+            >
+              <RiInboxArchiveFill/>
+              Mensajes
             </button>
           </li>
         </ul>

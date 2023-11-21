@@ -8,27 +8,29 @@ import styles from "../../css/session/account/Account.module.css"
 import Inscriptions from "../../components/session/account/Inscriptions"
 import Security from "../../components/session/account/Security"
 import SendModal from "../../components/modal/SendModal"
+import Inbox from "../../components/session/account/Inbox"
 
-type TMenu = "general" | "inscripciones" | "seguridad"
+type TMenu = "general" | "inscripciones" | "seguridad" | "inbox"
 
 const accountMenus: Readonly<{ [key in TMenu]: JSX.Element }> = Object.freeze({
   general: <General/>,
   inscripciones: <Inscriptions/>,
-  seguridad: <Security/>
+  seguridad: <Security/>,
+  inbox: <Inbox/>
 })
 
 const Account = () => {
 
   const navigate = useNavigate()
-  const { username } = useContext(userSessionContext)
+  const { username, loadingData } = useContext(userSessionContext)
 
   const [menuSelected, setMenuSelected] = useState<TMenu>("general")
 
   useEffect(() => {
-    if (!username) {
+    if (!username && !loadingData) {
       navigate("/auth/login")
     }
-  }, [username, navigate])
+  }, [username, navigate, loadingData])
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -39,9 +41,13 @@ const Account = () => {
       }
     }
   }, [])
+
+  useEffect(() => {
+    window.history.pushState('', '', `?location=${menuSelected}`)
+  }, [menuSelected])
   
   return (
-    <User>
+    <User pageTitle="Cuenta">
       <div className={styles.user_profile}>
         <AccountMenu
           menuSelected={menuSelected}

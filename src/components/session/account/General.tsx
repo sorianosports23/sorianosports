@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useEffect, useState } from "react"
+import { FormEvent, useContext, useEffect, useState, useCallback } from "react"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import styles from "../../../css/session/account/General.module.css"
 import apiGetUserInfo from "../../../api/session/info"
@@ -23,7 +23,7 @@ const USER_INFO_ERROR_DEFAULT: TUserInfoInputError = {
 
 const General = () => {
   
-  const { username, token } = useContext(userSessionContext)
+  const { username, token, loadingData } = useContext(userSessionContext)
   const [userInfo, setUserInfo] = useState<TApiGetUserInfoResponse["data"]>(undefined)
   const [userInfoInput, setUserInfoInput] = useState<TUserInfoInput>({
     name: "",
@@ -44,18 +44,21 @@ const General = () => {
 
   //
 
+  const handleLoadingUserData = useCallback(async () => {
+    if (!token || loadingData) return
+    const user = await apiGetUserInfo({ token })
+    if (user.authorization) {
+      setUserInfo(user.data)
+      setLoading(false)
+    } else {
+      setLoading(false)
+      setError(true)
+    }
+  }, [token, loadingData])
+  
   useEffect(() => {
-    (async () => {
-      const user = await apiGetUserInfo({ token })
-      if (user.authorization) {
-        setUserInfo(user.data)
-        setLoading(false)
-      } else {
-        setLoading(false)
-        setError(true)
-      }
-    })()
-  }, [token])
+    handleLoadingUserData()
+  }, [handleLoadingUserData])
 
   useEffect(() => {
     if (userInfo) {

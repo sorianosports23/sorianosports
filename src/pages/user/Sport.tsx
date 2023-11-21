@@ -67,7 +67,7 @@ const Sport = () => {
 
 
   return (
-    <User>
+    <User pageTitle="Deportes">
       <Container>
         <div className={styles.title_cont}>
           <div className={styles.title}

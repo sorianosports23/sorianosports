@@ -7,7 +7,7 @@ import assetsFolder from "../../utils/publicfolder"
 
 const Faq = () => {
   return (
-    <User>
+    <User pageTitle="Preguntas frecuentes">
       <div className={styles.title}
         style={{
           backgroundImage: `url(${assetsFolder}/img/secretaria.jpg)`

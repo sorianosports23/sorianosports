@@ -111,7 +111,7 @@ const Events = () => {
   if (loading) return <Loading/>
 
   return (
-    <User>
+    <User pageTitle="Eventos">
       <Container>
         <div className={styles.programation}>
           <div className={styles.title}>
