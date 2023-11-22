@@ -208,8 +208,8 @@ const EditCity = () => {
 
            <div className={styles.btn_center}>
              <button
-             className={PageStyles.btn_add}
-             onClick={() => setModalAddPlace(true)}
+              className={PageStyles.btn_add}
+              onClick={() => setModalAddPlace(true)}
              >
             <BsPlusLg/> Añadir Instalación en {city}
             </button>

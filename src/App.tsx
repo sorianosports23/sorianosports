@@ -9,7 +9,8 @@ import pageRoutes from "./utils/AppRoutes";
 import Fonts from "./components/Fonts";
 import { SocialMediaProvider } from "./context/social/SocialMediaContext"
 import { SearchContextProvider } from "./context/search/SearchContext"
-
+import '@wojtekmaj/react-timerange-picker/dist/TimeRangePicker.css'
+import 'react-clock/dist/Clock.css'
 
 const App = () => {
   useEffect(() => {

@@ -65,3 +65,10 @@ interface IApiDeleteAccountResponse extends TApiResponse {
   err?: string
   authorization?: boolean
 }
+
+type TPermission = "admin" | "editor"
+
+type TApiGetPermissions = {
+  username: string
+  permissions: TPermission[]
+}

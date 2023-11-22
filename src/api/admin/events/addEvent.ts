@@ -3,7 +3,7 @@ import api from "../../apiRoute"
 const apiAdminAddEvent = async ({ token, name, description, date, time, place, sport, image, city, extraInfo, inscriptionInfo, rules, urlUbi }: TApiAdminAddEventRequest): Promise<IApiAdminModifyEventResponse> => {
   try {
     const eventData = new FormData()
-    eventData.append("name", name)
+    eventData.set("name", name)
     eventData.set("description", description)
     eventData.set("place", place)
     eventData.set("sport", sport)
@@ -16,13 +16,11 @@ const apiAdminAddEvent = async ({ token, name, description, date, time, place, s
     eventData.set("extraInfo", extraInfo)
     eventData.set("urlUbi", urlUbi)
 
-
-
     const res = await fetch(`${api}/events/addevents.php`, {
       method: "POST",
       headers: {
         Authorization: `SPToken ${token}`,
-        // "Content-Type": "multipart/form-data"
+        // "Content-Type": "undefined"
       },
       body: eventData
     })

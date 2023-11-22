@@ -50,10 +50,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .sport > p {
   font-size: 2em;
+}
+
+.sport > p:first-of-type,
+.place_cont > p:first-of-type {
+  flex: 1;
 }
 
 .sport > button {

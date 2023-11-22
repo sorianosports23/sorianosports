@@ -1,11 +1,13 @@
 import Admin from "../Admin"
-import { ChangeEvent, FormEvent, useContext, useState } from "react"
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react"
 import { BsChevronDown, BsCloudUploadFill, BsUpload } from "react-icons/bs"
 import styles from "../../../css/admin/events/AddEvents.module.css"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import SendModal from "../../../components/modal/SendModal"
 import apiAdminAddEvent from "../../../api/admin/events/addEvent"
 import cityList from "../../../utils/cityList"
+import TimePicker from "react-time-picker"
+import TimeRangePicker from "@wojtekmaj/react-timerange-picker"
 
 type TInputError = "" | "name" | "place" | "time" | "sport" | "description" | "date_ev" | "image"
 
@@ -18,7 +20,7 @@ const AddEvent = () => {
   const [eventDescription, setEventDescription] = useState("")
   const [eventSport, setEventSport] = useState("")
   const [eventDate, setEventDate] = useState("")
-  const [eventTime, setEventTime] = useState({ timeS: "", timeE: "" })
+  const [eventTime, setEventTime] = useState<TTimePickerValue>(['00:00', '00:00'])
   const [eventImage, setEventImage] = useState<File | null>(null)
   const [eventCity, setEventCity] = useState("")
   const [eventRules, setEventRules] = useState("")
@@ -49,7 +51,7 @@ const AddEvent = () => {
       description: eventDescription,
       sport: eventSport,
       date: eventDate,
-      time: `${eventTime.timeS} - ${eventTime.timeE}`,
+      time: `${eventTime[0]} - ${eventTime[1]}`,
       image: eventImage as File,
       city: eventCity,
       extraInfo: eventExtraInfo,
@@ -154,7 +156,7 @@ const AddEvent = () => {
         </div>
         <div>
           <label htmlFor="ev_time">Horario:</label>
-          <input 
+          {/* <input 
             type="time" 
             id="ev_time"
             value={eventTime.timeS}
@@ -164,8 +166,18 @@ const AddEvent = () => {
             }}
             required
             data-invalid={inputError === "time"}
+          /> */}
+          {/* <TimePicker
+            locale="es-UY"
+          /> */}
+          <TimeRangePicker
+            locale="es-UY"
+            value={eventTime}
+            onChange={(ev) => setEventTime(ev as typeof eventTime)}
+            disableClock
+            rangeDivider="-"
           />
-          <span>-</span>
+          {/* <span>-</span>
           <input 
             type="time"
             value={eventTime.timeE}
@@ -175,7 +187,7 @@ const AddEvent = () => {
             }}
             required
             data-invalid={inputError === "time"}
-          />
+          /> */}
         </div>
         <div>
           <label htmlFor="ev_sport">Deporte:</label>

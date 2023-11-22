@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
 import styles from "../../css/events/NewEventCard.module.css"
+import api from "../../api/apiRoute"
 
 const days = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
 const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
 
-const NewEventCard = ({ id ,name, place, sport, description, date_ev, time }: TEvent) => {
+const NewEventCard = ({ id, name, place, sport, description, date_ev, time }: TEvent) => {
   const date = new Date(`${date_ev} 00:00:00`)
   const day = days[date.getDay()]
   const dayNumber = date.getDay() + 1
@@ -15,7 +16,7 @@ const NewEventCard = ({ id ,name, place, sport, description, date_ev, time }: TE
     <div className={styles.cont}>
       <div className={styles.img}>
         <div>
-          <img src="https://fakeimg.pl/600x400" alt="event-img" />
+          <img src={`${api}/events/getImage.php?id=${id}`} alt="event-img" />
         </div>
       </div>
 
@@ -38,7 +39,7 @@ const NewEventCard = ({ id ,name, place, sport, description, date_ev, time }: TE
           </div>
 
           <div className={styles.btn}>
-            <Link to={`/eventos/${id}`}>Ver más</Link>
+            <Link to={`/evento/${id}`}>Ver más</Link>
           </div>
         </div>
       </div>

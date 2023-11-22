@@ -6,10 +6,11 @@ import { userSessionContext } from "../../context/session/UserSessionContext"
 import assetsFolder from "../../utils/publicfolder"
 import styles from "../../css/admin/header/Header.module.css"
 import AdminMenuMobile from "./AdminMenuMobile"
+import { adminRoutes, editorRoutes } from "../../utils/adminRoutes"
 
 const AdminMenu = () => {
 
-  const { username, logout } = useContext(userSessionContext)
+  const { username, logout, permissions } = useContext(userSessionContext)
   const [profileMenuOpen, setProfileMenuOpen] = useState(false)
 
   const [menuMobile, setMenuMobile] = useState(false)
@@ -67,14 +68,29 @@ const AdminMenu = () => {
 
       <div className={styles.nav}>
         <nav>
-          <Link to="/admin/">Inicio</Link>
+          {/* <Link to="/admin/">Inicio</Link>
           <Link to="/admin/users">Usuarios</Link>
           <Link to="/admin/sports">Ciudades</Link>
           <Link to="/admin/events">Eventos</Link>
           <Link to="/admin/news">Noticias</Link>
           <Link to="/admin/inscriptions">Inscripciones</Link>
           <Link to="/admin/contact">Contacto</Link>
-          <Link to="/admin/page">Página</Link>
+          <Link to="/admin/page">Página</Link> */}
+          <Link to="/admin/">Inicio</Link>
+          {
+            permissions.includes("admin")
+            &&
+            adminRoutes.map((route, i) => (
+              <Link to={`/admin/${route.url}`} key={i}>{route.name}</Link>
+            ))
+          }
+          {
+            (permissions.includes("editor") && !permissions.includes("admin"))
+            &&
+            editorRoutes.map((route, i) => (
+              <Link to={`/admin/${route.url}`} key={i}>{route.name}</Link>
+            )) 
+          }
         </nav>
       </div>
     </header>

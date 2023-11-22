@@ -1,11 +1,13 @@
 import { createContext, PropsWithChildren, useState, useEffect } from "react"
 import { clearLocalStorage, getLocalStorage, setLocalStorage } from "../../utils/useLocalStorage"
+import apiGetPermissions from "../../api/session/getPermissions"
 
 const userSessionContext = createContext<TUserSessionContext>({
   username: "",
   token: "",
-  isAdmin: false,
   loadingData: false,
+  loadingPermData: false,
+  permissions: [],
   login: () => {},
   logout: () => {}
 })
@@ -13,8 +15,9 @@ const userSessionContext = createContext<TUserSessionContext>({
 const UserSessionProvider = ({ children }: PropsWithChildren) => {  
   const [username, setUsername] = useState("")
   const [userToken, setUserToken] = useState("")
-  const [userIsAdmin, setUserIsAdmin] = useState(false)
+  const [userPermissions, setUserPermissions] = useState<TPermission[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [isLoadingPerm, setIsLoadingPerm] = useState(true)
 
   useEffect(() => {
     const userLocal = getLocalStorage("userData", true)
@@ -35,6 +38,21 @@ const UserSessionProvider = ({ children }: PropsWithChildren) => {
     setLocalStorage("userData", user, true)
   }
 
+  useEffect(() => {
+    if (userToken) {
+      (async () => {
+        const res = await apiGetPermissions(userToken)
+        if (res.permissions) {
+          setUserPermissions(res.permissions)
+        }
+        setIsLoadingPerm(false)
+      })()
+    }
+    if (!isLoading && !userToken) {
+      setIsLoadingPerm(false)
+    }
+  }, [userToken, isLoading])
+
   const logout = () => {
     clearLocalStorage()
   }
@@ -43,8 +61,9 @@ const UserSessionProvider = ({ children }: PropsWithChildren) => {
     <userSessionContext.Provider value={{
       username,
       token: userToken,
-      isAdmin: userIsAdmin,
       loadingData: isLoading,
+      loadingPermData: isLoadingPerm,
+      permissions: userPermissions,
       login,
       logout
     }}>

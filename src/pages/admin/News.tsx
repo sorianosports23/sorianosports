@@ -85,6 +85,7 @@ const News = () => {
       setModalMsg("Se elimino la noticia")
       setDeleteOpen(false)
       setModalOpen(true)
+      getNews(actualPage)
     } else {
       setDeleteOpen(false)
       setModalMsg("No se pudo eliminar la noticia")

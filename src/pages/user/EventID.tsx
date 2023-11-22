@@ -3,16 +3,11 @@ import { useLoaderData } from "react-router-dom"
 import { MutableRefObject, useEffect, useRef } from "react"
 import Container from "../../components/templates/Container"
 import styles from "../../css/events/EventID.module.css"
+import api from "../../api/apiRoute"
 
 const EventId = () => {
 
   const data = useLoaderData() as IEventID
-
-  const iframeMap = useRef<HTMLIFrameElement>(null) as MutableRefObject<HTMLIFrameElement>
-
-  useEffect(() => {
-    console.log(data)
-  }, [data])
 
   return (
     <User>
@@ -24,6 +19,12 @@ const EventId = () => {
           className={styles.cont}
         >
           <h2>{data.name}</h2>
+          <div className={styles.img}>
+            <img 
+              src={`${api}/events/getImage.php?id=${data.id}`} 
+              alt={`${data.name} img`} 
+            />
+          </div>
           <div className={styles.desc}>
             {data.description}
           </div>
@@ -59,12 +60,16 @@ const EventId = () => {
             </p>
           </div>
 
-          <div className={styles.big_info}>
-            <h2>Información extra</h2>
-            <p>
-              {data.extraInfo}
-            </p>
-          </div>
+          {
+            data.extraInfo
+            &&
+            <div className={styles.big_info}>
+              <h2>Información extra</h2>
+              <p>
+                {data.extraInfo}
+              </p>
+            </div>
+          }
         </div>
       </Container>
     </User>

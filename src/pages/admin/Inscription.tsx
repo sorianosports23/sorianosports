@@ -40,7 +40,7 @@ const Inscription = () => {
                 <span>{inscription.id}</span>
               </div>
 
-              <div className={tableStyles.a}>
+              <div className={tableStyles.a} style={{flex: 1}}>
                 <p>{inscription.name} {inscription.lastname}</p>
                 <p>{inscription.activity} - {inscription.activityPlace}</p>
               </div>

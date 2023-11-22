@@ -20,6 +20,9 @@ const apiAdminAddNews = async ({ token, title, description, image, content, auth
 
     const req = await fetch (`${api}/news/addNews.php`, {
       method: "POST",
+      headers: {
+        Authorization: `SPToken ${token}`
+      },
       body: newsData
     })
 

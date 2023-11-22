@@ -63,6 +63,14 @@
   cursor: pointer;
 }
 
+.btns > a {
+  border: 1px solid #232323;
+  border-radius: .5rem;
+  padding: .5rem;
+  text-decoration: none;
+  color: #222;
+}
+
 .show {
   background: #0a09;
 }

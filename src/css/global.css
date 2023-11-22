@@ -9,7 +9,7 @@ html, body {
   overflow-x: hidden;
 }
 
-body:has(.background-main), .page-bg {
+body, .page-bg {
   background-size: cover;
   background-attachment: fixed;
 }

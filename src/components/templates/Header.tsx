@@ -31,7 +31,7 @@ const Header = () => {
 
   const [menuMobileOpen, setMenuMobileOpen] = useState(false)
 
-  const { username, logout } = useContext(userSessionContext)
+  const { username, logout, permissions } = useContext(userSessionContext)
 
   const [activitiesDropdown, setActivitiesDropDown] = useState(false)
   const [aboutDropdown, setAboutDropDown] = useState(false)
@@ -85,6 +85,11 @@ const Header = () => {
 
                   <ul>
                     <li><Link to="/auth/perfil" tabIndex={aboutDropdown ? 0 : -1}>Perfil</Link></li>
+                    {
+                      (permissions.includes("admin") || permissions.includes("editor"))
+                      &&
+                      <li><Link to="/admin">Administración</Link></li>
+                    }
                     <li>
                       <button
                         onClick={handleLogout} tabIndex={aboutDropdown ? 0 : -1}

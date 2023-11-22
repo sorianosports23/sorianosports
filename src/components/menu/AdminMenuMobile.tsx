@@ -3,6 +3,7 @@ import { userSessionContext } from "../../context/session/UserSessionContext"
 import styles from "../../css/header/HeaderMenuMobile.module.css"
 import { BsPersonCircle, BsXLg } from "react-icons/bs"
 import { Link } from "react-router-dom"
+import { adminRoutes, editorRoutes } from "../../utils/adminRoutes"
 
 type TAdminMenuMobileProps = {
   open: boolean
@@ -11,7 +12,7 @@ type TAdminMenuMobileProps = {
 
 const AdminMenuMobile = ({ open, close }: TAdminMenuMobileProps) => {
 
-  const { username, logout } = useContext(userSessionContext)
+  const { username, logout, permissions } = useContext(userSessionContext)
 
   const handleLogout = () => {
     logout()
@@ -65,7 +66,7 @@ const AdminMenuMobile = ({ open, close }: TAdminMenuMobileProps) => {
       <div className={styles.nav}>
         <nav>
           <ul>
-            <li>
+            {/* <li>
               <Link to="/admin/">Inicio</Link>
             </li>
             <li>
@@ -88,7 +89,29 @@ const AdminMenuMobile = ({ open, close }: TAdminMenuMobileProps) => {
             </li>
             <li>
               <Link to="/admin/page">Página</Link>
-            </li>
+            </li> */}
+          <li>
+            <Link to="/admin/">Inicio</Link>
+          </li>
+          {
+            permissions.includes("admin")
+            &&
+            adminRoutes.map((route, i) => (
+              <li key={i}>
+                <Link to={`/admin/${route.url}`}>{route.name}</Link>
+              </li>
+            ))
+          }
+          {
+            (permissions.includes("editor") && !permissions.includes("admin"))
+            &&
+            // eslint-disable-next-line sonarjs/no-identical-functions
+            editorRoutes.map((route, i) => (
+              <li key={i}>
+                <Link to={`/admin/${route.url}`}>{route.name}</Link>
+              </li>
+            )) 
+          }
           </ul>
         </nav>
       </div>
