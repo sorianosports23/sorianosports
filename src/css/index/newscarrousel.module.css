@@ -30,6 +30,7 @@
   /* background-color: #eee; */
   position: absolute;
   margin: 0 .5rem;
+  pointer-events: all;
 }
 
 .arrow-right {
@@ -39,6 +40,7 @@
 
 .arrows_mobile {
   display: none;
+  pointer-events: none;
 }
 
 .arrow-left > button, .arrow-right > button, .arrows_mobile > button {
@@ -52,6 +54,7 @@
   font-size: 1.8em;
   color: #222;
   transition: border .1s, background .3s, color .3s, transform .3s;
+  pointer-events: all;
 }
 
 .arrows_mobile > button {
@@ -107,6 +110,9 @@
   text-transform: uppercase;
   font-family: 'Metropolis', sans-serif;
   position: relative;
+  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: hidden;
 }
 
 .news > div p {
@@ -118,6 +124,10 @@
   font-size: 1.1em;
   font-family: 'Raleway', sans-serif;
   position: relative;
+  height: 10rem;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .news > div a {
@@ -137,6 +147,7 @@
   place-content: center;
   font-family: 'Raleway';
   position: relative;
+  pointer-events: all;
 }
 
 .news > div a:hover {

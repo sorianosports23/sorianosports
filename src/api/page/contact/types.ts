@@ -20,5 +20,14 @@ type TApiSendContactResponse = {
   err?: TApiSendContactErr
 }
 
-export type { TApiSendContactErr, TApiSendContactRequest, TApiSendContactResponse }
+type TApiGetContactIDRequest = {
+  token: string
+  id: number
+}
+
+interface IApiGetContactIDResponse extends TApiResponse {
+  data: string[]
+}
+
 export { EApiContactInputsErr }
+export type { TApiGetContactIDRequest, IApiGetContactIDResponse }

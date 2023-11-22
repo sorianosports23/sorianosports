@@ -2,12 +2,14 @@ import { BsFillHouseFill, BsEnvelopeAtFill, BsTelephoneFill, BsClockFill, BsFace
 import { FaXTwitter } from "react-icons/fa6"
 import styles from "../../css/footer/Footer.module.css"
 import assetsFolder from "../../utils/publicfolder"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { socialMediaContext } from "../../context/social/SocialMediaContext"
 
 const Footer = () => {
 
   const { socialMedia } = useContext(socialMediaContext)
+
+  const [shareOpen, setShareOpen] = useState(false)
 
   return (
     <footer className={styles.footer}>
@@ -61,14 +63,23 @@ const Footer = () => {
         </ul>
       </div>
 
-      {/* <div className={styles.share}>
+      <div className={styles.share}>
         <div>
-          <h4>Comparte la pagina</h4>
-          <div>
+          <button
+            onClick={() => setShareOpen(prev => !prev)}
+            className={styles.btn}
+          >
+            Comparte la pagina
+          </button>
+          <div
+            style={{
+              display: shareOpen ? "flex" : "none"
+            }}
+          >
             <img src={assetsFolder + "/img/qr.png"} alt="qr" id="qr-photo"/>
           </div>
         </div>
-      </div> */}
+      </div>
 
       <div className={styles.copyright}>
         Copyright © {new Date().getFullYear()} <a href="https://soriano.gub.uy" style={{textDecoration: "none", color: "#222"}}>Intendencia de Soriano</a>

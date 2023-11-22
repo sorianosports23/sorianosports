@@ -127,3 +127,16 @@
 .c_msg {
   flex-direction: column;
 }
+
+.c_msg_resp {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.c_msg_resp button {
+  padding: .25rem;
+  border-radius: .5rem;
+  background: #0a09;
+  border: 1px solid #232323;
+}

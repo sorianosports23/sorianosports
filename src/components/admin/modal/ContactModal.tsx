@@ -4,6 +4,7 @@ import { useContext, useEffect, useId, useState } from "react"
 import LoaderComp from "../../LoaderComp"
 import apiAdminEditStatus from "../../../api/admin/contact/editStatus"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
+import apiAdminSendResponse from "../../../api/admin/contact/sendResponse"
 
 type TContactModalProps = {
   id: number
@@ -60,7 +61,7 @@ const ContactModal = ({ id, open, close, form, openModal }: TContactModalProps) 
     }))
   }
 
-  const handleUpdateStatus = async (status: 1|2) => {
+  const handleUpdateStatus = async (status: 1|2, skipModal?: boolean) => {
     const data = {
       token,
       id,
@@ -68,6 +69,7 @@ const ContactModal = ({ id, open, close, form, openModal }: TContactModalProps) 
     }
 
     const res = await apiAdminEditStatus(data)
+    if (skipModal) return
 
     if (res.status) {
       openModal("Se actualizo el estado", "", true)
@@ -83,9 +85,22 @@ const ContactModal = ({ id, open, close, form, openModal }: TContactModalProps) 
     setLoading(false)
   } 
 
-  useEffect(() => {
-    console.log("FORM", form)
-  }, [form])
+  const handleSendResponse = async () => {
+    const data = {
+      token,
+      id,
+      message: response
+    }
+    const res = await apiAdminSendResponse(data)
+
+    if (res.status) {
+      close()
+      handleUpdateStatus(2, true)
+      openModal("Se envio la respuesta correctamente", "", true)
+    } else {
+      openModal("No se pudo enviar la respuesta", res.message, false)
+    }
+  }
 
   return (
     <div
@@ -153,11 +168,19 @@ const ContactModal = ({ id, open, close, form, openModal }: TContactModalProps) 
                 <div className={modalStyles.c_msg_resp}>
                   <label htmlFor="mc_id">Respuesta:</label>
                   <textarea 
-                  placeholder="Escribe la respuesta."
+                    placeholder="Escribe la respuesta."
+                    value={response}
+                    onChange={(ev) => setResponse(ev.target.value)}
                   >
                     
                     
                   </textarea>
+                  <button
+                    type="button"
+                    onClick={handleSendResponse}
+                  >
+                    Enviar
+                  </button>
                 </div>
 
                 </div>

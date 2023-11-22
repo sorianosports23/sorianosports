@@ -12,7 +12,6 @@ const cityList: Array<string> = [
   "Sacachispas",
   "Santa Catalina",
   "Agraciada",
-  "La Loma",
   "Castillos",
   "La Concordia",
   "El Tala",

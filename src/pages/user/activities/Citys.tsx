@@ -8,6 +8,7 @@ import useSearchParams from "../../../utils/useSearchParams"
 import assetsFolder from "../../../utils/publicfolder"
 import { citySports, sportImg } from "../../../utils/sportList"
 import apiGetCitySports from "../../../api/page/sports/getCitySports"
+import cityList from "../../../utils/cityList"
 
 const departments = {
   Dolores: {
@@ -59,7 +60,7 @@ const Departments = () => {
     if (searchParams.searchParams && searchParams.params?.selected) {
       const selectedParam = searchParams.params.selected
 
-      if (Object.keys(departments).includes(selectedParam)) {
+      if (Object.keys(cityList).includes(selectedParam)) {
         setSelectedDepartment(selectedParam)
       }
 
@@ -92,7 +93,7 @@ const Departments = () => {
       <div className={styles.content} id="test">
         <CityMap
           selectDepartment={handleSelectCity}
-          departments={Object.keys(departments)}
+          departments={cityList}
         />
       </div>
 

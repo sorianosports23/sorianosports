@@ -25,3 +25,9 @@ type TApiAdminEditStatusRequest = {
   id: number
   status: 1 | 2
 }
+
+type TApiAdminSendResponeRequest = {
+  token: string
+  id: number
+  message: string
+}
