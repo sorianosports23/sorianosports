@@ -11,10 +11,14 @@ import apiGetUserInfo from "../../api/session/info"
 import cityList from "../../utils/cityList"
 import apiGetCitySports from "../../api/page/sports/getCitySports"
 import apiGetCityPlace from "../../api/admin/city/getPlace"
+import TimePicker from "react-time-picker"
+import TimeRangePicker from "@wojtekmaj/react-timerange-picker"
 
 const Inscription = () => {
 
   const { token } = useContext(userSessionContext)
+
+  const [timePlace, setTimePlace] = useState<TTimePickerValue>(["00:00", "00:00"])
 
   const [inscriptionData, setInscriptionData] = useState<Omit<TInscription, "state" | "id">>({
     name: "",
@@ -155,6 +159,7 @@ const Inscription = () => {
       const timePlace = place.time.replaceAll(" ", "").split("-")
       handleUpdateInscriptionData("sportTimeStart", timePlace[0])
       handleUpdateInscriptionData("sportTimeEnd", timePlace[1])
+      setTimePlace([timePlace[0], timePlace[1]])
     }
   }, [inscriptionData, handleUpdateInscriptionData, places])
 
@@ -470,10 +475,14 @@ const Inscription = () => {
             </div>
 
             <div>
-              <label htmlFor="#">
+              <label htmlFor="#"
+                style={{
+                  display: "flex",
+                }}
+              >
                 Horario de: *
               </label>
-              <input 
+              {/* <input 
                 type="time"
                 value={inscriptionData.sportTimeStart}
                 onChange={(ev) => handleUpdateInscriptionData("sportTimeStart", ev.target.value)} 
@@ -485,6 +494,13 @@ const Inscription = () => {
                 value={inscriptionData.sportTimeEnd}
                 onChange={(ev) => handleUpdateInscriptionData("sportTimeEnd", ev.target.value)}
                 required
+              /> */}
+              <TimeRangePicker
+                disableClock
+                value={timePlace}
+                locale="es-UY"
+                required
+                disabled
               />
             </div>
           </div>

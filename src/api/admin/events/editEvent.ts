@@ -1,6 +1,6 @@
 import api from "../../apiRoute"
 
-const apiAdminModifyEvent = async ({ token, id, name, place, time, description, date_ev, sport }: TApiAdminModifyEventRequest): Promise<TApiResponse> => {
+const apiAdminModifyEvent = async ({ token, id, name, image, place, time, description, date_ev, sport, city, extraInfo, inscriptionInfo, rules, urlUbi }: IApiAdminModifyEventRequest): Promise<TApiResponse> => {
   try {
     await apiAdminModifyValue({token, id, attr: "name", newValue: name})
     await apiAdminModifyValue({token, id, attr: "place", newValue: place})
@@ -8,6 +8,12 @@ const apiAdminModifyEvent = async ({ token, id, name, place, time, description, 
     await apiAdminModifyValue({token, id, attr: "description", newValue: description})
     await apiAdminModifyValue({token, id, attr: "date_ev", newValue: date_ev})
     await apiAdminModifyValue({token, id, attr: "sport", newValue: sport})
+    await apiAdminModifyValue({token, id, attr: "city", newValue: city})
+    await apiAdminModifyValue({token, id, attr: "extraInfo", newValue: extraInfo})
+    await apiAdminModifyValue({token, id, attr: "inscriptionInfo", newValue: inscriptionInfo})
+    await apiAdminModifyValue({token, id, attr: "rules", newValue: rules})
+    await apiAdminModifyValue({token, id, attr: "urlUbi", newValue: urlUbi})
+    if (image) await apiAdminModifyValue({token, id, attr: "image", newValue: image})
 
     return {
       status: true,
@@ -28,13 +34,17 @@ const apiAdminModifyValue = async ({ token, id, attr, newValue }: TApiAdminModif
       event: attr,
       newEvent: newValue
     }
+    const formData = new FormData()
+    formData.set("eventID", `${id}`)
+    formData.set("event", attr)
+    formData.set("newEvent", newValue)
 
     const req = await fetch (`${api}/events/modifyEvents.php`, {
       method: "POST",
       headers: {
         "Authorization": `SPToken ${token}`
       },
-      body: JSON.stringify(data)
+      body: attr === "image" ? formData : JSON.stringify(data)
     })
     return await req.json() as TApiResponse
   } catch (error) {

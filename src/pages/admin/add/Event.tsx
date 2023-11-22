@@ -9,7 +9,7 @@ import cityList from "../../../utils/cityList"
 import TimePicker from "react-time-picker"
 import TimeRangePicker from "@wojtekmaj/react-timerange-picker"
 
-type TInputError = "" | "name" | "place" | "time" | "sport" | "description" | "date_ev" | "image"
+// type TInputError = "" | "name" | "place" | "time" | "sport" | "description" | "date_ev" | "image"
 
 const AddEvent = () => {
 
@@ -28,7 +28,7 @@ const AddEvent = () => {
   const [eventExtraInfo, setEventExtraInfo] = useState("")
   const [eventUrl, setEventUrl] = useState("")
 
-  const [inputError, setInputError] = useState<TInputError>("")
+  const [inputError, setInputError] = useState<IApiAdminModifyEventResponse["input"] | undefined>(undefined)
   const [canSubmit, setCanSubmit] = useState(true)
 
   //!modal
@@ -86,7 +86,7 @@ const AddEvent = () => {
   const handleUploadImage = (ev: ChangeEvent<HTMLInputElement>) => {
     if (ev.target.files && ev.target.files[0]) {
       setEventImage(ev.target.files[0])
-      setInputError("")
+      setInputError(undefined)
     }
   }
 
@@ -101,7 +101,7 @@ const AddEvent = () => {
             value={eventName}
             onChange={(ev) => {
               setEventName(ev.target.value)
-              setInputError("")
+              setInputError(undefined)
             }}
             required
             data-invalid={inputError === "name"}
@@ -134,7 +134,7 @@ const AddEvent = () => {
             value={eventPlace}
             onChange={(ev) => {
               setEventPlace(ev.target.value)
-              setInputError("")
+              setInputError(undefined)
             }}
             required
             data-invalid={inputError === "place"}
@@ -148,7 +148,7 @@ const AddEvent = () => {
             value={eventDate}
             onChange={(ev) => {
               setEventDate(ev.target.value)
-              setInputError("")
+              setInputError(undefined)
             }}
             required
             data-invalid={inputError === "date_ev"}
@@ -197,7 +197,7 @@ const AddEvent = () => {
             value={eventSport}
             onChange={(ev) => {
               setEventSport(ev.target.value)
-              setInputError("")
+              setInputError(undefined)
             }}
             required
             data-invalid={inputError === "sport"}
@@ -210,7 +210,7 @@ const AddEvent = () => {
             value={eventDescription}
             onChange={(ev) => {
               setEventDescription(ev.target.value)
-              setInputError("")
+              setInputError(undefined)
             }}
             required
             data-invalid={inputError === "description"}

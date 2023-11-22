@@ -15,6 +15,7 @@ import Pagination from "../../components/admin/templates/Pagination"
 import { userSessionContext } from "../../context/session/UserSessionContext"
 import apiAdminModifyEvent from "../../api/admin/events/editEvent"
 import EditEvent from "../../components/admin/modal/EditEvent"
+import apiGetEvent from "../../api/page/events/getEvent"
 
 const Events = () => {
 
@@ -55,17 +56,28 @@ const Events = () => {
 
   //!EDIT 
   const [editOpen, setEditOpen] = useState(false)
-  const [editEvent, setEditEvent] = useState<TEvent>({id: 0, date_ev: "", description: "", name: "", place: "", sport: "", time: ""})
+  const [editEvent, setEditEvent] = useState<IEventID>({id: 0, date_ev: "", description: "", name: "", place: "", sport: "", time: "", city: "", extraInfo: "", inscriptionInfo: "", rules: "", urlUbi: ""})
   const [submitting, setSubmitting] = useState(false)
   //!
 
-  //!EDIT EVENT
-  const handleEditEvent = (info: TEvent) => {
-    setEditEvent(info)
-    setEditOpen(true)
+  const handleShowSendModal = (msg: string, otMsg: string = "") => {
+    setModalSendMsg(msg)
+    setModalSendOMsg(otMsg)
+    setModalSendOpen(true)
   }
 
-  const handleSubmitEditEvent = async (data: Omit<TApiAdminModifyEventRequest, "token">) => {
+  //!EDIT EVENT
+  const handleEditEvent = async (info: TEvent) => {
+    const res = await apiGetEvent(info.id)
+    if (res.data) {
+      setEditEvent(res.data)
+      setEditOpen(true)
+    } else {
+      handleShowSendModal("No se pudo editar el evento", "No se pudo cargar la información desde la API")
+    }
+  }
+
+  const handleSubmitEditEvent = async (data: Omit<IApiAdminModifyEventRequest, "token">) => {
     const dataEdit = {
       token,
       ...data

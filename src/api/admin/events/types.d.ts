@@ -19,26 +19,20 @@ type TApiAdminAddEventRequest = {
   urlUbi: string
 }
 
-type TApiAdminModifyEventRequest = {
+interface IApiAdminModifyEventRequest extends IEventID {
   token: string
-  id: number
-  name: string
-  place: string
-  time: string
-  sport: string
-  description: string
-  date_ev: string
+  image?: File
 }
 
 interface IApiAdminModifyEventResponse extends TApiResponse {
   input?: TEventAttr
 }
 
-type TEventAttr = "name" | "place" | "time" | "sport" | "description" | "date_ev" | "image"
+type TEventAttr = "name" | "place" | "time" | "sport" | "description" | "date_ev" | "image" | "city" | "place" | "time" | "rules" | "inscriptionInfo" | "extraInfo" | "urlUbi"
 
 type TApiAdminModifyEventParams = {
   token: string
   id: number
   attr: TEventAttr
-  newValue: string
+  newValue: string | File
 }
