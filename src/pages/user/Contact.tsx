@@ -10,7 +10,7 @@ import { EApiContactInputsErr } from "../../api/page/contact/types"
 
 const Contact = () => {
 
-  const { token } = useContext(userSessionContext)
+  const { token, username } = useContext(userSessionContext)
   const [userInfo, setUserInfo] = useState<TApiGetUserInfoResponse["data"]>({
     username: "",
     fullname: "",
@@ -59,7 +59,10 @@ const Contact = () => {
 
   const handleSendForm = async (ev: FormEvent) => {
     ev.preventDefault()
-    const contactData = await apiSendContact(userInput)
+    const contactData = await apiSendContact({
+      username,
+      ...userInput
+    })
     console.log(contactData)
     if (contactData.status) {
       setModalMessage("Se envio correctamente el mensaje")

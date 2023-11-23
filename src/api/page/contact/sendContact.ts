@@ -1,9 +1,10 @@
 import api from "../../apiRoute"
 import { TApiSendContactRequest, TApiSendContactResponse } from "./types"
 
-const apiSendContact = async ({ name, email, subject, message }: TApiSendContactRequest): Promise<TApiSendContactResponse> => {
+const apiSendContact = async ({ username, name, email, subject, message }: TApiSendContactRequest): Promise<TApiSendContactResponse> => {
   try {
     const contactData = {
+      username,
       name,
       email,
       subject,
