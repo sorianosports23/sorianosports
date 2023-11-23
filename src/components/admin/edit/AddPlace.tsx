@@ -20,7 +20,7 @@ const AddPlace = ({ open, close, city, sports, showModal }: TAddPlaceProps) => {
 
   const [name, setName] = useState("")
   const [sport, setSport] = useState("")
-  const [age, setAge] = useState(1)
+  const [age, setAge] = useState("")
   const [teacher, setTeacher] = useState("")
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
@@ -96,15 +96,16 @@ const AddPlace = ({ open, close, city, sports, showModal }: TAddPlaceProps) => {
           </div>
 
           <div>
-            <label htmlFor="place_age">Edad minima:</label>
+            <label htmlFor="place_age">Rango de Edad:</label>
             <input 
-              type="number" 
+              type="text" 
+              placeholder="Ej:De 12 a 16"
               id="place_age" 
               min={1}
               max={100}
-              maxLength={2}
+              maxLength={60}
               value={age}
-              onChange={(ev) => setAge(ev.target.valueAsNumber)}
+              onChange={(ev) => setAge(ev.target.value)}
             />
           </div>
 

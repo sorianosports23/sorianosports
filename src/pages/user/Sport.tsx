@@ -7,22 +7,28 @@ import { TSportPlaceInfo, sportIcon, sportImg, sportPlaces } from "../../utils/s
 import { useEffect, useState } from "react"
 import { BsChevronUp } from "react-icons/bs"
 import apiGetCityPlace from "../../api/admin/city/getPlace"
+import { text } from "stream/consumers"
 
 type TInfoOnScreen = "Lugares" | "Eventos"
 
 type TSportPlace = {
   place: string
+  age: string
   teacher: string
   time: string
 }
 
-const SportPlace = ({ place, teacher, time }: TSportPlace) => {
+const SportPlace = ({ place, age, teacher, time }: TSportPlace) => {
   return (
     <li>
       <div>
         <div>
           <p>Lugar</p>
           <span>{place}</span>
+        </div>
+        <div>
+          <p>Rango de Edad</p>
+          <span>{age}</span>
         </div>
         <div>
           <p>Profesor</p>
@@ -119,7 +125,7 @@ const Sport = () => {
                 `
               }}
             >
-              <h4>Lugares</h4>
+              <h4>Lugares y Horarios</h4>
               <ul>
                 {/* <SportPlace place="Club Remeros Mercedes" teacher="Profesor X" time="16:00 - 20:00"/>
                 <SportPlace place="Plaza Deportes" teacher="Profesor XX" time="15:00 - 17:00"/>
@@ -133,6 +139,7 @@ const Sport = () => {
                   sportList && sportList.map((place, i) => (
                     <SportPlace
                       place={place.place}
+                      age={place.age}
                       teacher={place.teacher}
                       time={place.time}
                       key={i}

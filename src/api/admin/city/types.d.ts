@@ -9,7 +9,7 @@ type TPlace = {
   id: number
   city: string
   sport: string
-  age: number
+  age: string
   place: string
   teacher: string
   date: string
