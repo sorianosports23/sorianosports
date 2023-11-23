@@ -111,9 +111,7 @@ const EditPlace = ({ open, close, sports, info, openModal, reloadPlaces }: TEdit
             <input 
               type="text" 
               placeholder="De 13 a 18 años"
-              id="place_age" 
-              min={1}
-              max={100}
+              id="place_age"
               maxLength={60}
               value={age}
               onChange={(ev) => setAge(ev.target.value)}

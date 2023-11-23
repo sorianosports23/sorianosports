@@ -5,7 +5,7 @@ const apiAdminModifyPlace = async ({ token, info }: TApiAdminModifyPlaceRequest)
 
     const { id, age, date, place, sport, teacher, time } = info
 
-    await apiAdminModifyValue({ token, id, attr: "age", newValue: `${age}` })
+    await apiAdminModifyValue({ token, id, attr: "age", newValue: age })
     await apiAdminModifyValue({ token, id, attr: "date", newValue: date })
     await apiAdminModifyValue({ token, id, attr: "place", newValue: place })
     await apiAdminModifyValue({ token, id, attr: "sport", newValue: sport })

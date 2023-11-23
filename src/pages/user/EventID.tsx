@@ -26,7 +26,9 @@ const EventId = () => {
             />
           </div>
           <div className={styles.desc}>
-            {data.description}
+            <p>
+              {data.description}
+            </p>
           </div>
 
           <div className={styles.info}>

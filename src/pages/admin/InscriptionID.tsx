@@ -166,12 +166,14 @@ const InscriptionID = () => {
                       <>
                         <button
                           onClick={() => handleEditStatus(2)}
+                          className={styles.accept_btn}
                         >
                           Aceptar inscripcion
                         </button>
 
                         <button
                           onClick={() => handleEditStatus(3)}
+                          className={styles.reject_btn}
                         >
                           Denegar inscripcion
                         </button>
@@ -183,6 +185,8 @@ const InscriptionID = () => {
                     && (
                       <button
                         onClick={() => handleEditStatus(3)}
+
+                        className={styles.reject_btn}
                       >
                         Dar de baja
                       </button>

@@ -131,6 +131,7 @@ const Contact = () => {
         id={modalID}
         form={modalForm}
         openModal={handleOpenSendModal}
+        reloadContact={() => handleGetContact(actualPage)}
       />
 
       <SendModal

@@ -42,7 +42,7 @@ const EditCity = () => {
 
   //! MODAL EDIT
   const [editModal, setEditModal] = useState(false)
-  const [editInfo, setEditInfo] = useState<TPlace>({id: 0, age: 0, city: "", date: "", place: "", sport: "", teacher: "", time: ""})
+  const [editInfo, setEditInfo] = useState<TPlace>({id: 0, age: "", city: "", date: "", place: "", sport: "", teacher: "", time: ""})
   //!
 
   const handleGetSports = useCallback(async (skipLoading?: boolean) => {
@@ -240,6 +240,7 @@ const EditCity = () => {
         city={city as string}
         sports={citySports}
         showModal={handleOpenSendModal}
+        reloadPlaces={handleGetPlaces}
       />
 
       <SendModal

@@ -12,6 +12,7 @@ type TContactModalProps = {
   close: () => void
   form: TContact
   openModal: (msg: string, otMsg: string, reload: boolean) => void
+  reloadContact: () => void
 }
 
 type TContactInfo = {
@@ -41,7 +42,7 @@ const DEFAULT_VALUE: TContactInfo = {
   }
 }
 
-const ContactModal = ({ id, open, close, form, openModal }: TContactModalProps) => {
+const ContactModal = ({ id, open, close, form, openModal, reloadContact }: TContactModalProps) => {
 
   const { token } = useContext(userSessionContext)
 
@@ -73,6 +74,7 @@ const ContactModal = ({ id, open, close, form, openModal }: TContactModalProps) 
 
     if (res.status) {
       openModal("Se actualizo el estado", "", true)
+      reloadContact()
       close()
     } else {
       openModal("No se pudo editar el estado", res.message, false)
@@ -97,6 +99,7 @@ const ContactModal = ({ id, open, close, form, openModal }: TContactModalProps) 
       close()
       handleUpdateStatus(2, true)
       openModal("Se envio la respuesta correctamente", "", true)
+      reloadContact()
     } else {
       openModal("No se pudo enviar la respuesta", res.message, false)
     }

@@ -11,10 +11,11 @@ type TAddPlaceProps = {
   city: string
   sports: TCityRes[]
   showModal: (msg: string, otMsg?: string) => void
+  reloadPlaces: () => void
 }
 
 
-const AddPlace = ({ open, close, city, sports, showModal }: TAddPlaceProps) => {
+const AddPlace = ({ open, close, city, sports, showModal, reloadPlaces }: TAddPlaceProps) => {
   
   const { token } = useContext(userSessionContext)
 
@@ -45,6 +46,7 @@ const AddPlace = ({ open, close, city, sports, showModal }: TAddPlaceProps) => {
 
     if (res.status) {
       showModal("Se añadio el lugar", "")
+      reloadPlaces()
       close()
     } else {
       showModal("No se pudo añadir el lugar", res.message)
