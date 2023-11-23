@@ -8,6 +8,7 @@ enum EApiContactInputsErr {
 }
  
 type TApiSendContactRequest = {
+  username: string
   name: string
   email: string
   subject: string
@@ -26,8 +27,12 @@ type TApiGetContactIDRequest = {
 }
 
 interface IApiGetContactIDResponse extends TApiResponse {
-  data: string[]
+  data: string
+}
+
+interface IApiGetMessagesResponse extends TApiResponse {
+  data: TContact[]
 }
 
 export { EApiContactInputsErr }
-export type { TApiGetContactIDRequest, IApiGetContactIDResponse }
+export type { TApiGetContactIDRequest, IApiGetContactIDResponse, TApiSendContactResponse, TApiSendContactRequest, IApiGetMessagesResponse }
