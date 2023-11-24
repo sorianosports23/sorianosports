@@ -11,12 +11,13 @@ import apiGetUserInfo from "../../api/session/info"
 import cityList from "../../utils/cityList"
 import apiGetCitySports from "../../api/page/sports/getCitySports"
 import apiGetCityPlace from "../../api/admin/city/getPlace"
-import TimePicker from "react-time-picker"
 import TimeRangePicker from "@wojtekmaj/react-timerange-picker"
+import useSearchParams from "../../utils/useSearchParams"
 
 const Inscription = () => {
 
   const { token } = useContext(userSessionContext)
+  const searchData = useSearchParams()
 
   const [timePlace, setTimePlace] = useState<TTimePickerValue>(["00:00", "00:00"])
 
@@ -167,6 +168,27 @@ const Inscription = () => {
     handleSelectPlace()
   }, [handleSelectPlace])
   //!
+
+  const [paramsLoaded, setParamsLoaded] = useState(false)
+
+  useEffect(() => {
+    if (paramsLoaded) return
+    if (searchData.searchParams && searchData.params) {
+      const { params } = searchData
+      if (params.city) {
+        handleUpdateInscriptionData("city", params.city)
+
+        if (params.activity) {
+          handleUpdateInscriptionData("activity", params.activity)
+        }
+
+        if (params.place) {
+          handleUpdateInscriptionData("activityPlace", params.place)
+        }
+      }
+    }
+    setParamsLoaded(true)
+  }, [searchData, handleUpdateInscriptionData, paramsLoaded])
 
   return (
     <User pageTitle="Inscripciones">
