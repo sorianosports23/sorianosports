@@ -91,12 +91,12 @@ const Inbox = () => {
               <div className={styles.card}>
                 <div>
                   <p>Asunto</p>
-                  <span>{message.subject}</span>
+                  <span style={{fontFamily: "Raleway"}}>{message.subject}</span>
                 </div>
 
                 <div>
                   <p>Estado</p>
-                  <span className={styles.status_span}>
+                  <span className={styles.status_span} style={{fontFamily: "Raleway"}}>
                     <div className={styles.color_status} data-color={message.status}/>
                     {statusLabel[message.status]}
                   </span>
