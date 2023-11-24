@@ -15,10 +15,11 @@ type TSportPlace = {
   place: string
   age: string
   teacher: string
+  date: string
   time: string
 }
 
-const SportPlace = ({ place, age, teacher, time }: TSportPlace) => {
+const SportPlace = ({ place, age, teacher, date, time }: TSportPlace) => {
   return (
     <li>
       <div>
@@ -33,6 +34,10 @@ const SportPlace = ({ place, age, teacher, time }: TSportPlace) => {
         <div>
           <p>Profesor</p>
           <span>{teacher}</span>
+        </div>
+        <div>
+          <p>Dias</p>
+          <span>{date}</span>
         </div>
         <div>
           <p>Horario</p>
@@ -141,6 +146,7 @@ const Sport = () => {
                       place={place.place}
                       age={place.age}
                       teacher={place.teacher}
+                      date={place.date}
                       time={place.time}
                       key={i}
                     />
