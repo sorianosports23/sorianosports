@@ -34,6 +34,14 @@ const cssFonts = `
     font-weight: normal;
     font-style: normal;
   }
+
+
+  @font-face {
+    font-family: 'RalewayB';
+    src: url(${assetsFolder}/fonts/RalewayBlack/Raleway-Black.ttf);
+    font-weight: normal;
+    font-style: normal;
+  }
 `
 
 const Fonts = () => {

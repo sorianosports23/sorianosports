@@ -1,0 +1,112 @@
+.cont {
+  background: #eee;
+  position: relative;
+  height: 30rem;
+}
+
+.event {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 4rem;
+}
+
+.time_cont {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+.time {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  transform: translateX(-5rem);
+}
+
+.time > div {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+}
+
+.time p {
+  font-weight: bold;
+  font-size: 2em;
+  font-family: "Metropolis", sans-serif;
+  text-transform: uppercase;
+}
+
+.time span {
+  font-weight: bold;
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  align-items: center;
+  gap: .5rem;
+}
+
+.info > h2 {
+  font-size: 3em;
+  font-family: "RalewayB";
+}
+
+.info > a {
+  padding: .5rem;
+  background: #4476b3;
+  color: #fff;
+  text-transform: uppercase;
+  border-radius: .5rem;
+  text-decoration: none;
+  font-family: "Raleway", sans-serif;
+  align-self: flex-start;
+}
+
+.info > a:hover {
+  background: #325d97;
+}
+
+.info > a:active {
+  background: #2e5287;
+}
+
+.bg {
+  position: absolute;
+  height: 100%;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+}
+
+.bg > img {
+  width: 25rem;
+  height: 13rem;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 4rem;
+  background: #232323;
+  padding: .1rem;
+  z-index: 2;
+  transform: translateX(-10rem);
+}
+
+.triangle {
+  height: 100%;
+  width: 25rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  /* background-position: center; */
+  background-position-x: -3rem;
+}

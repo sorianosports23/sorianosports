@@ -7,6 +7,7 @@ import SummerSportsInactive from "../../components/index/SummerSportsInactive"
 import YearSportsInactive from "../../components/index/YearSportsInactive"
 import SummerSports from "../../components/index/SummerSports"
 import { useEffect, useState } from "react"
+import GreatEvents from "../../components/index/GreatEvents"
 
 const Index = () => {
 
@@ -51,6 +52,10 @@ const Index = () => {
             ? <SummerSportsInactive/>
             : <YearSportsInactive/>
         }
+      </div>
+
+      <div>
+        <GreatEvents/>
       </div>
     </User>
   )
