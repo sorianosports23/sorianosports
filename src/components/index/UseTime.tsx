@@ -4,13 +4,18 @@ const UseTime = () => {
   return (
     <div className={styles.time}>
       <div>
-        <p>05</p>
+        <p>02</p>
         <span>Dias</span>
+      </div>
+      
+      <div>
+        <p>05</p>
+        <span>Horas</span>
       </div>
 
       <div>
         <p>12</p>
-        <span>Horas</span>
+        <span>Minutos</span>
       </div>
     </div>
   )

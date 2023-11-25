@@ -60,7 +60,7 @@ const Departments = () => {
     if (searchParams.searchParams && searchParams.params?.selected) {
       const selectedParam = searchParams.params.selected
 
-      if (Object.keys(cityList).includes(selectedParam)) {
+      if (cityList.includes(selectedParam)) {
         setSelectedDepartment(selectedParam)
       }
 
@@ -87,6 +87,12 @@ const Departments = () => {
     getSportFromCity()
   }, [getSportFromCity])
 
+  const getSelectCityName = (city: string) => {
+    if (city === "Egana") return "Egaña"
+    if (city === "Canada Nieto") return "Cañada Nieto"
+    return city
+  }
+
   return (
     <User pageTitle="Ciudades">
       {/* MAPA DEL DEPARTAMENTO */}
@@ -102,7 +108,7 @@ const Departments = () => {
       selectedDepartment !== NoSelected
       && <div className={styles.department}>
         <div className={styles.selected}>
-          <h3>{selectedDepartment}</h3>
+          <h3>{getSelectCityName(selectedDepartment)}</h3>
 
           <div className={styles.selected_sports}>
             {/* <h3>Deportes</h3> */}

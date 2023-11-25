@@ -85,7 +85,7 @@ const CityMap = ({ selectDepartment, departments }: TMapProps) => {
       if (mapDocument) {
         const cityOnMap = mapDocument.getElementById(city)
         if (cityOnMap) {
-          const vector = mapDocument.querySelector(`#${city} > #${city}Vec > path`) as SVGClipPathElement
+          const vector = mapDocument.querySelector(`[id='${city}'] > [id='${city}Vec'] > path`) as SVGClipPathElement
           cityOnMap.addEventListener('click', () => {
             selectDepartment(city)
           })

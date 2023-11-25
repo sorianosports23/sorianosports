@@ -1,7 +1,9 @@
 .cont {
   background: #eee;
   position: relative;
-  height: 30rem;
+  height: 45rem;
+  border-top: 1px solid #232323;
+  padding: 1rem 0;
 }
 
 .event {
@@ -22,7 +24,7 @@
   display: flex;
   gap: 1rem;
   align-items: center;
-  transform: translateX(-5rem);
+  transform: translateX(-15rem);
 }
 
 .time > div {
@@ -34,7 +36,7 @@
 
 .time p {
   font-weight: bold;
-  font-size: 2em;
+  font-size: 4em;
   font-family: "Metropolis", sans-serif;
   text-transform: uppercase;
 }
@@ -54,12 +56,16 @@
 }
 
 .info > h2 {
-  font-size: 3em;
+  font-size: 4em;
   font-family: "RalewayB";
 }
 
+.info > p {
+  font-size: 1.5em;
+}
+
 .info > a {
-  padding: .5rem;
+  padding: .5rem 1rem;
   background: #4476b3;
   color: #fff;
   text-transform: uppercase;
@@ -67,6 +73,7 @@
   text-decoration: none;
   font-family: "Raleway", sans-serif;
   align-self: flex-start;
+  font-size: 1.5em;
 }
 
 .info > a:hover {
@@ -87,8 +94,8 @@
 }
 
 .bg > img {
-  width: 25rem;
-  height: 13rem;
+  width: 40rem;
+  height: 21rem;
   aspect-ratio: 16/9;
   object-fit: cover;
   object-position: center;
@@ -96,12 +103,12 @@
   background: #232323;
   padding: .1rem;
   z-index: 2;
-  transform: translateX(-10rem);
+  transform: translateX(-50%);
 }
 
 .triangle {
   height: 100%;
-  width: 25rem;
+  width: 40rem;
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;

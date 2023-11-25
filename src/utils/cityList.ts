@@ -5,20 +5,22 @@ const cityList: Array<string> = [
   "Palmar",
   "Palo Solo",
   "Risso",
-  "Cañada Nieto",
+  "Canada Nieto",
   "Cardona",
   "Palmitas",
-  "Egaña",
+  "Egana",
   "Sacachispas",
   "Santa Catalina",
   "Agraciada",
-  "Castillos",
+  // "Castillos",
   "La Concordia",
-  "El Tala",
-  "Colonia Concordia",
-  "Chacras de Dolores",
-  "Perseverano",
-  "Lares"
+  // "El Tala",
+  // "Colonia Concordia",
+  // "Chacras de Dolores",
+  // "Perseverano",
+  "Lares",
+  "JERodo",
+  "Perseverano"
 ]
 
 export default cityList
