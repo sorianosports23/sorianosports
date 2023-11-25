@@ -25,6 +25,11 @@ const Login = () => {
   const { login } = useContext(userSessionContext)
   const navigate = useNavigate()
 
+  const [error, setError] = useState({
+    input: "",
+    message: ""
+  })
+
   const user = useForm("")
   const userPassword = useForm("")
 
@@ -62,6 +67,13 @@ const Login = () => {
     console.log(loginRes)
 
     if (!loginRes.status) {
+      if (loginRes.input && loginRes.message) {
+        console.log("asd")
+        setError({
+          input: loginRes.input,
+          message: loginRes.message
+        })
+      }
       if (loginRes.err === "php") {
         setModalBody(loginRes.message)
         setModalError(false)
@@ -106,6 +118,9 @@ const Login = () => {
                 <BsFillPersonFill/>
               </div>
             </div>
+            {
+              error.input === "user" && <span>{error.message}</span>
+            }
           </div>
 
           <div className={styles.pwd}>
@@ -131,6 +146,9 @@ const Login = () => {
                 <BsKeyFill/>
               </div>
             </div>
+            {
+              error.input === "password" && <span>{error.message}</span>
+            }
           </div>
 
           <div className={styles.register_link}>

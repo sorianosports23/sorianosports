@@ -12,11 +12,7 @@ const apiLogin = async ({ username, password }: TApiLoginRequest): Promise<IApiL
       body: JSON.stringify(userData)
     })
 
-    const res = await req.json() as IApiLoginResponse
-
-    if (!res.status) throw new Error(JSON.stringify({ message: res.message, err: res.err }), {cause: "php"})
-
-    return res
+    return await req.json() as IApiLoginResponse
   } catch (error: any) {
     if (error.cause === "php") {
       const err = JSON.parse(error.message)

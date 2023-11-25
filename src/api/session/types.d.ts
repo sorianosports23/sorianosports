@@ -16,6 +16,7 @@ type TApiLoginRequest = {
 interface IApiLoginResponse extends TApiResponse {
   token?: string
   err?: string
+  input?: string
 }
 
 type TApiChangePasswordRequest = {
