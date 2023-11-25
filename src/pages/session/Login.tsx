@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom"
 import apiLogin from "../../api/session/login"
 import ModalError from "../../components/modal/ModalError"
 import Loader from "../../components/Loader"
+import SendModal from "../../components/modal/SendModal"
 
 const Login = () => {
   //
@@ -30,8 +31,15 @@ const Login = () => {
     message: ""
   })
 
-  const user = useForm("")
-  const userPassword = useForm("")
+  const clearError = () => {
+    setError({
+      input: "",
+      message: ""
+    })
+  }
+
+  const user = useForm("", clearError)
+  const userPassword = useForm("", clearError)
 
   const [submitDisabled, setSubmitDisabled] = useState(true)
   const [loadingLogin, setLoadingLogin] = useState(false)
@@ -47,6 +55,7 @@ const Login = () => {
 
   const handleSubmit = async (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault()
+    console.log("Submit")
 
     if (!user.value || !userPassword.value) {
       setModalBody("Debes ingresar todos los campos")
@@ -64,20 +73,15 @@ const Login = () => {
 
     const loginRes = await apiLogin(userData)
 
-    console.log(loginRes)
+    console.log("Response login", loginRes)
 
     if (!loginRes.status) {
+      console.log("asd")
       if (loginRes.input && loginRes.message) {
-        console.log("asd")
         setError({
           input: loginRes.input,
           message: loginRes.message
         })
-      }
-      if (loginRes.err === "php") {
-        setModalBody(loginRes.message)
-        setModalError(false)
-        setModalOpen(true)
       } else {
         setModalBody(loginRes.message)
         setModalError(true)
@@ -119,7 +123,7 @@ const Login = () => {
               </div>
             </div>
             {
-              error.input === "user" && <span>{error.message}</span>
+              error.input === "username" && <span className={styles.error_msg}>{error.message}</span>
             }
           </div>
 
@@ -147,7 +151,7 @@ const Login = () => {
               </div>
             </div>
             {
-              error.input === "password" && <span>{error.message}</span>
+              error.input === "password" && <span className={styles.error_msg}>{error.message}</span>
             }
           </div>
 
@@ -168,12 +172,18 @@ const Login = () => {
         </form>
       </div>
 
-      <ModalError
+      {/* <ModalError
         open={modalOpen}
         close={() => setModalOpen(false)}
         body={modalBody}
         title={modalTitle}
         error={modalError}
+      /> */}
+
+      <SendModal
+        open={modalOpen}
+        close={() => setModalOpen(false)}
+        message={modalBody}
       />
     </main>
   )

@@ -14,14 +14,7 @@ const apiLogin = async ({ username, password }: TApiLoginRequest): Promise<IApiL
 
     return await req.json() as IApiLoginResponse
   } catch (error: any) {
-    if (error.cause === "php") {
-      const err = JSON.parse(error.message)
-      return {
-        status: false,
-        message: err.message,
-        err: err.err
-      }
-    }
+    console.log("Catch error", error)
     return {
       status: false,
       message: "Ocurrio un error inesperado",

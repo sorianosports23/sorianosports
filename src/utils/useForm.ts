@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react"
 
-const useForm = (initialValue: any) => {
+const useForm = (initialValue: any, callback?: () => void) => {
   const [value, setValue] = useState<any>(initialValue)
   const [error, setError] = useState<"false" | "true">("false")
 
@@ -23,6 +23,7 @@ const useForm = (initialValue: any) => {
       return setError("true")
     }
 
+    if (callback) callback()
     setError("false")
   }
 
