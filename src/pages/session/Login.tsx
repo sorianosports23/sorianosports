@@ -80,6 +80,10 @@ const Login = () => {
     setSubmitDisabled(false)
   }
 
+  useEffect(() => {
+    document.title = "Iniciar sesión"
+  }, [])
+
   return (
     <main className={styles.main}>
       <div className={styles.form_content}>

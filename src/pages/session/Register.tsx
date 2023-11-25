@@ -102,6 +102,9 @@ const Register = () => {
     }
   }
   
+  useEffect(() => {
+    document.title = "Registro de usuario"
+  }, [])
 
   return (
     <main className={`page-bg ${styles.main}`}>
