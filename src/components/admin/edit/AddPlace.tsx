@@ -4,6 +4,7 @@ import { FormEvent, useContext, useState } from "react"
 import edit from "../../../css/admin/page/EditCity.module.css"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import apiAdminAddPlace from "../../../api/admin/city/addPlace"
+import useCloseModalKey from "../../../utils/useCloseModalKey"
 
 type TAddPlaceProps = {
   open: boolean
@@ -54,7 +55,11 @@ const AddPlace = ({ open, close, city, sports, showModal, reloadPlaces }: TAddPl
   }
   
   return (
-    <div className={modalStyles.cont} data-open={open}>
+    <div 
+      className={modalStyles.cont} 
+      data-open={open}
+      {...useCloseModalKey({ open, close })}
+    >
       <form
         onSubmit={handleSubmit}
         className={modalStyles.modal}

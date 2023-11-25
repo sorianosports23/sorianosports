@@ -69,7 +69,7 @@ const MissionVission = () => {
         <Container>
           <div className={styles.title}>
             <TitleBorder up={true}/>
-            <div>
+            <div className={styles.title_h1}>
               <h1>Misión y Visión</h1>
             </div>
             <TitleBorder up={false}/>

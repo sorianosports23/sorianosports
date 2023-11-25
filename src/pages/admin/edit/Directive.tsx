@@ -104,7 +104,7 @@ const Directive = () => {
         {
           data.map((profile, i) => (
             <div key={i} className={styles.profile}>
-              <div>
+              <div className={styles.profile_img}>
                 <img src={api+profile.image} alt={profile.name + " img"} />
               </div>
               <div>

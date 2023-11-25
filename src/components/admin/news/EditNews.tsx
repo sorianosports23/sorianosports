@@ -5,6 +5,7 @@ import { FormEvent, useContext, useEffect, useState } from "react"
 import Loader from "../../Loader"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import apiAdminModifyNews from "../../../api/admin/news/modifyNews"
+import useCloseModalKey from "../../../utils/useCloseModalKey"
 
 type TEditNewsProps = {
   open: boolean
@@ -75,7 +76,11 @@ const EditNews = ({ open, close, id, name, description, note, editNews }: TEditN
   }
 
   return (
-    <div className={modalStyles.cont} data-open={open}>
+    <div 
+      className={modalStyles.cont} 
+      data-open={open}
+      {...useCloseModalKey({ open, close })}
+    >
       <form className={modalStyles.modal} onSubmit={handleSubmit}>
         <div className={modalStyles.header}>
           <h2>Editar noticia</h2>

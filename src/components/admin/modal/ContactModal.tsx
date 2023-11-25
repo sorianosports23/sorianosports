@@ -5,6 +5,7 @@ import LoaderComp from "../../LoaderComp"
 import apiAdminEditStatus from "../../../api/admin/contact/editStatus"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import apiAdminSendResponse from "../../../api/admin/contact/sendResponse"
+import useCloseModalKey from "../../../utils/useCloseModalKey"
 
 type TContactModalProps = {
   id: number
@@ -109,6 +110,7 @@ const ContactModal = ({ id, open, close, form, openModal, reloadContact }: TCont
     <div
       data-open={open}
       className={modalStyles.cont}
+      {...useCloseModalKey({ open, close })}
     >
       <div
         className={modalStyles.modal}

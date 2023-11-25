@@ -1,5 +1,6 @@
 import { BsXLg } from "react-icons/bs"
 import modalStyles from "../../css/Modal.module.css"
+import useCloseModalKey from "../../utils/useCloseModalKey"
 
 type TImboxMsgProps = {
   open: boolean
@@ -12,6 +13,7 @@ const ImboxMessage = ({ open, close, message }: TImboxMsgProps) => {
     <div 
       className={modalStyles.cont}
       data-open={open}
+      {...useCloseModalKey({ open, close })}
     >
       <div 
         className={modalStyles.modal}

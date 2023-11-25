@@ -6,6 +6,7 @@ import LoaderComp from "../../LoaderComp"
 import Loader from "../../Loader"
 import api from "../../../api/apiRoute"
 import cityList from "../../../utils/cityList"
+import useCloseModalKey from "../../../utils/useCloseModalKey"
 
 type TEditEventProps = {
   open: boolean
@@ -75,6 +76,7 @@ const EditEvent = ({ open, close, info, submitting, handleSubmit }: TEditEventPr
     <div 
       className={modalStyles.cont}
       data-open={open}
+      {...useCloseModalKey({ open, close })}
     >
       <form className={modalStyles.modal} onSubmit={handleSubmitEv}>
         <div className={modalStyles.header}>

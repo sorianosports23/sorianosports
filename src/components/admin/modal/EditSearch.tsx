@@ -6,6 +6,7 @@ import apiAddKeyword from "../../../api/admin/search/addKeyword"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import styles from "../../../css/modal/EditSearch.module.css"
 import apiAdminDeleteKW from "../../../api/admin/search/deleteKW"
+import useCloseModalKey from "../../../utils/useCloseModalKey"
 
 interface ISearchModalProps {
   open: boolean
@@ -82,6 +83,7 @@ const EditSearch = ({ open, close, info, submitting, handleSubmit }: ISearchModa
     <div 
       className={modalStyles.cont}
       data-open={open}
+      {...useCloseModalKey({ open, close })}
     >
       <form 
         className={modalStyles.modal}

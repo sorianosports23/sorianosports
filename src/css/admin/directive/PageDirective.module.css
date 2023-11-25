@@ -16,7 +16,7 @@
   background: #fff;
 }
 
-.profile > div:has(img) {
+.profile_img {
   width: 15rem;
   height: 15rem;
   border-radius: 100%;

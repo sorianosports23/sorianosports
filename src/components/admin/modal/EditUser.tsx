@@ -7,6 +7,7 @@ import apiAdminGenPass from "../../../api/admin/users/generatePass"
 import LoaderComp from "../../LoaderComp"
 import Loader from "../../Loader"
 import apiAdminManagePerm from "../../../api/admin/users/managePerm"
+import useCloseModalKey from "../../../utils/useCloseModalKey"
 
 type TEditUserProps = {
   open: boolean
@@ -147,6 +148,7 @@ const EditUser = ({ open, close, info, openSend }: TEditUserProps) => {
     <div
       className={modalStyles.cont}
       data-open={open}
+      {...useCloseModalKey({ open, close })}
     >
       <form className={modalStyles.modal} onSubmit={handleSubmit}>
         <div className={modalStyles.header}>

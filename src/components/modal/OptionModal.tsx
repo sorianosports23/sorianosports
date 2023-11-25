@@ -1,5 +1,6 @@
 import { BsXLg } from "react-icons/bs"
 import modalStyle from "../../css/Modal.module.css"
+import useCloseModalKey from "../../utils/useCloseModalKey"
 
 type TOptionModalProps = {
   open: boolean
@@ -11,7 +12,11 @@ type TOptionModalProps = {
 
 const OptionModal = ({ open, option, optionName, acceptFunction, close }: TOptionModalProps) => {
   return (
-    <div className={modalStyle.cont} data-open={open}>
+    <div 
+      className={modalStyle.cont} 
+      data-open={open}
+      {...useCloseModalKey({ open, close })}
+    >
       <div className={modalStyle.modal}>
         <div className={modalStyle.header}>
           <h2>{option} - {optionName}</h2>

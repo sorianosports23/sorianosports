@@ -4,6 +4,7 @@ import { FormEvent, useContext, useEffect, useState } from "react"
 import edit from "../../../css/admin/page/EditCity.module.css"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import apiAdminModifyPlace from "../../../api/admin/city/modifyPlace"
+import useCloseModalKey from "../../../utils/useCloseModalKey"
 
 type TEditPlaceProps = {
   open: boolean
@@ -65,6 +66,7 @@ const EditPlace = ({ open, close, sports, info, openModal, reloadPlaces }: TEdit
     <div 
       className={modalStyles.cont}
       data-open={open}
+      {...useCloseModalKey({ open, close })}
     >
       <form 
         className={modalStyles.modal}

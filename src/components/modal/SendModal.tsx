@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
 import styles from "../../css/modal/SendModal.module.css"
+import useCloseModalKey from "../../utils/useCloseModalKey"
 
 type TSendModalProps = {
   open: boolean
@@ -21,6 +22,7 @@ const SendModal = ({ open, close, message, otherMessage, otherMsgLink, redirect 
       style={{
         zIndex: 66666
       }}
+      {...useCloseModalKey({ open, close })}
     >
       <div className={styles.modal}>
         <div className={styles.msg}>

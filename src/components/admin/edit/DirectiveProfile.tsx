@@ -5,6 +5,7 @@ import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react"
 import apiAdminModifyDirective from "../../../api/admin/directive/modifyDirective"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import Loader from "../../Loader"
+import useCloseModalKey from "../../../utils/useCloseModalKey"
 
 type TDirectiveProfileProps = {
   open: boolean
@@ -83,7 +84,11 @@ const DirectiveProfile = ({ open, close, id, name, rank, img, handleEdit }: TDir
   }
 
   return (
-    <div className={modalStyles.cont} data-open={open}>
+    <div 
+      className={modalStyles.cont} 
+      data-open={open}
+      {...useCloseModalKey({ open, close })}
+    >
       <form className={modalStyles.modal} onSubmit={handleSubmit}>
         <div className={modalStyles.header}>
           <h2>Editar perfil</h2>
@@ -95,7 +100,7 @@ const DirectiveProfile = ({ open, close, id, name, rank, img, handleEdit }: TDir
         <div>
           <div className={formStyles.form}>
             <div className={formStyles.img_cont}>
-              <div className={formStyles.img}>
+              <div className={formStyles.img} data-img={directiveImgUrl ? "true" : "false"}>
                 {
                   directiveImgUrl
                     ? <img src={directiveImgUrl} alt="img" />

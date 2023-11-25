@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import styles from "../../css/modal/ModalError.module.css"
 import { BsXLg } from "react-icons/bs"
 import assetsFolder from "../../utils/publicfolder"
+import useCloseModalKey from "../../utils/useCloseModalKey"
 
 type TModalProps = {
   open: boolean
@@ -13,7 +14,11 @@ type TModalProps = {
 
 const ModalError = ({ open, close, title, body, error }: TModalProps) => {
   return (
-    <div className={styles.modal} data-open={open}>
+    <div 
+      className={styles.modal} 
+      data-open={open}
+      {...useCloseModalKey({ open, close })}
+    >
       <div className={styles.modalComp}>
         <div className={styles.modal_header}>
           <h1>

@@ -13,7 +13,7 @@
   background: var(--bg-color-op);
 }
 
-.title > div:has(h1) {
+.title_h1 {
   width: max-content;
   padding: 0 1rem;
   font-size: 2em;

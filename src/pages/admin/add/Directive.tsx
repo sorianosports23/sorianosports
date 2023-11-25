@@ -88,6 +88,7 @@ const Directive = () => {
           <div 
             className={styles.img}
             data-invalid={errorsInputs.image}
+            data-img={directiveImgUrl ? "true" : "false"}
           >
             {
               directiveImgUrl

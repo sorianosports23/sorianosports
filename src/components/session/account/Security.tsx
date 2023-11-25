@@ -6,6 +6,7 @@ import { userSessionContext } from "../../../context/session/UserSessionContext"
 import { useNavigate } from "react-router-dom"
 import Toast from "../../toast/Toast"
 import apiDeleteAccount from "../../../api/session/deleteAccount"
+import useCloseModalKey from "../../../utils/useCloseModalKey"
 
 type TModalProps = {
   open: boolean
@@ -64,7 +65,11 @@ const ModalDeleteAccount = ({ open, handleClose }: TModalProps) => {
 
   return (
     <>
-    <div className={modalStyles.modal} data-open={open}>
+    <div 
+      className={modalStyles.modal} 
+      data-open={open}
+      {...useCloseModalKey({ open, close: handleClose })}
+    >
       <div>
         <form onSubmit={handleSubmit}>
           <div>
