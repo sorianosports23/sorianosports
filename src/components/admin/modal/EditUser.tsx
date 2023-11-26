@@ -164,7 +164,7 @@ const EditUser = ({ open, close, info, openSend }: TEditUserProps) => {
             <label htmlFor="#">CI:</label> <span>{info.ci}</span>
           </div>
           <div className={styles.info}>
-            <label htmlFor="#">Edad:</label> <span>{info.age}</span>
+            <label htmlFor="#">Fecha de Nacimiento:</label> <span>{info.age}</span>
           </div>
           <div className={styles.info}>
             <label htmlFor="#">Correo:</label> <span>{info.email}</span>

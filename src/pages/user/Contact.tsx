@@ -15,9 +15,9 @@ const Contact = () => {
     username: "",
     fullname: "",
     email: "",
-    age: 0,
     ci: 0,
-    phone: 0
+    phone: 0,
+    age: Date()
   })
   const [userInput, setUserInput] = useState({
     name: "",

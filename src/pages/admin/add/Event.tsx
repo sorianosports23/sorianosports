@@ -27,6 +27,7 @@ const AddEvent = () => {
   const [eventLongDesc, setEventLongDesc] = useState("")
   const [eventExtraInfo, setEventExtraInfo] = useState("")
   const [eventUrl, setEventUrl] = useState("")
+  const [eventGreat, setEventGreat] = useState(0)
 
   const [inputError, setInputError] = useState<IApiAdminModifyEventResponse["input"] | undefined>(undefined)
   const [canSubmit, setCanSubmit] = useState(true)
@@ -57,7 +58,8 @@ const AddEvent = () => {
       extraInfo: eventExtraInfo,
       inscriptionInfo: eventLongDesc,
       rules: eventRules,
-      urlUbi: eventUrl
+      urlUbi: eventUrl,
+      greatevent: eventGreat as TTinyInt
     }
     
     setCanSubmit(false)
@@ -247,6 +249,17 @@ const AddEvent = () => {
             type="text" 
             value={eventUrl}
             onChange={(ev) => setEventUrl(ev.target.value)}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="ev_great">Marcar como gran evento</label>
+          <input 
+            type="checkbox"
+            value={eventGreat}
+            checked={eventGreat === 1}
+            onChange={() => setEventGreat(prev => prev === 1 ? 0 : 1)}
+            id="ev_great"
           />
         </div>
 

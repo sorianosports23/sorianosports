@@ -10,9 +10,10 @@ type TAccountDetailsProps = {
     username: "false" | "true"
     password: "false" | "true"
   }
+  errorMsg?: string
 }
 
-const AccountDetails = ({ userInput, passwordInput, buttonClick, errorInputs }: TAccountDetailsProps) => {
+const AccountDetails = ({ userInput, passwordInput, buttonClick, errorInputs, errorMsg }: TAccountDetailsProps) => {
   
   const [showPwd, setShowPwd] = useState(false)
 
@@ -23,12 +24,16 @@ const AccountDetails = ({ userInput, passwordInput, buttonClick, errorInputs }: 
         <div>
           <input type="text" 
             {...userInput}
-            // data-error={errorInputs.username}
+            data-invalid={errorInputs.username}
           />
           <div>
             <BsFillPersonFill/>
           </div>
         </div>
+        {
+          (errorInputs.username === "true" && errorMsg)
+          && <span>{errorMsg}</span>
+        }
       </div>
 
       <div data-icon="true">
@@ -37,7 +42,7 @@ const AccountDetails = ({ userInput, passwordInput, buttonClick, errorInputs }: 
           <input 
             type={showPwd ? "text" : "password"} 
             {...passwordInput}
-            // data-error={errorInputs.password}
+            data-invalid={errorInputs.password}
           />
           <button 
             data-btn="true"
@@ -54,6 +59,10 @@ const AccountDetails = ({ userInput, passwordInput, buttonClick, errorInputs }: 
             <BsKeyFill/>
           </div>
         </div>
+        {
+          (errorInputs.password === "true" && errorMsg)
+          && <span>{errorMsg}</span>
+        }
       </div>
 
       <div>

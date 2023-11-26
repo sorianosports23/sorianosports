@@ -3,6 +3,8 @@ type TApiDeleteEventRequest = {
   id: number
 }
 
+type TTinyInt = 1|0
+
 type TApiAdminAddEventRequest = {
   token: string
   name: string
@@ -17,6 +19,7 @@ type TApiAdminAddEventRequest = {
   inscriptionInfo: string
   extraInfo: string
   urlUbi: string
+  greatevent?: TTinyInt
 }
 
 interface IApiAdminModifyEventRequest extends IEventID {
@@ -28,7 +31,7 @@ interface IApiAdminModifyEventResponse extends TApiResponse {
   input?: TEventAttr
 }
 
-type TEventAttr = "name" | "place" | "time" | "sport" | "description" | "date_ev" | "image" | "city" | "place" | "time" | "rules" | "inscriptionInfo" | "extraInfo" | "urlUbi"
+type TEventAttr = "name" | "place" | "time" | "sport" | "description" | "date_ev" | "image" | "city" | "place" | "time" | "rules" | "inscriptionInfo" | "extraInfo" | "urlUbi" | "check_Great"
 
 type TApiAdminModifyEventParams = {
   token: string

@@ -72,3 +72,13 @@
 .edit input {
   padding: .5rem 1rem !important;
 }
+
+.check {
+  flex-direction: row !important;
+  gap: 2rem !important;
+}
+
+.check > input {
+  width: fit-content;
+  
+}

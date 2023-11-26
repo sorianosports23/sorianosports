@@ -38,8 +38,8 @@ const Login = () => {
     })
   }
 
-  const user = useForm("", clearError)
-  const userPassword = useForm("", clearError)
+  const user = useForm("", 1, 9999, clearError)
+  const userPassword = useForm("", 8, 9999, clearError)
 
   const [submitDisabled, setSubmitDisabled] = useState(true)
   const [loadingLogin, setLoadingLogin] = useState(false)

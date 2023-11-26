@@ -9,6 +9,7 @@ import { Link } from "react-router-dom"
 import useForm from "../../utils/useForm"
 import apiRegister from "../../api/session/register"
 import ModalError from "../../components/modal/ModalError"
+import SendModal from "../../components/modal/SendModal"
 
 
 
@@ -33,11 +34,11 @@ const Register = () => {
 
   const user = useForm("")
   const userFullname = useForm("")
-  const userPassword = useForm("")
+  const userPassword = useForm("", 8)
   const userEmail = useForm("")
-  const userPhone = useForm(0)
-  const userCI = useForm(0)
-  const userAge = useForm(0)
+  const userPhone = useForm(0, 9)
+  const userCI = useForm(0, 8)
+  const userAge = useForm("")
 
   const errorInputName = "data_error"
 
@@ -58,6 +59,10 @@ const Register = () => {
 
   const [registerSlide, setRegisterSlide] = useState(0)
   const [loadingRegister, setLoadingRegister] = useState(false)
+
+  const handleChangePage = (num: number) => {
+    setRegisterSlide(num)
+  }
 
   useEffect(() => {
     if (loadingRegister) setSubmitDisabled(true)
@@ -218,12 +223,18 @@ const Register = () => {
         ></div>
       </div>
 
-      <ModalError
+      {/* <ModalError
         open={modalOpen}
         close={() => setModalOpen(false)}
         title={modalTitle}
         body={modalBody}
         error={modalError}
+      /> */}
+
+      <SendModal
+        open={modalOpen}
+        close={() => setModalOpen(false)}
+        message={modalBody}
       />
     </main>
   )

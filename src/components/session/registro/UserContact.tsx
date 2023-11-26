@@ -21,7 +21,7 @@ const UserContact = ({ emailInput, phoneInput, fullnameInput, buttonClick, butto
         <div>
           <input type="email" 
             {...emailInput}
-            data-error={errorInputs.email}
+            data-invalid={errorInputs.email}
           />
           <div>
             <BsEnvelopeAtFill/>
@@ -46,7 +46,7 @@ const UserContact = ({ emailInput, phoneInput, fullnameInput, buttonClick, butto
           <input type="number"
             maxLength={9}
             {...phoneInput}
-            data-error={errorInputs.phone}
+            data-invalid={errorInputs.phone}
           />
           <div>
             <BsTelephoneFill/>

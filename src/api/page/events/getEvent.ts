@@ -20,7 +20,8 @@ const apiGetEvent = async (id: number): Promise<IApiGetEventResponse> => {
         inscriptionInfo: "",
         rules: "",
         urlUbi: "",
-        city: ""
+        city: "",
+        check_Great: 0
       }
     }
   }

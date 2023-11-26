@@ -8,17 +8,18 @@ import apiChangeInfo from "../../../api/session/changeInfo"
 import Toast from "../../toast/Toast"
 
 type TUserInfoInputError = {
-  [key in "fullname" | "phone" | "email"]: "false" | "true"
+  [key in "fullname" | "phone" | "email" | "datebirth"]: "false" | "true"
 }
 
 type TUserInfoInput = {
-  [key in "name" | "email" | "ci" | "phone"]: string | number
+  [key in "name" | "email" | "ci" | "phone" | "datebirth"]: string | number
 }
 
 const USER_INFO_ERROR_DEFAULT: TUserInfoInputError = {
   fullname: "false",
   phone: "false",
-  email: "false"
+  email: "false",
+  datebirth: "false"
 }
 
 const General = () => {
@@ -29,7 +30,8 @@ const General = () => {
     name: "",
     email: "",
     ci: 0,
-    phone: 0
+    phone: 0,
+    datebirth: Date()
   })
 
   const [userInfoInputError, setUserInfoInputError] = useState<TUserInfoInputError>(USER_INFO_ERROR_DEFAULT)
@@ -62,11 +64,13 @@ const General = () => {
 
   useEffect(() => {
     if (userInfo) {
+      console.log("ui", userInfo)
       setUserInfoInput({
         name: userInfo.fullname,
         email: userInfo.email,
         ci: userInfo.ci,
-        phone: userInfo.phone
+        phone: userInfo.phone,
+        datebirth: userInfo.age
       })
     }
   }, [userInfo])
@@ -125,6 +129,7 @@ const General = () => {
       fullname: userInfoInput.name as string,
       email: userInfoInput.email as string,
       phone: userInfoInput.phone as number,
+      age: userInfoInput.datebirth as string,
       token
     })
 
@@ -262,6 +267,34 @@ const General = () => {
                 }
               )}
               data-error={userInfoInputError.phone}
+            />
+            <span>El valor no es valido</span>
+          </div>
+
+          <div>
+            <label htmlFor="#">Fecha de Nacimiento</label>
+            <input 
+              type="date" 
+              value={userInfoInput.datebirth}
+              onChange={(ev) => setUserInfoInput(
+                prev => {
+                  const {datebirth, ...other} = prev
+
+                  setUserInfoInputError(prev => {
+                    const {datebirth,...other} = prev
+                    return {
+                     ...other,
+                     datebirth: "false"
+                    }
+                  })
+
+                  return {
+                    datebirth: ev.target.value,
+                    ...other
+                  }
+                }
+              )}
+              data-error={userInfoInputError.datebirth}
             />
             <span>El valor no es valido</span>
           </div>

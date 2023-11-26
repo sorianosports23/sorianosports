@@ -29,7 +29,7 @@ const ExtraDetails = ({ ciInput, ageInput, loading, buttonClick, prevButtonClick
         <div>
           <input type="number" maxLength={8} 
             {...ciInput}
-            data-error={errorInputs.ci}
+            data-invalid={errorInputs.ci}
             
           />
           <div>
@@ -39,11 +39,11 @@ const ExtraDetails = ({ ciInput, ageInput, loading, buttonClick, prevButtonClick
       </div>
 
       <div>
-        <label htmlFor="#">Edad:</label>
+        <label htmlFor="#">Fecha de Nacimiento:</label>
         <div>
-          <input type="number" min={5} max={100}
+          <input type="date"
             {...ageInput}
-            data-error={errorInputs.age}
+            data-invalid={errorInputs.age}
           />
         </div>
       </div>

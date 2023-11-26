@@ -15,7 +15,10 @@ const EventCard = ({ data, handleEditButton, handleDeleteButton }: TEventCardPro
   const [showDropdown, setShowDropdown] = useState(false)
   
   return (
-    <div className={styles.entry}>
+    <div 
+      className={styles.entry}
+      onPointerLeave={() => setShowDropdown(false)}  
+    >
       <div className={styles.id}>
         <span>{id}</span>
       </div>

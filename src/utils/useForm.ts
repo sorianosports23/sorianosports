@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react"
 
-const useForm = (initialValue: any, callback?: () => void) => {
+const useForm = (initialValue: any, minLength: number = 1, maxLength: number = 9999, callback?: () => void) => {
   const [value, setValue] = useState<any>(initialValue)
   const [error, setError] = useState<"false" | "true">("false")
 
@@ -20,6 +20,10 @@ const useForm = (initialValue: any, callback?: () => void) => {
     }
 
     if (!ev.target.value || ev.target.value === undefined) {
+      return setError("true")
+    }
+
+    if (ev.target.value.length < minLength || ev.target.value.length > maxLength) {
       return setError("true")
     }
 

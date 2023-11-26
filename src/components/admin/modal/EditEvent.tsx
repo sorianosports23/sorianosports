@@ -29,6 +29,7 @@ const EditEvent = ({ open, close, info, submitting, handleSubmit }: TEditEventPr
   const [editInscInfo, setEditInscInfo] = useState(info.inscriptionInfo)
   const [editExtraInfo, setEditExtraInfo] = useState(info.extraInfo)
   const [editUrl, setEditUrl] = useState(info.urlUbi)
+  const [editGreat, setEditGreat] = useState(info.check_Great)
   const [editImage, setEditImage] = useState<File | undefined>(undefined)
 
   useEffect(() => {
@@ -43,6 +44,7 @@ const EditEvent = ({ open, close, info, submitting, handleSubmit }: TEditEventPr
     setEditInscInfo(info.inscriptionInfo)
     setEditExtraInfo(info.extraInfo)
     setEditUrl(info.urlUbi)
+    setEditGreat(info.check_Great)
     setEditImage(undefined)
   }, [info])
 
@@ -61,7 +63,8 @@ const EditEvent = ({ open, close, info, submitting, handleSubmit }: TEditEventPr
       inscriptionInfo: editInscInfo,
       rules: editRules,
       urlUbi: editUrl,
-      image: editImage
+      image: editImage,
+      check_Great: editGreat
     }
     handleSubmit(data)
   }
@@ -121,6 +124,15 @@ const EditEvent = ({ open, close, info, submitting, handleSubmit }: TEditEventPr
               className="hidden"
               onChange={handleChangeImage}
               accept="image/png, image/jpeg, image/svg+xml, image/webp"
+            />
+          </div>
+          <div className={styles.check}>
+            <label htmlFor="es_check">Gran evento</label>
+            <input 
+              type="checkbox" 
+              id="es_check"
+              checked={Number(editGreat) === 1}
+              onChange={() => setEditGreat(prev => Number(prev) === 1 ? 0 : 1)}
             />
           </div>
           <div className={styles.textarea}>

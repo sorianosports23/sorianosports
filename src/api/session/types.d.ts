@@ -40,7 +40,7 @@ type TApiGetUserInfoResponse = {
     username: string
     fullname: string
     email: string
-    age: number
+    age: string
     ci: number
     phone: number
   }
@@ -51,6 +51,7 @@ type TApiChangeInfoRequest = {
   fullname: string
   email: string
   phone: number
+  age: string
 }
 
 interface IApiChangeInfoResponse extends TApiResponse {

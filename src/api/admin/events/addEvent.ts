@@ -1,6 +1,6 @@
 import api from "../../apiRoute"
 
-const apiAdminAddEvent = async ({ token, name, description, date, time, place, sport, image, city, extraInfo, inscriptionInfo, rules, urlUbi }: TApiAdminAddEventRequest): Promise<IApiAdminModifyEventResponse> => {
+const apiAdminAddEvent = async ({ token, name, description, date, time, place, sport, image, city, extraInfo, inscriptionInfo, rules, urlUbi, greatevent }: TApiAdminAddEventRequest): Promise<IApiAdminModifyEventResponse> => {
   try {
     const eventData = new FormData()
     eventData.set("name", name)
@@ -15,6 +15,7 @@ const apiAdminAddEvent = async ({ token, name, description, date, time, place, s
     eventData.set("inscriptionInfo", inscriptionInfo)
     eventData.set("extraInfo", extraInfo)
     eventData.set("urlUbi", urlUbi)
+    eventData.set("greatevent", `${greatevent ?? 0}`)
 
     const res = await fetch(`${api}/events/addevents.php`, {
       method: "POST",

@@ -14,7 +14,10 @@ const Place = ({info, openEdit, deletePlace }: TPlaceProps) => {
   const [showDropdown, setShowDropdown] = useState(false)
 
   return (
-    <div className={styles.place_cont}>
+    <div 
+      className={styles.place_cont}
+      onPointerLeave={() => setShowDropdown(false)}
+    >
       <p>{info.place}</p>
       <p>{info.sport}</p>
 

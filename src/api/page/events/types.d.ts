@@ -6,6 +6,7 @@ type TEvent = {
   sport: string
   description: string
   date_ev: string
+  check_Great: TTinyInt
 }
 
 interface IEventID extends TEvent {

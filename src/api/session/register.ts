@@ -25,10 +25,6 @@ const apiRegister = async ({ username, fullname, password, email, age, phone, ci
 
     console.log("PETICION PARSEADA A JSON")
 
-    if (!res.status) {
-      throw new Error()
-    }
-
     return res
   } catch (error) {
     return {

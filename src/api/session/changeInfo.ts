@@ -1,12 +1,13 @@
 import api from "../apiRoute";
 
-const apiChangeInfo = async ({ fullname, email, phone, token }: TApiChangeInfoRequest): Promise<IApiChangeInfoResponse> => {
+const apiChangeInfo = async ({ fullname, email, phone, age, token }: TApiChangeInfoRequest): Promise<IApiChangeInfoResponse> => {
   try {
 
     const userData = {
       fullname,
       email,
-      phone
+      phone,
+      age
     }
 
     const req = await fetch(`${api}/users/editInfo.php`, {
