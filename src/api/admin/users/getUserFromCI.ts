@@ -2,7 +2,11 @@ import api from "../../apiRoute"
 
 const apiGetUserFromCI = async ({ token, ci }: TApiGetUserFromCIRequest): Promise<IApiGetUserFromUsernameResponse> => {
   try {
-    const res = await fetch(`${api}/users/getSearchCi.php?ci=${ci}`)
+    const res = await fetch(`${api}/users/getSearchCi.php?ci=${ci}`, {
+      headers: {
+        Authorization: `SPToken ${token}`
+      }
+    })
     return await res.json() as IApiGetUserFromUsernameResponse
   } catch (error) {
     return {

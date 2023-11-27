@@ -50,7 +50,7 @@ const Header = () => {
     <header className={styles.header}>
       <div className={styles["header-top"]}>
         <Link to="/" className={styles.logo}>
-          <img src={assetsFolder + "/img/deportesyrecreaciones.png"} alt="page-logo" />
+          <img src={assetsFolder + "/img/logo_deportes.svg"} alt="page-logo" />
         </Link>
 
         <div 

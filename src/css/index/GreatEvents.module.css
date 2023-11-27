@@ -25,7 +25,7 @@
   display: flex;
   gap: 1rem;
   align-items: center;
-  transform: translateX(-15rem);
+  /* transform: translateX(-15rem); */
 }
 
 .time > div {
