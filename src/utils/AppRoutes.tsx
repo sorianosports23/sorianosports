@@ -37,6 +37,7 @@ import AdminDirective from "../pages/admin/edit/Directive"
 import AdminKeywords from "../pages/admin/edit/Keywords"
 import AdminSocial from "../pages/admin/edit/Social"
 import AdminCity from "../pages/admin/edit/EditCity"
+import AdminFaq from "../pages/admin/edit/Faq"
 //!
 
 //! ADMIN routes (Add)
@@ -45,6 +46,7 @@ import AddEvent from "../pages/admin/add/Event"
 import AddSearch from "../pages/admin/add/Search"
 import InscriptionID from "../pages/admin/InscriptionID"
 import eventLoader from "./routes/eventLoader"
+import AddFaq from "../pages/admin/add/Faq"
 //!
 
 const pageUserRoutes = createRoutesFromElements(
@@ -100,11 +102,13 @@ const pageUserRoutes = createRoutesFromElements(
         <Route path="directive" element={<AdminDirective/>}/>
         <Route path="keywords" element={<AdminKeywords/>}/>
         <Route path="social" element={<AdminSocial/>}/>
+        <Route path="faq" element={<AdminFaq/>}/>
       </Route>
       <Route path="add">
         <Route path="directive" element={<AddDirective/>}/>
         <Route path="event" element={<AddEvent/>}/>
         <Route path="search" element={<AddSearch/>}/>
+        <Route path="faq" element={<AddFaq/>}/>
       </Route>
       <Route path="contact" element={<AdminContact/>}/>
       <Route path="inscriptions" element={<AdminInscriptions/>}/>

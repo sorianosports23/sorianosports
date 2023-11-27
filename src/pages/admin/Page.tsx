@@ -9,6 +9,7 @@ const Page = () => {
         <Link to="/admin/edit/directive">Editar equipo</Link>
         <Link to="/admin/edit/keywords">Editar busqueda</Link>
         <Link to="/admin/edit/social">Editar redes sociales</Link>
+        <Link to="/admin/edit/faq">Editar preguntas frecuentes</Link>
       </div>
     </Admin>
   )
