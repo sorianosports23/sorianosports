@@ -46,7 +46,7 @@
 }
 
 .btn_cont > div > button, .btn_cont > button {
-  width: 8rem;
+  width: 12rem;
   height: 2rem;
   display: flex;
   align-items: center;
@@ -73,6 +73,9 @@
   border: 1px solid #222;
   /* border-radius: 0 0 1rem 1rem; */
   /* border-radius: 0 0 0rem 0rem; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .btn_cont svg {

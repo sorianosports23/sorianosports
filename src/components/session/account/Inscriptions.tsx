@@ -139,7 +139,7 @@ const Inscriptions = () => {
             <IncriptionRecord
               sport={inscription.activity}
               signedUp={inscription.state}
-              dateStart={inscription.state === 2 ? inscription.startInscription as string : ""}
+              dateStart={inscription.startInscription ?? ""}
               dateEnd={inscription.state === 3  ? inscription.endInscription as string : ""}
               place={inscription.activityPlace}
               teacher=""
