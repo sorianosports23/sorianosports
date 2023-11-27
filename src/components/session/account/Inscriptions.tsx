@@ -21,15 +21,10 @@ const IncriptionRecord = ({ sport, signedUp, dateStart, dateEnd, teacher, place,
   }, [city])
 
   useEffect(() => {
-    if (placesInfo.length>0) {
-      console.log("places", placesInfo)
-      console.log(sport)
-      const sportPlaces = placesInfo.filter(place => place.sport === `${sport}`)
-      console.log(sportPlaces)
+    if (placesInfo.length>0) {      const sportPlaces = placesInfo.filter(place => place.sport === `${sport}`)
 
       if (sportPlaces.length>0) {
         const teacherFromPlace = sportPlaces.find(value => value.place === place)
-        console.log(teacherFromPlace)
         if (teacherFromPlace) setTeacherName(teacherFromPlace.teacher)
       }
 

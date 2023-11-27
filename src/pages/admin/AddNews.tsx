@@ -70,10 +70,6 @@ const AddNews = () => {
   }
 
   useEffect(() => {
-    console.log(newsImage)
-  }, [newsImage])
-
-  useEffect(() => {
     const linesOfText = newsContent.split("\n").length
 
     if (editorText) {

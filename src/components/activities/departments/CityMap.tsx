@@ -42,10 +42,6 @@ const CityMap = ({ selectDepartment, departments }: TMapProps) => {
     }
   }, [setMapHandlers])
 
-  useEffect(() => {
-    console.log("A")
-  }, [selectDepartment])
-
   return (
     <div className={styles.map}>
       <object ref={map} data={assetsFolder + "/map/soriano.svg"} type="image/svg+xml" style={{width: "100%"}}>

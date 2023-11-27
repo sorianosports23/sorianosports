@@ -41,7 +41,6 @@ const Login = () => {
 
   const handleSubmit = async (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault()
-    console.log("Submit")
 
     if (!user.value || !userPassword.value) {
       setModalBody("Debes ingresar todos los campos")
@@ -58,10 +57,7 @@ const Login = () => {
 
     const loginRes = await apiLogin(userData)
 
-    console.log("Response login", loginRes)
-
     if (!loginRes.status) {
-      console.log("asd")
       if (loginRes.input && loginRes.message) {
         setError({
           input: loginRes.input,

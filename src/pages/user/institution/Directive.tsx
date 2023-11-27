@@ -32,7 +32,6 @@ const Directive = () => {
 
   const handleGetDirective = async () => {
     const data = await apiGetDirective()
-    console.log(data)
     if (data.status) {
       setDirectivePeople(data.data)
     }

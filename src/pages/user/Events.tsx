@@ -29,7 +29,6 @@ const Events = () => {
 
   const getEvents = async (pos: number = 1, firstLoad: boolean = false) => {
     const eventRes = await apiGetEvents(pos)
-    console.log(eventRes)
     if (eventRes.status) {
       setEvents(prev => [...prev, ...eventRes.data])
       setResponseData(eventRes.pagination)

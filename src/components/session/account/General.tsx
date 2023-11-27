@@ -64,7 +64,6 @@ const General = () => {
 
   useEffect(() => {
     if (userInfo) {
-      console.log("ui", userInfo)
       setUserInfoInput({
         name: userInfo.fullname,
         email: userInfo.email,
@@ -105,7 +104,6 @@ const General = () => {
 
     if (err) {
       setLoading(false)
-      console.log(userInfoInputError)
       return
     }
     
@@ -119,7 +117,6 @@ const General = () => {
 
     if (!changeInfo.status) {
       setLoading(false)
-      console.log(changeInfo.err)
       setUserInfoInputError(prev => {
         const key = changeInfo.err as keyof TUserInfoInputError
         return {

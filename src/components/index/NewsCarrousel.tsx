@@ -77,7 +77,6 @@ const NewsCarrousel = () => {
 
   const getRecentNews = async () => {
     const recentNewsApi = await apiGetRecentNews()
-    console.log(recentNewsApi)
     if (recentNewsApi.status) {
       setRecentsNews(recentNewsApi.data)
       setLoading(false)

@@ -35,7 +35,6 @@ const Contact = () => {
 
   const getUserInfo = useCallback(async () => {
     const userInfo = await apiGetUserInfo({ token })
-    console.log(userInfo)
 
     if (userInfo.authorization) {
       setUserInfo(userInfo.data)
@@ -63,7 +62,6 @@ const Contact = () => {
       username,
       ...userInput
     })
-    console.log(contactData)
     if (contactData.status) {
       setModalMessage("Se envio correctamente el mensaje")
       setModalOpen(true)
@@ -86,10 +84,6 @@ const Contact = () => {
       })
     }
   }
-
-  useEffect(() => {
-    console.log(userInput)
-  }, [userInput])
 
   //modal
   const [modalMessage, setModalMessage] = useState("")

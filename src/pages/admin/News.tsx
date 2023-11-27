@@ -26,7 +26,6 @@ const News = () => {
 
   const getNews = async (pag: number = 1) => {
     const allNews = await apiGetNews(pag)
-    console.log(allNews)
     if (allNews.status) {
       setNews(allNews.data)
       setTotalPages(allNews.pagination.totalPages)

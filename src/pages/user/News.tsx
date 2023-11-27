@@ -20,7 +20,6 @@ const News = () => {
     const news = await apiGetRecentNews()
 
     if (news.status) {
-      console.log(news)
       setRecentsNews(news.data)
     }
   }
@@ -45,10 +44,6 @@ const News = () => {
       setLoading(false)
     })()
   }, [])
-
-  useEffect(() => {
-    console.log(recentsNews)
-  }, [recentsNews])
 
   if (loading) {
     return <Loading/>

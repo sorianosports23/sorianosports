@@ -1,4 +1,4 @@
-import { BsChevronRight, BsDashCircle, BsPlusCircle } from "react-icons/bs"
+import { BsChevronRight } from "react-icons/bs"
 import styles from "../../css/faq/Faq.module.css"
 import { useRef, useState, MutableRefObject, useEffect } from "react"
 
@@ -16,7 +16,6 @@ const QResponse = ({question, response}: {question: string, response: string}) =
   const handleChangeHeight = () => {
     const cont = pText.current.getBoundingClientRect()
     setOpenHeight(cont.height)
-    console.log(cont)
   }
 
   useEffect(() => {

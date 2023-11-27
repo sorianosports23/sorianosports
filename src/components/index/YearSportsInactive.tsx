@@ -25,10 +25,6 @@ const YearSportsInactive = () => {
     setCarrouselTransform(prev => prev + 18)
   }
 
-  useEffect(() => {
-    console.log(carrouselTransform)
-  }, [carrouselTransform])
-
   const handleCarrouselRight = () => {
     if (imagesOnCarrousel === 1) {
       if ((carrouselTransform * 16)

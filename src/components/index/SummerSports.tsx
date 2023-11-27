@@ -60,10 +60,7 @@ const SummerSports = () => {
   }, [])
 
   useEffect(() => {
-    console.log(sportsList.current?.children.length)
     if (sportsList.current) {
-      console.log(sportsList.current.getBoundingClientRect().width)
-      console.log(sportsList.current.children.length * 144)
       const cardsWidth = sportsList.current.children.length * 144
       const cardsRect = sportsList.current.getBoundingClientRect()
 
