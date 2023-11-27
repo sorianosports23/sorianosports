@@ -1,6 +1,7 @@
 import { PropsWithChildren, useEffect } from "react"
 import Header from "../../components/templates/Header"
 import Footer from "../../components/templates/Footer"
+import SocialMedia from "../../components/templates/SocialMedia"
 
 type TUserCompProps = {
   children: PropsWithChildren["children"]
@@ -20,6 +21,7 @@ const User = ({ pageTitle, children }: TUserCompProps) => {
   return (
     <>
     <Header/>
+    <SocialMedia/>
 
     <main className="background-main">
       { children }
