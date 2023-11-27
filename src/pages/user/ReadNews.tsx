@@ -11,29 +11,21 @@ const ReadNews = () => {
   const newsParams = useParams()
   const loaderData = useLoaderData() as INews
 
-  useEffect(() => {
-    console.log(loaderData)
-  }, [loaderData])
-
   const [newsText, setNewsText] = useState(<></>)
 
   const processText = (textToProcess: string) => textToProcess.split(/\{([^}]+)\}/).map((subText, i) => {
-    console.log(`PROCESANDO ${textToProcess} SUB TXT ${subText}`)
     if (subText.includes("bold")) {
       const textInBold = subText.split('"')
-      console.log(`BOLD ${textInBold}`)
       return <span className="news_bold">{textInBold[1]}</span>
     }
 
     if (subText.includes("italic")) {
       const textInBold = subText.split('"')
-      console.log(`ITALIC ${textInBold}`)
       return <span className="news_italic">{textInBold[1]}</span>
     }
 
     if (subText.includes("underline")) {
       const textInBold = subText.split('"')
-      console.log(`UNDERLINE ${textInBold}`)
       return <span className="news_underline">{textInBold[1]}</span>
     }
     
@@ -59,8 +51,6 @@ const ReadNews = () => {
   useEffect(() => {
     if (loaderData.note) {
       const textToShow = splitTextWithBr(loaderData.note)
-      console.log("show")
-      console.log(textToShow)
       setNewsText(<>
         {
           textToShow.map((line, i) => setTextOrLineBreak(line, i))
