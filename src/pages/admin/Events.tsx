@@ -108,7 +108,7 @@ const Events = () => {
 
 
   const handleDeleteEvent = async () => {
-    const res = await apiDeleteEvent({ token: "", id: modalDeleteID })
+    const res = await apiDeleteEvent({ token, id: modalDeleteID })
     setModalDeleteOpen(false)
     if (res.status) {
       setModalSendMsg("Se elimino correctamente")

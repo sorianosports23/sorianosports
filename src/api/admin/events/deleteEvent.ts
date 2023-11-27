@@ -8,7 +8,7 @@ const apiDeleteEvent = async ({ token, id }: TApiDeleteEventRequest): Promise<TA
     const req = await fetch(`${api}/events/deleteEvents.php`, {
       method: "POST",
       headers: {
-        Authorization: `SP Token ${token}`
+        Authorization: `SPToken ${token}`
       },
       body: JSON.stringify(bodyData)
     })

@@ -4,9 +4,9 @@ import { IApiAdminGetInscriptions } from "./types"
 const apiAdminGetInscriptions = async (token: string): Promise<IApiAdminGetInscriptions> => {
   try {
     const res = await fetch(`${api}/inscription/getInscriptionForm.php`, {
-      // headers: {
-      //   Authorization: `SPToken ${token}`
-      // }
+      headers: {
+        Authorization: `SPToken ${token}`
+      }
     })
 
     return await res.json() as IApiAdminGetInscriptions
