@@ -124,7 +124,7 @@ const Inscription = () => {
     if (data.data) {
       setSports(data.data.map(city => city.name))
     }
-  }, [inscriptionData])
+  }, [inscriptionData.city])
 
   useEffect(() => {
     handleGetSportsFromCity()
@@ -137,14 +137,13 @@ const Inscription = () => {
       setPlaces([])
       return
     }
-    
 
     const data = await apiGetCityPlace(inscriptionData.city)
 
     if (data.data) {
       setPlaces(data.data.filter(place => place.sport === inscriptionData.activity))
     }
-  }, [inscriptionData])
+  }, [inscriptionData.activity])
 
   useEffect(() => {
     handleGetPlacesFromSport()
@@ -162,7 +161,7 @@ const Inscription = () => {
       handleUpdateInscriptionData("sportTimeEnd", timePlace[1])
       setTimePlace([timePlace[0], timePlace[1]])
     }
-  }, [inscriptionData, handleUpdateInscriptionData, places])
+  }, [inscriptionData.activityPlace, handleUpdateInscriptionData, places])
 
   useEffect(() => {
     handleSelectPlace()
