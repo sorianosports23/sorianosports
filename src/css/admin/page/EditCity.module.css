@@ -101,21 +101,12 @@
     overflow: hidden;
   }
 
-  p{
+  .content p {
     font-size: 1.2em !important;
   }
 
-  .button{
+  .button {
     width: 2rem;
     height: 2rem;
   }
-  /* .EditCity_sport__g-LwO .EditCity_place_cont__Lh2G5{
-    border: 1px solid #232323;
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-content: stretch;
-    align-items: center;
-  } */
 }

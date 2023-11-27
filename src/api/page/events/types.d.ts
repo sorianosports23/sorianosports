@@ -28,3 +28,7 @@ interface IApiGetEventResponse extends TApiResponse {
 type TApiGetEventRequest = {
   id: number
 }
+
+interface IApiGetGreatEventsResponse extends TApiResponse {
+  data: TEvent[]
+}
