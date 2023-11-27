@@ -137,9 +137,6 @@ const Users = () => {
       <UsersSearch searchUser={handleGetUserFromSearch} type="users"/>
       <UsersSearch searchUser={handleGetUserFromSearch} type="ci"/>
 
-      {/* <UsersSearch searchUser={() => {}} type="users"/> */}
-      {/* <UsersSearch searchUser={() => {}} type="ci"/> */}
-
       <div className={styles.res}>
         <div className={styles.resList}>
           {

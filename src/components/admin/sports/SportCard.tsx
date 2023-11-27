@@ -1,6 +1,5 @@
-import { BsPen, BsThreeDots, BsTrash } from "react-icons/bs"
 import styles from "../../../css/admin/sports/SportCard.module.css"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
 type TSportCardProps = {

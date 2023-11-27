@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import Admin from "../Admin"
-import { BsPenFill, BsPlusLg, BsTrashFill, BsXLg } from "react-icons/bs"
+import { BsPenFill, BsPlusLg, BsTrashFill } from "react-icons/bs"
 import stylesPage from "../../../css/admin/page/Page.module.css"
 import { useContext, useEffect, useState } from "react"
 import Loading from "../../Loading"

@@ -1,4 +1,4 @@
-import { BsFillHouseFill, BsEnvelopeAtFill, BsTelephoneFill, BsClockFill, BsFacebook, BsInstagram, BsTwitter, BsYoutube } from "react-icons/bs"
+import { BsFillHouseFill, BsEnvelopeAtFill, BsTelephoneFill, BsClockFill, BsFacebook, BsInstagram, BsYoutube } from "react-icons/bs"
 import { FaXTwitter } from "react-icons/fa6"
 import styles from "../../css/footer/Footer.module.css"
 import assetsFolder from "../../utils/publicfolder"

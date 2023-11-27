@@ -1,6 +1,5 @@
 import { BsSearch, BsXLg } from "react-icons/bs"
 import styles from "../../css/index/SportInscription.module.css"
-import cityList from "../../utils/cityList"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 

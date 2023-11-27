@@ -4,15 +4,6 @@ import styleBar from "../../css/header/SearchBar.module.css"
 import { Link } from "react-router-dom"
 import { SearchContext } from "../../context/search/SearchContext"
 
-// const searchData = [
-//   { title: "Inicio", keywords: ["index", "inicio"], to: "/", description: "Vuelve a la pagina inicial" },
-//   { title: "Mision", keywords: ["mision"], to: "/about/mission", description: "Informate sobre nuestra mision" },
-//   { title: "Deportes", keywords: ["deportes", "futbol", "basquetbol"], to: "/sports", description: "Acerca de los deportes que manejamos" },
-//   { title: "Eventos", keywords: ["eventos"], to: "/events", description: "Calendario de eventos proximos y pasados" },
-//   { title: "Registrarse", keywords: ["cuenta", "registrarse"], to: "/auth/register", description: "Registrate en la pagina" },
-//   { title: "Iniciar sesion", keywords: ["cuenta", "iniciar sesion"], to: "/auth/login", description: "Inicia sesion con tu cuenta" }
-// ]
-
 type TSearchBarProps = {
   search: string
   searchHover: boolean

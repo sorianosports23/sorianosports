@@ -75,24 +75,8 @@ const General = () => {
     }
   }, [userInfo])
 
-  const [canSubmit, setCanSubmit] = useState(false)
-
-  // useEffect(() => {
-  //   Object.keys(userInfoInput).map((key) => {
-  //     if (!userInfoInput[key as keyof TUserInfoInput]) {
-  //       setUserInfoInputError({
-  //       ...userInfoInputError,
-  //         [key]: "true"
-  //       })
-  //     }
-
-  //     return null
-  //   })
-  // }, [userInfoInput, userInfoInputError])
-
   const handleSubmit = async (ev: FormEvent) => {
     ev.preventDefault()
-    // if (!canSubmit) return
     setLoading(true)
 
     let err = false
@@ -135,7 +119,6 @@ const General = () => {
 
     if (!changeInfo.status) {
       setLoading(false)
-      // setError(true)
       console.log(changeInfo.err)
       setUserInfoInputError(prev => {
         const key = changeInfo.err as keyof TUserInfoInputError

@@ -1,7 +1,6 @@
 import styles from "../../css/index/index.module.css"
 import NewsCarrousel from "../../components/index/NewsCarrousel"
 import YearSports from "../../components/index/YearSports"
-import SportsWater from "../../components/index/SportsWater"
 import User from "./User"
 import SummerSportsInactive from "../../components/index/SummerSportsInactive"
 import YearSportsInactive from "../../components/index/YearSportsInactive"
@@ -34,8 +33,6 @@ const Index = () => {
       </div>
 
       <div className={`${styles.sport} ${styles.ground}`}>
-        {/* <YearSports/> */}
-        {/* <SummerSports/> */}
         {
           yearSports 
             ? <YearSports/>
@@ -44,9 +41,6 @@ const Index = () => {
       </div>
 
       <div className={`${styles.sport} ${styles.water}`}>
-        {/* <SportsWater/> */}
-        {/* <SummerSportsInactive/> */}
-        {/* <YearSportsInactive/> */}
         {
           yearSports
             ? <SummerSportsInactive/>

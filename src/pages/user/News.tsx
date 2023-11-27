@@ -2,23 +2,12 @@ import NewsCard from "../../components/news/NewsCard"
 import Container from "../../components/templates/Container"
 import User from "./User"
 import styles from "../../css/news/News.module.css"
-import { FormEvent, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import NewsRecents from "../../components/news/NewsRecents"
-import { BsList, BsNewspaper, BsSearch } from "react-icons/bs"
-import { FaRegFaceFrown } from "react-icons/fa6"
+import { BsNewspaper} from "react-icons/bs"
 import Loading from "../Loading"
 import apiGetNews from "../../api/page/getNews"
 import apiGetRecentNews from "../../api/page/getRecentNews"
-
-const IMG_PLACEHOLDER = "img_placeholder.png"
-
-type TFiltersBy = "Titulo" | "Autor" | "Fecha" | undefined
-const FILTERSBY_INITIALSTATE: TFiltersBy[] = ["Titulo", "Autor", "Fecha"]
-enum EFiltersBy {
-  Titulo = "title",
-  Autor = "author",
-  Fecha = "date"
-}
 
 const News = () => {
 
@@ -26,22 +15,6 @@ const News = () => {
 
   const [ recentsNews, setRecentsNews ] = useState<Array<TNews>>([])
   const [ allNews, setAllNews ] = useState<Array<TNews>>([])
-
-  const [searchValue, setSearchValue] = useState("")
-  const [newsResult, setNewsResult] = useState<Array<TNews>>([])
-  const [newsSearched, setNewsSearched] = useState(false)
-
-  const [ filtersOpen, setFiltersOpen ] = useState(false)
-  const [ filterSelected, setFilterSelected ] = useState<TFiltersBy>(undefined)
-  const [ filtersAvailable, setFiltersAvailable ] = useState<Array<TFiltersBy>>(FILTERSBY_INITIALSTATE)
-
-  useEffect(() => {
-    setFiltersAvailable(FILTERSBY_INITIALSTATE.filter(filter => filter !== filterSelected))
-  }, [filterSelected])
-
-  const handleSubmit = (ev: FormEvent) => {
-    ev.preventDefault()
-  }
 
   const getRecentsNewsFromApi = async () => {
     const news = await apiGetRecentNews()
@@ -128,68 +101,6 @@ const News = () => {
                   </button>
                 }
               </div>
-              {/* <div className={styles.filters}>
-                <form className={styles.filter_by} onSubmit={handleSubmit}>
-                  <div className={styles.filters_by}
-                    data-open={filtersOpen}
-                  >
-                    <button type="button"
-                      onClick={() => setFiltersOpen(!filtersOpen)}
-                    >
-                      {
-                        filterSelected
-                          ? filterSelected
-                          : <><BsList/>Filtrar por</>
-                      }
-                    </button>
-
-                    <ul className={styles.filter_by_list}>
-                      {
-                        filtersAvailable.map((filter, i) => (
-                          <li key={i}>
-                            <button 
-                              type="button"
-                              onClick={() => {
-                                setFiltersOpen(false)
-                                setFilterSelected(filter)
-                              }}
-                            >
-                              {filter}
-                            </button>
-                          </li>
-                        ))
-                      }
-                    </ul>
-                  </div>
-
-                  <div>
-                    <input type="text" 
-                      value={searchValue}
-                      onChange={(ev) => setSearchValue(ev.target.value)}
-                    />
-                  </div>
-
-                  <div>
-                    <button type="submit"><BsSearch/></button>
-                  </div>
-                </form>
-              </div>
-
-              <div className={styles.news_results}>
-                {
-                  newsSearched ? newsResult.length > 0
-                    ? newsResult.map((news, i) => (
-                      <NewsCard
-                        {...news}
-                      />
-                    ))
-                    : <div className={styles.no_results}>
-                        <FaRegFaceFrown/>
-                        No se encontraron resultados
-                      </div>
-                    : <></>
-                }
-              </div> */}
             </div>
           </div>
         </div>

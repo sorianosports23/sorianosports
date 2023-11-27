@@ -6,7 +6,6 @@ import useForm from "../../utils/useForm"
 import { userSessionContext } from "../../context/session/UserSessionContext"
 import { Link, useNavigate } from "react-router-dom"
 import apiLogin from "../../api/session/login"
-import ModalError from "../../components/modal/ModalError"
 import Loader from "../../components/Loader"
 import SendModal from "../../components/modal/SendModal"
 
@@ -15,11 +14,8 @@ const Login = () => {
 
   const [modalOpen, setModalOpen] = useState(false)
   const [modalBody, setModalBody] = useState("")
-  const [modalError, setModalError] = useState(true)
 
   const [showPwd, setShowPwd] = useState(false)
-
-  const modalTitle = "Inicio de sesión"
 
   //
 
@@ -41,17 +37,7 @@ const Login = () => {
   const user = useForm("", 1, 9999, clearError)
   const userPassword = useForm("", 8, 9999, clearError)
 
-  const [submitDisabled, setSubmitDisabled] = useState(true)
   const [loadingLogin, setLoadingLogin] = useState(false)
-
-  useEffect(() => {
-    if (user.data_error || userPassword.data_error) return setSubmitDisabled(true)
-    setSubmitDisabled(false)
-  }, [user.data_error, userPassword.data_error])
-
-  useEffect(() => {
-    if (loadingLogin) setSubmitDisabled(true)
-  }, [loadingLogin])
 
   const handleSubmit = async (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault()
@@ -59,7 +45,6 @@ const Login = () => {
 
     if (!user.value || !userPassword.value) {
       setModalBody("Debes ingresar todos los campos")
-      setModalError(false)
       setModalOpen(true)
       return
     }
@@ -84,7 +69,6 @@ const Login = () => {
         })
       } else {
         setModalBody(loginRes.message)
-        setModalError(true)
         setModalOpen(true)
       }
     } else {
@@ -93,7 +77,6 @@ const Login = () => {
     }
 
     setLoadingLogin(false)
-    setSubmitDisabled(false)
   }
 
   useEffect(() => {

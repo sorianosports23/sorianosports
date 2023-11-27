@@ -18,7 +18,7 @@ const IncriptionRecord = ({ sport, signedUp, dateStart, dateEnd, teacher, place,
       const res = await apiGetCityPlace(city)
       if (res.data) setPlacesInfo(res.data)
     })()
-  }, [])
+  }, [city])
 
   useEffect(() => {
     if (placesInfo.length>0) {
@@ -34,7 +34,7 @@ const IncriptionRecord = ({ sport, signedUp, dateStart, dateEnd, teacher, place,
       }
 
     }
-  }, [placesInfo])
+  }, [placesInfo, place, sport])
   
   return (
     <li className={styles.inscription}>
@@ -92,11 +92,12 @@ const Inscriptions = () => {
   const [inscriptionData, setInscriptionData] = useState<TInscription[]>([])
 
   useEffect(() => {
+    if (!token || !username) return
     (async () => {
       const res = await apiGetInscriptionFromUsername({token,username})
       if (res.data) setInscriptionData(res.data)
     })()
-  }, [])
+  }, [token, username])
 
   //!MODAL
   const [sendModal, setSendModal] = useState(false)
@@ -138,23 +139,6 @@ const Inscriptions = () => {
     <>
     <div>
       <ul className={styles.inscription_ul}>
-        {/* <IncriptionRecord
-          sport="Futbol"
-          signedUp={true}
-          dateStart="27/09/23"
-          teacher="Prof X"
-          place="CRM"
-        />
-
-        <IncriptionRecord
-          sport="Basquetbol"
-          signedUp={false}
-          dateStart="27/09/23"
-          dateEnd="29/10/23"
-          teacher="Prof X"
-          place="CRM"
-        /> */}
-
         {
           inscriptionData.map((inscription, i) => (
             <IncriptionRecord

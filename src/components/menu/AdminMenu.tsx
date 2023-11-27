@@ -1,5 +1,5 @@
 import { useContext, useState, KeyboardEvent } from "react"
-import { BsBoxArrowRight, BsChevronDown, BsList } from "react-icons/bs"
+import { BsChevronDown, BsList } from "react-icons/bs"
 import { RxSlash } from "react-icons/rx"
 import { Link, useNavigate } from "react-router-dom"
 import { userSessionContext } from "../../context/session/UserSessionContext"
@@ -68,14 +68,6 @@ const AdminMenu = () => {
 
       <div className={styles.nav}>
         <nav>
-          {/* <Link to="/admin/">Inicio</Link>
-          <Link to="/admin/users">Usuarios</Link>
-          <Link to="/admin/sports">Ciudades</Link>
-          <Link to="/admin/events">Eventos</Link>
-          <Link to="/admin/news">Noticias</Link>
-          <Link to="/admin/inscriptions">Inscripciones</Link>
-          <Link to="/admin/contact">Contacto</Link>
-          <Link to="/admin/page">Página</Link> */}
           <Link to="/admin/">Inicio</Link>
           {
             permissions.includes("admin")

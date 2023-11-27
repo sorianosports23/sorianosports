@@ -1,15 +1,12 @@
 import Admin from "../Admin"
-import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react"
+import { ChangeEvent, FormEvent, useContext, useState } from "react"
 import { BsChevronDown, BsCloudUploadFill, BsUpload } from "react-icons/bs"
 import styles from "../../../css/admin/events/AddEvents.module.css"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import SendModal from "../../../components/modal/SendModal"
 import apiAdminAddEvent from "../../../api/admin/events/addEvent"
 import cityList from "../../../utils/cityList"
-import TimePicker from "react-time-picker"
 import TimeRangePicker from "@wojtekmaj/react-timerange-picker"
-
-// type TInputError = "" | "name" | "place" | "time" | "sport" | "description" | "date_ev" | "image"
 
 const AddEvent = () => {
 
@@ -158,20 +155,6 @@ const AddEvent = () => {
         </div>
         <div>
           <label htmlFor="ev_time">Horario:</label>
-          {/* <input 
-            type="time" 
-            id="ev_time"
-            value={eventTime.timeS}
-            onChange={(ev) => {
-              setEventTime(prev => ({...prev, timeS: ev.target.value}))
-              setInputError("")
-            }}
-            required
-            data-invalid={inputError === "time"}
-          /> */}
-          {/* <TimePicker
-            locale="es-UY"
-          /> */}
           <TimeRangePicker
             locale="es-UY"
             value={eventTime}
@@ -179,17 +162,6 @@ const AddEvent = () => {
             disableClock
             rangeDivider="-"
           />
-          {/* <span>-</span>
-          <input 
-            type="time"
-            value={eventTime.timeE}
-            onChange={(ev) => {
-              setEventTime(prev => ({...prev, timeE: ev.target.value}))
-              setInputError("")
-            }}
-            required
-            data-invalid={inputError === "time"}
-          /> */}
         </div>
         <div>
           <label htmlFor="ev_sport">Deporte:</label>

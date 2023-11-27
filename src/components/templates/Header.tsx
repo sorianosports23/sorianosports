@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { BsSearch, BsFillChatSquareDotsFill, BsFillPersonFill, BsChevronDown, BsFillHouseFill, BsCalendarDateFill, BsList, BsPersonFillUp, BsNewspaper } from "react-icons/bs"
+import { BsSearch, BsFillChatSquareDotsFill, BsChevronDown, BsFillHouseFill, BsCalendarDateFill, BsList, BsPersonFillUp, BsNewspaper } from "react-icons/bs"
 import styles from "../../css/header/Header.module.css"
 import { ChangeEvent, MutableRefObject, useRef, useState, useContext } from "react"
 import SearchBar from "../header/SearchBar"
@@ -143,17 +143,11 @@ const Header = () => {
             onClick={() => setActivitiesDropDown(prev => !prev)}
           >
             <p className={stylesName.link_header2}>
-              <BsChevronDown style={{
-                // rotate: activitiesDropdown ? "-180deg" : "0deg"
-              }}/> 
+              <BsChevronDown /> 
               Actividades
             </p>
 
             <ul className={styles["activities-list"]}
-              // style={{
-              //   opacity: activitiesDropdown ? "1" : "0",
-              //   transform: `translateY(${activitesDropdownTransformValue})`
-              // }}
               ref={activitiesDropdownUL}
             >
               <li>
@@ -180,18 +174,11 @@ const Header = () => {
             onClick={() => setAboutDropDown(prev => !prev)}
           >
             <p className={stylesName.link_header2}>
-              <BsChevronDown style={{
-                // rotate: aboutDropdown ? "-180deg" : "0deg"
-              }}/> 
+              <BsChevronDown/> 
               Institución
             </p>
 
-            <ul className={styles["activities-list"]}
-              // style={{
-              //   opacity: aboutDropdown ? "1" : "0",
-              //   transform: `translateY(${aboutDropdown ? "10.2rem" : "0"})`
-              // }}
-            >
+            <ul className={styles["activities-list"]}>
               <li>
                 <Link to="/acerca/misionvision" tabIndex={aboutDropdown ? 0 : -1}>
                   Misión y Visión

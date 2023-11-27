@@ -1,10 +1,8 @@
 import { useCallback, useEffect, useState } from "react"
-import EventCard from "../../components/events/EventCard"
 import styles from "../../css/events/Events.module.css"
-import { BsFillCaretDownFill, BsFillCalendarDateFill , BsFillCaretUpFill, BsCalendarCheckFill} from "react-icons/bs"
+import { BsFillCaretDownFill, BsFillCaretUpFill, BsCalendarCheckFill} from "react-icons/bs"
 import User from "./User"
 import Loading from "../Loading"
-import { useNavigate } from "react-router-dom"
 import apiGetEvents from "../../api/page/events/getEvents"
 import Container from "../../components/templates/Container"
 import NewEventCard from "../../components/events/NewEventCard"
@@ -14,7 +12,6 @@ const Events = () => {
 
   //!
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState<any>(undefined)
 
   useEffect(() => {
     (async () => {
@@ -41,21 +38,12 @@ const Events = () => {
     }
   }
 
-  useEffect(() => {
-    if (data) {
-      setLoading(false)
-      console.log(data)
-    }
-  }, [data])
-
   const [showPlaces, setShowPlaces] = useState(false)
   const [showSports, setShowSports] = useState(false)
   const [events, setEvents] = useState<Array<TEvent>>([])
   const [eventsCity, setEventsCity] = useState("Todos")
   const [sportSelected, setSportSelected] = useState("Todos")
-  const [sportsName, setSportsName] = useState<Array<string>>([])
   const [eventsToShow, setEventsToShow] = useState<Array<TEvent>>([])
-  const [selectedEvent, setSelectedEvent] = useState<TEvent | null>(null)
   const [cityNames, setCityNames] = useState<Array<string>>(["Todos"])
   const [sportNames, setSportNames] = useState<Array<string>>(["Todos"])
 
@@ -198,8 +186,6 @@ const Events = () => {
                   }
                 </ul>
               </div>
-
-              {/* <button>Fecha <BsFillCalendarDateFill/></button> */}
             </div>
           </div>
 

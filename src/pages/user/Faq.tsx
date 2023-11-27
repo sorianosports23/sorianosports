@@ -1,7 +1,6 @@
 import Container from "../../components/templates/Container"
 import User from "./User"
 import styles from "../../css/faq/Faq.module.css"
-import { BsChevronRight, BsPlusCircle } from "react-icons/bs"
 import Question from "../../components/faq/Question"
 import assetsFolder from "../../utils/publicfolder"
 

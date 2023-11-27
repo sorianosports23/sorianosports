@@ -1,47 +1,12 @@
-import { BsList, BsSearch } from "react-icons/bs"
 import User from "../User"
 import styles from "../../../css/activities/departments/Departments.module.css"
-import { ChangeEvent, useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import CityMap from "../../../components/activities/departments/CityMap"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import useSearchParams from "../../../utils/useSearchParams"
 import assetsFolder from "../../../utils/publicfolder"
-import { citySports, sportImg } from "../../../utils/sportList"
 import apiGetCitySports from "../../../api/page/sports/getCitySports"
 import cityList from "../../../utils/cityList"
-
-const departments = {
-  Dolores: {
-    ground: ["Voleibol", "Remo"],
-  },
-  Cardona: {
-    ground: ["Atletismo", "Karate", "Básquetbol", "Gimnadia 3ra Edad", "Hockey", "Zumba"],
-  },
-  Mercedes: {
-    ground: [],
-  },
-  VillaSoriano: {
-    ground: [],
-  },
-  Palmar: {
-    ground: [],
-  },
-  Palmitas: {
-    ground: [],
-  },
-  Egana: {
-    ground: [],
-  },
-  Risso: {
-    ground: [],
-  },
-  STACatalina: {
-    ground: [],
-  },
-  JERodo: {
-    ground: [],
-  },
-}
 
 const NoSelected = "Ninguno seleccionado"
 

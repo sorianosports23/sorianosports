@@ -4,7 +4,6 @@ import User from "../User"
 import borderStyles from "../../../css/institution/missionvission/TitleBorder.module.css"
 import bgStyles from "../../../css/institution/missionvission/Background.module.css"
 import styles from "../../../css/institution/missionvission/MissionVission.module.css"
-import { useEffect, useRef } from "react"
 
 const TitleBorder = ({up}: {up:boolean}) => {
   return (
@@ -20,43 +19,10 @@ const TitleBorder = ({up}: {up:boolean}) => {
 
 const Background = () => {
 
-  // const parent = useRef<HTMLDivElement>(null)
-
-  // useEffect(() => {
-  //   if (parent.current) {
-  //     const observer = new ResizeObserver(sizeChange)
-  //     observer.observe(parent.current)
-  //   }
-  // }, [parent])
-
-  // const sizeChange = () => {
-  //   if (parent.current) {
-  //     const parentSize = parent.current.getBoundingClientRect()
-  //     const childs = Array.from(parent.current.children as HTMLCollectionOf<HTMLElement>)
-  //     childs.map((child) => {
-  //       const childSize = child.getBoundingClientRect()
-  //       const bgSize = {
-  //         x: parentSize.width,
-  //         y: parentSize.height
-  //       }
-  //       child.style.backgroundSize = `${bgSize.x}px ${bgSize.y}px`
-  //       const offsetX = childSize.width - childSize.right
-  //       const offsetY = (childSize.height - childSize.top) + 26.9
-  //       child.style.backgroundPosition = `${offsetX}px ${offsetY}px`
-      
-  //       return null
-  //     })
-  //   }
-  // }
-
   return (
     <>
     <div className={bgStyles.bg} style={{backgroundImage: `url(${assetsFolder}/img/mvbg.png)`}}>
-      {/* <div className={bgStyles.white_bg}></div> */}
-      {/* <div className={bgStyles.miniPoly} style={{backgroundImage: `url(${assetsFolder}/img/missionvissionbg.jpg)`}}></div>
-      <div className={bgStyles.miniPoly} style={{backgroundImage: `url(${assetsFolder}/img/missionvissionbg.jpg)`}}></div>
-      <div className={bgStyles.miniPoly} style={{backgroundImage: `url(${assetsFolder}/img/missionvissionbg.jpg)`}}></div>
-      <div className={bgStyles.bigPoly} style={{backgroundImage: `url(${assetsFolder}/img/missionvissionbg.jpg)`}}></div> */}
+
     </div>
     </>
   )

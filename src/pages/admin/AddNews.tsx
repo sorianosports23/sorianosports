@@ -1,6 +1,6 @@
 import Admin from "./Admin"
 import styles from "../../css/admin/news/addNews.module.css"
-import { BsCloudUploadFill, BsFillCloudUploadFill, BsListUl, BsTypeBold, BsTypeItalic, BsTypeUnderline, BsUpload } from "react-icons/bs"
+import { BsCloudUploadFill, BsTypeBold, BsTypeItalic, BsTypeUnderline, BsUpload } from "react-icons/bs"
 import { MutableRefObject, useContext, useEffect, useRef, useState } from "react"
 import PrevNews from "./PrevNews"
 import { userSessionContext } from "../../context/session/UserSessionContext"
@@ -40,7 +40,6 @@ const AddNews = () => {
 
   //!modal
   const [modalMessage, setModalMessage] = useState("")
-  const [modalSMessage, setModalSMessage] = useState("")
   const [modalOpen, setModalOpen] = useState(false)
   //!
 
@@ -157,7 +156,6 @@ const AddNews = () => {
         <button 
           onClick={() => {
             setModalPrev(true)
-            // handleSubmitNews()
           }}
         >
           <BsCloudUploadFill/> Publicar
@@ -174,7 +172,6 @@ const AddNews = () => {
 
     <SendModal
       message={modalMessage}
-      otherMessage={modalSMessage}
       open={modalOpen}
       close={() => setModalOpen(false)}
     />

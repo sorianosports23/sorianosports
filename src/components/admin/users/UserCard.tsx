@@ -1,4 +1,3 @@
-// import { TUser } from "./UsersSearch"
 import { useState } from "react"
 import styles from "../../../css/admin/users/UserCard.module.css"
 import { BsPenFill, BsThreeDots, BsTrashFill } from "react-icons/bs"

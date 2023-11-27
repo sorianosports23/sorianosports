@@ -1,6 +1,5 @@
 import { useContext } from "react"
 import { BsJournalCheck, BsShieldLock, BsPerson, BsBoxArrowLeft } from "react-icons/bs"
-import { useNavigate } from "react-router-dom"
 import { userSessionContext } from "../../context/session/UserSessionContext"
 import styles from "../../css/session/account/AccountMenu.module.css"
 import { RiInboxArchiveFill } from "react-icons/ri"

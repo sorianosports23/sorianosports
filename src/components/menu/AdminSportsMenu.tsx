@@ -1,4 +1,4 @@
-import { BsPlusLg, BsSearch } from "react-icons/bs"
+import { BsSearch } from "react-icons/bs"
 import styles from "../../css/admin/sports/AdminSportsMenu.module.css"
 import { useCallback, useEffect, useState } from "react"
 
@@ -19,7 +19,7 @@ const AdminSportsMenu = ({ sports, setSports }: TSportsMenuProps) => {
     } else {
       setSports(sports)
     }
-  }, [searchValue, sports])
+  }, [searchValue, sports, setSports])
 
   useEffect(() => {
     handleChangeSports()
@@ -29,10 +29,6 @@ const AdminSportsMenu = ({ sports, setSports }: TSportsMenuProps) => {
 
   return (
     <div className={styles.menu}>
-      {/* <div className={styles.management}>
-        <button className={styles.btn_add}><BsPlusLg/> Añadir</button>
-      </div> */}
-
       <div className={styles.search_cont}>
         <div className={styles.search}>
           <div className={styles.icon}>

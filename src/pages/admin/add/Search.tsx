@@ -14,7 +14,6 @@ const Search = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [modalMsg, setModalMsg] = useState("")
   const [modalOtMsg, setModalOtMsg] = useState("")
-  const [modalLink, setModalLink] = useState("")
   //!
 
   //! formulario
@@ -39,12 +38,9 @@ const Search = () => {
 
     if (res.status) {
       setModalMsg("Se añadio la busqueda")
-      // setModalOtMsg("Añadir palabras clave")
-      // setModalLink("/admin/add/keyword")
     } else {
       setModalMsg("No se pudo añadir la noticia")
       setModalOtMsg(res.message)
-      setModalLink("")
     }
 
     setModalOpen(true)
@@ -95,7 +91,6 @@ const Search = () => {
         close={() => setModalOpen(false)}
         message={modalMsg}
         otherMessage={modalOtMsg}
-        // otherMsgLink={modalLink}
       />
     </Admin>
   )

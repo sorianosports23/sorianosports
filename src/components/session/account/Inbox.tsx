@@ -64,27 +64,6 @@ const Inbox = () => {
     <>
     <div className={styles.inbox_table}>
       <ul>
-
-        {/* <li>
-          <div className={styles.card}>
-            <div>
-              <p>Asunto</p>
-              <span>Problema de Backend</span>
-            </div>
-
-            <div>
-              <p>Estado</p>
-              <span className={styles.status_span}>
-                <div className={styles.color_status}>
-
-                </div>
-                Pendiente
-              </span>
-            </div>
-
-            <button className={styles.btn_show}>Ver Mensaje</button>
-          </div>
-        </li> */}
         {
           messages.map((message, i) => (
             <li>
@@ -101,11 +80,6 @@ const Inbox = () => {
                     {statusLabel[message.status]}
                   </span>
                 </div>
-{/* 
-                {
-                  Number(message.status) === 2
-                  && 
-                } */}
                 <button 
                   className={styles.btn_show} 
                   style={{opacity: Number(message.status) === 2 ? 1:0}}

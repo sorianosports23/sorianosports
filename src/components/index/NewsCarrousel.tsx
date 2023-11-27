@@ -72,22 +72,7 @@ const NewsCarrousel = () => {
 
   useEffect(() => {   
     if (recentNews.length === 0) return
-    // const firstChild = news.current.firstChild as HTMLDivElement
-    // const lastChild = news.current.lastChild as HTMLDivElement
-    // const clonLastChild = document.createElement("div")
-    // clonLastChild.innerHTML = lastChild.innerHTML
-    // news.current.insertBefore(clonLastChild, firstChild)
-    // const clonFirstChild = document.createElement("div")
-    // clonFirstChild.innerHTML = firstChild.innerHTML
-    // news.current.appendChild(clonFirstChild)
-
     setNumberOfSlides(news.current.children.length)
-    // const currentNews = news.current
-    
-    return () => {
-      // currentNews.removeChild(clonFirstChild)
-      // currentNews.removeChild(clonLastChild)
-    }
   }, [recentNews])
 
   const getRecentNews = async () => {

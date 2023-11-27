@@ -19,7 +19,6 @@ const YearSportsInactive = () => {
 
   const [carrouselWidth, setCarrouselWidth] = useState(0)
   const [imagesOnCarrousel, setImagesOnCarrousel] = useState(0)
-  // const [] = useState()
 
   const handleCarrouselLeft = () => {
     if (carrouselTransform >= 0) return
@@ -49,7 +48,6 @@ const YearSportsInactive = () => {
       setCarrouselWidth(carrouselSize.width)
       setImagesOnCarrousel(Math.round(carrouselSize.width / 288))
 
-      // console.log(carrousel.current.getBoundingClientRect().width / imagesOnCarrousel)
     }
   }, [imagesOnCarrousel])
 
@@ -59,9 +57,6 @@ const YearSportsInactive = () => {
         <div className={styles.content} ref={content}>
           <div className={styles.title}>
             <h2>
-              {/* <span>Actividades</span>
-              <span>Deportivas</span>
-              <span>De verano</span> */}
               Actividades Anuales
             </h2>
           </div>

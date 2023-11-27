@@ -1,5 +1,5 @@
 import { useState, useContext } from "react"
-import { BsXLg, BsFillHouseFill, BsChevronRight, BsCalendarDateFill, BsChatSquareDotsFill, BsPersonCircle, BsNewspaper } from "react-icons/bs"
+import { BsXLg, BsChevronRight, BsPersonCircle } from "react-icons/bs"
 import styles from "../../css/header/HeaderMenuMobile.module.css"
 import { Link } from "react-router-dom"
 import { userSessionContext } from "../../context/session/UserSessionContext"
@@ -27,8 +27,7 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
       style={{
         transform: `
           translateX(${open ? "0" : "200"}%)
-        `,
-        // display: open ? "block" : "none"
+        `
       }}
     >
       <div className={styles.header}>
@@ -73,7 +72,6 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
           <ul>
             <li>
               <Link to="/">
-                {/* <BsFillHouseFill/> */}
                 Inicio
               </Link>
             </li>
@@ -113,13 +111,11 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
             </li>
             <li>
               <Link to="/eventos">
-                {/* <BsCalendarDateFill/> */}
                 Eventos
               </Link>
             </li>
             <li>
               <Link to="/noticias">
-                {/* <BsNewspaper/> */}
                 Noticias
               </Link>
             </li>
@@ -158,7 +154,6 @@ const HeaderMobile = ({ open, closeMenu }: THeaderMobileProps) => {
             </li>
             <li>
               <Link to="/faq">
-                {/* <BsChatSquareDotsFill/> */}
                 Ayuda
               </Link>
             </li>

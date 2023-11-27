@@ -1,4 +1,3 @@
-import { FaBasketballBall, FaVolleyballBall } from "react-icons/fa"
 import styles from "../../css/index/sportsground.module.css"
 import { useEffect, useRef, useState } from "react"
 import assetsFolder from "../../utils/publicfolder"
@@ -120,21 +119,6 @@ const YearSports = () => {
       </div>
       
       <div className={styles.list} ref={sportsList}>
-        {/* <SportCard
-          sport="Basquetbol"
-          img="basketball.jpg"
-          open={() => handleSelectSport("Basquetbol")}
-        />
-        <SportCard
-          sport="Boxeo"
-          img="box.jpg"
-          open={() => handleSelectSport("Boxeo")}
-        />
-        <SportCard
-          sport="Remo"
-          img="remo.png"
-          open={() => handleSelectSport("Remo")}
-        /> */}
         {
           sportsYear.map((sport, i) => (
             <SportCard

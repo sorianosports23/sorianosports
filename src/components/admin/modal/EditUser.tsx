@@ -4,7 +4,6 @@ import styles from "../../../css/admin/users/EditUser.module.css"
 import { useContext, useState, FormEvent, useCallback, useEffect } from "react"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import apiAdminGenPass from "../../../api/admin/users/generatePass"
-import LoaderComp from "../../LoaderComp"
 import Loader from "../../Loader"
 import apiAdminManagePerm from "../../../api/admin/users/managePerm"
 import useCloseModalKey from "../../../utils/useCloseModalKey"
@@ -62,32 +61,6 @@ const EditUser = ({ open, close, info, openSend }: TEditUserProps) => {
   const [newPasswordGen, setNewPasswordGen] = useState("")
   const [generatingPassword, setGeneratingPassword] = useState(false)
   const [genPassErr, setGenPassErr] = useState(false)
-  const [grantingPerm, setGrantingPerm] = useState(false)
-
-  const getButtonGrantPerm = useCallback((type: TPermission) => {
-    const hasPerm = info.permissions.includes(type)
-    const permLabel = type === "admin" ? "Administrador" : "Editor"
-    return (
-      <button
-        type="button"
-        onClick={() => handleModifyPermission(type, !hasPerm)}
-      >
-        {
-          hasPerm
-            ? `Revocar permisos de ${permLabel}`
-            : `Dar permisos de ${permLabel}`  
-        }
-      </button>
-      )  
-  }, [info])
-
-  const [adminBtn, setAdminBtn] = useState(getButtonGrantPerm("admin"))
-  const [editorBtn, setEditorBtn] = useState(getButtonGrantPerm("editor"))
-
-  useEffect(() => {
-    setAdminBtn(getButtonGrantPerm("admin"))
-    setEditorBtn(getButtonGrantPerm("editor"))
-  }, [getButtonGrantPerm])
 
   const handleGenerateNewPassword = async () => {
     const newPass = generateNewPassword()
@@ -112,9 +85,7 @@ const EditUser = ({ open, close, info, openSend }: TEditUserProps) => {
 
   }
 
-  const handleModifyPermission = async (perm: "admin" | "editor", grant: boolean) => {
-    setGrantingPerm(true)
-
+  const handleModifyPermission = useCallback(async (perm: "admin" | "editor", grant: boolean) => {
     const data = {
       token,
       username: info.username,
@@ -136,9 +107,32 @@ const EditUser = ({ open, close, info, openSend }: TEditUserProps) => {
         : "No se pudo eliminar el permiso"
       openSend(msg, "", false)
     }
+  }, [close, info, openSend, token])
 
-    setGrantingPerm(false)
-  }
+  const getButtonGrantPerm = useCallback((type: TPermission) => {
+    const hasPerm = info.permissions.includes(type)
+    const permLabel = type === "admin" ? "Administrador" : "Editor"
+    return (
+      <button
+        type="button"
+        onClick={() => handleModifyPermission(type, !hasPerm)}
+      >
+        {
+          hasPerm
+            ? `Revocar permisos de ${permLabel}`
+            : `Dar permisos de ${permLabel}`  
+        }
+      </button>
+      )  
+  }, [info, handleModifyPermission])
+
+  const [adminBtn, setAdminBtn] = useState(getButtonGrantPerm("admin"))
+  const [editorBtn, setEditorBtn] = useState(getButtonGrantPerm("editor"))
+
+  useEffect(() => {
+    setAdminBtn(getButtonGrantPerm("admin"))
+    setEditorBtn(getButtonGrantPerm("editor"))
+  }, [getButtonGrantPerm])
 
   const handleSubmit = (ev: FormEvent) => {
     ev.preventDefault()
@@ -200,23 +194,9 @@ const EditUser = ({ open, close, info, openSend }: TEditUserProps) => {
           </div>
 
           <div className={styles.btns}>
-            {/* <button
-              onClick={() => handleModifyPermission("admin", true)}
-              type="button"
-              disabled={grantingPerm}
-            >
-              Dar permisos de administrador
-            </button> */}
             {
               adminBtn
             }
-            {/* <button
-              onClick={() => handleModifyPermission("editor", true)}
-              type="button"
-              disabled={grantingPerm}
-            >
-              Dar permisos de editor
-            </button> */}
             {
               editorBtn
             }

@@ -4,7 +4,6 @@ import Index from "../pages/user/Index"
 import Events from "../pages/user/Events"
 import Departments from "../pages/user/activities/Citys"
 import Sports from "../pages/user/activities/Sports"
-import Schools from "../pages/user/activities/Schools"
 import Sport from "../pages/user/Sport"
 import sportLoader from "./routes/sportLoader"
 import Register from "../pages/session/Register"
@@ -58,7 +57,6 @@ const pageUserRoutes = createRoutesFromElements(
     <Route path="actividades">
       <Route path="ciudades" element={<Departments/>}/>
       <Route path="deportes" element={<Sports/>}/>
-      <Route path="escuelas" element={<Schools/>}/>
     </Route>
     
     <Route path="noticias">

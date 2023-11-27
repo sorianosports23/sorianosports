@@ -1,17 +1,6 @@
-// import { FormEvent, useState } from "react"
 import { BsSearch } from "react-icons/bs"
 import styles from "../../../css/admin/users/UsersSearch.module.css"
 import { useState, FormEvent } from "react"
-
-// type TUser = {
-//   username: string
-//   ci: number
-//   permissions: {
-//     admin: boolean
-//     news: boolean
-//     users: boolean
-//   }
-// }
 
 type TUsersSearchProps = {
   searchUser: (user: string | number, type: "users" | "ci") => void
@@ -53,5 +42,4 @@ const UsersSearch = ({ searchUser, type }: TUsersSearchProps) => {
   )
 }
 
-// export type { TUser }
 export default UsersSearch

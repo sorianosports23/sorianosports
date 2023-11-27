@@ -2,7 +2,6 @@ import SportCard from "../../components/admin/sports/SportCard"
 import AdminSportsMenu from "../../components/menu/AdminSportsMenu"
 import styles from "../../css/admin/sports/Sports.module.css"
 import Admin from "./Admin"
-import { sportList } from "../../utils/sportList"
 import { useCallback, useState } from "react"
 import cityList from "../../utils/cityList"
 

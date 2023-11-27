@@ -7,7 +7,6 @@ import General from "../../components/session/account/General"
 import styles from "../../css/session/account/Account.module.css"
 import Inscriptions from "../../components/session/account/Inscriptions"
 import Security from "../../components/session/account/Security"
-import SendModal from "../../components/modal/SendModal"
 import Inbox from "../../components/session/account/Inbox"
 
 type TMenu = "general" | "inscripciones" | "seguridad" | "inbox"

@@ -66,52 +66,28 @@ const AdminMenuMobile = ({ open, close }: TAdminMenuMobileProps) => {
       <div className={styles.nav}>
         <nav>
           <ul>
-            {/* <li>
+            <li>
               <Link to="/admin/">Inicio</Link>
             </li>
-            <li>
-              <Link to="/admin/users">Usuarios</Link>
-            </li>
-            <li>
-              <Link to="/admin/sports">Ciudades</Link>
-            </li>
-            <li>
-              <Link to="/admin/events">Eventos</Link>
-            </li>
-            <li>
-              <Link to="/admin/news">Noticias</Link>
-            </li>
-            <li>
-              <Link to="/admin/inscriptions">Inscripciones</Link>
-            </li>
-            <li>
-              <Link to="/admin/contact">Contacto</Link>
-            </li>
-            <li>
-              <Link to="/admin/page">Página</Link>
-            </li> */}
-          <li>
-            <Link to="/admin/">Inicio</Link>
-          </li>
-          {
-            permissions.includes("admin")
-            &&
-            adminRoutes.map((route, i) => (
-              <li key={i}>
-                <Link to={`/admin/${route.url}`}>{route.name}</Link>
-              </li>
-            ))
-          }
-          {
-            (permissions.includes("editor") && !permissions.includes("admin"))
-            &&
-            // eslint-disable-next-line sonarjs/no-identical-functions
-            editorRoutes.map((route, i) => (
-              <li key={i}>
-                <Link to={`/admin/${route.url}`}>{route.name}</Link>
-              </li>
-            )) 
-          }
+            {
+              permissions.includes("admin")
+              &&
+              adminRoutes.map((route, i) => (
+                <li key={i}>
+                  <Link to={`/admin/${route.url}`}>{route.name}</Link>
+                </li>
+              ))
+            }
+            {
+              (permissions.includes("editor") && !permissions.includes("admin"))
+              &&
+              // eslint-disable-next-line sonarjs/no-identical-functions
+              editorRoutes.map((route, i) => (
+                <li key={i}>
+                  <Link to={`/admin/${route.url}`}>{route.name}</Link>
+                </li>
+              )) 
+            }
           </ul>
         </nav>
       </div>

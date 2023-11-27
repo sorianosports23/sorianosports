@@ -1,6 +1,5 @@
 import User from "./User"
 import { useLoaderData } from "react-router-dom"
-import { MutableRefObject, useEffect, useRef } from "react"
 import Container from "../../components/templates/Container"
 import styles from "../../css/events/EventID.module.css"
 import api from "../../api/apiRoute"
@@ -43,7 +42,6 @@ const EventId = () => {
             </div>
 
             <div className={styles.map}>
-              {/* <iframe title="Mapa del evento" srcDoc={data.urlUbi}></iframe> */}
               <div dangerouslySetInnerHTML={{__html: data.urlUbi}}></div>
             </div>
           </div>

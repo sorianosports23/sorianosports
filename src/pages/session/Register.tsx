@@ -8,7 +8,6 @@ import { BsCheckAll } from "react-icons/bs"
 import { Link } from "react-router-dom"
 import useForm from "../../utils/useForm"
 import apiRegister from "../../api/session/register"
-import ModalError from "../../components/modal/ModalError"
 import SendModal from "../../components/modal/SendModal"
 
 
@@ -26,9 +25,7 @@ const Register = () => {
   ///
 
   const [modalOpen, setModalOpen] = useState(false)
-  const modalTitle = "Registro"
   const [modalBody, setModalBody] = useState("")
-  const [modalError, setModalError] = useState(true)
 
   ///
 
@@ -60,10 +57,6 @@ const Register = () => {
   const [registerSlide, setRegisterSlide] = useState(0)
   const [loadingRegister, setLoadingRegister] = useState(false)
 
-  const handleChangePage = (num: number) => {
-    setRegisterSlide(num)
-  }
-
   useEffect(() => {
     if (loadingRegister) setSubmitDisabled(true)
   }, [loadingRegister])
@@ -73,16 +66,12 @@ const Register = () => {
 
     if (!user.value || !userPassword.value || !userEmail.value || !userPhone.value || !userCI.value) {
       setModalBody("Debes ingresar todos los campos")
-      setModalError(false)
       setModalOpen(true)
       return
     }
 
     setLoadingRegister(true)
-    // setTimeout(() => {
-    //   setLoadingRegister(false)
-    //   setRegisterSlide(3)
-    // }, 3000);
+
     const userData: TApiRegisterRequest = {
       username: user.value,
       fullname: userFullname.value,
@@ -120,12 +109,8 @@ const Register = () => {
         </div>
 
         <div className={styles.form}>
-          <div className={styles.form_content}
-            style={{
-              // transform: `
-              //   translateX(-${21.25 * registerSlide}rem)
-              // `
-            }}
+          <div 
+            className={styles.form_content}
             data-slide={registerSlide}
           >
             <AccountDetails
@@ -170,7 +155,6 @@ const Register = () => {
         <div className={styles.circles_1}
           style={{
             width: registerSlide >= 3 ? "100%" : circle1InitialWidth,
-            // borderRadius: registerSlide >= 3 ? "0" : borderRadiusCircle
             clipPath: registerSlide >= 3 ? "unset" : circleClipPath
           }}
           data-open={registerSlide >= 3}
@@ -188,7 +172,6 @@ const Register = () => {
           <div className={styles.circle_register_completed}
             style={{
               display: `${registerSlide === 3 ? "flex" : "none"}`,
-              // transform: `${registerSlide === 3 ? "scale(1) translateX(-5rem)" : "scale(0)"}`
             }}
             data-ready={registerSlide === 3}
           >
@@ -208,7 +191,6 @@ const Register = () => {
         <div className={styles.circles_2}
           style={{
             width: registerSlide >= 2 ? "100%" : circle2InitialWidth,
-            // borderRadius: registerSlide >= 2 ? "0" : borderRadiusCircle
             clipPath: registerSlide >= 2 ? "unset" : circleClipPath
           }}
           data-open={registerSlide >= 2}
@@ -216,20 +198,11 @@ const Register = () => {
         <div className={styles.circles_3}
           style={{
             width: registerSlide >= 1 ? "100%" : circle3InitialWidth,
-            // borderRadius: registerSlide >= 1 ? "0" : borderRadiusCircle
             clipPath: registerSlide >= 1 ? "unset" : circleClipPath
           }}
           data-open={registerSlide >= 1}
         ></div>
       </div>
-
-      {/* <ModalError
-        open={modalOpen}
-        close={() => setModalOpen(false)}
-        title={modalTitle}
-        body={modalBody}
-        error={modalError}
-      /> */}
 
       <SendModal
         open={modalOpen}

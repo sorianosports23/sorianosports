@@ -93,7 +93,6 @@ const Contact = () => {
 
   //modal
   const [modalMessage, setModalMessage] = useState("")
-  const [modalSMessage, setModalSMessage] = useState("")
   const [modalOpen, setModalOpen] = useState(false)
 
   return (
@@ -206,7 +205,6 @@ const Contact = () => {
     
     <SendModal
       message={modalMessage}
-      otherMessage={modalSMessage}
       open={modalOpen}
       close={() => setModalOpen(false)}
     />

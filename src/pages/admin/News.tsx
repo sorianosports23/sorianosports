@@ -1,7 +1,7 @@
 import Admin from "./Admin"
 import styles from "../../css/admin/news/News.module.css"
 import { Link } from "react-router-dom"
-import { BsPlus, BsPlusLg } from "react-icons/bs"
+import { BsPlusLg } from "react-icons/bs"
 import { useContext, useEffect, useState } from "react"
 import apiGetNews from "../../api/page/getNews"
 import NewsCard from "../../components/admin/news/NewsCard"
