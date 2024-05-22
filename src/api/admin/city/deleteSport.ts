@@ -1,10 +1,11 @@
 import api from "../../apiRoute"
 
-const apiAdminDeleteSport = async ({ token, city, sport }: Omit<TApiAdminAddSportRequest, "typeSport">): Promise<TApiResponse> => {
+const apiAdminDeleteSport = async ({ token, city, sport, typeSport }: TApiAdminAddSportRequest): Promise<TApiResponse> => {
   try {
     const data = {
       nameCity: city,
-      nameSport: sport
+      nameSport: sport,
+      typeSport
     }
 
     const res = await fetch(`${api}/cities/deleteCity.php`, {

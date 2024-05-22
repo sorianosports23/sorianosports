@@ -2,6 +2,7 @@
   "name": "sorianosports",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/deportes",
   "dependencies": {
     "@wojtekmaj/react-timerange-picker": "^5.4.4",
     "classnames": "^2.3.2",

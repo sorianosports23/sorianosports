@@ -102,11 +102,12 @@ const EditCity = () => {
     setSendModal(true)
   }
 
-  const handleDeleteSport = async (sport: string) => {
+  const handleDeleteSport = async (sport: string, type: "summer" | "year") => {
     const data = {
       token,
       city: city as string,
-      sport
+      sport,
+      typeSport: type
     }
     
     const res = await apiAdminDeleteSport(data)
