@@ -42,7 +42,7 @@ const EventId = () => {
             </div>
 
             <div className={styles.map}>
-              <div dangerouslySetInnerHTML={{__html: data.urlUbi}}></div>
+              <div dangerouslySetInnerHTML={{__html: data.urlubi}}></div>
             </div>
           </div>
 
@@ -56,17 +56,17 @@ const EventId = () => {
           <div className={styles.big_info}>
             <h2>Información sobre inscripción</h2>
             <p>
-              {data.inscriptionInfo}
+              {data.inscriptioninfo}
             </p>
           </div>
 
           {
-            data.extraInfo
+            data.extrainfo
             &&
             <div className={styles.big_info}>
               <h2>Información extra</h2>
               <p>
-                {data.extraInfo}
+                {data.extrainfo}
               </p>
             </div>
           }

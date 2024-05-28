@@ -56,7 +56,7 @@ const Events = () => {
 
   //!EDIT 
   const [editOpen, setEditOpen] = useState(false)
-  const [editEvent, setEditEvent] = useState<IEventID>({id: 0, date_ev: "", description: "", name: "", place: "", sport: "", time: "", city: "", extraInfo: "", inscriptionInfo: "", rules: "", urlUbi: "", check_Great: 0})
+  const [editEvent, setEditEvent] = useState<IEventID>({id: 0, date_ev: "", description: "", name: "", place: "", sport: "", time: "", city: "", extrainfo: "", inscriptioninfo: "", rules: "", urlubi: "", check_great: 0})
   const [submitting, setSubmitting] = useState(false)
   //!
 

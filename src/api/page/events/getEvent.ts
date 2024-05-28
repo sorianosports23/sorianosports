@@ -16,12 +16,12 @@ const apiGetEvent = async (id: number): Promise<IApiGetEventResponse> => {
         place: "",
         sport: "",
         time: "",
-        extraInfo: "",
-        inscriptionInfo: "",
+        extrainfo: "",
+        inscriptioninfo: "",
         rules: "",
-        urlUbi: "",
+        urlubi: "",
         city: "",
-        check_Great: 0
+        check_great: 0
       }
     }
   }

@@ -6,14 +6,14 @@ type TEvent = {
   sport: string
   description: string
   date_ev: string
-  check_Great: TTinyInt
+  check_great: TTinyInt
 }
 
 interface IEventID extends TEvent {
-  inscriptionInfo: string
+  inscriptioninfo: string
   rules: string
-  urlUbi: string
-  extraInfo: string
+  urlubi: string
+  extrainfo: string
   city: string
 }
 

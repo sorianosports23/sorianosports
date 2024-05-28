@@ -12,7 +12,7 @@ type TEditEventProps = {
   close: () => void
   info: IEventID
   submitting: boolean
-  handleSubmit: ({ id, name, description, place, sport, time, date_ev, city, extraInfo, inscriptionInfo, rules, urlUbi, image }: Omit<IApiAdminModifyEventRequest, "token">) => void
+  handleSubmit: ({ id, name, description, place, sport, time, date_ev, city, extrainfo, inscriptioninfo, rules, urlubi, image }: Omit<IApiAdminModifyEventRequest, "token">) => void
 }
 
 const EditEvent = ({ open, close, info, submitting, handleSubmit }: TEditEventProps) => {
@@ -25,10 +25,10 @@ const EditEvent = ({ open, close, info, submitting, handleSubmit }: TEditEventPr
   const [editTime, setEditTime] = useState(info.time) 
   const [editCity, setEditCity] = useState(info.city)
   const [editRules, setEditRules] = useState(info.rules)
-  const [editInscInfo, setEditInscInfo] = useState(info.inscriptionInfo)
-  const [editExtraInfo, setEditExtraInfo] = useState(info.extraInfo)
-  const [editUrl, setEditUrl] = useState(info.urlUbi)
-  const [editGreat, setEditGreat] = useState(info.check_Great)
+  const [editInscInfo, setEditInscInfo] = useState(info.inscriptioninfo)
+  const [editExtraInfo, setEditExtraInfo] = useState(info.extrainfo)
+  const [editUrl, setEditUrl] = useState(info.urlubi)
+  const [editGreat, setEditGreat] = useState(info.check_great)
   const [editImage, setEditImage] = useState<File | undefined>(undefined)
 
   useEffect(() => {
@@ -40,10 +40,10 @@ const EditEvent = ({ open, close, info, submitting, handleSubmit }: TEditEventPr
     setEditTime(info.time)
     setEditCity(info.city)
     setEditRules(info.rules)
-    setEditInscInfo(info.inscriptionInfo)
-    setEditExtraInfo(info.extraInfo)
-    setEditUrl(info.urlUbi)
-    setEditGreat(info.check_Great)
+    setEditInscInfo(info.inscriptioninfo)
+    setEditExtraInfo(info.extrainfo)
+    setEditUrl(info.urlubi)
+    setEditGreat(info.check_great)
     setEditImage(undefined)
   }, [info])
 
@@ -58,12 +58,12 @@ const EditEvent = ({ open, close, info, submitting, handleSubmit }: TEditEventPr
       date_ev: editDate,
       time: editTime,
       city: editCity,
-      extraInfo: editExtraInfo,
-      inscriptionInfo: editInscInfo,
+      extrainfo: editExtraInfo,
+      inscriptioninfo: editInscInfo,
       rules: editRules,
-      urlUbi: editUrl,
+      urlubi: editUrl,
       image: editImage,
-      check_Great: editGreat
+      check_great: editGreat
     }
     handleSubmit(data)
   }

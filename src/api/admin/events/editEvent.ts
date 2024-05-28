@@ -1,6 +1,6 @@
 import api from "../../apiRoute"
 
-const apiAdminModifyEvent = async ({ token, id, name, image, place, time, description, date_ev, sport, city, extraInfo, inscriptionInfo, rules, urlUbi, check_Great }: IApiAdminModifyEventRequest): Promise<TApiResponse> => {
+const apiAdminModifyEvent = async ({ token, id, name, image, place, time, description, date_ev, sport, city, extrainfo, inscriptioninfo, rules, urlubi, check_great }: IApiAdminModifyEventRequest): Promise<TApiResponse> => {
   try {
     await apiAdminModifyValue({token, id, attr: "name", newValue: name})
     await apiAdminModifyValue({token, id, attr: "place", newValue: place})
@@ -9,11 +9,11 @@ const apiAdminModifyEvent = async ({ token, id, name, image, place, time, descri
     await apiAdminModifyValue({token, id, attr: "date_ev", newValue: date_ev})
     await apiAdminModifyValue({token, id, attr: "sport", newValue: sport})
     await apiAdminModifyValue({token, id, attr: "city", newValue: city})
-    await apiAdminModifyValue({token, id, attr: "extraInfo", newValue: extraInfo})
-    await apiAdminModifyValue({token, id, attr: "inscriptionInfo", newValue: inscriptionInfo})
+    await apiAdminModifyValue({token, id, attr: "extraInfo", newValue: extrainfo})
+    await apiAdminModifyValue({token, id, attr: "inscriptionInfo", newValue: inscriptioninfo})
     await apiAdminModifyValue({token, id, attr: "rules", newValue: rules})
-    await apiAdminModifyValue({token, id, attr: "urlUbi", newValue: urlUbi})
-    await apiAdminModifyValue({token, id, attr: "check_Great", newValue: `${check_Great ?? 0}`})
+    await apiAdminModifyValue({token, id, attr: "urlUbi", newValue: urlubi})
+    await apiAdminModifyValue({token, id, attr: "check_Great", newValue: `${check_great ?? 0}`})
     if (image) await apiAdminModifyValue({token, id, attr: "image", newValue: image})
 
     return {

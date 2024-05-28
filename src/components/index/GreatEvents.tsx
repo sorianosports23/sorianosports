@@ -10,7 +10,7 @@ const GreatEvents = () => {
 
   const [loading, setLoading] = useState(true)
   const [isValid, setIsValid] = useState(true)
-  const [data, setData] = useState<TEvent>({check_Great: 0, date_ev: "", description: "", id: 0, name: "", place: "", sport: "", time: ""})
+  const [data, setData] = useState<TEvent>({check_great: 0, date_ev: "", description: "", id: 0, name: "", place: "", sport: "", time: ""})
 
   const handleCheckIfValidDate = (date: string) => {
     const actualDate = new Date().getTime()
