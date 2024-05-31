@@ -4,7 +4,8 @@ type TContact = {
   email: string
   subject: string
   status: 1 | 2
-  messageContact: string
+  messagecontact: string
+  latest_message?: string
 }
 
 type TApiAdminGetContactRequest = {

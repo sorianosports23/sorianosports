@@ -30,7 +30,8 @@ const DEFAULT_VALUE: TContactInfo = {
     email: "",
     subject: "",
     status: 1,
-    messageContact: ""
+    messagecontact: "",
+    latest_message: ""
   },
   user: {
     username: "",
@@ -54,6 +55,9 @@ const ContactModal = ({ id, open, close, form, openModal, reloadContact }: TCont
   useEffect(() => {
     handleGetInfo(id)
     handleUpdateForm(form)
+    if (form.latest_message) {
+      setResponse(form.latest_message)
+    }
   }, [id, form])
 
   const handleUpdateForm = (newForm: TContact) => {
@@ -165,9 +169,9 @@ const ContactModal = ({ id, open, close, form, openModal, reloadContact }: TCont
                   <label htmlFor="mc_id">Mensaje:</label>
                   <textarea 
                     readOnly
-                    value={info.form.messageContact}
+                    value={info.form.messagecontact}
                   >
-                    {info.form.messageContact}
+                    {info.form.messagecontact}
                   </textarea>
 
                 <div className={modalStyles.c_msg_resp}>
@@ -176,9 +180,7 @@ const ContactModal = ({ id, open, close, form, openModal, reloadContact }: TCont
                     placeholder="Escribe la respuesta."
                     value={response}
                     onChange={(ev) => setResponse(ev.target.value)}
-                  >
-                    
-                    
+                  >    
                   </textarea>
                   <button
                     type="button"

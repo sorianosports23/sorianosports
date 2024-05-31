@@ -56,7 +56,7 @@ const Contact = () => {
   //! MODAL
   const [modal, setModal] = useState(false)
   const [modalID, setModalID] = useState(0)
-  const [modalForm, setModalForm] = useState<TContact>({id: 0, name: "", email: "", subject: "", status: 1, messageContact: ""})
+  const [modalForm, setModalForm] = useState<TContact>({id: 0, name: "", email: "", subject: "", status: 1, messagecontact: ""})
   //!
 
   //! SEND MODAL

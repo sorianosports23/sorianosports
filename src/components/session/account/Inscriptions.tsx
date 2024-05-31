@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import styles from "../../../css/session/account/Inscriptions.module.css"
 import { userSessionContext } from "../../../context/session/UserSessionContext"
 import apiGetInscriptionFromUsername from "../../../api/admin/inscription/getInscriptionUsername"
-import { InscriptionStatusLabel, TInscription } from "../../../api/admin/inscription/inscription.types"
+import { InscriptionStatusLabel, TInscription, TInscriptionDB } from "../../../api/admin/inscription/inscription.types"
 import apiGetCityPlace from "../../../api/admin/city/getPlace"
 import SendModal from "../../modal/SendModal"
 import apiAdminEditStatusInscUser from "../../../api/admin/inscription/editInscriptionUser"
@@ -84,7 +84,7 @@ const IncriptionRecord = ({ sport, signedUp, dateStart, dateEnd, teacher, place,
 const Inscriptions = () => {
 
   const {token, username} = useContext(userSessionContext)
-  const [inscriptionData, setInscriptionData] = useState<TInscription[]>([])
+  const [inscriptionData, setInscriptionData] = useState<TInscriptionDB[]>([])
 
   useEffect(() => {
     if (!token || !username) return
@@ -139,9 +139,9 @@ const Inscriptions = () => {
             <IncriptionRecord
               sport={inscription.activity}
               signedUp={inscription.state}
-              dateStart={inscription.startInscription ?? ""}
-              dateEnd={inscription.state === 3  ? inscription.endInscription as string : ""}
-              place={inscription.activityPlace}
+              dateStart={inscription.startinscription ?? ""}
+              dateEnd={inscription.state === 3  ? inscription.endinscription as string : ""}
+              place={inscription.activityplace}
               teacher=""
               city={inscription.city}
               exitSport={() => handleExitInscription(inscription.id, inscription.activity)}

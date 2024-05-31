@@ -1,4 +1,4 @@
-import { TInscription } from "./inscription.types"
+import { TInscription, TInscriptionDB } from "./inscription.types"
 
 type TApiSendInscriptionRequest = {
   token: string
@@ -6,7 +6,7 @@ type TApiSendInscriptionRequest = {
 }
 
 interface IApiAdminGetInscriptions extends TApiResponse {
-  data: TInscription[]
+  data: TInscriptionDB[]
   pagination: {
     totalPages: number
     actualPage: number
@@ -19,7 +19,7 @@ type TApiGetInscriptionRequest = {
 }
 
 interface IApiGetInscriptionResponse extends TApiResponse {
-  data?: TInscription
+  data?: TInscriptionDB
 }
 
 type TApiGetInscriptionFromUsernameRequest = {
@@ -28,7 +28,7 @@ type TApiGetInscriptionFromUsernameRequest = {
 }
 
 interface IApiGetInscriptionFromUsernameResponse extends TApiResponse {
-  data: TInscription[]
+  data: TInscriptionDB[]
 }
 
 type TApiAdminEditStatusInsc = {

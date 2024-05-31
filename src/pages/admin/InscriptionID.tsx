@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 import Loading from "../Loading"
 import apiGetInscription from "../../api/admin/inscription/getInscription"
 import { userSessionContext } from "../../context/session/UserSessionContext"
-import { TInscription } from "../../api/admin/inscription/inscription.types"
+import { TInscription, TInscriptionDB } from "../../api/admin/inscription/inscription.types"
 import SendModal from "../../components/modal/SendModal"
 import api from "../../api/apiRoute"
 import styles from "../../css/admin/page/Inscription.module.css"
@@ -40,28 +40,28 @@ const InscriptionID = () => {
   const [routeName, setRouteName] = useState("")
   const [loading, setLoading] = useState(true)
 
-  const [inscriptionData, setInscriptionData] = useState<TInscription>({
+  const [inscriptionData, setInscriptionData] = useState<TInscriptionDB>({
     id: 0,
     name: "",
     lastname: "",
     birthday: "",
     ci: 0,
     gender: 0,
-    medicalRecord: 0,
+    medicalrecord: 0,
     city: "",
     residence: "",
     phone: 0,
-    sportTimeStart: "",
-    sportTimeEnd: "",
+    sporttimestart: "",
+    sporttimeend: "",
     activity: "",
-    activityPlace: "",
-    medicalAssistence: 0,
+    activityplace: "",
+    medicalassistence: 0,
     diabetes: 0,
     hypertension: 0,
     fractures: 0,
     allergy: 0,
     asthma: 0,
-    wearGlasses: 0,
+    wearglasses: 0,
     state: 1
   })
 
@@ -219,10 +219,10 @@ const InscriptionID = () => {
               />
 
               {
-                inscriptionData.alternativePhone && 
+                inscriptionData.alternativephone && 
                   <ShowInfo
                     title="Telefono alternativo"
-                    content={inscriptionData.alternativePhone}
+                    content={inscriptionData.alternativephone}
                   />
               }
 
@@ -238,11 +238,11 @@ const InscriptionID = () => {
               
               <ShowInfo
                 title="Ficha medica"
-                content={handleShowBoolean(inscriptionData.medicalRecord)}
+                content={handleShowBoolean(inscriptionData.medicalrecord)}
               />
 
               {
-                inscriptionData.medicalRecord === 1
+                inscriptionData.medicalrecord === 1
                 && <>
                   <ShowInfo
                     title="Vencimiento"
@@ -253,24 +253,24 @@ const InscriptionID = () => {
 
               <ShowInfo
                 title="Asistencia medica"
-                content={handleShowBoolean(inscriptionData.medicalAssistence, inscriptionData.whatMedicalCare)}
+                content={handleShowBoolean(inscriptionData.medicalassistence, inscriptionData.whatmedicalcare)}
               />
 
               {
-                inscriptionData.medicalAssistencePhone
+                inscriptionData.medicalasistencephone
                 &&
                 <ShowInfo
                   title="Telefono"
-                  content={inscriptionData.medicalAssistencePhone}
+                  content={inscriptionData.medicalasistencephone}
                 />
               }
 
               {
-                inscriptionData.bloodGroup
+                inscriptionData.bloodgroup
                 &&
                 <ShowInfo
                   title="Grupo de sangre"
-                  content={inscriptionData.bloodGroup}
+                  content={inscriptionData.bloodgroup}
                 />
               }
 
@@ -305,17 +305,17 @@ const InscriptionID = () => {
               />
               
               {
-                inscriptionData.otherDiseases
+                inscriptionData.otherdiseases
                 && 
                 <ShowInfo
                   title="Otros"
-                  content={inscriptionData.otherDiseases}
+                  content={inscriptionData.otherdiseases}
                 />
               }
 
               <ShowInfo
                 title="Lentes"
-                content={handleShowBoolean(inscriptionData.wearGlasses, inscriptionData.whatTypeGlasses)}
+                content={handleShowBoolean(inscriptionData.wearglasses, inscriptionData.whattypeglasses)}
               />
               
             </div>
@@ -345,29 +345,29 @@ const InscriptionID = () => {
 
               <ShowInfo
                 title="Horario"
-                content={`${inscriptionData.sportTimeStart} - ${inscriptionData.sportTimeEnd}`}
+                content={`${inscriptionData.sporttimestart} - ${inscriptionData.sporttimeend}`}
               />
 
               <ShowInfo
                 title="Lugar"
-                content={inscriptionData.activityPlace}
+                content={inscriptionData.activityplace}
               />
 
               {
-                inscriptionData.anotherSports
+                inscriptionData.anothersports
                 &&
                 <ShowInfo
                   title="Otros deportes"
-                  content={inscriptionData.anotherSports}
+                  content={inscriptionData.anothersports}
                 />
               }
               
               {
-                inscriptionData.oldPractisedSport
+                inscriptionData.oldpractisedsport
                 &&
                 <ShowInfo
                   title="Deportes anteriormente"
-                  content={inscriptionData.oldPractisedSport}
+                  content={inscriptionData.oldpractisedsport}
                 />
               }
             </div>
@@ -379,12 +379,12 @@ const InscriptionID = () => {
                   <h2>Inscripcion</h2>
                   <ShowInfo
                     title="Fecha de inscripcion"
-                    content={inscriptionData.startInscription as string}
+                    content={inscriptionData.startinscription as string}
                   />
 
                   {
-                    inscriptionData.endInscription
-                    && <ShowInfo title="Dado de baja" content={inscriptionData.endInscription}/>
+                    inscriptionData.endinscription
+                    && <ShowInfo title="Dado de baja" content={inscriptionData.endinscription}/>
                   }
                 </div>
               )
@@ -401,7 +401,7 @@ const InscriptionID = () => {
               </div>
 
               {
-                Number(inscriptionData.medicalAssistence) === 1
+                Number(inscriptionData.medicalassistence) === 1
                 &&
                 <div>
                   <h2>Ficha medica</h2>

@@ -1,7 +1,7 @@
 import Admin from "./Admin"
 import tableStyles from "../../css/admin/table.module.css"
 import { useCallback, useContext, useEffect, useState } from "react"
-import { TInscription } from "../../api/admin/inscription/inscription.types"
+import { TInscription, TInscriptionDB } from "../../api/admin/inscription/inscription.types"
 import apiAdminGetInscriptions from "../../api/admin/inscription/getInscriptions"
 import { userSessionContext } from "../../context/session/UserSessionContext"
 import { Link } from "react-router-dom"
@@ -16,7 +16,7 @@ const Inscription = () => {
 
   const { token } = useContext(userSessionContext)
 
-  const [inscriptionData, setInscriptionData] = useState<TInscription[]>([])
+  const [inscriptionData, setInscriptionData] = useState<TInscriptionDB[]>([])
 
   const handleGetInscriptionData = useCallback(async () => {
     const res = await apiAdminGetInscriptions(token)
@@ -42,7 +42,7 @@ const Inscription = () => {
 
               <div className={tableStyles.a} style={{flex: 1}}>
                 <p>{inscription.name} {inscription.lastname}</p>
-                <p>{inscription.activity} - {inscription.activityPlace}</p>
+                <p>{inscription.activity} - {inscription.activityplace}</p>
               </div>
 
               <div>

@@ -1,10 +1,10 @@
-type TApiSendContactErr = "name" | "email" | "subject" | "messageContact"
+type TApiSendContactErr = "name" | "email" | "subject" | "messagecontact"
 
 enum EApiContactInputsErr {
   "name" = "name",
   "email" = "email",
   "subject" = "subject",
-  "messageContact" = "message"
+  "messagecontact" = "message"
 }
  
 type TApiSendContactRequest = {

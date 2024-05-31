@@ -23,6 +23,10 @@ const Index = () => {
   }
 
   useEffect(() => {
+    console.log(yearSports)
+  }, [yearSports])
+
+  useEffect(() => {
     checkDayForActivities()
   })
 
@@ -42,7 +46,7 @@ const Index = () => {
 
       <div className={`${styles.sport} ${styles.water}`}>
         {
-          yearSports
+          !yearSports
             ? <SummerSportsInactive/>
             : <YearSportsInactive/>
         }
