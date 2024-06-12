@@ -104,7 +104,7 @@ const Register = () => {
     <main className={`page-bg ${styles.main}`}>
       <div className={styles.content}>
         <div className={styles.title}>
-          <img src={assetsFolder + "/../logo.png"} alt="soriano-logo" />
+          <img src={process.env.PUBLIC_URL + "/../logo.png"} alt="soriano-logo" />
           <h1>Regístro</h1>
         </div>
 
@@ -166,7 +166,7 @@ const Register = () => {
               `
             }}
           >
-            <img src={assetsFolder + "/img/silhouette_running.png"} alt="person-running" />
+            <img src={process.env.PUBLIC_URL + "/../assets/img/silhouette_running.png"} alt="person-running" />
           </div>
 
           <div className={styles.circle_register_completed}

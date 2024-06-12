@@ -6,6 +6,10 @@ type TNewsRecentsProps = {
 }
 
 const NewsRecents = ({ news }: TNewsRecentsProps) => {
+  if (news.length === 0) {
+    return null
+  }
+  
   return (
     <div className={styles.content}>
       {

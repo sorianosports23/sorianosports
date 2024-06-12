@@ -25,7 +25,7 @@ const GreatEvents = () => {
   useEffect(() => {
     (async () => {
       const res = await apiGetGreatEvent()
-      if (res.data) {
+      if (res.status && res.data.length > 0) {
         const eventData = res.data
         const nextEvent = eventData[0]
         if (!handleCheckIfValidDate(nextEvent.date_ev)) return
@@ -35,7 +35,7 @@ const GreatEvents = () => {
     })()
   }, [])
 
-  if (loading || !isValid) return <></>
+  if (loading || !isValid || !data.name) return <></>
 
   return (
     <div className={styles.cont}>

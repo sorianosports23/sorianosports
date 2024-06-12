@@ -77,7 +77,7 @@ const pageUserRoutes = createRoutesFromElements(
       <Route path="registro" element={<Register/>}/>
       <Route path="login" element={<Login/>}/>
       <Route path="perfil" element={<Account/>}/>
-    R</Route>
+    </Route>
 
     <Route path="acerca">
       <Route path="misionvision" element={<MissionVission/>}/>
@@ -131,7 +131,7 @@ const pageRoutes = createBrowserRouter(
     element: <Error/>
   },
 ], {
-  basename: "/deportes"
+  basename: "/"
 })
 
 export default pageRoutes

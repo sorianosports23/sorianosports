@@ -21,7 +21,7 @@ const Faq = () => {
     <User pageTitle="Preguntas frecuentes">
       <div className={styles.title}
         style={{
-          backgroundImage: `url(${assetsFolder}/img/secretaria.jpg)`
+          backgroundImage: `url(${assetsFolder}/img/secretaria.webp)`
         }}
       >
         <h1>Preguntas frecuentes</h1>

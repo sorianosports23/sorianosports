@@ -85,7 +85,7 @@ const Login = () => {
 
         <div className={styles.title}>
           <div>
-            <img src={assetsFolder + "/../logo.png"} alt="logo"/>
+            <img src={process.env.PUBLIC_URL + "/../logo.png"} alt="logo"/>
           </div>
         </div>
 

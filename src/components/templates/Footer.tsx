@@ -2,12 +2,56 @@ import { BsFillHouseFill, BsEnvelopeAtFill, BsTelephoneFill, BsClockFill, BsFace
 import { FaXTwitter } from "react-icons/fa6"
 import styles from "../../css/footer/Footer.module.css"
 import assetsFolder from "../../utils/publicfolder"
-import { useContext, useState } from "react"
+import { MutableRefObject, useContext, useEffect, useRef, useState } from "react"
 import { socialMediaContext } from "../../context/social/SocialMediaContext"
+import QRCodeStyling from "qr-code-styling"
+import getQRImage from "../../utils/getQRImage"
+
+const qrCode = new QRCodeStyling({
+  width: 256,
+  height: 256,
+  data: `${window.location.protocol}//deportes.soriano.gub.uy`,
+  margin: 0,
+  qrOptions: {
+    typeNumber: 0,
+    mode: 'Byte',
+    errorCorrectionLevel: 'Q'
+  },
+  imageOptions: {
+    hideBackgroundDots: true,
+    imageSize: 0.5,
+    margin: 0
+  },
+  dotsOptions: {
+    type: 'rounded',
+    color: '#000',
+    gradient: undefined
+  },
+  backgroundOptions: {
+    color: '#fff'
+  },
+  image: getQRImage(),
+  cornersSquareOptions: {
+    type: undefined,
+    color: '#7f908f',
+    gradient: undefined
+  },
+  cornersDotOptions: {
+    type: undefined,
+    color: '#000'
+  }
+})
 
 const Footer = () => {
 
   const { socialMedia } = useContext(socialMediaContext)
+  const qrRef = useRef<HTMLDivElement | null >(null)
+
+  useEffect(() => {
+    if (qrRef.current) {
+      qrCode.append(qrRef.current)
+    }
+  }, [qrRef])
 
   const [shareOpen, setShareOpen] = useState(false)
 
@@ -76,7 +120,11 @@ const Footer = () => {
               display: shareOpen ? "flex" : "none"
             }}
           >
-            <img src={assetsFolder + "/img/qr.png"} alt="qr" id="qr-photo"/>
+            {/* <img src={assetsFolder + "/img/qr.png"} alt="qr" id="qr-photo"/> */}
+            <div
+              className="qr"
+              ref={qrRef}
+            />
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ const Background = () => {
 
   return (
     <>
-    <div className={bgStyles.bg} style={{backgroundImage: `url(${assetsFolder}/img/mvbg.png)`}}>
+    <div className={bgStyles.bg} style={{backgroundImage: `url(${assetsFolder}/img/mvbg.webp)`}}>
 
     </div>
     </>

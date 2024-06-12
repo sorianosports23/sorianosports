@@ -161,13 +161,16 @@
 }
 
 .share > div > div {
-  width: 10rem;
-  height: 10rem;
+  width: fit-content;
+  height: fit-content;
+  align-items: center;
+  border: 1px solid #eee;
+  border-radius: .5rem;
+  padding: .25rem;
+  background: #222;
 }
 
-.share img {
-  width: 100%;
-  height: 100%;
+.qr {
   border-radius: .5rem;
 }
 
