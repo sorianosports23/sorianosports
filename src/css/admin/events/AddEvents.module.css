@@ -193,3 +193,13 @@
   flex-direction: column;
   gap: 1rem;
 }
+
+.timerange > div {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.timerange > div input {
+  width: 5rem;
+}

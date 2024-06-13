@@ -17,7 +17,11 @@ const AddEvent = () => {
   const [eventDescription, setEventDescription] = useState("")
   const [eventSport, setEventSport] = useState("")
   const [eventDate, setEventDate] = useState("")
-  const [eventTime, setEventTime] = useState<TTimePickerValue>(['00:00', '00:00'])
+  // const [eventTime, setEventTime] = useState<TTimePickerValue>(['00:00', '00:00'])
+  const [eventTime1, setEventTime1] = useState("00")
+  const [eventTime2, setEventTime2] = useState("00")
+  const [eventTime3, setEventTime3] = useState("00")
+  const [eventTime4, setEventTime4] = useState("00")
   const [eventImage, setEventImage] = useState<File | null>(null)
   const [eventCity, setEventCity] = useState("")
   const [eventRules, setEventRules] = useState("")
@@ -42,6 +46,8 @@ const AddEvent = () => {
       setInputError("image")
     }
 
+    const time = `${eventTime1}:${eventTime2} - ${eventTime3}:${eventTime4}`
+
     const eventData: TApiAdminAddEventRequest = {
       token,
       name: eventName,
@@ -49,7 +55,7 @@ const AddEvent = () => {
       description: eventDescription,
       sport: eventSport,
       date: eventDate,
-      time: `${eventTime[0]} - ${eventTime[1]}`,
+      time,
       image: eventImage as File,
       city: eventCity,
       extraInfo: eventExtraInfo,
@@ -67,17 +73,10 @@ const AddEvent = () => {
       setModalMsg("Se añadio el evento")
       setModalOtMsg("")
     } else {
-      if (res.input) {
-        setInputError(res.input)
-      } else {
         setModalMsg("No se pudo añadir el evento")
         setModalOtMsg(res.message)
-      }
     }
-
-    if (!res.input) {
-      setModalOpen(true)
-    }
+    setModalOpen(true)
     
     setCanSubmit(true)
   }
@@ -89,11 +88,13 @@ const AddEvent = () => {
     }
   }
 
+  const RequiredString = () => <span style={{color: '#f00',fontSize: '1.2em'}}>*</span>
+
   return (
     <Admin route_title="Añadir evento">
       <form onSubmit={handleSubmit} className={styles.event_info_inputs}>
         <div>
-          <label htmlFor="ev_name">Nombre:</label>
+          <label htmlFor="ev_name">Nombre: {<RequiredString/>}</label>
           <input 
             type="text" 
             id="ev_name"
@@ -107,7 +108,7 @@ const AddEvent = () => {
           />
         </div>
         <div>
-          <label htmlFor="ev_city">Ciudad:</label>
+          <label htmlFor="ev_city">Ciudad: {<RequiredString/>}</label>
           <div className="custom_select">
             <select
               value={eventCity}
@@ -126,7 +127,7 @@ const AddEvent = () => {
           </div>
         </div>
         <div>
-          <label htmlFor="ev_place">Lugar:</label>
+          <label htmlFor="ev_place">Lugar: {<RequiredString/>}</label>
           <input 
             type="text" 
             id="ev_place"
@@ -140,7 +141,7 @@ const AddEvent = () => {
           />
         </div>
         <div>
-          <label htmlFor="ev_date">Fecha:</label>
+          <label htmlFor="ev_date">Fecha: {<RequiredString/>}</label>
           <input 
             type="date" 
             id="ev_date"
@@ -153,18 +154,44 @@ const AddEvent = () => {
             data-invalid={inputError === "date_ev"}
           />
         </div>
-        <div>
-          <label htmlFor="ev_time">Horario:</label>
-          <TimeRangePicker
+        <div className={styles.timerange}>
+          <label htmlFor="ev_time">Horario: {<RequiredString/>}</label>
+          {/* <TimeRangePicker
             locale="es-UY"
             value={eventTime}
             onChange={(ev) => setEventTime(ev as typeof eventTime)}
             disableClock
             rangeDivider="-"
-          />
+          /> */}
+          <div>
+
+            <input 
+              type="text" 
+              value={eventTime1}
+              onChange={(ev) => setEventTime1(ev.target.value)}
+            />
+            :
+            <input 
+              type="text" 
+              value={eventTime2}
+              onChange={(ev) => setEventTime2(ev.target.value)}
+            />
+            -
+            <input 
+              type="text" 
+              value={eventTime3}
+              onChange={(ev) => setEventTime3(ev.target.value)}
+            />
+            :
+            <input 
+              type="text" 
+              value={eventTime4}
+              onChange={(ev) => setEventTime4(ev.target.value)}
+            />
+          </div>
         </div>
         <div>
-          <label htmlFor="ev_sport">Deporte:</label>
+          <label htmlFor="ev_sport">Deporte: {<RequiredString/>}</label>
           <input 
             type="text" 
             id="ev_sport"
@@ -178,7 +205,7 @@ const AddEvent = () => {
           />
         </div>
         <div>
-          <label htmlFor="ev_description">Descripción:</label>
+          <label htmlFor="ev_description">Descripción: {<RequiredString/>}</label>
           <textarea 
             id="ev_description"
             value={eventDescription}
@@ -240,7 +267,7 @@ const AddEvent = () => {
             htmlFor="ev_image"
             data-invalid={inputError === "image" && "true"}
           >
-            <BsUpload/> Subir imagen
+            <BsUpload/> Subir imagen {<RequiredString/>}
           </label>
 
           <p>

@@ -8,6 +8,8 @@ const EventId = () => {
 
   const data = useLoaderData() as IEventID
 
+  const date = data.date_ev.split('-')
+
   return (
     <User>
       <Container>
@@ -33,32 +35,47 @@ const EventId = () => {
           <div className={styles.info}>
             <div className={styles.attributes}>
               <ul>
-                <li>Ciudad: <span>{data.city}</span></li>
-                <li>Lugar: <span>{data.place}</span></li>
-                <li>Deporte: <span>{data.sport}</span></li>
-                <li>Horario: <span>{data.time}</span></li>
-                <li>Fecha: <span>{data.date_ev}</span></li>
+                <li><span style={{fontWeight:'bold'}}>Ciudad:</span> <span>{data.city}</span></li>
+                <li><span style={{fontWeight:'bold'}}>Lugar:</span> <span>{data.place}</span></li>
+                <li><span style={{fontWeight:'bold'}}>Deporte:</span> <span>{data.sport}</span></li>
+                <li><span style={{fontWeight:'bold'}}>Horario:</span> <span>{data.time}</span></li>
+                <li><span style={{fontWeight:'bold'}}>Fecha:</span> <span>{date[2]}/{date[1]}/{date[0]}</span></li>
               </ul>
             </div>
 
-            <div className={styles.map}>
-              <div dangerouslySetInnerHTML={{__html: data.urlubi}}></div>
-            </div>
+            {
+              data.urlubi
+              && (
+                <div className={styles.map}>
+                  <div dangerouslySetInnerHTML={{__html: data.urlubi}}></div>
+                </div>
+              )
+            }
           </div>
 
-          <div className={styles.big_info}>
-            <h2>Reglas</h2>
-            <p>
-              {data.rules}
-            </p>
-          </div>
+          {
+            data.rules
+            && (
+              <div className={styles.big_info}>
+                <h2>Reglas</h2>
+                <p>
+                  {data.rules}
+                </p>
+              </div>
+            )
+          }
 
-          <div className={styles.big_info}>
-            <h2>Información sobre inscripción</h2>
-            <p>
-              {data.inscriptioninfo}
-            </p>
-          </div>
+          {
+            data.inscriptioninfo
+            && (
+              <div className={styles.big_info}>
+                <h2>Información sobre inscripción</h2>
+                <p>
+                  {data.inscriptioninfo}
+                </p>
+              </div>
+            )
+          }
 
           {
             data.extrainfo

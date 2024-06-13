@@ -66,6 +66,7 @@
   z-index: 4;
   position: relative;
   /* animation: moveCarr linear alternate 25s infinite; */
+  transition: all .25s ;
 }
 
 .carrousel > button {

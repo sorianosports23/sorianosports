@@ -5,12 +5,14 @@ import assetsFolder from "../../utils/publicfolder"
 import { useEffect, useState } from "react"
 import apiGetGreatEvent from "../../api/page/events/getGreatEvent"
 import api from "../../api/apiRoute"
+import ImgVisualizer from "../ImgVisualizer"
 
 const GreatEvents = () => {
 
   const [loading, setLoading] = useState(true)
   const [isValid, setIsValid] = useState(true)
   const [data, setData] = useState<TEvent>({check_great: 0, date_ev: "", description: "", id: 0, name: "", place: "", sport: "", time: ""})
+  const [imgVis, setImgVis] = useState(false)
 
   const handleCheckIfValidDate = (date: string) => {
     const actualDate = new Date().getTime()
@@ -55,7 +57,15 @@ const GreatEvents = () => {
             <Link to={`/evento/${data.id}`}>Ver más</Link>
           </div>
 
-          <div className={styles.image}>
+          {
+          }
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+          <div 
+            className={styles.image} 
+            onClick={() => setImgVis(true)}
+            role="button"
+            tabIndex={0}
+          >
             <img src={`${api}/events/getImage.php?id=${data.id}`} alt="img" />
           </div>
         </div>
@@ -67,6 +77,14 @@ const GreatEvents = () => {
         {/* <div className={styles.triangle} style={{backgroundImage: `url(${assetsFolder}/img/greatevent_polygon.svg)`}}/> */}
         {/* <img src="http://localhost/api/events/getImage.php?id=2" alt="ge-img" /> */}
       </div>
+
+      <ImgVisualizer
+        open={imgVis}
+        img=""
+        close={() => setImgVis(false)}
+        imgLink={`${api}/events/getImage.php?id=${data.id}`}
+        hideButtons
+      />
     </div>
   )  
 } 

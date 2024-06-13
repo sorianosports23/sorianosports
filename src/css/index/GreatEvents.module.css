@@ -40,6 +40,8 @@
   font-size: 4em;
   font-family: "Metropolis", sans-serif;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
 }
 
 .time span {
@@ -75,6 +77,8 @@
   font-family: "Raleway", sans-serif;
   align-self: flex-start;
   font-size: 1.5em;
+  width: 100%;
+  text-align: center;
 }
 
 .info > a:hover {
@@ -161,5 +165,18 @@
 
   .time {
     transform: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .time {
+    display: flex;
+    flex-direction: column;
+    font-size: .8em;
+    margin-top: .5rem;
+  }
+
+  .title {
+    font-size: .8em;
   }
 }

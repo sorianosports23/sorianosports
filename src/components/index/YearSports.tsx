@@ -17,9 +17,9 @@ const SportCard = ({ sport, img, open }: TSportCardProps) => {
       style={{
         backgroundImage: `url(${assetsFolder}/img/cards/${img})`
       }}
-    >
-      <button onClick={open}>Inscribirme</button>
+      >
       <p>{sport}</p>
+      <button onClick={open}>Inscribirme</button>
     </div>
   )
 }
@@ -62,8 +62,11 @@ const YearSports = () => {
 
   useEffect(() => {
     if (sportsList.current) {
-      const cardsWidth = sportsList.current.children.length * 144
+      const cardsWidth = Array.from(sportsList.current.children).length * 144
       const cardsRect = sportsList.current.getBoundingClientRect()
+      console.log(cardsWidth)
+      console.log(cardsRect)
+
 
       if (cardsWidth > cardsRect.width) {
         sportsList.current.style.justifyContent = "flex-start"

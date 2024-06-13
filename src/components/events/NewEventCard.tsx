@@ -6,11 +6,9 @@ const days = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "S
 const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
 
 const NewEventCard = ({ id, name, place, sport, description, date_ev, time }: TEvent) => {
-  const date = new Date(`${date_ev} 00:00:00`)
-  const day = days[date.getDay()]
-  const dayNumber = date.getDay() + 1
+  const date = date_ev.split('-')
 
-  const month = months[date.getMonth()]
+  const month = months[Number(date[1])]
 
   return (
     <div className={styles.cont}>
@@ -32,7 +30,7 @@ const NewEventCard = ({ id, name, place, sport, description, date_ev, time }: TE
 
         <div className={styles.date}>
           <div>
-            <p>{`${dayNumber} ${month} ${date.getFullYear()}`}</p>
+            <p>{`${date[2]} ${month} ${date[0]}`}</p>
             <p>{time}</p>
             <p>{place}</p>
             <p>{sport}</p>

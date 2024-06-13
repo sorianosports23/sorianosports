@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import styles from "../../css/index/GreatEvents.module.css"
+import { BsClockFill } from "react-icons/bs"
 
 const UseTime = ({ date }: { date: string }) => {
 
@@ -35,7 +36,10 @@ const UseTime = ({ date }: { date: string }) => {
         (
           <>
           <div>
-            <p>Quedan:</p>
+            <p>
+              Quedan:
+              <BsClockFill style={{fontSize: '.8em',marginLeft: '1rem'}}/>
+            </p>
             {/* <span>a</span> */}
           </div>
           {

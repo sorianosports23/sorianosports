@@ -18,8 +18,8 @@ const SportCard = ({ sport, img, open }: TSportCardProps) => {
         backgroundImage: `url(${assetsFolder}/img/cards/${img})`
       }}
     >
-      <button onClick={open}>Inscribirme</button>
       <p>{sport}</p>
+      <button onClick={open}>Inscribirme</button>
     </div>
   )
 }
@@ -61,7 +61,7 @@ const SummerSports = () => {
 
   useEffect(() => {
     if (sportsList.current) {
-      const cardsWidth = sportsList.current.children.length * 144
+      const cardsWidth = Array.from(sportsList.current.children).length * 144
       const cardsRect = sportsList.current.getBoundingClientRect()
 
       if (cardsWidth > cardsRect.width) {
