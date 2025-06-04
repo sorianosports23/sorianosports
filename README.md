@@ -12,9 +12,8 @@ Nahuel Perdomo
 
 ## Pagina publica
 
-La pagina se encuentra hosteada en Vercel.\
-[https://sorianosports.vercel.app/deportes](https://sorianosports.vercel.app/deportes).\
-Esta version de la pagina no cuenta con el codigo backend, por lo tanto es solo una demostracion.
+La pagina se encuentra publicada de manera oficial.\
+[https://deportes.soriano.gub.uy](https://deportes.soriano.gub.uy).
 
 ## Backend
 
